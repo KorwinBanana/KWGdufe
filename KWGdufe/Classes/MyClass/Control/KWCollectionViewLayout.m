@@ -16,11 +16,7 @@ struct Tag{
     NSInteger end;
 }tag;
 
--(void)prepareLayout{
-    
-}
-
--(CGSize)collectionViewContentSize{
+- (CGSize)collectionViewContentSize{
 //    NSLog(@"%f",_height*12);
     return  CGSizeMake(self.collectionView.frame.size.width, _height*14);
 }

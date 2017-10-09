@@ -21,6 +21,7 @@
     UICollectionView *collectionView;
     CGFloat addWidth;
     NSArray *colors;
+    NSInteger schoolWeek;
 }
 @property (nonatomic,strong) NSMutableArray  *scheduleModel;
 @property (nonatomic,strong) KWCollectionViewLayout  *course;
@@ -33,6 +34,7 @@
     
     colors = @[@"#1b83b4",@"#6d9525",@"#c58525",@"#4161b7",@"#af4271",@"#7053ab",@"#60a779",@"#cb5253"];
     
+    [self getSchoolWeek];//获取第几周
     [self loadData];
     
     addWidth= ([UIScreen mainScreen].bounds.size.width-30)/7.0;
@@ -56,15 +58,36 @@
     [self.view addSubview:collectionView];
 }
 
+- (void)getSchoolWeek
+{
+    NSDateFormatter * df = [[NSDateFormatter alloc] init];
+    df.dateFormat = @"yyyy-MM-dd";
+    NSString * dateBeginTime = @"2017-09-04";//开学日期
+    NSString *dateNowTime = [df stringFromDate:[NSDate date]];//当前日期;
+    NSDate * date1 = [df dateFromString:dateBeginTime];
+    NSDate * date2 = [df dateFromString:dateNowTime];
+    NSTimeInterval time = [date2 timeIntervalSinceDate:date1]; //date1是前一个时间(早)，date2是后一个时间(晚)
+    
+    NSLog(@"time = %ld", (NSInteger)time/604800);
+    schoolWeek = (NSInteger)time/604800;
+    
+}
+
 - (void)loadData
 {
     //创建请求会话管理者
     AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
     
+    NSString *week = [NSString stringWithFormat:@"%ld",schoolWeek];
+    
     //拼接数据
     NSMutableDictionary *parements = [NSMutableDictionary dictionary];
     parements[@"sno"] = @"14251101256";
     parements[@"pwd"] = @"yifei520";
+    parements[@"stu_time"] = @"2016-2017-2";
+    parements[@"week"] = week;
+    
+    [self getSchoolWeek];
     
     //发送请求
     [mgr POST:@"http://api.wegdufe.com:82/index.php?r=jw/get-schedule" parameters:parements progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -86,7 +109,6 @@
 -(void)setWeekAndDays{
     NSArray *weekStr = @[@"一",@"二",@"三",@"四",@"五",@"六",@"七"];
 //    NSArray *arrWeek=[NSArray arrayWithObjects:@"星期日",@"星期一",@"星期二",@"星期三",@"星期四",@"星期五",@"星期六",nil];
-    NSInteger week = 8;
     
     KWWeekDay *flag;
     CGFloat height = 30;
@@ -94,7 +116,7 @@
 //    NSInteger startWeek = 0;
     flag = [[KWWeekDay alloc] initWithFrame:CGRectMake(0, 64, 37, height)];
     flag.alpha=0.8;
-    [flag setDay:[NSString stringWithFormat:@"%ld周",(long)week]];
+    [flag setDay:[NSString stringWithFormat:@"%ld周",(long)schoolWeek]];
     [self.view addSubview:flag];
     
     for(int i=1;i<=7;i++)

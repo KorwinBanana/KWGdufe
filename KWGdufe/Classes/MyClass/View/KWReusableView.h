@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface KWReusableView : UICollectionReusableView
-@property (nonatomic,strong) UILabel*num;
+@property (nonatomic,strong) UILabel *num;
 @end

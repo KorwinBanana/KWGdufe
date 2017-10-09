@@ -32,7 +32,7 @@
     CGFloat height = CGRectGetHeight(self.frame);
     day=[[UILabel alloc] initWithFrame:CGRectMake(0, height/3, width, height/3)];
     day.textColor = [UIColor blackColor];//日期字体
-    day.font = [UIFont systemFontOfSize:12];
+    day.font = [UIFont systemFontOfSize:13];
     day.textAlignment = NSTextAlignmentCenter;
 //    week = [[UILabel alloc] initWithFrame:CGRectMake(0, height/3+5, width, height/3*2-5)];
 //    week.textAlignment = NSTextAlignmentCenter;

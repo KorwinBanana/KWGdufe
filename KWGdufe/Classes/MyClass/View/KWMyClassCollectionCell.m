@@ -19,26 +19,27 @@
 - (instancetype)initWithFrame:(CGRect)frame
 {
     if(self=[super initWithFrame:frame]){
-        self.schedule = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(frame)-2, CGRectGetHeight(frame)-2)];
+        self.name = [[UILabel alloc] initWithFrame:CGRectMake(1, 1, CGRectGetWidth(frame)-2, CGRectGetHeight(frame)-2)];
         self.backgroundColor = [UIColor colorWithWhite:0 alpha:0];
-        _schedule.layer.cornerRadius = 3;
-        _schedule.layer.masksToBounds =YES;
-        [self addSubview:_schedule];
+        _name.layer.cornerRadius = 3;
+        _name.layer.masksToBounds =YES;
+        _name.textAlignment = NSTextAlignmentCenter;
+        [self addSubview:_name];
     }
     return self;
 }
 
 - (void)setModel:(KWScheduleModel *)model{
     _model=model;
-    _schedule.text = model.name;
-    _schedule.font = [UIFont systemFontOfSize:12];
-    _schedule.numberOfLines = 0;
-    _schedule.backgroundColor = [UIColor whiteColor];
+    _name.text = [NSString stringWithFormat:@"%@\n\n%@",model.name,model.location];
+    _name.font = [UIFont systemFontOfSize:12];
+    _name.numberOfLines = 0;
+    _name.backgroundColor = [UIColor whiteColor];
 //    if(![model.colors isEqualToString:@"#f5f5f5"])
-        _schedule.textColor = [UIColor blackColor];
-    _schedule.alpha = 1;
+    _name.textColor = [UIColor blackColor];
+    _name.alpha = 1;
 //    _schedule.backgroundColor = [Utils colorWithHexString:model.colors];
-    _schedule.backgroundColor = [UIColor whiteColor];
+    _name.backgroundColor = [UIColor yellowColor];
 }
 
 

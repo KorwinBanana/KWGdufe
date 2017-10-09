@@ -10,10 +10,11 @@
 #import "Utils.h"
 
 @implementation KWReusableView
--(instancetype)initWithFrame:(CGRect)frame{
+- (instancetype)initWithFrame:(CGRect)frame{
     if(self=[super initWithFrame:frame]){
         self.num = [[UILabel alloc] initWithFrame:self.bounds];
         _num.textAlignment = NSTextAlignmentCenter;
+        _num.font = [UIFont systemFontOfSize:13];
         [self addSubview:_num];
         self.layer.borderWidth = 0.24;
         self.layer.borderColor = [Utils colorWithHexString:@"#696969"].CGColor;
