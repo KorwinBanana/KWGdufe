@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "KWTabBarController.h"
 
 @interface AppDelegate ()
 
@@ -17,6 +18,14 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
+    
+    //2.设置窗口控制器
+    KWTabBarController *tbVc = [[KWTabBarController alloc]init];
+    self.window.rootViewController = tbVc;//设置根控制器
+    
+    //3.显示窗口 1.成为UIApplication主窗口 2.
+    [self.window makeKeyAndVisible];
     return YES;
 }
 

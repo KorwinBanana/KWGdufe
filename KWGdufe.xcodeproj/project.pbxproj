@@ -7,14 +7,30 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0A6750C61F7BD7A000E46900 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A6750C51F7BD7A000E46900 /* AppDelegate.m */; };
-		0A6750C91F7BD7A000E46900 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A6750C81F7BD7A000E46900 /* ViewController.m */; };
 		0A6750CC1F7BD7A000E46900 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A6750CA1F7BD7A000E46900 /* Main.storyboard */; };
-		0A6750CE1F7BD7A000E46900 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A6750CD1F7BD7A000E46900 /* Assets.xcassets */; };
 		0A6750D11F7BD7A000E46900 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A6750CF1F7BD7A000E46900 /* LaunchScreen.storyboard */; };
-		0A6750D41F7BD7A000E46900 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A6750D31F7BD7A000E46900 /* main.m */; };
 		0A6750DE1F7BD7A000E46900 /* KWGdufeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A6750DD1F7BD7A000E46900 /* KWGdufeTests.m */; };
 		0A6750E91F7BD7A000E46900 /* KWGdufeUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A6750E81F7BD7A000E46900 /* KWGdufeUITests.m */; };
+		0A9F5B241F7D813C006FD696 /* KWMyClassCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A9F5B221F7D813C006FD696 /* KWMyClassCollectionCell.m */; };
+		0A9F5B251F7D813C006FD696 /* KWMyClassCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A9F5B231F7D813C006FD696 /* KWMyClassCollectionCell.xib */; };
+		0AA60B1B1F7C006800E0E87D /* KWTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AA60B1A1F7C006800E0E87D /* KWTabBarController.m */; };
+		0AA60B1C1F7C027400E0E87D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8815331F7BDC5700AAB5BF /* ViewController.m */; };
+		0AA60B1D1F7C029100E0E87D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8815271F7BDC5700AAB5BF /* AppDelegate.m */; };
+		0AA60B1E1F7C029100E0E87D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8815311F7BDC5700AAB5BF /* main.m */; };
+		0AA60B2E1F7C050E00E0E87D /* KWMyClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AA60B2D1F7C050E00E0E87D /* KWMyClassViewController.m */; };
+		0AA60B311F7C052600E0E87D /* KWFunctionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AA60B301F7C052600E0E87D /* KWFunctionsViewController.m */; };
+		0AA60B341F7C053B00E0E87D /* KWMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AA60B331F7C053B00E0E87D /* KWMineViewController.m */; };
+		0AA60B371F7C05D000E0E87D /* KWNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AA60B361F7C05D000E0E87D /* KWNavigationViewController.m */; };
+		0AB186B71F89504400A49F93 /* KWScheduleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AB186B61F89504400A49F93 /* KWScheduleModel.m */; };
+		0AB186BA1F89519F00A49F93 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AB186B91F89519F00A49F93 /* Utils.m */; };
+		0AB186BD1F89527A00A49F93 /* KWCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AB186BC1F89527A00A49F93 /* KWCollectionViewLayout.m */; };
+		0AB186C01F89587C00A49F93 /* KWReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AB186BF1F89587C00A49F93 /* KWReusableView.m */; };
+		0AB186C31F8959A800A49F93 /* KWWeekCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AB186C21F8959A800A49F93 /* KWWeekCell.m */; };
+		0AB186C61F8959EE00A49F93 /* KWSelectWeekView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AB186C51F8959EE00A49F93 /* KWSelectWeekView.m */; };
+		0AB186C91F895AA200A49F93 /* KWWeekDay.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AB186C81F895AA200A49F93 /* KWWeekDay.m */; };
+		2855E0A7848FC10914635CA1 /* libPods-KWGdufe.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 70BB40C444C8B28E8744C841 /* libPods-KWGdufe.a */; };
+		45FD544D5C6E99B95A9B77D9 /* libPods-KWGdufeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FF19EBAF60162FE0D672D4AA /* libPods-KWGdufeTests.a */; };
+		F134587B6B3375BF8937A5B6 /* libPods-KWGdufeUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 051C1E9532C05A1197E97386 /* libPods-KWGdufeUITests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,22 +51,67 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		051C1E9532C05A1197E97386 /* libPods-KWGdufeUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-KWGdufeUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A09E86A1F7E91E600BAF64F /* KWGdufe.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWGdufe.pch; sourceTree = "<group>"; };
 		0A6750C11F7BD79F00E46900 /* KWGdufe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KWGdufe.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		0A6750C41F7BD7A000E46900 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		0A6750C51F7BD7A000E46900 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		0A6750C71F7BD7A000E46900 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		0A6750C81F7BD7A000E46900 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		0A6750CB1F7BD7A000E46900 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		0A6750CD1F7BD7A000E46900 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0A6750D01F7BD7A000E46900 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0A6750D21F7BD7A000E46900 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0A6750D31F7BD7A000E46900 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		0A6750D91F7BD7A000E46900 /* KWGdufeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KWGdufeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A6750DD1F7BD7A000E46900 /* KWGdufeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWGdufeTests.m; sourceTree = "<group>"; };
 		0A6750DF1F7BD7A000E46900 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0A6750E41F7BD7A000E46900 /* KWGdufeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KWGdufeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A6750E81F7BD7A000E46900 /* KWGdufeUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWGdufeUITests.m; sourceTree = "<group>"; };
 		0A6750EA1F7BD7A000E46900 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0A8815261F7BDC5700AAB5BF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		0A8815271F7BDC5700AAB5BF /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		0A8815291F7BDC5700AAB5BF /* UIBarButtonItem+barButtonItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+barButtonItem.h"; sourceTree = "<group>"; };
+		0A88152A1F7BDC5700AAB5BF /* UIBarButtonItem+barButtonItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+barButtonItem.m"; sourceTree = "<group>"; };
+		0A88152B1F7BDC5700AAB5BF /* UIButton+KWButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+KWButton.h"; sourceTree = "<group>"; };
+		0A88152C1F7BDC5700AAB5BF /* UIButton+KWButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+KWButton.m"; sourceTree = "<group>"; };
+		0A88152D1F7BDC5700AAB5BF /* UIImage+Image.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+Image.h"; sourceTree = "<group>"; };
+		0A88152E1F7BDC5700AAB5BF /* UIImage+Image.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Image.m"; sourceTree = "<group>"; };
+		0A88152F1F7BDC5700AAB5BF /* UIView+Frame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
+		0A8815301F7BDC5700AAB5BF /* UIView+Frame.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
+		0A8815311F7BDC5700AAB5BF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		0A8815321F7BDC5700AAB5BF /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		0A8815331F7BDC5700AAB5BF /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		0A9F5B1B1F7D7A71006FD696 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0A9F5B211F7D813C006FD696 /* KWMyClassCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWMyClassCollectionCell.h; sourceTree = "<group>"; };
+		0A9F5B221F7D813C006FD696 /* KWMyClassCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWMyClassCollectionCell.m; sourceTree = "<group>"; };
+		0A9F5B231F7D813C006FD696 /* KWMyClassCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KWMyClassCollectionCell.xib; sourceTree = "<group>"; };
+		0AA60B191F7C006800E0E87D /* KWTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWTabBarController.h; sourceTree = "<group>"; };
+		0AA60B1A1F7C006800E0E87D /* KWTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWTabBarController.m; sourceTree = "<group>"; };
+		0AA60B2C1F7C050E00E0E87D /* KWMyClassViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWMyClassViewController.h; sourceTree = "<group>"; };
+		0AA60B2D1F7C050E00E0E87D /* KWMyClassViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWMyClassViewController.m; sourceTree = "<group>"; };
+		0AA60B2F1F7C052600E0E87D /* KWFunctionsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWFunctionsViewController.h; sourceTree = "<group>"; };
+		0AA60B301F7C052600E0E87D /* KWFunctionsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWFunctionsViewController.m; sourceTree = "<group>"; };
+		0AA60B321F7C053B00E0E87D /* KWMineViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWMineViewController.h; sourceTree = "<group>"; };
+		0AA60B331F7C053B00E0E87D /* KWMineViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWMineViewController.m; sourceTree = "<group>"; };
+		0AA60B351F7C05D000E0E87D /* KWNavigationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWNavigationViewController.h; sourceTree = "<group>"; };
+		0AA60B361F7C05D000E0E87D /* KWNavigationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWNavigationViewController.m; sourceTree = "<group>"; };
+		0AB186B51F89504400A49F93 /* KWScheduleModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWScheduleModel.h; sourceTree = "<group>"; };
+		0AB186B61F89504400A49F93 /* KWScheduleModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWScheduleModel.m; sourceTree = "<group>"; };
+		0AB186B81F89519F00A49F93 /* Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
+		0AB186B91F89519F00A49F93 /* Utils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
+		0AB186BB1F89527A00A49F93 /* KWCollectionViewLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWCollectionViewLayout.h; sourceTree = "<group>"; };
+		0AB186BC1F89527A00A49F93 /* KWCollectionViewLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWCollectionViewLayout.m; sourceTree = "<group>"; };
+		0AB186BE1F89587C00A49F93 /* KWReusableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWReusableView.h; sourceTree = "<group>"; };
+		0AB186BF1F89587C00A49F93 /* KWReusableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWReusableView.m; sourceTree = "<group>"; };
+		0AB186C11F8959A800A49F93 /* KWWeekCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWWeekCell.h; sourceTree = "<group>"; };
+		0AB186C21F8959A800A49F93 /* KWWeekCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWWeekCell.m; sourceTree = "<group>"; };
+		0AB186C41F8959EE00A49F93 /* KWSelectWeekView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWSelectWeekView.h; sourceTree = "<group>"; };
+		0AB186C51F8959EE00A49F93 /* KWSelectWeekView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWSelectWeekView.m; sourceTree = "<group>"; };
+		0AB186C71F895AA200A49F93 /* KWWeekDay.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWWeekDay.h; sourceTree = "<group>"; };
+		0AB186C81F895AA200A49F93 /* KWWeekDay.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWWeekDay.m; sourceTree = "<group>"; };
+		1C82DCD50C4AE89C6BB08CFF /* Pods-KWGdufe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KWGdufe.release.xcconfig"; path = "Pods/Target Support Files/Pods-KWGdufe/Pods-KWGdufe.release.xcconfig"; sourceTree = "<group>"; };
+		5F4EEE1B2B538304EC4DDE62 /* Pods-KWGdufeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KWGdufeUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-KWGdufeUITests/Pods-KWGdufeUITests.release.xcconfig"; sourceTree = "<group>"; };
+		7020022D459EC21A2A7B6561 /* Pods-KWGdufe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KWGdufe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KWGdufe/Pods-KWGdufe.debug.xcconfig"; sourceTree = "<group>"; };
+		70BB40C444C8B28E8744C841 /* libPods-KWGdufe.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-KWGdufe.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A0A4ACD246520BE4DAB0628D /* Pods-KWGdufeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KWGdufeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-KWGdufeTests/Pods-KWGdufeTests.release.xcconfig"; sourceTree = "<group>"; };
+		A2D1AABEB33B86C1515B902A /* Pods-KWGdufeUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KWGdufeUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KWGdufeUITests/Pods-KWGdufeUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		B796F857EA1546930EBE7D45 /* Pods-KWGdufeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KWGdufeTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KWGdufeTests/Pods-KWGdufeTests.debug.xcconfig"; sourceTree = "<group>"; };
+		FF19EBAF60162FE0D672D4AA /* libPods-KWGdufeTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-KWGdufeTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +119,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2855E0A7848FC10914635CA1 /* libPods-KWGdufe.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +127,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45FD544D5C6E99B95A9B77D9 /* libPods-KWGdufeTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,6 +135,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F134587B6B3375BF8937A5B6 /* libPods-KWGdufeUITests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,6 +149,8 @@
 				0A6750DC1F7BD7A000E46900 /* KWGdufeTests */,
 				0A6750E71F7BD7A000E46900 /* KWGdufeUITests */,
 				0A6750C21F7BD79F00E46900 /* Products */,
+				FFFBC092A29BA764AAE78877 /* Pods */,
+				DB4B2B5F54B9954FE3A5F47A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -101,15 +167,16 @@
 		0A6750C31F7BD7A000E46900 /* KWGdufe */ = {
 			isa = PBXGroup;
 			children = (
-				0A6750C41F7BD7A000E46900 /* AppDelegate.h */,
-				0A6750C51F7BD7A000E46900 /* AppDelegate.m */,
-				0A6750C71F7BD7A000E46900 /* ViewController.h */,
-				0A6750C81F7BD7A000E46900 /* ViewController.m */,
+				0A8815181F7BDC5700AAB5BF /* Classes */,
 				0A6750CA1F7BD7A000E46900 /* Main.storyboard */,
-				0A6750CD1F7BD7A000E46900 /* Assets.xcassets */,
+				0A8815261F7BDC5700AAB5BF /* AppDelegate.h */,
+				0A8815271F7BDC5700AAB5BF /* AppDelegate.m */,
+				0A8815311F7BDC5700AAB5BF /* main.m */,
+				0A9F5B1B1F7D7A71006FD696 /* Assets.xcassets */,
+				0A8815321F7BDC5700AAB5BF /* ViewController.h */,
+				0A8815331F7BDC5700AAB5BF /* ViewController.m */,
 				0A6750CF1F7BD7A000E46900 /* LaunchScreen.storyboard */,
 				0A6750D21F7BD7A000E46900 /* Info.plist */,
-				0A6750D31F7BD7A000E46900 /* main.m */,
 			);
 			path = KWGdufe;
 			sourceTree = "<group>";
@@ -132,6 +199,280 @@
 			path = KWGdufeUITests;
 			sourceTree = "<group>";
 		};
+		0A8815181F7BDC5700AAB5BF /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				0AA60B151F7BFF9F00E0E87D /* Main */,
+				0A8815211F7BDC5700AAB5BF /* MyClass */,
+				0AA60B1F1F7C03FF00E0E87D /* Functions */,
+				0A88151D1F7BDC5700AAB5BF /* Mine */,
+				0A8815381F7BDC5700AAB5BF /* Setting */,
+				0A8815341F7BDC5700AAB5BF /* Publish */,
+				0A8815251F7BDC5700AAB5BF /* Other */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		0A88151D1F7BDC5700AAB5BF /* Mine */ = {
+			isa = PBXGroup;
+			children = (
+				0A88151E1F7BDC5700AAB5BF /* Control */,
+				0A88151F1F7BDC5700AAB5BF /* Model */,
+				0A8815201F7BDC5700AAB5BF /* View */,
+			);
+			path = Mine;
+			sourceTree = "<group>";
+		};
+		0A88151E1F7BDC5700AAB5BF /* Control */ = {
+			isa = PBXGroup;
+			children = (
+				0AA60B321F7C053B00E0E87D /* KWMineViewController.h */,
+				0AA60B331F7C053B00E0E87D /* KWMineViewController.m */,
+			);
+			path = Control;
+			sourceTree = "<group>";
+		};
+		0A88151F1F7BDC5700AAB5BF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0A8815201F7BDC5700AAB5BF /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0A8815211F7BDC5700AAB5BF /* MyClass */ = {
+			isa = PBXGroup;
+			children = (
+				0A8815221F7BDC5700AAB5BF /* Control */,
+				0A8815231F7BDC5700AAB5BF /* Model */,
+				0A8815241F7BDC5700AAB5BF /* View */,
+			);
+			path = MyClass;
+			sourceTree = "<group>";
+		};
+		0A8815221F7BDC5700AAB5BF /* Control */ = {
+			isa = PBXGroup;
+			children = (
+				0AA60B2C1F7C050E00E0E87D /* KWMyClassViewController.h */,
+				0AA60B2D1F7C050E00E0E87D /* KWMyClassViewController.m */,
+				0AB186BB1F89527A00A49F93 /* KWCollectionViewLayout.h */,
+				0AB186BC1F89527A00A49F93 /* KWCollectionViewLayout.m */,
+			);
+			path = Control;
+			sourceTree = "<group>";
+		};
+		0A8815231F7BDC5700AAB5BF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0AB186B51F89504400A49F93 /* KWScheduleModel.h */,
+				0AB186B61F89504400A49F93 /* KWScheduleModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0A8815241F7BDC5700AAB5BF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0AB186BE1F89587C00A49F93 /* KWReusableView.h */,
+				0AB186BF1F89587C00A49F93 /* KWReusableView.m */,
+				0A9F5B211F7D813C006FD696 /* KWMyClassCollectionCell.h */,
+				0A9F5B221F7D813C006FD696 /* KWMyClassCollectionCell.m */,
+				0A9F5B231F7D813C006FD696 /* KWMyClassCollectionCell.xib */,
+				0AB186C71F895AA200A49F93 /* KWWeekDay.h */,
+				0AB186C81F895AA200A49F93 /* KWWeekDay.m */,
+				0AB186C41F8959EE00A49F93 /* KWSelectWeekView.h */,
+				0AB186C51F8959EE00A49F93 /* KWSelectWeekView.m */,
+				0AB186C11F8959A800A49F93 /* KWWeekCell.h */,
+				0AB186C21F8959A800A49F93 /* KWWeekCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0A8815251F7BDC5700AAB5BF /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				0A8815281F7BDC5700AAB5BF /* Category */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		0A8815281F7BDC5700AAB5BF /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				0A8815291F7BDC5700AAB5BF /* UIBarButtonItem+barButtonItem.h */,
+				0A88152A1F7BDC5700AAB5BF /* UIBarButtonItem+barButtonItem.m */,
+				0A88152B1F7BDC5700AAB5BF /* UIButton+KWButton.h */,
+				0A88152C1F7BDC5700AAB5BF /* UIButton+KWButton.m */,
+				0A88152D1F7BDC5700AAB5BF /* UIImage+Image.h */,
+				0A88152E1F7BDC5700AAB5BF /* UIImage+Image.m */,
+				0A88152F1F7BDC5700AAB5BF /* UIView+Frame.h */,
+				0A8815301F7BDC5700AAB5BF /* UIView+Frame.m */,
+				0A09E86A1F7E91E600BAF64F /* KWGdufe.pch */,
+				0AB186B81F89519F00A49F93 /* Utils.h */,
+				0AB186B91F89519F00A49F93 /* Utils.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		0A8815341F7BDC5700AAB5BF /* Publish */ = {
+			isa = PBXGroup;
+			children = (
+				0A8815351F7BDC5700AAB5BF /* Control */,
+				0A8815361F7BDC5700AAB5BF /* Model */,
+				0A8815371F7BDC5700AAB5BF /* View */,
+			);
+			path = Publish;
+			sourceTree = "<group>";
+		};
+		0A8815351F7BDC5700AAB5BF /* Control */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Control;
+			sourceTree = "<group>";
+		};
+		0A8815361F7BDC5700AAB5BF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0A8815371F7BDC5700AAB5BF /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0A8815381F7BDC5700AAB5BF /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				0A8815391F7BDC5700AAB5BF /* Control */,
+				0A88153A1F7BDC5700AAB5BF /* Model */,
+				0A88153B1F7BDC5700AAB5BF /* View */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		0A8815391F7BDC5700AAB5BF /* Control */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Control;
+			sourceTree = "<group>";
+		};
+		0A88153A1F7BDC5700AAB5BF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0A88153B1F7BDC5700AAB5BF /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0AA60B151F7BFF9F00E0E87D /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				0AA60B161F7BFF9F00E0E87D /* Control */,
+				0AA60B171F7BFF9F00E0E87D /* Model */,
+				0AA60B181F7BFF9F00E0E87D /* View */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		0AA60B161F7BFF9F00E0E87D /* Control */ = {
+			isa = PBXGroup;
+			children = (
+				0AA60B191F7C006800E0E87D /* KWTabBarController.h */,
+				0AA60B1A1F7C006800E0E87D /* KWTabBarController.m */,
+				0AA60B351F7C05D000E0E87D /* KWNavigationViewController.h */,
+				0AA60B361F7C05D000E0E87D /* KWNavigationViewController.m */,
+			);
+			path = Control;
+			sourceTree = "<group>";
+		};
+		0AA60B171F7BFF9F00E0E87D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0AA60B181F7BFF9F00E0E87D /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0AA60B1F1F7C03FF00E0E87D /* Functions */ = {
+			isa = PBXGroup;
+			children = (
+				0AA60B201F7C040000E0E87D /* Control */,
+				0AA60B211F7C040000E0E87D /* Model */,
+				0AA60B221F7C040000E0E87D /* View */,
+			);
+			path = Functions;
+			sourceTree = "<group>";
+		};
+		0AA60B201F7C040000E0E87D /* Control */ = {
+			isa = PBXGroup;
+			children = (
+				0AA60B2F1F7C052600E0E87D /* KWFunctionsViewController.h */,
+				0AA60B301F7C052600E0E87D /* KWFunctionsViewController.m */,
+			);
+			path = Control;
+			sourceTree = "<group>";
+		};
+		0AA60B211F7C040000E0E87D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0AA60B221F7C040000E0E87D /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DB4B2B5F54B9954FE3A5F47A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				70BB40C444C8B28E8744C841 /* libPods-KWGdufe.a */,
+				FF19EBAF60162FE0D672D4AA /* libPods-KWGdufeTests.a */,
+				051C1E9532C05A1197E97386 /* libPods-KWGdufeUITests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FFFBC092A29BA764AAE78877 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7020022D459EC21A2A7B6561 /* Pods-KWGdufe.debug.xcconfig */,
+				1C82DCD50C4AE89C6BB08CFF /* Pods-KWGdufe.release.xcconfig */,
+				B796F857EA1546930EBE7D45 /* Pods-KWGdufeTests.debug.xcconfig */,
+				A0A4ACD246520BE4DAB0628D /* Pods-KWGdufeTests.release.xcconfig */,
+				A2D1AABEB33B86C1515B902A /* Pods-KWGdufeUITests.debug.xcconfig */,
+				5F4EEE1B2B538304EC4DDE62 /* Pods-KWGdufeUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -139,9 +480,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0A6750ED1F7BD7A000E46900 /* Build configuration list for PBXNativeTarget "KWGdufe" */;
 			buildPhases = (
+				5757237B2EB021F53CD04724 /* [CP] Check Pods Manifest.lock */,
 				0A6750BD1F7BD79F00E46900 /* Sources */,
 				0A6750BE1F7BD79F00E46900 /* Frameworks */,
 				0A6750BF1F7BD79F00E46900 /* Resources */,
+				61F2C5DCB5C71458FA664741 /* [CP] Embed Pods Frameworks */,
+				FAA5FBF1A6158F64FFBBA733 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -156,9 +500,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0A6750F01F7BD7A000E46900 /* Build configuration list for PBXNativeTarget "KWGdufeTests" */;
 			buildPhases = (
+				D4D6B093EF354D260EE2E54F /* [CP] Check Pods Manifest.lock */,
 				0A6750D51F7BD7A000E46900 /* Sources */,
 				0A6750D61F7BD7A000E46900 /* Frameworks */,
 				0A6750D71F7BD7A000E46900 /* Resources */,
+				2EBC0BAA241FC1B0DD9B37CA /* [CP] Embed Pods Frameworks */,
+				CE62F4E11BF4E66F4DCB2644 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -174,9 +521,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0A6750F31F7BD7A000E46900 /* Build configuration list for PBXNativeTarget "KWGdufeUITests" */;
 			buildPhases = (
+				EA2248A7A106DBE5C81475B5 /* [CP] Check Pods Manifest.lock */,
 				0A6750E01F7BD7A000E46900 /* Sources */,
 				0A6750E11F7BD7A000E46900 /* Frameworks */,
 				0A6750E21F7BD7A000E46900 /* Resources */,
+				A78105B99DE9A93D5968A298 /* [CP] Embed Pods Frameworks */,
+				BC1C3B89B4B9E8A1FD61579F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -239,7 +589,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A6750D11F7BD7A000E46900 /* LaunchScreen.storyboard in Resources */,
-				0A6750CE1F7BD7A000E46900 /* Assets.xcassets in Resources */,
+				0A9F5B251F7D813C006FD696 /* KWMyClassCollectionCell.xib in Resources */,
 				0A6750CC1F7BD7A000E46900 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -260,14 +610,165 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2EBC0BAA241FC1B0DD9B37CA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KWGdufeTests/Pods-KWGdufeTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5757237B2EB021F53CD04724 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		61F2C5DCB5C71458FA664741 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KWGdufe/Pods-KWGdufe-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A78105B99DE9A93D5968A298 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KWGdufeUITests/Pods-KWGdufeUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BC1C3B89B4B9E8A1FD61579F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KWGdufeUITests/Pods-KWGdufeUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CE62F4E11BF4E66F4DCB2644 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KWGdufeTests/Pods-KWGdufeTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D4D6B093EF354D260EE2E54F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		EA2248A7A106DBE5C81475B5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		FAA5FBF1A6158F64FFBBA733 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KWGdufe/Pods-KWGdufe-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		0A6750BD1F7BD79F00E46900 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0A6750C91F7BD7A000E46900 /* ViewController.m in Sources */,
-				0A6750D41F7BD7A000E46900 /* main.m in Sources */,
-				0A6750C61F7BD7A000E46900 /* AppDelegate.m in Sources */,
+				0AA60B311F7C052600E0E87D /* KWFunctionsViewController.m in Sources */,
+				0AB186BA1F89519F00A49F93 /* Utils.m in Sources */,
+				0AB186C91F895AA200A49F93 /* KWWeekDay.m in Sources */,
+				0AA60B371F7C05D000E0E87D /* KWNavigationViewController.m in Sources */,
+				0AA60B2E1F7C050E00E0E87D /* KWMyClassViewController.m in Sources */,
+				0AB186C01F89587C00A49F93 /* KWReusableView.m in Sources */,
+				0A9F5B241F7D813C006FD696 /* KWMyClassCollectionCell.m in Sources */,
+				0AA60B1C1F7C027400E0E87D /* ViewController.m in Sources */,
+				0AB186BD1F89527A00A49F93 /* KWCollectionViewLayout.m in Sources */,
+				0AB186C61F8959EE00A49F93 /* KWSelectWeekView.m in Sources */,
+				0AA60B1B1F7C006800E0E87D /* KWTabBarController.m in Sources */,
+				0AA60B1E1F7C029100E0E87D /* main.m in Sources */,
+				0AA60B1D1F7C029100E0E87D /* AppDelegate.m in Sources */,
+				0AB186C31F8959A800A49F93 /* KWWeekCell.m in Sources */,
+				0AB186B71F89504400A49F93 /* KWScheduleModel.m in Sources */,
+				0AA60B341F7C053B00E0E87D /* KWMineViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -428,11 +929,15 @@
 		};
 		0A6750EE1F7BD7A000E46900 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7020022D459EC21A2A7B6561 /* Pods-KWGdufe.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = E33T36MPH2;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "/Users/k/iOS-KW/project/KWGdufe/KWGdufe/Classes/Other/Category/KWGdufe.pch";
 				INFOPLIST_FILE = KWGdufe/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.korwin.KWGdufe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -442,11 +947,15 @@
 		};
 		0A6750EF1F7BD7A000E46900 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1C82DCD50C4AE89C6BB08CFF /* Pods-KWGdufe.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = E33T36MPH2;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "/Users/k/iOS-KW/project/KWGdufe/KWGdufe/Classes/Other/Category/KWGdufe.pch";
 				INFOPLIST_FILE = KWGdufe/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.korwin.KWGdufe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -456,6 +965,7 @@
 		};
 		0A6750F11F7BD7A000E46900 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B796F857EA1546930EBE7D45 /* Pods-KWGdufeTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -471,6 +981,7 @@
 		};
 		0A6750F21F7BD7A000E46900 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A0A4ACD246520BE4DAB0628D /* Pods-KWGdufeTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -486,6 +997,7 @@
 		};
 		0A6750F41F7BD7A000E46900 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A2D1AABEB33B86C1515B902A /* Pods-KWGdufeUITests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = E33T36MPH2;
@@ -500,6 +1012,7 @@
 		};
 		0A6750F51F7BD7A000E46900 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5F4EEE1B2B538304EC4DDE62 /* Pods-KWGdufeUITests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = E33T36MPH2;

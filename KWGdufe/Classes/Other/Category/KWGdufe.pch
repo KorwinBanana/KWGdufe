@@ -1,0 +1,24 @@
+//
+//  KWGdufe.pch
+//  KWGdufe
+//
+//  Created by korwin on 2017/9/29.
+//  Copyright © 2017年 korwin. All rights reserved.
+//
+
+#import <Masonry.h> //自动布局
+#import "UIView+Frame.h"
+#import "UIImage+Image.h"
+#import "UIBarButtonItem+barButtonItem.h"
+#import "UIButton+KWButton.h"
+
+/*****************屏幕适配*********************/
+#define KWSCreenH [UIScreen mainScreen].bounds.size.height
+#define KWSCreenW [UIScreen mainScreen].bounds.size.width
+#define iphone7p (KWSCreenH == 736)
+#define iphone7 (KWSCreenH == 667)
+#define iphonese (KWSCreenH == 568)
+
+#define topHeight 20
+
+#define KWLog NSLog(@"%s",__func__)
