@@ -21,7 +21,7 @@
     if(self=[super initWithFrame:frame])
     {
         [self setUp];
-        self.backgroundColor = [Utils colorWithHexString:@"#FFFFFF"];//
+        self.backgroundColor = [UIColor whiteColor];//
         
     }
     return self;
@@ -37,7 +37,7 @@
 //    week = [[UILabel alloc] initWithFrame:CGRectMake(0, height/3+5, width, height/3*2-5)];
 //    week.textAlignment = NSTextAlignmentCenter;
 //    week.textColor = [UIColor blackColor];//黑色
-    self.layer.borderWidth = 0.5;
+    self.layer.borderWidth = 1;
     self.layer.borderColor = [Utils colorWithHexString:@"#696969"].CGColor;
     self.clipsToBounds = true;
     [self addSubview:day];

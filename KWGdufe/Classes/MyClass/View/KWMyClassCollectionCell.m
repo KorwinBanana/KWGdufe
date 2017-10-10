@@ -21,7 +21,7 @@
     if(self=[super initWithFrame:frame]){
         self.name = [[UILabel alloc] initWithFrame:CGRectMake(1, 1,CGRectGetWidth(frame)-2, CGRectGetHeight(frame)-2)];
         self.backgroundColor = [UIColor clearColor];
-        _name.layer.cornerRadius = 2;
+        _name.layer.cornerRadius = 4;
         _name.layer.masksToBounds = YES;
         _name.textAlignment = NSTextAlignmentCenter;
         [self addSubview:_name];
@@ -36,10 +36,10 @@
     _name.numberOfLines = 0;
     _name.backgroundColor = [UIColor whiteColor];
 //    if(![model.colors isEqualToString:@"#f5f5f5"])
-    _name.textColor = [UIColor blackColor];
+    _name.textColor = [UIColor whiteColor];
     _name.alpha = 1;
-//    _schedule.backgroundColor = [Utils colorWithHexString:model.colors];
-    _name.backgroundColor = [UIColor redColor];
+    _name.backgroundColor = [UIColor clearColor];
+
 }
 
 

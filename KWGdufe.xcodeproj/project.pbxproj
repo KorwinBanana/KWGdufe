@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A64D64D1F8D4C14008D33DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A64D64C1F8D4C14008D33DB /* Assets.xcassets */; };
 		0A6750CC1F7BD7A000E46900 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A6750CA1F7BD7A000E46900 /* Main.storyboard */; };
 		0A6750D11F7BD7A000E46900 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A6750CF1F7BD7A000E46900 /* LaunchScreen.storyboard */; };
 		0A6750DE1F7BD7A000E46900 /* KWGdufeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A6750DD1F7BD7A000E46900 /* KWGdufeTests.m */; };
@@ -25,8 +26,6 @@
 		0AB186BA1F89519F00A49F93 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AB186B91F89519F00A49F93 /* Utils.m */; };
 		0AB186BD1F89527A00A49F93 /* KWCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AB186BC1F89527A00A49F93 /* KWCollectionViewLayout.m */; };
 		0AB186C01F89587C00A49F93 /* KWReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AB186BF1F89587C00A49F93 /* KWReusableView.m */; };
-		0AB186C31F8959A800A49F93 /* KWWeekCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AB186C21F8959A800A49F93 /* KWWeekCell.m */; };
-		0AB186C61F8959EE00A49F93 /* KWSelectWeekView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AB186C51F8959EE00A49F93 /* KWSelectWeekView.m */; };
 		0AB186C91F895AA200A49F93 /* KWWeekDay.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AB186C81F895AA200A49F93 /* KWWeekDay.m */; };
 		2855E0A7848FC10914635CA1 /* libPods-KWGdufe.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 70BB40C444C8B28E8744C841 /* libPods-KWGdufe.a */; };
 		45FD544D5C6E99B95A9B77D9 /* libPods-KWGdufeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FF19EBAF60162FE0D672D4AA /* libPods-KWGdufeTests.a */; };
@@ -53,6 +52,7 @@
 /* Begin PBXFileReference section */
 		051C1E9532C05A1197E97386 /* libPods-KWGdufeUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-KWGdufeUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A09E86A1F7E91E600BAF64F /* KWGdufe.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWGdufe.pch; sourceTree = "<group>"; };
+		0A64D64C1F8D4C14008D33DB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0A6750C11F7BD79F00E46900 /* KWGdufe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KWGdufe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A6750CB1F7BD7A000E46900 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0A6750D01F7BD7A000E46900 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -76,7 +76,6 @@
 		0A8815311F7BDC5700AAB5BF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		0A8815321F7BDC5700AAB5BF /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		0A8815331F7BDC5700AAB5BF /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		0A9F5B1B1F7D7A71006FD696 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0A9F5B211F7D813C006FD696 /* KWMyClassCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWMyClassCollectionCell.h; sourceTree = "<group>"; };
 		0A9F5B221F7D813C006FD696 /* KWMyClassCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWMyClassCollectionCell.m; sourceTree = "<group>"; };
 		0A9F5B231F7D813C006FD696 /* KWMyClassCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KWMyClassCollectionCell.xib; sourceTree = "<group>"; };
@@ -98,10 +97,6 @@
 		0AB186BC1F89527A00A49F93 /* KWCollectionViewLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWCollectionViewLayout.m; sourceTree = "<group>"; };
 		0AB186BE1F89587C00A49F93 /* KWReusableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWReusableView.h; sourceTree = "<group>"; };
 		0AB186BF1F89587C00A49F93 /* KWReusableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWReusableView.m; sourceTree = "<group>"; };
-		0AB186C11F8959A800A49F93 /* KWWeekCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWWeekCell.h; sourceTree = "<group>"; };
-		0AB186C21F8959A800A49F93 /* KWWeekCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWWeekCell.m; sourceTree = "<group>"; };
-		0AB186C41F8959EE00A49F93 /* KWSelectWeekView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWSelectWeekView.h; sourceTree = "<group>"; };
-		0AB186C51F8959EE00A49F93 /* KWSelectWeekView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWSelectWeekView.m; sourceTree = "<group>"; };
 		0AB186C71F895AA200A49F93 /* KWWeekDay.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWWeekDay.h; sourceTree = "<group>"; };
 		0AB186C81F895AA200A49F93 /* KWWeekDay.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWWeekDay.m; sourceTree = "<group>"; };
 		1C82DCD50C4AE89C6BB08CFF /* Pods-KWGdufe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KWGdufe.release.xcconfig"; path = "Pods/Target Support Files/Pods-KWGdufe/Pods-KWGdufe.release.xcconfig"; sourceTree = "<group>"; };
@@ -170,9 +165,9 @@
 				0A8815181F7BDC5700AAB5BF /* Classes */,
 				0A6750CA1F7BD7A000E46900 /* Main.storyboard */,
 				0A8815261F7BDC5700AAB5BF /* AppDelegate.h */,
+				0A64D64C1F8D4C14008D33DB /* Assets.xcassets */,
 				0A8815271F7BDC5700AAB5BF /* AppDelegate.m */,
 				0A8815311F7BDC5700AAB5BF /* main.m */,
-				0A9F5B1B1F7D7A71006FD696 /* Assets.xcassets */,
 				0A8815321F7BDC5700AAB5BF /* ViewController.h */,
 				0A8815331F7BDC5700AAB5BF /* ViewController.m */,
 				0A6750CF1F7BD7A000E46900 /* LaunchScreen.storyboard */,
@@ -286,10 +281,6 @@
 				0A9F5B231F7D813C006FD696 /* KWMyClassCollectionCell.xib */,
 				0AB186C71F895AA200A49F93 /* KWWeekDay.h */,
 				0AB186C81F895AA200A49F93 /* KWWeekDay.m */,
-				0AB186C41F8959EE00A49F93 /* KWSelectWeekView.h */,
-				0AB186C51F8959EE00A49F93 /* KWSelectWeekView.m */,
-				0AB186C11F8959A800A49F93 /* KWWeekCell.h */,
-				0AB186C21F8959A800A49F93 /* KWWeekCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -590,6 +581,7 @@
 			files = (
 				0A6750D11F7BD7A000E46900 /* LaunchScreen.storyboard in Resources */,
 				0A9F5B251F7D813C006FD696 /* KWMyClassCollectionCell.xib in Resources */,
+				0A64D64D1F8D4C14008D33DB /* Assets.xcassets in Resources */,
 				0A6750CC1F7BD7A000E46900 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -762,11 +754,9 @@
 				0A9F5B241F7D813C006FD696 /* KWMyClassCollectionCell.m in Sources */,
 				0AA60B1C1F7C027400E0E87D /* ViewController.m in Sources */,
 				0AB186BD1F89527A00A49F93 /* KWCollectionViewLayout.m in Sources */,
-				0AB186C61F8959EE00A49F93 /* KWSelectWeekView.m in Sources */,
 				0AA60B1B1F7C006800E0E87D /* KWTabBarController.m in Sources */,
 				0AA60B1E1F7C029100E0E87D /* main.m in Sources */,
 				0AA60B1D1F7C029100E0E87D /* AppDelegate.m in Sources */,
-				0AB186C31F8959A800A49F93 /* KWWeekCell.m in Sources */,
 				0AB186B71F89504400A49F93 /* KWScheduleModel.m in Sources */,
 				0AA60B341F7C053B00E0E87D /* KWMineViewController.m in Sources */,
 			);
