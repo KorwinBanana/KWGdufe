@@ -19,10 +19,10 @@
 - (instancetype)initWithFrame:(CGRect)frame
 {
     if(self=[super initWithFrame:frame]){
-        self.name = [[UILabel alloc] initWithFrame:CGRectMake(1, 1, CGRectGetWidth(frame)-2, CGRectGetHeight(frame)-2)];
-        self.backgroundColor = [UIColor colorWithWhite:0 alpha:0];
-        _name.layer.cornerRadius = 3;
-        _name.layer.masksToBounds =YES;
+        self.name = [[UILabel alloc] initWithFrame:CGRectMake(1, 1,CGRectGetWidth(frame)-2, CGRectGetHeight(frame)-2)];
+        self.backgroundColor = [UIColor clearColor];
+        _name.layer.cornerRadius = 2;
+        _name.layer.masksToBounds = YES;
         _name.textAlignment = NSTextAlignmentCenter;
         [self addSubview:_name];
     }
@@ -39,7 +39,7 @@
     _name.textColor = [UIColor blackColor];
     _name.alpha = 1;
 //    _schedule.backgroundColor = [Utils colorWithHexString:model.colors];
-    _name.backgroundColor = [UIColor yellowColor];
+    _name.backgroundColor = [UIColor redColor];
 }
 
 

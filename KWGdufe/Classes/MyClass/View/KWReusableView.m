@@ -16,7 +16,7 @@
         _num.textAlignment = NSTextAlignmentCenter;
         _num.font = [UIFont systemFontOfSize:13];
         [self addSubview:_num];
-        self.layer.borderWidth = 0.24;
+        self.layer.borderWidth = 0.5;
         self.layer.borderColor = [Utils colorWithHexString:@"#696969"].CGColor;
     }
     return self;

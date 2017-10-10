@@ -21,20 +21,24 @@ struct Tag{
     return  CGSizeMake(self.collectionView.frame.size.width, _height*14);
 }
 
--(NSArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect{
+- (NSArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect{
 //    NSLog(@"%f %f %f %f",rect.origin.x,rect.origin.y,rect.size.width,rect.size.height);
     
     NSMutableArray *attributes = [NSMutableArray array];
     CGFloat minY = CGRectGetMinY(rect);
     CGFloat maxY = CGRectGetMaxY(rect);
     CGFloat temp = _height;
+    
     int tagMinY = 1;
     int  tagMaxY;
+    
     while (minY>temp) {
         tagMinY++;
         temp+=_height;
     }
+    
     tagMaxY = tagMinY;
+    
     while(maxY>temp)
     {
         tagMaxY++;
@@ -46,6 +50,7 @@ struct Tag{
         NSIndexPath *path = [NSIndexPath indexPathForRow:i-1 inSection:0];
         [attributes addObject:[self layoutAttributesForSupplementaryViewOfKind:@"number" atIndexPath:path]];
     }
+    
     int j = 12;
     KWScheduleModel *model;
     int p = 0;
@@ -70,14 +75,15 @@ struct Tag{
     return attributes;
 }
 
--(UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath{
-    UICollectionViewLayoutAttributes*attributes = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
+- (UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath{
+    UICollectionViewLayoutAttributes *attributes = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
     attributes.frame = CGRectMake(36.5+_width*(tag.weekDay-1),_height*(tag.start-1), _width, _height*(tag.end-tag.start+1));
     return attributes;
 }
 
--(UICollectionViewLayoutAttributes*)layoutAttributesForSupplementaryViewOfKind:(NSString *)elementKind atIndexPath:(NSIndexPath *)indexPath{
-    UICollectionViewLayoutAttributes*attributes = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:elementKind withIndexPath:indexPath];
+
+- (UICollectionViewLayoutAttributes*)layoutAttributesForSupplementaryViewOfKind:(NSString *)elementKind atIndexPath:(NSIndexPath *)indexPath{
+    UICollectionViewLayoutAttributes *attributes = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:elementKind withIndexPath:indexPath];
     attributes.frame = CGRectMake(0, _height*indexPath.row, 36.5, _height);
     return attributes;
     

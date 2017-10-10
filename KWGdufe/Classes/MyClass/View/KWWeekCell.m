@@ -11,7 +11,7 @@
 
 @implementation KWWeekCell
 
--(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if(self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]){
         self.label = [[UILabel alloc] init];
         _label.textAlignment =NSTextAlignmentCenter;
@@ -24,7 +24,7 @@
     return self;
 }
 
--(void)layoutSubviews{
+- (void)layoutSubviews{
     NSLog(@"%f %f",CGRectGetWidth(self.contentView.bounds),CGRectGetHeight(self.contentView.bounds));
     _label.frame = CGRectMake(6, 0, CGRectGetWidth(self.contentView.bounds)-12, CGRectGetHeight(self.contentView.bounds));
 }

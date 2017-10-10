@@ -20,6 +20,7 @@
 @interface KWMyClassViewController ()<UICollectionViewDataSource,UICollectionViewDelegate>{
     UICollectionView *collectionView;
     CGFloat addWidth;
+    CGFloat addWidthWeek;
     NSArray *colors;
     NSInteger schoolWeek;
 }
@@ -37,24 +38,27 @@
     [self getSchoolWeek];//获取第几周
     [self loadData];
     
-    addWidth= ([UIScreen mainScreen].bounds.size.width-30)/7.0;
+    addWidth= ([UIScreen mainScreen].bounds.size.width-30)/7.0 - 1;
+    addWidthWeek= ([UIScreen mainScreen].bounds.size.width-30)/7.0;
     
     [self setWeekAndDays];
     
     KWCollectionViewLayout *course = [[KWCollectionViewLayout alloc] init];
-    self.view.backgroundColor = [Utils colorWithHexString:@"#FFFFFF"];
     
+    self.view = [UIColor yellowColor];
+    collectionView.backgroundView.backgroundColor = [UIColor blueColor];
     course.width = addWidth;
-    course.height = (CGRectGetHeight([UIScreen mainScreen].bounds)-64-30)/9.7;
+    course.height = (CGRectGetHeight([UIScreen mainScreen].bounds)-64-30)/11.9;
     self.course = course;
     
     collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 64+30, CGRectGetWidth([UIScreen mainScreen].bounds),CGRectGetHeight([UIScreen mainScreen].bounds)) collectionViewLayout:course];
     collectionView.dataSource=self;
     collectionView.delegate=self;
-    collectionView.backgroundColor = [UIColor whiteColor];
+    collectionView.backgroundColor = [UIColor clearColor];
     [collectionView registerClass:[KWMyClassCollectionCell class] forCellWithReuseIdentifier:@"course"];
     [collectionView registerClass:[KWReusableView class] forSupplementaryViewOfKind:@"number" withReuseIdentifier:@"num"];
     collectionView.bounces = NO;
+    
     [self.view addSubview:collectionView];
 }
 
@@ -84,7 +88,7 @@
     NSMutableDictionary *parements = [NSMutableDictionary dictionary];
     parements[@"sno"] = @"14251101256";
     parements[@"pwd"] = @"yifei520";
-    parements[@"stu_time"] = @"2016-2017-2";
+    parements[@"stu_time"] = @"2016-2017-1";
     parements[@"week"] = week;
     
     [self getSchoolWeek];
@@ -122,8 +126,8 @@
     for(int i=1;i<=7;i++)
     {
         x--;
-        flag = [[KWWeekDay alloc] initWithFrame:CGRectMake(x, 64, addWidth, height)];
-        x+=addWidth;
+        flag = [[KWWeekDay alloc] initWithFrame:CGRectMake(x, 64, addWidthWeek, height)];
+        x+=addWidthWeek;
         flag.alpha=0.8;
         [flag setDay:weekStr[i-1]];
         [self.view addSubview:flag];
@@ -142,8 +146,10 @@
 
 -(UICollectionReusableView*)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
     KWReusableView *Tag = [collectionView dequeueReusableSupplementaryViewOfKind:@"number" withReuseIdentifier:@"num" forIndexPath:indexPath];
-    Tag.num.text = [NSString stringWithFormat:@"%ld",indexPath.row+1];
-    Tag.num.textColor = [UIColor blackColor];//节数颜色
+    if (indexPath.row < 12) {
+        Tag.num.text = [NSString stringWithFormat:@"%ld",indexPath.row+1];
+        Tag.num.textColor = [UIColor blackColor];//节数颜色
+    }
     return Tag;
 }
 

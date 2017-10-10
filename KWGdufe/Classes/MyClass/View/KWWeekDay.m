@@ -17,7 +17,7 @@
 
 @implementation KWWeekDay
 
--(instancetype)initWithFrame:(CGRect)frame{
+- (instancetype)initWithFrame:(CGRect)frame{
     if(self=[super initWithFrame:frame])
     {
         [self setUp];
@@ -27,7 +27,7 @@
     return self;
 }
 
--(void)setUp{
+- (void)setUp{
     CGFloat width = CGRectGetWidth(self.frame);
     CGFloat height = CGRectGetHeight(self.frame);
     day=[[UILabel alloc] initWithFrame:CGRectMake(0, height/3, width, height/3)];

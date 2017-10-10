@@ -20,7 +20,7 @@
 
 @implementation KWSelectWeekView
 
--(instancetype)initWithFrame:(CGRect)frame{
+- (instancetype)initWithFrame:(CGRect)frame{
     if(self = [super initWithFrame:frame]){
         width = CGRectGetWidth(self.bounds);
         height = CGRectGetHeight(self.bounds);
@@ -29,7 +29,7 @@
     return self;
 }
 
--(void)setUp{
+- (void)setUp{
     table = [[UITableView alloc] initWithFrame:CGRectMake(6, 6,width-12 , height-12-40)];
     table.dataSource = self;
     table.delegate = self;
@@ -49,27 +49,27 @@
     [self addSubview:button];
 }
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return 25;
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 30;
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     KWWeekCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     cell.label.backgroundColor = [Utils colorWithHexString:@"#44acf3"];
     cell.label.textColor = [UIColor whiteColor];
 }
 
--(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
     KWWeekCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     cell.label.backgroundColor = [UIColor whiteColor];
     cell.label.textColor = [Utils colorWithHexString:@"#44acf3"];
 }
 
--(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     KWWeekCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     if(cell == nil)
     {
@@ -79,7 +79,7 @@
     return cell;
 }
 
--(void)drawRect:(CGRect)rect{
+- (void)drawRect:(CGRect)rect{
     UIBezierPath*path = [UIBezierPath bezierPath];
     [path addArcWithCenter:CGPointMake(9, 9) radius:4 startAngle:M_PI endAngle:M_PI/2*3 clockwise:1];
     [path moveToPoint:CGPointMake(9, 5)];
