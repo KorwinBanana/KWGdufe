@@ -12,6 +12,6 @@
 
 @property (nonatomic,assign) CGFloat width;
 @property (nonatomic,assign) CGFloat height;
-@property (nonatomic,strong) NSMutableArray*array;
+@property (nonatomic,strong) NSArray *array;
 
 @end

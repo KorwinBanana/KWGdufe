@@ -1,14 +1,14 @@
 //
-//  UIBarButtonItem+barButtonItem.m
-//  BuDeJie
+//  UIBarButtonItem+KWBarButtonItem.m
+//  KWGdufe
 //
-//  Created by korwin on 2017/7/21.
+//  Created by korwin on 2017/10/12.
 //  Copyright © 2017年 korwin. All rights reserved.
 //
 
-#import "UIBarButtonItem+barButtonItem.h"
+#import "UIBarButtonItem+KWBarButtonItem.h"
 
-@implementation UIBarButtonItem (barButtonItem)
+@implementation UIBarButtonItem (KWBarButtonItem)
 
 + (UIBarButtonItem *) itemWithImage:(UIImage *)image hightImage:(UIImage *)hightImage target:( id)target action:(SEL)action
 {
@@ -57,5 +57,4 @@
     backButton.contentEdgeInsets = UIEdgeInsetsMake(0, -20, 0, 0);
     return [[UIBarButtonItem alloc]initWithCustomView:backButton];
 }
-
 @end

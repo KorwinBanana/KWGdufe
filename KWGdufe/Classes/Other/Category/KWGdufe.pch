@@ -7,9 +7,9 @@
 //
 
 #import <Masonry.h> //自动布局
-#import "UIView+Frame.h"
-#import "UIImage+Image.h"
-#import "UIBarButtonItem+barButtonItem.h"
+#import "UIView+KWFrame.h"
+#import "UIImage+KWImage.h"
+#import "UIBarButtonItem+KWBarButtonItem.h"
 #import "UIButton+KWButton.h"
 
 /*****************屏幕适配*********************/

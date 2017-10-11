@@ -1,14 +1,14 @@
 //
-//  UIImage+Image.m
-//  BuDeJie
+//  UIImage+KWImage.m
+//  KWGdufe
 //
-//  Created by korwin on 2017/7/20.
+//  Created by korwin on 2017/10/11.
 //  Copyright © 2017年 korwin. All rights reserved.
 //
 
-#import "UIImage+Image.h"
+#import "UIImage+KWImage.h"
 
-@implementation UIImage (Image)
+@implementation UIImage (KWImage)
 
 + (UIImage *)imageOriginalWithNamed:(NSString *)imageName
 {

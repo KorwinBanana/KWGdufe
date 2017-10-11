@@ -9,7 +9,9 @@
 
 ![image](https://github.com/KorwinBanana/KWGdufe/blob/master/READMEImage/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-10-11%20%E4%B8%8A%E5%8D%882.43.46.png)
 * 快捷功能（未完成）
-* 个人（未完成）
+* 个人（完成加载个人信息数据，以及跳转至信息页面）
+
+
 * 登陆（未完成）
 
 

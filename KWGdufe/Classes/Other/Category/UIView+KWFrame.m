@@ -1,14 +1,15 @@
 //
-//  UIView+Frame.m
-//  BuDeJie
+//  UIView+KWFrame.m
+//  KWGdufe
 //
-//  Created by korwin on 2017/7/21.
+//  Created by korwin on 2017/10/11.
 //  Copyright © 2017年 korwin. All rights reserved.
 //
 
-#import "UIView+Frame.h"
+#import "UIView+KWFrame.h"
 
-@implementation UIView (Frame)
+@implementation UIView (KWFrame)
+
 
 -(void)setKW_height:(CGFloat)KW_height
 {

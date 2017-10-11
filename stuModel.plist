@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>code</key>
+	<integer>0</integer>
+	<key>data</key>
+	<dict>
+		<key>birthday</key>
+		<string>19960703</string>
+		<key>classroom</key>
+		<string>2014信息管理与信息系统2班</string>
+		<key>department</key>
+		<string>信息学院</string>
+		<key>education</key>
+		<string>普通本科</string>
+		<key>major</key>
+		<string>信息管理与信息系统</string>
+		<key>name</key>
+		<string>张考文</string>
+		<key>namePy</key>
+		<string>Zhang Kaowen</string>
+		<key>nation</key>
+		<string>汉族</string>
+		<key>party</key>
+		<string>共青团员</string>
+		<key>sex</key>
+		<string>男</string>
+	</dict>
+	<key>msg</key>
+	<string></string>
+</dict>
+</plist>

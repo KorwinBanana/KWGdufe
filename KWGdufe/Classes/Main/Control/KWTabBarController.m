@@ -12,6 +12,8 @@
 #import "KWMineViewController.h"
 #import "KWNavigationViewController.h"
 //#import "UIImage+Image.h"
+#import "UIImage+KWImage.h"
+#import "KWTabBar.h"
 
 @interface KWTabBarController ()
 
@@ -54,7 +56,19 @@
     [self setupAllChildViewController];
     
     [self setupAllTitleButton];
+    
+    [self setupTabBar];
     // Do any additional setup after loading the view.
+    
+}
+
+#pragma mark - 自定义tabBar
+- (void)setupTabBar
+{
+    KWTabBar *tabBar = [[KWTabBar alloc] init];
+    //    self.tabBar = tabBar;
+    
+    [self setValue:tabBar forKey:@"tabBar"];
     
 }
 
@@ -84,7 +98,7 @@
 - (void)setupAllTitleButton
 {
     KWNavigationViewController *nav1 = self.childViewControllers[0];
-    nav1.tabBarItem.title = @"课程";
+//    nav1.tabBarItem.title = @"课程";
     nav1.tabBarItem.image = [UIImage imageNamed:@"tabBar_essence_icon"];
     UIImage *image = [UIImage imageNamed:@"tabBar_essence_click_icon"];
     //返回没有被渲染的图片
@@ -92,14 +106,14 @@
     nav1.tabBarItem.selectedImage = image;
     
     KWNavigationViewController *nav2 = self.childViewControllers[1];
-    nav2.tabBarItem.title = @"快捷";
+//    nav2.tabBarItem.title = @"快捷";
     nav2.tabBarItem.image = [UIImage imageNamed:@"tabBar_friendTrends_icon"];
-    nav2.tabBarItem.selectedImage = [UIImage imageNamed:@"tabBar_friendTrends_click_icon"];
+    nav2.tabBarItem.selectedImage = [UIImage imageOriginalWithNamed:@"tabBar_friendTrends_click_icon"];
     
     KWNavigationViewController *nav3 = self.childViewControllers[2];
-    nav3.tabBarItem.title = @"个人";
+//    nav3.tabBarItem.title = @"个人";
     nav3.tabBarItem.image = [UIImage imageNamed:@"tabBar_me_icon"];
-    nav3.tabBarItem.selectedImage = [UIImage imageNamed:@"tabBar_me_click_icon"];
+    nav3.tabBarItem.selectedImage = [UIImage imageOriginalWithNamed:@"tabBar_me_click_icon"];
 }
 
 @end

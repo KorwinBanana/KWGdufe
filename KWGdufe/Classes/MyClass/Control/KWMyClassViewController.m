@@ -26,7 +26,7 @@
     UIView *bgView;
 }
 
-@property (nonatomic,strong) NSMutableArray  *scheduleModel;
+@property (nonatomic,strong) NSArray  *scheduleModel;
 @property (nonatomic,strong) KWCollectionViewLayout  *course;
 
 @end
