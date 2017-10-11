@@ -12,7 +12,7 @@
 * 快捷功能（未完成）
 * 个人（完成加载个人信息数据，以及跳转至信息页面）
 
-![image](https://github.com/KorwinBanana/KWGdufe/blob/master/READMEImage/%E8%AF%BE%E8%A1%A8%E7%95%8C%E9%9D%A2.png)
+![image](https://github.com/KorwinBanana/KWGdufe/blob/master/READMEImage/%E6%88%91%E7%9A%84%E7%95%8C%E9%9D%A2.png)
 
 * 登陆（未完成）
 
