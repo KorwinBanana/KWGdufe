@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "KWScheduleModel.h"
+#import "KWLoginModel.h"
 
 @interface KWMyClassViewController : UIViewController
-
+@property (nonatomic,strong) KWLoginModel *loginModel;
 @end

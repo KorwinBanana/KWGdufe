@@ -23,6 +23,9 @@
 		0AA60B311F7C052600E0E87D /* KWFunctionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AA60B301F7C052600E0E87D /* KWFunctionsViewController.m */; };
 		0AA60B341F7C053B00E0E87D /* KWMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AA60B331F7C053B00E0E87D /* KWMineViewController.m */; };
 		0AA60B371F7C05D000E0E87D /* KWNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AA60B361F7C05D000E0E87D /* KWNavigationViewController.m */; };
+		0AA763B31F8F2E40004E0222 /* KWLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AA763B11F8F2E40004E0222 /* KWLoginViewController.m */; };
+		0AA763B41F8F2E40004E0222 /* KWLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AA763B21F8F2E40004E0222 /* KWLoginViewController.xib */; };
+		0AA763B71F8F3187004E0222 /* KWLoginModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AA763B61F8F3187004E0222 /* KWLoginModel.m */; };
 		0AB186B71F89504400A49F93 /* KWScheduleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AB186B61F89504400A49F93 /* KWScheduleModel.m */; };
 		0AB186BA1F89519F00A49F93 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AB186B91F89519F00A49F93 /* Utils.m */; };
 		0AB186BD1F89527A00A49F93 /* KWCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AB186BC1F89527A00A49F93 /* KWCollectionViewLayout.m */; };
@@ -94,6 +97,11 @@
 		0AA60B331F7C053B00E0E87D /* KWMineViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWMineViewController.m; sourceTree = "<group>"; };
 		0AA60B351F7C05D000E0E87D /* KWNavigationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWNavigationViewController.h; sourceTree = "<group>"; };
 		0AA60B361F7C05D000E0E87D /* KWNavigationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWNavigationViewController.m; sourceTree = "<group>"; };
+		0AA763B01F8F2E40004E0222 /* KWLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KWLoginViewController.h; path = KWGdufe/Classes/Login/Control/KWLoginViewController.h; sourceTree = SOURCE_ROOT; };
+		0AA763B11F8F2E40004E0222 /* KWLoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = KWLoginViewController.m; path = KWGdufe/Classes/Login/Control/KWLoginViewController.m; sourceTree = SOURCE_ROOT; };
+		0AA763B21F8F2E40004E0222 /* KWLoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = KWLoginViewController.xib; path = KWGdufe/Classes/Login/Control/KWLoginViewController.xib; sourceTree = SOURCE_ROOT; };
+		0AA763B51F8F3187004E0222 /* KWLoginModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWLoginModel.h; sourceTree = "<group>"; };
+		0AA763B61F8F3187004E0222 /* KWLoginModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWLoginModel.m; sourceTree = "<group>"; };
 		0AB186B51F89504400A49F93 /* KWScheduleModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWScheduleModel.h; sourceTree = "<group>"; };
 		0AB186B61F89504400A49F93 /* KWScheduleModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWScheduleModel.m; sourceTree = "<group>"; };
 		0AB186B81F89519F00A49F93 /* Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
@@ -184,8 +192,8 @@
 			children = (
 				0A8815181F7BDC5700AAB5BF /* Classes */,
 				0A6750CA1F7BD7A000E46900 /* Main.storyboard */,
-				0A8815261F7BDC5700AAB5BF /* AppDelegate.h */,
 				0A64D64C1F8D4C14008D33DB /* Assets.xcassets */,
+				0A8815261F7BDC5700AAB5BF /* AppDelegate.h */,
 				0A8815271F7BDC5700AAB5BF /* AppDelegate.m */,
 				0A8815311F7BDC5700AAB5BF /* main.m */,
 				0A8815321F7BDC5700AAB5BF /* ViewController.h */,
@@ -217,6 +225,7 @@
 		0A8815181F7BDC5700AAB5BF /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				0AA763AC1F8F2E0F004E0222 /* Login */,
 				0AA60B151F7BFF9F00E0E87D /* Main */,
 				0A8815211F7BDC5700AAB5BF /* MyClass */,
 				0AA60B1F1F7C03FF00E0E87D /* Functions */,
@@ -283,8 +292,6 @@
 			children = (
 				0AA60B2C1F7C050E00E0E87D /* KWMyClassViewController.h */,
 				0AA60B2D1F7C050E00E0E87D /* KWMyClassViewController.m */,
-				0AB186BB1F89527A00A49F93 /* KWCollectionViewLayout.h */,
-				0AB186BC1F89527A00A49F93 /* KWCollectionViewLayout.m */,
 			);
 			path = Control;
 			sourceTree = "<group>";
@@ -292,8 +299,6 @@
 		0A8815231F7BDC5700AAB5BF /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				0AB186B51F89504400A49F93 /* KWScheduleModel.h */,
-				0AB186B61F89504400A49F93 /* KWScheduleModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -301,6 +306,8 @@
 		0A8815241F7BDC5700AAB5BF /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0AB186BB1F89527A00A49F93 /* KWCollectionViewLayout.h */,
+				0AB186BC1F89527A00A49F93 /* KWCollectionViewLayout.m */,
 				0AB186BE1F89587C00A49F93 /* KWReusableView.h */,
 				0AB186BF1F89587C00A49F93 /* KWReusableView.m */,
 				0A9F5B211F7D813C006FD696 /* KWMyClassCollectionCell.h */,
@@ -360,6 +367,10 @@
 		0A8815361F7BDC5700AAB5BF /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				0AB186B51F89504400A49F93 /* KWScheduleModel.h */,
+				0AB186B61F89504400A49F93 /* KWScheduleModel.m */,
+				0AA763B51F8F3187004E0222 /* KWLoginModel.h */,
+				0AA763B61F8F3187004E0222 /* KWLoginModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -470,6 +481,40 @@
 			children = (
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		0AA763AC1F8F2E0F004E0222 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				0AA763AD1F8F2E0F004E0222 /* Model */,
+				0AA763AE1F8F2E0F004E0222 /* View */,
+				0AA763AF1F8F2E0F004E0222 /* Control */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		0AA763AD1F8F2E0F004E0222 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0AA763B01F8F2E40004E0222 /* KWLoginViewController.h */,
+				0AA763B11F8F2E40004E0222 /* KWLoginViewController.m */,
+				0AA763B21F8F2E40004E0222 /* KWLoginViewController.xib */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0AA763AE1F8F2E0F004E0222 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0AA763AF1F8F2E0F004E0222 /* Control */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Control;
 			sourceTree = "<group>";
 		};
 		DB4B2B5F54B9954FE3A5F47A /* Frameworks */ = {
@@ -612,6 +657,7 @@
 			files = (
 				0A6750D11F7BD7A000E46900 /* LaunchScreen.storyboard in Resources */,
 				0A9F5B251F7D813C006FD696 /* KWMyClassCollectionCell.xib in Resources */,
+				0AA763B41F8F2E40004E0222 /* KWLoginViewController.xib in Resources */,
 				0ACC56CF1F8E155F007DA2BD /* KWMineCell.xib in Resources */,
 				0A64D64D1F8D4C14008D33DB /* Assets.xcassets in Resources */,
 				0A6750CC1F7BD7A000E46900 /* Main.storyboard in Resources */,
@@ -782,6 +828,7 @@
 				0AEA5C7B1F8E9056005C8DF2 /* KWMineMsgViewController.m in Sources */,
 				0AB186C91F895AA200A49F93 /* KWWeekDay.m in Sources */,
 				0ACC56C71F8E0FDD007DA2BD /* KWTabBar.m in Sources */,
+				0AA763B71F8F3187004E0222 /* KWLoginModel.m in Sources */,
 				0AA60B371F7C05D000E0E87D /* KWNavigationViewController.m in Sources */,
 				0AA60B2E1F7C050E00E0E87D /* KWMyClassViewController.m in Sources */,
 				0AA443861F8E6DF800E48ADE /* KWStuModel.m in Sources */,
@@ -799,6 +846,7 @@
 				0AA60B341F7C053B00E0E87D /* KWMineViewController.m in Sources */,
 				0ACC56D21F8E187E007DA2BD /* UIImage+KWExtension.m in Sources */,
 				0AEA5C7E1F8E90CC005C8DF2 /* UIBarButtonItem+KWBarButtonItem.m in Sources */,
+				0AA763B31F8F2E40004E0222 /* KWLoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

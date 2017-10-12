@@ -15,6 +15,7 @@
 #import "Utils.h"
 #import <AFNetworking/AFNetworking.h>
 #import <MJExtension/MJExtension.h>
+#import <SVProgressHUD/SVProgressHUD.h>
 
 @interface KWMyClassViewController ()<UICollectionViewDataSource> {
     UICollectionView *collectionView;
@@ -67,6 +68,9 @@
     
     //创建collectionVIew
     [self setupCollectionView];
+    
+    //提示用户当前正在加载数据 SVPro
+    [SVProgressHUD showWithStatus:@"等一下能怎么样！？"];
 }
 
 - (void)setupCollectionView
@@ -165,10 +169,14 @@
     
     NSString *week = [NSString stringWithFormat:@"%ld",schoolWeek];
     
+    //获取登陆的账号密码
+    NSString *sno  = [[NSUserDefaults standardUserDefaults] objectForKey:@"sno"];
+    NSString *pwd  = [[NSUserDefaults standardUserDefaults] objectForKey:@"pwd"];
+
     //拼接数据
     NSMutableDictionary *parements = [NSMutableDictionary dictionary];
-    parements[@"sno"] = @"14251101256";
-    parements[@"pwd"] = @"yifei520";
+    parements[@"sno"] = sno;
+    parements[@"pwd"] = pwd;
     parements[@"stu_time"] = @"2015-2016-2";
     parements[@"week"] = week;
     
@@ -178,6 +186,8 @@
     [mgr POST:@"http://api.wegdufe.com:82/index.php?r=jw/get-schedule" parameters:parements progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         //        NSLog(@"%@",responseObject);
         //        [responseObject writeToFile:@"/Users/k/iOS-KW/project/model.plist" atomically:nil];
+        
+        [SVProgressHUD dismiss];
         
         NSArray *dicAry = responseObject[@"data"];
         

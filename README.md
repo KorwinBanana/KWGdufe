@@ -14,6 +14,6 @@
 
 ![image](https://github.com/KorwinBanana/KWGdufe/blob/master/READMEImage/%E6%88%91%E7%9A%84%E7%95%8C%E9%9D%A2.png)
 
-* 登陆（未完成）
+* 登陆（实现登陆功能，界面待完善）
 
 

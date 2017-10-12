@@ -46,22 +46,26 @@
     //创建请求会话管理者
     AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
     
+    //获取登陆的账号密码
+    NSString *sno  = [[NSUserDefaults standardUserDefaults] objectForKey:@"sno"];
+    NSString *pwd  = [[NSUserDefaults standardUserDefaults] objectForKey:@"pwd"];
+    
     //拼接数据
     NSMutableDictionary *parements = [NSMutableDictionary dictionary];
-    parements[@"sno"] = @"14251101256";
-    parements[@"pwd"] = @"yifei520";
+    parements[@"sno"] = sno;
+    parements[@"pwd"] = pwd;
 
     //发送请求
     [mgr POST:@"http://api.wegdufe.com:82/index.php?r=jw/get-basic" parameters:parements progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSLog(@"%@",responseObject);
-        [responseObject writeToFile:@"/Users/k/iOS-KW/project/stuModel.plist" atomically:nil];
+//        NSLog(@"%@",responseObject);
+//        [responseObject writeToFile:@"/Users/k/iOS-KW/project/stuModel.plist" atomically:nil];
         
         //获取字典
         NSDictionary *adDict = responseObject[@"data"];
         
         //字典转模型
         _stuModel = [KWStuModel mj_objectWithKeyValues:adDict];
-        NSLog(@"_StuModel.name = %@",_stuModel.classroom);
+//        NSLog(@"_StuModel.name = %@",_stuModel.classroom);
         
         [self.tableView reloadData];
         
@@ -109,7 +113,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [[UITableViewCell alloc]init];
     cell.textLabel.text = @"我是谁！！";
-    NSLog(@"%@",NSStringFromCGRect(cell.frame));
+//    NSLog(@"%@",NSStringFromCGRect(cell.frame));
     if (indexPath.section == 0) {
         KWMineCell *cell = [[KWMineCell alloc]init];
         cell = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([KWMineCell class]) owner:nil options:nil][0];
