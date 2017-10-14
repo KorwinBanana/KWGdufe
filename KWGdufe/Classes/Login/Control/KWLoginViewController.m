@@ -63,10 +63,20 @@
     parements[@"sno"] = _sno.text;
     parements[@"pwd"] = _pwd.text;
     
+    //self的弱引用
+    KWLoginViewController * __weak weakSelf = self;
+    
     //发送请求
     [mgr POST:@"http://api.wegdufe.com:82/index.php?r=jw/get-basic" parameters:parements progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
 //        NSLog(@"%@",responseObject);
 //        [responseObject writeToFile:@"/Users/k/iOS-KW/project/stuModel.plist" atomically:nil];
+        
+        __strong __typeof__(self) strongSelf = weakSelf;
+        
+        //添加警告框
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDestructive handler:nil];
+        [alert addAction:okAction];
         
         //获取字典
         NSString *code = [responseObject objectForKey:@"code"];
@@ -87,8 +97,14 @@
             
         } else if ([codeStr isEqualToString:@"3000"]) {
             NSLog(@"喵～学号或者密码为空啦～～");
+            //添加提示框
+            alert.message = @"喵～学号或者密码为空啦～～";
+            [strongSelf presentViewController:alert animated:YES completion:nil];
         } else if ([codeStr isEqualToString:@"3001"]) {
             NSLog(@"喵～学号或密码错误啦～～");
+            //添加提示框
+            alert.message = @"喵～学号或密码错误啦～～";
+            [strongSelf presentViewController:alert animated:YES completion:nil];
         }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {

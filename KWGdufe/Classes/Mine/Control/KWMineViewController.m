@@ -12,6 +12,7 @@
 #import <MJExtension/MJExtension.h>
 #import "KWStuModel.h"
 #import "KWMineMsgViewController.h"
+#import "KWLoginViewController.h"
 
 @interface KWMineViewController ()
 
@@ -74,6 +75,17 @@
     }];
 }
 
+#pragma mark - 退出注销服务器缓存
+- (void)logout {
+    KWLoginViewController *loginVc = [[KWLoginViewController alloc]init];
+    [UIApplication sharedApplication].keyWindow.rootViewController = loginVc;
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    //删除账号密码
+    [defaults removeObjectForKey:@"sno"];
+    [defaults removeObjectForKey:@"pwd"];
+    [defaults synchronize];
+}
+
 #pragma mark - 设置导航条
 -(void)setupNavBar
 {
@@ -83,16 +95,10 @@
 }
 
 //点击跳转到设置页面
--(void)tomsgVc
-{
+- (void)tomsgVc {
     KWMineMsgViewController *msgVc = [[KWMineMsgViewController alloc]init];
     
     [self.navigationController pushViewController:msgVc animated:YES];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Table view data source
@@ -112,7 +118,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [[UITableViewCell alloc]init];
-    cell.textLabel.text = @"我是谁！！";
 //    NSLog(@"%@",NSStringFromCGRect(cell.frame));
     if (indexPath.section == 0) {
         KWMineCell *cell = [[KWMineCell alloc]init];
@@ -120,7 +125,9 @@
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.model = _stuModel;
         return cell;
-    }
+    } if (indexPath.section == 2) {
+        cell.textLabel.text = @"退出";
+    } else cell.textLabel.text = @"我是谁！！";
     return cell;
 }
 
@@ -136,6 +143,11 @@
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
             [self tomsgVc];
+        }
+    }
+    if (indexPath.section == 2) {
+        if (indexPath.row == 0) {
+            [self logout];
         }
     }
 }

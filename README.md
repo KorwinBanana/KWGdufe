@@ -14,7 +14,7 @@
 
 ![image](https://github.com/KorwinBanana/KWGdufe/blob/master/READMEImage/%E6%88%91%E7%9A%84%E7%95%8C%E9%9D%A2.png)
 
-* 登陆（实现登陆功能，界面待完善）
+* 登陆（实现登陆功能，界面待完善,添加密码错误警告提示）
 
 ![image](https://github.com/KorwinBanana/KWGdufe/blob/master/READMEImage/%E7%99%BB%E9%99%86%E7%95%8C%E9%9D%A2%EF%BC%88%E7%AE%80%E5%8D%95%EF%BC%89.png)
 

@@ -65,6 +65,8 @@
     //自定义流水布局——用于展示课表位置和大小
     KWCollectionViewLayout *course = [[KWCollectionViewLayout alloc] init];
     self.course = course;
+    self.course.width = addWidth;
+    _course.height = (CGRectGetHeight([UIScreen mainScreen].bounds)-64-30)/9.7;
     
     //创建collectionVIew
     [self setupCollectionView];
@@ -75,8 +77,6 @@
 
 - (void)setupCollectionView
 {
-    self.course.width = addWidth;
-    _course.height = (CGRectGetHeight([UIScreen mainScreen].bounds)-64-30)/9.7;
     
     //创建collectionView视图
     collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 64+30, CGRectGetWidth([UIScreen mainScreen].bounds),CGRectGetHeight([UIScreen mainScreen].bounds)) collectionViewLayout:_course];
