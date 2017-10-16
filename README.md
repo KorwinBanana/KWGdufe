@@ -19,3 +19,10 @@
 ![image](https://github.com/KorwinBanana/KWGdufe/blob/master/READMEImage/%E7%99%BB%E9%99%86%E7%95%8C%E9%9D%A2%EF%BC%88%E7%AE%80%E5%8D%95%EF%BC%89.png)
 
 
+* 个人信息
+
+![image](https://github.com/KorwinBanana/KWGdufe/blob/master/READMEImage/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-10-16%20%E4%B8%8B%E5%8D%8811.35.46.png)
+
+
+
+
