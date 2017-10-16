@@ -17,6 +17,7 @@
 @interface KWMineViewController ()
 
 @property(nonatomic,strong) KWStuModel *stuModel;
+@property (nonatomic,strong) KWMineMsgViewController  *msgVc;
 
 @end
 
@@ -26,6 +27,8 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor whiteColor];
+    
+    self.msgVc = [[KWMineMsgViewController alloc]init];//初始化
 
     [self setupNavBar];
     
@@ -66,6 +69,9 @@
         
         //字典转模型
         _stuModel = [KWStuModel mj_objectWithKeyValues:adDict];
+        
+#warning 设置学生模型给信息展示界面
+        self.msgVc.stuModel = _stuModel;
 //        NSLog(@"_StuModel.name = %@",_stuModel.classroom);
         
         [self.tableView reloadData];
@@ -96,9 +102,7 @@
 
 //点击跳转到设置页面
 - (void)tomsgVc {
-    KWMineMsgViewController *msgVc = [[KWMineMsgViewController alloc]init];
-    
-    [self.navigationController pushViewController:msgVc animated:YES];
+    [self.navigationController pushViewController:self.msgVc animated:YES];
 }
 
 #pragma mark - Table view data source

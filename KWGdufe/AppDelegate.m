@@ -24,6 +24,8 @@
     //检测是否存在用户名和密码
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
+#warning 检测账号密码信息
+    
     if ([defaults objectForKey:@"sno"] == nil && [defaults objectForKey:@"pwd"] == nil) {
         //Load Login View if no username is found
         //设置窗口控制器为登陆View

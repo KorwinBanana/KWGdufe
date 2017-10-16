@@ -25,7 +25,13 @@
 - (void)setModel:(KWStuModel *)model {
     _model = model;
     _name.text = _model.name;
-    _classroom.text = model.classroom;
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *number = [defaults objectForKey:@"sno"];
+    if (number != nil) {
+        _classroom.text = [NSString stringWithFormat:@"学号:%@",number];
+    } else {
+        _classroom.text = @"喵~未登录~";
+    }
 }
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "KWMineMsgViewController.h"
+#import "KWMsgCell.h"
 
 @interface KWMineMsgViewController ()
 
@@ -17,11 +18,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    self.tableView = [[UITableView alloc]initWithFrame:self.tableView.bounds style:UITableViewStyleGrouped];
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    //网上移动34，与导航栏对齐
+    self.tableView.contentInset = UIEdgeInsetsMake(-34, 0, 0, 0);
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -32,24 +33,65 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
+    if (section == 0) {
+        return 7;
+    }
     return 0;
 }
 
-/*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
+    KWMsgCell *cell = [tableView dequeueReusableCellWithIdentifier:@"msgCell"];
+    if (cell == nil) {
+        cell = [[KWMsgCell alloc]init];
+        cell = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([KWMsgCell class]) owner:nil options:nil][0];
+    }
+//    KWMsgCell *cell = [[KWMsgCell alloc]init];
+//    cell = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([KWMsgCell class]) owner:nil options:nil][0];
+#warning 设置信息展示
+    if (indexPath.section == 0) {
+        if (indexPath.row == 0) {
+            cell.msgName = @"姓名";
+            cell.msgValue = _stuModel.name;
+            return cell;
+        } if (indexPath.row == 1) {
+            cell.msgName = @"学号";
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            NSString *number = [defaults objectForKey:@"sno"];
+            if (number != nil) {
+                cell.msgValue = number;
+            } else {
+                cell.msgValue = @"喵~未登录~";
+            }
+            return cell;
+        } if (indexPath.row == 2) {
+            cell.msgName = @"组织";
+            cell.msgValue = _stuModel.party;
+            return cell;
+        } if (indexPath.row == 3) {
+            cell.msgName = @"教育";
+            cell.msgValue = _stuModel.education;
+            return cell;
+        } if (indexPath.row == 4) {
+            cell.msgName = @"学院";
+            cell.msgValue = _stuModel.department;
+            return cell;
+        } if (indexPath.row == 5) {
+            cell.msgName = @"专业";
+            cell.msgValue = _stuModel.major;
+            return cell;
+        } if (indexPath.row == 6) {
+            cell.msgName = @"班级";
+            cell.msgValue = _stuModel.classroom;
+            return cell;
+        }
+    }
     
     return cell;
 }
-*/
 
 /*
 // Override to support conditional editing of the table view.

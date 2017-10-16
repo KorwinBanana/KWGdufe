@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#include "KWStuModel.h"
 
 @interface KWMineMsgViewController : UITableViewController
+
+@property (nonatomic,strong) KWStuModel  *stuModel;
 
 @end

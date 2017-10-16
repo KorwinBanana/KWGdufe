@@ -43,9 +43,9 @@
                             <constraint firstAttribute="height" constant="25" id="lnV-OL-hST"/>
                         </constraints>
                         <attributedString key="attributedText">
-                            <fragment content="信息管理与信息系统2班">
+                            <fragment content="14251101256">
                                 <attributes>
-                                    <font key="NSFont" metaFont="system"/>
+                                    <font key="NSFont" size="15" name=".AppleSystemUIFont"/>
                                     <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                 </attributes>
                             </fragment>
