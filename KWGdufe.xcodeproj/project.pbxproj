@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0A64D64D1F8D4C14008D33DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A64D64C1F8D4C14008D33DB /* Assets.xcassets */; };
+		0A65BB2C1F94A74B00DDC285 /* KWMsgCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A65BB2A1F94A74B00DDC285 /* KWMsgCell.m */; };
+		0A65BB2D1F94A74B00DDC285 /* KWMsgCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A65BB2B1F94A74B00DDC285 /* KWMsgCell.xib */; };
 		0A6750CC1F7BD7A000E46900 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A6750CA1F7BD7A000E46900 /* Main.storyboard */; };
 		0A6750D11F7BD7A000E46900 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A6750CF1F7BD7A000E46900 /* LaunchScreen.storyboard */; };
 		0A6750DE1F7BD7A000E46900 /* KWGdufeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A6750DD1F7BD7A000E46900 /* KWGdufeTests.m */; };
@@ -65,6 +67,9 @@
 		051C1E9532C05A1197E97386 /* libPods-KWGdufeUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-KWGdufeUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A09E86A1F7E91E600BAF64F /* KWGdufe.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWGdufe.pch; sourceTree = "<group>"; };
 		0A64D64C1F8D4C14008D33DB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0A65BB291F94A74B00DDC285 /* KWMsgCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWMsgCell.h; sourceTree = "<group>"; };
+		0A65BB2A1F94A74B00DDC285 /* KWMsgCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWMsgCell.m; sourceTree = "<group>"; };
+		0A65BB2B1F94A74B00DDC285 /* KWMsgCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KWMsgCell.xib; sourceTree = "<group>"; };
 		0A6750C11F7BD79F00E46900 /* KWGdufe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KWGdufe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A6750CB1F7BD7A000E46900 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0A6750D01F7BD7A000E46900 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -273,6 +278,9 @@
 				0ACC56CB1F8E155F007DA2BD /* KWMineCell.h */,
 				0ACC56CC1F8E155F007DA2BD /* KWMineCell.m */,
 				0ACC56CD1F8E155F007DA2BD /* KWMineCell.xib */,
+				0A65BB291F94A74B00DDC285 /* KWMsgCell.h */,
+				0A65BB2A1F94A74B00DDC285 /* KWMsgCell.m */,
+				0A65BB2B1F94A74B00DDC285 /* KWMsgCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -655,6 +663,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A65BB2D1F94A74B00DDC285 /* KWMsgCell.xib in Resources */,
 				0A6750D11F7BD7A000E46900 /* LaunchScreen.storyboard in Resources */,
 				0A9F5B251F7D813C006FD696 /* KWMyClassCollectionCell.xib in Resources */,
 				0AA763B41F8F2E40004E0222 /* KWLoginViewController.xib in Resources */,
@@ -840,6 +849,7 @@
 				0AB186BD1F89527A00A49F93 /* KWCollectionViewLayout.m in Sources */,
 				0AA60B1B1F7C006800E0E87D /* KWTabBarController.m in Sources */,
 				0AA60B1E1F7C029100E0E87D /* main.m in Sources */,
+				0A65BB2C1F94A74B00DDC285 /* KWMsgCell.m in Sources */,
 				0AA60B1D1F7C029100E0E87D /* AppDelegate.m in Sources */,
 				0AB186B71F89504400A49F93 /* KWScheduleModel.m in Sources */,
 				0ACC56C11F8E0C6F007DA2BD /* UIImage+KWImage.m in Sources */,

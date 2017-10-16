@@ -49,7 +49,6 @@
 - (void)dissMissKeyBoard2
 {
     [self.view endEditing:YES];
-    [self loadData];
 }
 
 #pragma mark - 验证登陆
