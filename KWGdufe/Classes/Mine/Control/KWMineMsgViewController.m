@@ -8,6 +8,9 @@
 
 #import "KWMineMsgViewController.h"
 #import "KWMsgCell.h"
+#import <MJRefresh/MJRefresh.h>
+#import <AFNetworking/AFNetworking.h>
+#import <MJExtension/MJExtension.h>
 
 @interface KWMineMsgViewController ()
 
@@ -23,8 +26,34 @@
     self.tableView = [[UITableView alloc]initWithFrame:self.tableView.bounds style:UITableViewStyleGrouped];
     
     //网上移动34，与导航栏对齐
-    self.tableView.contentInset = UIEdgeInsetsMake(-34, 0, 0, 0);
+//    self.tableView.contentInset = UIEdgeInsetsMake(-34, 0, 0, 0);
+    
+    // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadNewData方法）
+//    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
+//
+//    // 设置自动切换透明度(在导航栏下面自动隐藏)
+//    header.automaticallyChangeAlpha = YES;
+//
+////    // 隐藏时间
+////    header.lastUpdatedTimeLabel.hidden = YES;
+//
+//    // 马上进入刷新状态
+//    [header beginRefreshing];
+//
+//    // 设置header
+//    self.tableView.mj_header = header;
+    
+    // 设置自动切换透明度(在导航栏下面自动隐藏)
+//    self.tableView.mj_header.automaticallyChangeAlpha = YES;
+    
+    CGRect frame = CGRectMake(0, 0, 0, 0.1);
+    self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:frame];
+}
 
+#pragma mark - 加载数据
+- (void)loadData
+{
+    NSLog(@"刷新数据啦～喵～");
 }
 
 - (void)didReceiveMemoryWarning {

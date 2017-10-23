@@ -13,6 +13,7 @@
 #import "KWStuModel.h"
 #import "KWMineMsgViewController.h"
 #import "KWLoginViewController.h"
+#import <MJRefresh/MJRefresh.h>
 
 @interface KWMineViewController ()
 
@@ -34,14 +35,10 @@
     
     self.tableView = [[UITableView alloc]initWithFrame:self.tableView.bounds style:UITableViewStyleGrouped];
     
-    self.tableView.contentInset = UIEdgeInsetsMake(-34, 0, 0, 0);
+    CGRect frame = CGRectMake(0, 0, 0, 0.1);
+    self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:frame];
     
     [self loadData];//加载数据
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 #pragma mark - 加载数据

@@ -104,6 +104,9 @@
             //添加提示框
             alert.message = @"喵～学号或密码错误啦～～";
             [strongSelf presentViewController:alert animated:YES completion:nil];
+        } else {
+            alert.message = @"喵～系统崩溃啦～～";
+            [strongSelf presentViewController:alert animated:YES completion:nil];
         }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
