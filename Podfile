@@ -22,4 +22,5 @@ target 'KWGdufe' do
   pod 'SDWebImage', '~>3.8'
   pod 'Masonry'
   pod 'SVProgressHUD'
+  pod 'MJRefresh'
 end

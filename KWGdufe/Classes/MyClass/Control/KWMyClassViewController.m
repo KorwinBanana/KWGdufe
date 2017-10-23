@@ -24,7 +24,7 @@
     CGFloat addHeight;
     NSArray *colors;
     NSInteger schoolWeek;
-    UIView *bgView;
+    UIImageView *bgView;
 }
 
 @property (nonatomic,strong) NSArray  *scheduleModel;
@@ -46,6 +46,9 @@
     
     //获取第几周
     [self getSchoolWeek];
+    
+    //提示用户当前正在加载数据 SVPro
+    [SVProgressHUD showWithStatus:@"等一下能怎么样！？"];
     
     //申请数据
     [self loadData];
@@ -70,15 +73,11 @@
     
     //创建collectionVIew
     [self setupCollectionView];
-    
-    //提示用户当前正在加载数据 SVPro
-    [SVProgressHUD showWithStatus:@"等一下能怎么样！？"];
 }
 
 - (void)setupCollectionView
 {
-    
-    //创建collectionView视图
+    //创建collectionView视图，应用自定义的collectionViewLayout：_course
     collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 64+30, CGRectGetWidth([UIScreen mainScreen].bounds),CGRectGetHeight([UIScreen mainScreen].bounds)) collectionViewLayout:_course];
 //    bgHeight = CGRectGetHeight([UIScreen mainScreen].bounds)/12;//设置背景格子的高度
     collectionView.dataSource=self;
@@ -87,7 +86,7 @@
     collectionView.showsVerticalScrollIndicator = NO;//隐藏滚动条
     
     //设置格子背景
-    UIView *bg = [[UIView alloc]initWithFrame:collectionView.bounds];
+    UIImageView *bg = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, CGRectGetWidth([UIScreen mainScreen].bounds),12*addHeight)];
     bgView = bg;
     bgView.backgroundColor = [UIColor clearColor];
     bgView.alpha = 0.5;
@@ -101,24 +100,53 @@
     [self.view addSubview:collectionView];
 }
 
+/*
+ 设置格子背景
+ 问题：直接生成格子，会产生大量格子UIView对象，会造成整个APP卡顿
+ 解决：先定义一个UIView容器：bgImageView，在UIView容器：bgImageView中生成格子，最后把bgImageView生成image保存到背景UIImageView里的Image中,并保持清晰度，最后把UIView容器：bgImageView中的所有UIView格子对象移除掉
+ */
 - (void)setGeziBg
 {
     KWWeekDay *flag;
     CGFloat x=37;
     
+    UIView *bgImageView = [[UIView alloc]initWithFrame:bgView.bounds];
     for (int j = 0; j<12; j++) {
         x = 37;
         for(int i=1;i<=7;i++)
         {
             x--;
-            flag = [[KWWeekDay alloc] initWithFrame:CGRectMake(x, 0+j*addHeight, addWidthWeek, addHeight)];
-            x+=addWidthWeek;
-            flag.alpha=0.2;//格子颜色深浅
-            [bgView addSubview:flag];
+            @autoreleasepool {
+                flag = [[KWWeekDay alloc] initWithFrame:CGRectMake(x, 0+j*addHeight, addWidthWeek, addHeight)];
+                x+=addWidthWeek;
+                flag.alpha=0.2;//格子颜色深浅
+            }
+            [bgImageView addSubview:flag];
         }
     }
+    bgView.image = [self makeImageWithView:bgImageView];
+//    bgView.backgroundColor = [UIColor redColor];
+    [bgImageView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
 }
 
+#pragma mark 生成image
+- (UIImage *)makeImageWithView:(UIView *)view
+{
+    CGSize size = bgView.bounds.size;
+    /*
+     下面方法，
+     第一个参数表示区域大小。
+     第二个参数表示是否是非透明的。如果需要显示半透明效果，需要传NO，否则传YES。
+     第三个参数就是屏幕密度了，关键就是第三个参数。
+     */
+    UIGraphicsBeginImageContextWithOptions(size, NO, 0);
+    [view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
+
+#pragma mark - 设置周
 - (void)setWeekAndDays{
     NSArray *weekStr = @[@"一",@"二",@"三",@"四",@"五",@"六",@"七"];
 //    NSArray *arrWeek=[NSArray arrayWithObjects:@"星期日",@"星期一",@"星期二",@"星期三",@"星期四",@"星期五",@"星期六",nil];
@@ -182,20 +210,28 @@
     
     [self getSchoolWeek];
     
+#warning api月底才可用
     //发送请求
     [mgr POST:@"http://api.wegdufe.com:82/index.php?r=jw/get-schedule" parameters:parements progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         //        NSLog(@"%@",responseObject);
         //        [responseObject writeToFile:@"/Users/k/iOS-KW/project/model.plist" atomically:nil];
-        
+        //取消提示框
         [SVProgressHUD dismiss];
         
-        NSArray *dicAry = responseObject[@"data"];
+        //服务器崩了
+//        NSArray *dicAry = responseObject[@"data"];
         
+        //暂时展示plist内容
+        NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"model" ofType:@"plist"];
+        NSDictionary *data = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
+        NSArray *dicAry = data[@"data"];
+
         //字典数组转模型数组
         _scheduleModel = [KWScheduleModel mj_objectArrayWithKeyValuesArray:dicAry];
         self.course.array = _scheduleModel;
         [collectionView reloadData];
-        
+        NSLog(@"mistake1");
+
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
     }];

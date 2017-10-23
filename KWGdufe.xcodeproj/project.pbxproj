@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A38FE811F9E2032007484BD /* model.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0A38FE801F9E2031007484BD /* model.plist */; };
 		0A64D64D1F8D4C14008D33DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A64D64C1F8D4C14008D33DB /* Assets.xcassets */; };
 		0A65BB2C1F94A74B00DDC285 /* KWMsgCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A65BB2A1F94A74B00DDC285 /* KWMsgCell.m */; };
 		0A65BB2D1F94A74B00DDC285 /* KWMsgCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A65BB2B1F94A74B00DDC285 /* KWMsgCell.xib */; };
@@ -66,6 +67,7 @@
 /* Begin PBXFileReference section */
 		051C1E9532C05A1197E97386 /* libPods-KWGdufeUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-KWGdufeUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A09E86A1F7E91E600BAF64F /* KWGdufe.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWGdufe.pch; sourceTree = "<group>"; };
+		0A38FE801F9E2031007484BD /* model.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = model.plist; sourceTree = SOURCE_ROOT; };
 		0A64D64C1F8D4C14008D33DB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0A65BB291F94A74B00DDC285 /* KWMsgCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWMsgCell.h; sourceTree = "<group>"; };
 		0A65BB2A1F94A74B00DDC285 /* KWMsgCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWMsgCell.m; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 				0A6750CA1F7BD7A000E46900 /* Main.storyboard */,
 				0A64D64C1F8D4C14008D33DB /* Assets.xcassets */,
 				0A8815261F7BDC5700AAB5BF /* AppDelegate.h */,
+				0A38FE801F9E2031007484BD /* model.plist */,
 				0A8815271F7BDC5700AAB5BF /* AppDelegate.m */,
 				0A8815311F7BDC5700AAB5BF /* main.m */,
 				0A8815321F7BDC5700AAB5BF /* ViewController.h */,
@@ -669,6 +672,7 @@
 				0AA763B41F8F2E40004E0222 /* KWLoginViewController.xib in Resources */,
 				0ACC56CF1F8E155F007DA2BD /* KWMineCell.xib in Resources */,
 				0A64D64D1F8D4C14008D33DB /* Assets.xcassets in Resources */,
+				0A38FE811F9E2032007484BD /* model.plist in Resources */,
 				0A6750CC1F7BD7A000E46900 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -711,13 +715,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-KWGdufe-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		61F2C5DCB5C71458FA664741 /* [CP] Embed Pods Frameworks */ = {
@@ -786,13 +793,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-KWGdufeTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		EA2248A7A106DBE5C81475B5 /* [CP] Check Pods Manifest.lock */ = {
@@ -801,13 +811,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-KWGdufeUITests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FAA5FBF1A6158F64FFBBA733 /* [CP] Copy Pods Resources */ = {
@@ -816,9 +829,13 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-KWGdufe/Pods-KWGdufe-resources.sh",
+				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
+				"${PODS_ROOT}/SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

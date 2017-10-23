@@ -10,7 +10,7 @@
 			<key>dayInWeek</key>
 			<integer>3</integer>
 			<key>endSec</key>
-			<integer>10</integer>
+			<integer>12</integer>
 			<key>location</key>
 			<string>实验楼802</string>
 			<key>name</key>
