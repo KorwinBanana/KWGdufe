@@ -21,6 +21,9 @@
 ![image](https://github.com/KorwinBanana/KWGdufe/blob/master/READMEImage/%E8%AF%BE%E8%A1%A8%E7%95%8C%E9%9D%A2.png)
 
 * 快捷功能（未完成）
+
+![image](https://github.com/KorwinBanana/KWGdufe/blob/master/READMEImage/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-10-25%20%E4%B8%8B%E5%8D%884.35.28.png)
+
 * 个人（完成加载个人信息数据并展示，以及跳转至信息页面）
 
 ![image](https://github.com/KorwinBanana/KWGdufe/blob/master/READMEImage/%E6%88%91%E7%9A%84%E7%95%8C%E9%9D%A2.png)
@@ -33,7 +36,6 @@
 * 个人信息
 
 ![image](https://github.com/KorwinBanana/KWGdufe/blob/master/READMEImage/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-10-16%20%E4%B8%8B%E5%8D%8811.35.46.png)
-
 
 
 
