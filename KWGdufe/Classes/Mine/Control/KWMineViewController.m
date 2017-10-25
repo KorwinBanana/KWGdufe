@@ -128,7 +128,10 @@
         return cell;
     } if (indexPath.section == 2) {
         cell.textLabel.text = @"退出";
-    } else cell.textLabel.text = @"选项待定";
+    } else {
+        cell.textLabel.text = @"选项待定";
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;//禁止选中
+    }
     return cell;
 }
 
