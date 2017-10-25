@@ -128,7 +128,7 @@
         return cell;
     } if (indexPath.section == 2) {
         cell.textLabel.text = @"退出";
-    } else cell.textLabel.text = @"我是谁！！";
+    } else cell.textLabel.text = @"选项待定";
     return cell;
 }
 
