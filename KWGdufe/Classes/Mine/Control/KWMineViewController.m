@@ -67,7 +67,6 @@
         //字典转模型
         _stuModel = [KWStuModel mj_objectWithKeyValues:adDict];
         
-#warning 设置学生模型给信息展示界面
         self.msgVc.stuModel = _stuModel;
 //        NSLog(@"_StuModel.name = %@",_stuModel.classroom);
         
@@ -78,28 +77,11 @@
     }];
 }
 
-#pragma mark - 退出注销服务器缓存
-- (void)logout {
-    KWLoginViewController *loginVc = [[KWLoginViewController alloc]init];
-    [UIApplication sharedApplication].keyWindow.rootViewController = loginVc;
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    //删除账号密码
-    [defaults removeObjectForKey:@"sno"];
-    [defaults removeObjectForKey:@"pwd"];
-    [defaults synchronize];
-}
-
 #pragma mark - 设置导航条
 -(void)setupNavBar
 {
     //设置按钮
     self.navigationItem.title = @"我";
-    
-}
-
-//点击跳转到设置页面
-- (void)tomsgVc {
-    [self.navigationController pushViewController:self.msgVc animated:YES];
 }
 
 #pragma mark - Table view data source
@@ -156,49 +138,21 @@
     }
 }
 
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+#pragma mark - 退出注销服务器缓存
+- (void)logout {
+    KWLoginViewController *loginVc = [[KWLoginViewController alloc]init];
+    [UIApplication sharedApplication].keyWindow.rootViewController = loginVc;
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    //删除账号密码
+    [defaults removeObjectForKey:@"sno"];
+    [defaults removeObjectForKey:@"pwd"];
+    [defaults synchronize];
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+//点击跳转到设置页面
+- (void)tomsgVc {
+    [self.navigationController pushViewController:self.msgVc animated:YES];
 }
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

@@ -43,6 +43,8 @@
 		0ACC56CE1F8E155F007DA2BD /* KWMineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ACC56CC1F8E155F007DA2BD /* KWMineCell.m */; };
 		0ACC56CF1F8E155F007DA2BD /* KWMineCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0ACC56CD1F8E155F007DA2BD /* KWMineCell.xib */; };
 		0ACC56D21F8E187E007DA2BD /* UIImage+KWExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ACC56D11F8E187E007DA2BD /* UIImage+KWExtension.m */; };
+		0AD013501FA24B2A009D5C76 /* KWGradeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AD0134F1FA24B2A009D5C76 /* KWGradeView.m */; };
+		0AD013521FA24F01009D5C76 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AD013511FA24F00009D5C76 /* QuartzCore.framework */; };
 		0AEA5C7B1F8E9056005C8DF2 /* KWMineMsgViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AEA5C7A1F8E9056005C8DF2 /* KWMineMsgViewController.m */; };
 		0AEA5C7E1F8E90CC005C8DF2 /* UIBarButtonItem+KWBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AEA5C7D1F8E90CC005C8DF2 /* UIBarButtonItem+KWBarButtonItem.m */; };
 		2855E0A7848FC10914635CA1 /* libPods-KWGdufe.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 70BB40C444C8B28E8744C841 /* libPods-KWGdufe.a */; };
@@ -138,6 +140,9 @@
 		0ACC56CD1F8E155F007DA2BD /* KWMineCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KWMineCell.xib; sourceTree = "<group>"; };
 		0ACC56D01F8E187E007DA2BD /* UIImage+KWExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+KWExtension.h"; sourceTree = "<group>"; };
 		0ACC56D11F8E187E007DA2BD /* UIImage+KWExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+KWExtension.m"; sourceTree = "<group>"; };
+		0AD0134E1FA24B2A009D5C76 /* KWGradeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWGradeView.h; sourceTree = "<group>"; };
+		0AD0134F1FA24B2A009D5C76 /* KWGradeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWGradeView.m; sourceTree = "<group>"; };
+		0AD013511FA24F00009D5C76 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		0AEA5C791F8E9056005C8DF2 /* KWMineMsgViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWMineMsgViewController.h; sourceTree = "<group>"; };
 		0AEA5C7A1F8E9056005C8DF2 /* KWMineMsgViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWMineMsgViewController.m; sourceTree = "<group>"; };
 		0AEA5C7C1F8E90CC005C8DF2 /* UIBarButtonItem+KWBarButtonItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+KWBarButtonItem.h"; sourceTree = "<group>"; };
@@ -157,6 +162,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0AD013521FA24F01009D5C76 /* QuartzCore.framework in Frameworks */,
 				2855E0A7848FC10914635CA1 /* libPods-KWGdufe.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -484,6 +490,8 @@
 			children = (
 				0AA60B2F1F7C052600E0E87D /* KWFunctionsViewController.h */,
 				0AA60B301F7C052600E0E87D /* KWFunctionsViewController.m */,
+				0AD0134E1FA24B2A009D5C76 /* KWGradeView.h */,
+				0AD0134F1FA24B2A009D5C76 /* KWGradeView.m */,
 			);
 			path = Control;
 			sourceTree = "<group>";
@@ -544,6 +552,7 @@
 		DB4B2B5F54B9954FE3A5F47A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0AD013511FA24F00009D5C76 /* QuartzCore.framework */,
 				70BB40C444C8B28E8744C841 /* libPods-KWGdufe.a */,
 				FF19EBAF60162FE0D672D4AA /* libPods-KWGdufeTests.a */,
 				051C1E9532C05A1197E97386 /* libPods-KWGdufeUITests.a */,
@@ -867,6 +876,7 @@
 				0AB186BA1F89519F00A49F93 /* Utils.m in Sources */,
 				0AEA5C7B1F8E9056005C8DF2 /* KWMineMsgViewController.m in Sources */,
 				0AB186C91F895AA200A49F93 /* KWWeekDay.m in Sources */,
+				0AD013501FA24B2A009D5C76 /* KWGradeView.m in Sources */,
 				0ACC56C71F8E0FDD007DA2BD /* KWTabBar.m in Sources */,
 				0AA763B71F8F3187004E0222 /* KWLoginModel.m in Sources */,
 				0AA60B371F7C05D000E0E87D /* KWNavigationViewController.m in Sources */,

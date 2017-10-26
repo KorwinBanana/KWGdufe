@@ -9,7 +9,7 @@
 #import "KWFunctionsViewController.h"
 #import "KWEducationalViewCell.h"
 
-@interface KWFunctionsViewController ()
+@interface KWFunctionsViewController ()<KWPushDelegate>
 
 @end
 
@@ -33,6 +33,11 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - KWPushDelegate
+- (void)pushVc:(KWGradeView *)gradeVc {
+    [self.navigationController pushViewController:gradeVc animated:YES];
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -50,6 +55,7 @@
     if(indexPath.section == 0) {
         KWEducationalViewCell *cell = [[KWEducationalViewCell alloc]init];
 //        cell.textLabel.text = @"教务系统的功能";
+        cell.delegate = self;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;//不可选择
         return cell;
     } else {

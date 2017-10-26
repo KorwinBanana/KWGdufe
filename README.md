@@ -20,7 +20,7 @@
 
 ![image](https://github.com/KorwinBanana/KWGdufe/blob/master/READMEImage/%E8%AF%BE%E8%A1%A8%E7%95%8C%E9%9D%A2.png)
 
-* 快捷功能（自定义tableViewCell，里面用collectionView实现每个cell中有不同的功能）
+* 快捷功能（自定义tableViewCell，里面用collectionView实现每个cell中有不同的功能,通过代理方式，实现collectionViewCell点击跳转到相应页面）
 
 ![image](https://github.com/KorwinBanana/KWGdufe/blob/master/READMEImage/%E5%BF%AB%E6%8D%B7%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2.png)
 
