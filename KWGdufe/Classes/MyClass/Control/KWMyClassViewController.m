@@ -210,7 +210,6 @@
     
     [self getSchoolWeek];
     
-#warning api月底才可用
     //发送请求
     [mgr POST:@"http://api.wegdufe.com:82/index.php?r=jw/get-schedule" parameters:parements progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         //        NSLog(@"%@",responseObject);
@@ -219,12 +218,12 @@
         [SVProgressHUD dismiss];
         
         //服务器崩了
-//        NSArray *dicAry = responseObject[@"data"];
+        NSArray *dicAry = responseObject[@"data"];
         
         //暂时展示plist内容
-        NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"model" ofType:@"plist"];
-        NSDictionary *data = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
-        NSArray *dicAry = data[@"data"];
+//        NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"model" ofType:@"plist"];
+//        NSDictionary *data = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
+//        NSArray *dicAry = data[@"data"];
 
         //字典数组转模型数组
         _scheduleModel = [KWScheduleModel mj_objectArrayWithKeyValuesArray:dicAry];
