@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		0A38FE811F9E2032007484BD /* model.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0A38FE801F9E2031007484BD /* model.plist */; };
+		0A5A5A0E1FA20164001B09FD /* KWEducationalViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5A5A0D1FA20164001B09FD /* KWEducationalViewCell.m */; };
+		0A5A5A121FA20542001B09FD /* KWFunctionsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5A5A101FA20542001B09FD /* KWFunctionsCell.m */; };
+		0A5A5A131FA20542001B09FD /* KWFunctionsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A5A5A111FA20542001B09FD /* KWFunctionsCell.xib */; };
 		0A64D64D1F8D4C14008D33DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A64D64C1F8D4C14008D33DB /* Assets.xcassets */; };
 		0A65BB2C1F94A74B00DDC285 /* KWMsgCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A65BB2A1F94A74B00DDC285 /* KWMsgCell.m */; };
 		0A65BB2D1F94A74B00DDC285 /* KWMsgCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A65BB2B1F94A74B00DDC285 /* KWMsgCell.xib */; };
@@ -68,6 +71,11 @@
 		051C1E9532C05A1197E97386 /* libPods-KWGdufeUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-KWGdufeUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A09E86A1F7E91E600BAF64F /* KWGdufe.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWGdufe.pch; sourceTree = "<group>"; };
 		0A38FE801F9E2031007484BD /* model.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = model.plist; sourceTree = SOURCE_ROOT; };
+		0A5A5A0C1FA20164001B09FD /* KWEducationalViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWEducationalViewCell.h; sourceTree = "<group>"; };
+		0A5A5A0D1FA20164001B09FD /* KWEducationalViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWEducationalViewCell.m; sourceTree = "<group>"; };
+		0A5A5A0F1FA20542001B09FD /* KWFunctionsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWFunctionsCell.h; sourceTree = "<group>"; };
+		0A5A5A101FA20542001B09FD /* KWFunctionsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWFunctionsCell.m; sourceTree = "<group>"; };
+		0A5A5A111FA20542001B09FD /* KWFunctionsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KWFunctionsCell.xib; sourceTree = "<group>"; };
 		0A64D64C1F8D4C14008D33DB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0A65BB291F94A74B00DDC285 /* KWMsgCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWMsgCell.h; sourceTree = "<group>"; };
 		0A65BB2A1F94A74B00DDC285 /* KWMsgCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWMsgCell.m; sourceTree = "<group>"; };
@@ -490,6 +498,11 @@
 		0AA60B221F7C040000E0E87D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0A5A5A0C1FA20164001B09FD /* KWEducationalViewCell.h */,
+				0A5A5A0D1FA20164001B09FD /* KWEducationalViewCell.m */,
+				0A5A5A0F1FA20542001B09FD /* KWFunctionsCell.h */,
+				0A5A5A101FA20542001B09FD /* KWFunctionsCell.m */,
+				0A5A5A111FA20542001B09FD /* KWFunctionsCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -666,6 +679,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A5A5A131FA20542001B09FD /* KWFunctionsCell.xib in Resources */,
 				0A65BB2D1F94A74B00DDC285 /* KWMsgCell.xib in Resources */,
 				0A6750D11F7BD7A000E46900 /* LaunchScreen.storyboard in Resources */,
 				0A9F5B251F7D813C006FD696 /* KWMyClassCollectionCell.xib in Resources */,
@@ -861,10 +875,12 @@
 				0AB186C01F89587C00A49F93 /* KWReusableView.m in Sources */,
 				0ACC56CA1F8E10D9007DA2BD /* UIView+KWFrame.m in Sources */,
 				0A9F5B241F7D813C006FD696 /* KWMyClassCollectionCell.m in Sources */,
+				0A5A5A0E1FA20164001B09FD /* KWEducationalViewCell.m in Sources */,
 				0AA60B1C1F7C027400E0E87D /* ViewController.m in Sources */,
 				0ACC56CE1F8E155F007DA2BD /* KWMineCell.m in Sources */,
 				0AB186BD1F89527A00A49F93 /* KWCollectionViewLayout.m in Sources */,
 				0AA60B1B1F7C006800E0E87D /* KWTabBarController.m in Sources */,
+				0A5A5A121FA20542001B09FD /* KWFunctionsCell.m in Sources */,
 				0AA60B1E1F7C029100E0E87D /* main.m in Sources */,
 				0A65BB2C1F94A74B00DDC285 /* KWMsgCell.m in Sources */,
 				0AA60B1D1F7C029100E0E87D /* AppDelegate.m in Sources */,

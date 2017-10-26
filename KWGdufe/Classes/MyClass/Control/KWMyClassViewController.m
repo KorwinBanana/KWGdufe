@@ -80,7 +80,7 @@
     //创建collectionView视图，应用自定义的collectionViewLayout：_course
     collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 64+30, CGRectGetWidth([UIScreen mainScreen].bounds),CGRectGetHeight([UIScreen mainScreen].bounds)) collectionViewLayout:_course];
 //    bgHeight = CGRectGetHeight([UIScreen mainScreen].bounds)/12;//设置背景格子的高度
-    collectionView.dataSource=self;
+    collectionView.dataSource = self;
     collectionView.backgroundColor = [UIColor clearColor];
     collectionView.bounces = NO;//取消弹回
     collectionView.showsVerticalScrollIndicator = NO;//隐藏滚动条

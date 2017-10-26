@@ -48,10 +48,10 @@
 {
     UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [backButton setTitle:title forState:UIControlStateNormal];
-    [backButton setImage:[UIImage imageNamed:@"navigationButtonReturn"] forState:UIControlStateNormal];
-    [backButton setImage:[UIImage imageNamed:@"navigationButtonReturnClick"] forState:UIControlStateHighlighted];
-    [backButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [backButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
+    [backButton setImage:image forState:UIControlStateNormal];
+    [backButton setImage:hightImage forState:UIControlStateHighlighted];
+    [backButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];//未选中的颜色
+    [backButton setTitleColor:[UIColor blackColor] forState:UIControlStateHighlighted];//返回的选中title的颜色
     [backButton addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
     [backButton sizeToFit];
     backButton.contentEdgeInsets = UIEdgeInsetsMake(0, -20, 0, 0);

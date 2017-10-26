@@ -7,6 +7,7 @@
 //
 
 #import "KWFunctionsViewController.h"
+#import "KWEducationalViewCell.h"
 
 @interface KWFunctionsViewController ()
 
@@ -43,27 +44,30 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;//不可选择
     /*
      自定义cell，放置功能图标，通过加入选中手势，跳转到对应功能页面
      */
     if(indexPath.section == 0) {
-        cell.textLabel.text = @"教务系统的功能";
-    } else if(indexPath.section == 1) {
+        KWEducationalViewCell *cell = [[KWEducationalViewCell alloc]init];
+//        cell.textLabel.text = @"教务系统的功能";
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;//不可选择
+        return cell;
+    } else {
+        UITableViewCell * cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"ID"];
         cell.textLabel.text = @"图书馆系统的功能";
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;//不可选择
+        return cell;
     }
-    return cell;
 }
 
 //自定义Header的UIView
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     // create the parent view that will hold header Label
-    UIView *customView = [[UIView alloc] initWithFrame:CGRectMake(20, 0, 320, 30)];
+    UIView *customView = [[UIView alloc] initWithFrame:CGRectMake(15, 0, 320, KWSCreenW/15)];
     UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     headerLabel.backgroundColor = [UIColor clearColor];
-    headerLabel.font = [UIFont italicSystemFontOfSize:18];
+    headerLabel.font = [UIFont italicSystemFontOfSize:16];
     headerLabel.frame = customView.frame;
     if (section == 0) {
         headerLabel.text = @"教务";
@@ -75,11 +79,11 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 30.0;
+    return KWSCreenW/15;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 88;
+    return KWSCreenW/5;
 }
 
 @end

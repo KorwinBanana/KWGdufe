@@ -20,7 +20,7 @@
 
 ![image](https://github.com/KorwinBanana/KWGdufe/blob/master/READMEImage/%E8%AF%BE%E8%A1%A8%E7%95%8C%E9%9D%A2.png)
 
-* 快捷功能（未完成）
+* 快捷功能（自定义tableViewCell，里面用collectionView实现每个cell中有不同的功能）
 
 ![image](https://github.com/KorwinBanana/KWGdufe/blob/master/READMEImage/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-10-25%20%E4%B8%8B%E5%8D%884.35.28.png)
 

@@ -11,7 +11,6 @@
 #import "KWFunctionsViewController.h"
 #import "KWMineViewController.h"
 #import "KWNavigationViewController.h"
-//#import "UIImage+Image.h"
 #import "UIImage+KWImage.h"
 #import "KWTabBar.h"
 
