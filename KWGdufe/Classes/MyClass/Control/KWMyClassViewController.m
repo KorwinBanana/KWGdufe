@@ -16,6 +16,7 @@
 #import <AFNetworking/AFNetworking.h>
 #import <MJExtension/MJExtension.h>
 #import <SVProgressHUD/SVProgressHUD.h>
+#import "NSData+KWAES.h"
 
 @interface KWMyClassViewController ()<UICollectionViewDataSource> {
     UICollectionView *collectionView;
@@ -199,8 +200,8 @@
     
     //获取登陆的账号密码
     NSString *sno  = [[NSUserDefaults standardUserDefaults] objectForKey:@"sno"];
-    NSString *pwd  = [[NSUserDefaults standardUserDefaults] objectForKey:@"pwd"];
-
+    NSData *encryptedData  = [[NSUserDefaults standardUserDefaults] objectForKey:@"pwd"];
+    NSString *pwd = [[NSString alloc] initWithData:[encryptedData DecryptAES:sno] encoding:NSUTF8StringEncoding];
     //拼接数据
     NSMutableDictionary *parements = [NSMutableDictionary dictionary];
     parements[@"sno"] = sno;

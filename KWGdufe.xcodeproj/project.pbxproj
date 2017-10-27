@@ -18,6 +18,9 @@
 		0A6750D11F7BD7A000E46900 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A6750CF1F7BD7A000E46900 /* LaunchScreen.storyboard */; };
 		0A6750DE1F7BD7A000E46900 /* KWGdufeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A6750DD1F7BD7A000E46900 /* KWGdufeTests.m */; };
 		0A6750E91F7BD7A000E46900 /* KWGdufeUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A6750E81F7BD7A000E46900 /* KWGdufeUITests.m */; };
+		0A8077E51FA309A2009AA299 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8077E41FA309A2009AA299 /* Utils.m */; };
+		0A8077F31FA30AB4009AA299 /* NSData+KWAES.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8077F21FA30AB4009AA299 /* NSData+KWAES.m */; };
+		0A8077F61FA30AE5009AA299 /* NSString+KWMD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8077F41FA30AE5009AA299 /* NSString+KWMD5.m */; };
 		0A9F5B241F7D813C006FD696 /* KWMyClassCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A9F5B221F7D813C006FD696 /* KWMyClassCollectionCell.m */; };
 		0A9F5B251F7D813C006FD696 /* KWMyClassCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A9F5B231F7D813C006FD696 /* KWMyClassCollectionCell.xib */; };
 		0AA443861F8E6DF800E48ADE /* KWStuModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AA443851F8E6DF800E48ADE /* KWStuModel.m */; };
@@ -33,7 +36,6 @@
 		0AA763B41F8F2E40004E0222 /* KWLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AA763B21F8F2E40004E0222 /* KWLoginViewController.xib */; };
 		0AA763B71F8F3187004E0222 /* KWLoginModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AA763B61F8F3187004E0222 /* KWLoginModel.m */; };
 		0AB186B71F89504400A49F93 /* KWScheduleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AB186B61F89504400A49F93 /* KWScheduleModel.m */; };
-		0AB186BA1F89519F00A49F93 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AB186B91F89519F00A49F93 /* Utils.m */; };
 		0AB186BD1F89527A00A49F93 /* KWCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AB186BC1F89527A00A49F93 /* KWCollectionViewLayout.m */; };
 		0AB186C01F89587C00A49F93 /* KWReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AB186BF1F89587C00A49F93 /* KWReusableView.m */; };
 		0AB186C91F895AA200A49F93 /* KWWeekDay.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AB186C81F895AA200A49F93 /* KWWeekDay.m */; };
@@ -92,6 +94,12 @@
 		0A6750E41F7BD7A000E46900 /* KWGdufeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KWGdufeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A6750E81F7BD7A000E46900 /* KWGdufeUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWGdufeUITests.m; sourceTree = "<group>"; };
 		0A6750EA1F7BD7A000E46900 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0A8077E31FA309A2009AA299 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
+		0A8077E41FA309A2009AA299 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
+		0A8077F11FA30AB4009AA299 /* NSData+KWAES.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSData+KWAES.h"; sourceTree = "<group>"; };
+		0A8077F21FA30AB4009AA299 /* NSData+KWAES.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSData+KWAES.m"; sourceTree = "<group>"; };
+		0A8077F41FA30AE5009AA299 /* NSString+KWMD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+KWMD5.m"; sourceTree = "<group>"; };
+		0A8077F51FA30AE5009AA299 /* NSString+KWMD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+KWMD5.h"; sourceTree = "<group>"; };
 		0A8815261F7BDC5700AAB5BF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		0A8815271F7BDC5700AAB5BF /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		0A88152B1F7BDC5700AAB5BF /* UIButton+KWButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+KWButton.h"; sourceTree = "<group>"; };
@@ -121,8 +129,6 @@
 		0AA763B61F8F3187004E0222 /* KWLoginModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWLoginModel.m; sourceTree = "<group>"; };
 		0AB186B51F89504400A49F93 /* KWScheduleModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWScheduleModel.h; sourceTree = "<group>"; };
 		0AB186B61F89504400A49F93 /* KWScheduleModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWScheduleModel.m; sourceTree = "<group>"; };
-		0AB186B81F89519F00A49F93 /* Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
-		0AB186B91F89519F00A49F93 /* Utils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
 		0AB186BB1F89527A00A49F93 /* KWCollectionViewLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWCollectionViewLayout.h; sourceTree = "<group>"; };
 		0AB186BC1F89527A00A49F93 /* KWCollectionViewLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWCollectionViewLayout.m; sourceTree = "<group>"; };
 		0AB186BE1F89587C00A49F93 /* KWReusableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWReusableView.h; sourceTree = "<group>"; };
@@ -244,6 +250,17 @@
 			path = KWGdufeUITests;
 			sourceTree = "<group>";
 		};
+		0A8077EA1FA309D1009AA299 /* EAUitl */ = {
+			isa = PBXGroup;
+			children = (
+				0A8077F51FA30AE5009AA299 /* NSString+KWMD5.h */,
+				0A8077F41FA30AE5009AA299 /* NSString+KWMD5.m */,
+				0A8077F11FA30AB4009AA299 /* NSData+KWAES.h */,
+				0A8077F21FA30AB4009AA299 /* NSData+KWAES.m */,
+			);
+			path = EAUitl;
+			sourceTree = "<group>";
+		};
 		0A8815181F7BDC5700AAB5BF /* Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -347,6 +364,7 @@
 		0A8815251F7BDC5700AAB5BF /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				0A8077EA1FA309D1009AA299 /* EAUitl */,
 				0A8815281F7BDC5700AAB5BF /* Category */,
 			);
 			path = Other;
@@ -355,11 +373,11 @@
 		0A8815281F7BDC5700AAB5BF /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				0A8077E31FA309A2009AA299 /* Utils.h */,
+				0A8077E41FA309A2009AA299 /* Utils.m */,
 				0A88152B1F7BDC5700AAB5BF /* UIButton+KWButton.h */,
 				0A88152C1F7BDC5700AAB5BF /* UIButton+KWButton.m */,
 				0A09E86A1F7E91E600BAF64F /* KWGdufe.pch */,
-				0AB186B81F89519F00A49F93 /* Utils.h */,
-				0AB186B91F89519F00A49F93 /* Utils.m */,
 				0ACC56BF1F8E0C6E007DA2BD /* UIImage+KWImage.h */,
 				0ACC56C01F8E0C6E007DA2BD /* UIImage+KWImage.m */,
 				0ACC56C81F8E10D9007DA2BD /* UIView+KWFrame.h */,
@@ -873,8 +891,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				0AA60B311F7C052600E0E87D /* KWFunctionsViewController.m in Sources */,
-				0AB186BA1F89519F00A49F93 /* Utils.m in Sources */,
 				0AEA5C7B1F8E9056005C8DF2 /* KWMineMsgViewController.m in Sources */,
+				0A8077E51FA309A2009AA299 /* Utils.m in Sources */,
 				0AB186C91F895AA200A49F93 /* KWWeekDay.m in Sources */,
 				0AD013501FA24B2A009D5C76 /* KWGradeView.m in Sources */,
 				0ACC56C71F8E0FDD007DA2BD /* KWTabBar.m in Sources */,
@@ -892,11 +910,13 @@
 				0AA60B1B1F7C006800E0E87D /* KWTabBarController.m in Sources */,
 				0A5A5A121FA20542001B09FD /* KWFunctionsCell.m in Sources */,
 				0AA60B1E1F7C029100E0E87D /* main.m in Sources */,
+				0A8077F31FA30AB4009AA299 /* NSData+KWAES.m in Sources */,
 				0A65BB2C1F94A74B00DDC285 /* KWMsgCell.m in Sources */,
 				0AA60B1D1F7C029100E0E87D /* AppDelegate.m in Sources */,
 				0AB186B71F89504400A49F93 /* KWScheduleModel.m in Sources */,
 				0ACC56C11F8E0C6F007DA2BD /* UIImage+KWImage.m in Sources */,
 				0AA60B341F7C053B00E0E87D /* KWMineViewController.m in Sources */,
+				0A8077F61FA30AE5009AA299 /* NSString+KWMD5.m in Sources */,
 				0ACC56D21F8E187E007DA2BD /* UIImage+KWExtension.m in Sources */,
 				0AEA5C7E1F8E90CC005C8DF2 /* UIBarButtonItem+KWBarButtonItem.m in Sources */,
 				0AA763B31F8F2E40004E0222 /* KWLoginViewController.m in Sources */,

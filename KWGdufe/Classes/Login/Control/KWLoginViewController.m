@@ -9,6 +9,8 @@
 #import "KWLoginViewController.h"
 #import "KWTabBarController.h"
 #import <AFNetworking/AFNetworking.h>
+#import "NSString+KWMD5.h"
+#import "NSData+KWAES.h"
 //#import <MJExtension/MJExtension.h>
 
 @interface KWLoginViewController () {
@@ -84,11 +86,19 @@
         
         //判断是否登陆
         if ([codeStr isEqualToString:@"0"]) {
-            
             //登陆成功后使用NSUserDefault保存账号密码数据
             NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
             [userDefaults setObject:_sno.text forKey:@"sno"];
-            [userDefaults setObject:_pwd.text forKey:@"pwd"];
+            //使用md5加密
+//            NSString *pwdByMD5 = [NSString md5To32bit:_pwd.text];
+//            [userDefaults setObject:pwdByMD5 forKey:@"pwd"];
+            
+            
+            //AES加密
+            NSData *data = [_pwd.text dataUsingEncoding:NSUTF8StringEncoding];
+            NSData *encryptedData = [data EncryptAES:_sno.text];
+            [userDefaults setObject:encryptedData forKey:@"pwd"];
+            
             [[NSUserDefaults standardUserDefaults] synchronize];
             
             KWTabBarController *tabVc = [[KWTabBarController alloc]init];
