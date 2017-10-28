@@ -12,6 +12,9 @@
 		0A5A5A121FA20542001B09FD /* KWFunctionsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5A5A101FA20542001B09FD /* KWFunctionsCell.m */; };
 		0A5A5A131FA20542001B09FD /* KWFunctionsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A5A5A111FA20542001B09FD /* KWFunctionsCell.xib */; };
 		0A64D64D1F8D4C14008D33DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A64D64C1F8D4C14008D33DB /* Assets.xcassets */; };
+		0A65AF9C1FA46C32003AC3A5 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A65AF9B1FA46C31003AC3A5 /* Security.framework */; };
+		0A65AF9F1FA4778C003AC3A5 /* KeychainWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A65AF9E1FA4778C003AC3A5 /* KeychainWrapper.m */; };
+		0A65AFA21FA4B374003AC3A5 /* KWMyMsgCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A65AFA11FA4B374003AC3A5 /* KWMyMsgCell.m */; };
 		0A65BB2C1F94A74B00DDC285 /* KWMsgCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A65BB2A1F94A74B00DDC285 /* KWMsgCell.m */; };
 		0A65BB2D1F94A74B00DDC285 /* KWMsgCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A65BB2B1F94A74B00DDC285 /* KWMsgCell.xib */; };
 		0A6750CC1F7BD7A000E46900 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A6750CA1F7BD7A000E46900 /* Main.storyboard */; };
@@ -81,6 +84,11 @@
 		0A5A5A101FA20542001B09FD /* KWFunctionsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWFunctionsCell.m; sourceTree = "<group>"; };
 		0A5A5A111FA20542001B09FD /* KWFunctionsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KWFunctionsCell.xib; sourceTree = "<group>"; };
 		0A64D64C1F8D4C14008D33DB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0A65AF9B1FA46C31003AC3A5 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		0A65AF9D1FA4778C003AC3A5 /* KeychainWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeychainWrapper.h; sourceTree = "<group>"; };
+		0A65AF9E1FA4778C003AC3A5 /* KeychainWrapper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KeychainWrapper.m; sourceTree = "<group>"; };
+		0A65AFA01FA4B374003AC3A5 /* KWMyMsgCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWMyMsgCell.h; sourceTree = "<group>"; };
+		0A65AFA11FA4B374003AC3A5 /* KWMyMsgCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWMyMsgCell.m; sourceTree = "<group>"; };
 		0A65BB291F94A74B00DDC285 /* KWMsgCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWMsgCell.h; sourceTree = "<group>"; };
 		0A65BB2A1F94A74B00DDC285 /* KWMsgCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWMsgCell.m; sourceTree = "<group>"; };
 		0A65BB2B1F94A74B00DDC285 /* KWMsgCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KWMsgCell.xib; sourceTree = "<group>"; };
@@ -168,6 +176,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A65AF9C1FA46C32003AC3A5 /* Security.framework in Frameworks */,
 				0AD013521FA24F01009D5C76 /* QuartzCore.framework in Frameworks */,
 				2855E0A7848FC10914635CA1 /* libPods-KWGdufe.a in Frameworks */,
 			);
@@ -257,6 +266,8 @@
 				0A8077F41FA30AE5009AA299 /* NSString+KWMD5.m */,
 				0A8077F11FA30AB4009AA299 /* NSData+KWAES.h */,
 				0A8077F21FA30AB4009AA299 /* NSData+KWAES.m */,
+				0A65AF9D1FA4778C003AC3A5 /* KeychainWrapper.h */,
+				0A65AF9E1FA4778C003AC3A5 /* KeychainWrapper.m */,
 			);
 			path = EAUitl;
 			sourceTree = "<group>";
@@ -315,6 +326,8 @@
 				0A65BB291F94A74B00DDC285 /* KWMsgCell.h */,
 				0A65BB2A1F94A74B00DDC285 /* KWMsgCell.m */,
 				0A65BB2B1F94A74B00DDC285 /* KWMsgCell.xib */,
+				0A65AFA01FA4B374003AC3A5 /* KWMyMsgCell.h */,
+				0A65AFA11FA4B374003AC3A5 /* KWMyMsgCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -373,11 +386,11 @@
 		0A8815281F7BDC5700AAB5BF /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				0A09E86A1F7E91E600BAF64F /* KWGdufe.pch */,
 				0A8077E31FA309A2009AA299 /* Utils.h */,
 				0A8077E41FA309A2009AA299 /* Utils.m */,
 				0A88152B1F7BDC5700AAB5BF /* UIButton+KWButton.h */,
 				0A88152C1F7BDC5700AAB5BF /* UIButton+KWButton.m */,
-				0A09E86A1F7E91E600BAF64F /* KWGdufe.pch */,
 				0ACC56BF1F8E0C6E007DA2BD /* UIImage+KWImage.h */,
 				0ACC56C01F8E0C6E007DA2BD /* UIImage+KWImage.m */,
 				0ACC56C81F8E10D9007DA2BD /* UIView+KWFrame.h */,
@@ -570,6 +583,7 @@
 		DB4B2B5F54B9954FE3A5F47A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0A65AF9B1FA46C31003AC3A5 /* Security.framework */,
 				0AD013511FA24F00009D5C76 /* QuartzCore.framework */,
 				70BB40C444C8B28E8744C841 /* libPods-KWGdufe.a */,
 				FF19EBAF60162FE0D672D4AA /* libPods-KWGdufeTests.a */,
@@ -903,6 +917,7 @@
 				0AB186C01F89587C00A49F93 /* KWReusableView.m in Sources */,
 				0ACC56CA1F8E10D9007DA2BD /* UIView+KWFrame.m in Sources */,
 				0A9F5B241F7D813C006FD696 /* KWMyClassCollectionCell.m in Sources */,
+				0A65AF9F1FA4778C003AC3A5 /* KeychainWrapper.m in Sources */,
 				0A5A5A0E1FA20164001B09FD /* KWEducationalViewCell.m in Sources */,
 				0AA60B1C1F7C027400E0E87D /* ViewController.m in Sources */,
 				0ACC56CE1F8E155F007DA2BD /* KWMineCell.m in Sources */,
@@ -912,6 +927,7 @@
 				0AA60B1E1F7C029100E0E87D /* main.m in Sources */,
 				0A8077F31FA30AB4009AA299 /* NSData+KWAES.m in Sources */,
 				0A65BB2C1F94A74B00DDC285 /* KWMsgCell.m in Sources */,
+				0A65AFA21FA4B374003AC3A5 /* KWMyMsgCell.m in Sources */,
 				0AA60B1D1F7C029100E0E87D /* AppDelegate.m in Sources */,
 				0AB186B71F89504400A49F93 /* KWScheduleModel.m in Sources */,
 				0ACC56C11F8E0C6F007DA2BD /* UIImage+KWImage.m in Sources */,

@@ -14,6 +14,9 @@
 #import "KWMineMsgViewController.h"
 #import "KWLoginViewController.h"
 #import <MJRefresh/MJRefresh.h>
+#import "KeychainWrapper.h"
+
+#import "KWMyMsgCell.h"
 
 @interface KWMineViewController ()
 
@@ -48,8 +51,8 @@
     AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
     
     //获取登陆的账号密码
-    NSString *sno  = [[NSUserDefaults standardUserDefaults] objectForKey:@"sno"];
-    NSString *pwd  = [[NSUserDefaults standardUserDefaults] objectForKey:@"pwd"];
+    NSString *sno = [wrapper myObjectForKey:(id)kSecAttrAccount];
+    NSString *pwd = [wrapper myObjectForKey:(id)kSecValueData];
     
     //拼接数据
     NSMutableDictionary *parements = [NSMutableDictionary dictionary];
@@ -73,7 +76,7 @@
         [self.tableView reloadData];
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"失败啦～～");
+//        NSLog(@"失败啦～～");
     }];
 }
 
@@ -103,9 +106,13 @@
     UITableViewCell *cell = [[UITableViewCell alloc]init];
 //    NSLog(@"%@",NSStringFromCGRect(cell.frame));
     if (indexPath.section == 0) {
-        KWMineCell *cell = [[KWMineCell alloc]init];
-        cell = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([KWMineCell class]) owner:nil options:nil][0];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        //nil加载cell
+//        KWMineCell *cell = [[KWMineCell alloc]init];
+//        cell = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([KWMineCell class]) owner:nil options:nil][0];
+////        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+//        cell.model = _stuModel;
+        KWMyMsgCell *cell = [[KWMyMsgCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;//选中无色
         cell.model = _stuModel;
         return cell;
     } if (indexPath.section == 2) {
@@ -140,19 +147,17 @@
 
 #pragma mark - 退出注销服务器缓存
 - (void)logout {
+    //删除账号密码
+    [wrapper resetKeychainItem];
+    
+    //跳转页面
     KWLoginViewController *loginVc = [[KWLoginViewController alloc]init];
     [UIApplication sharedApplication].keyWindow.rootViewController = loginVc;
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    //删除账号密码
-    [defaults removeObjectForKey:@"sno"];
-    [defaults removeObjectForKey:@"pwd"];
-    [defaults synchronize];
 }
 
 //点击跳转到设置页面
 - (void)tomsgVc {
     [self.navigationController pushViewController:self.msgVc animated:YES];
 }
-
 
 @end

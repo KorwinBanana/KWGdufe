@@ -17,6 +17,7 @@
 #import <MJExtension/MJExtension.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "NSData+KWAES.h"
+#import "KeychainWrapper.h"
 
 @interface KWMyClassViewController ()<UICollectionViewDataSource> {
     UICollectionView *collectionView;
@@ -199,26 +200,23 @@
     NSString *week = [NSString stringWithFormat:@"%ld",schoolWeek];
     
     //获取登陆的账号密码
-    NSString *sno  = [[NSUserDefaults standardUserDefaults] objectForKey:@"sno"];
-    NSData *encryptedData  = [[NSUserDefaults standardUserDefaults] objectForKey:@"pwd"];
-    NSString *pwd = [[NSString alloc] initWithData:[encryptedData DecryptAES:sno] encoding:NSUTF8StringEncoding];
+    NSString *sno = [wrapper myObjectForKey:(id)kSecAttrAccount];
+    NSString *pwd = [wrapper myObjectForKey:(id)kSecValueData];
+    
     //拼接数据
     NSMutableDictionary *parements = [NSMutableDictionary dictionary];
     parements[@"sno"] = sno;
     parements[@"pwd"] = pwd;
-    parements[@"stu_time"] = @"2015-2016-2";
+    parements[@"stu_time"] = @"2016-2017-1";
     parements[@"week"] = week;
     
     [self getSchoolWeek];
     
     //发送请求
     [mgr POST:@"http://api.wegdufe.com:82/index.php?r=jw/get-schedule" parameters:parements progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        //        NSLog(@"%@",responseObject);
-        //        [responseObject writeToFile:@"/Users/k/iOS-KW/project/model.plist" atomically:nil];
-        //取消提示框
-        [SVProgressHUD dismiss];
+//        NSLog(@"%@",responseObject);
+//        [responseObject writeToFile:@"/Users/k/iOS-KW/project/model.plist" atomically:nil];
         
-        //服务器崩了
         NSArray *dicAry = responseObject[@"data"];
         
         //暂时展示plist内容
@@ -230,8 +228,9 @@
         _scheduleModel = [KWScheduleModel mj_objectArrayWithKeyValuesArray:dicAry];
         self.course.array = _scheduleModel;
         [collectionView reloadData];
-        NSLog(@"mistake1");
-
+        
+        //取消提示框
+        [SVProgressHUD dismiss];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
     }];

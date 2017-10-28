@@ -7,6 +7,7 @@
 //
 
 #import "KWMineCell.h"
+#import "KeychainWrapper.h"
 
 @interface KWMineCell()
 @property (weak, nonatomic) IBOutlet UILabel *name;
@@ -18,15 +19,12 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-//    [self setupModel];
-    // Initialization code
 }
 
 - (void)setModel:(KWStuModel *)model {
     _model = model;
     _name.text = _model.name;
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *number = [defaults objectForKey:@"sno"];
+    NSString *number = [wrapper myObjectForKey:(id)kSecAttrAccount];
     if (number != nil) {
         _classroom.text = [NSString stringWithFormat:@"学号:%@",number];
     } else {

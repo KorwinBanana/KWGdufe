@@ -11,6 +11,7 @@
 #import "UIImage+KWImage.h"
 #import "UIBarButtonItem+KWBarButtonItem.h"
 #import "UIButton+KWButton.h"
+//#import "KeychainWrapper.h"//keychain保存账号密码
 
 /*****************屏幕适配*********************/
 #define KWSCreenH [UIScreen mainScreen].bounds.size.height
@@ -18,6 +19,10 @@
 #define iphone7p (KWSCreenH == 736)
 #define iphone7 (KWSCreenH == 667)
 #define iphonese (KWSCreenH == 568)
+
+#define uuid [[NSUUID UUID] UUIDString]
+
+#define wrapper [[KeychainWrapper alloc] init]
 
 #define topHeight 20
 

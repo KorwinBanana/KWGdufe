@@ -12,6 +12,7 @@
 @interface KWMyClassCollectionCell : UICollectionViewCell
 
 @property (nonatomic,strong) UILabel *name;
+@property (nonatomic,strong) UILabel  *className;
 @property (nonatomic,strong) KWScheduleModel *model;
 
 @end

@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 #import "KWLoginViewController.h"
 #import "KWTabBarController.h"
+#import "NSData+KWAES.h"
+#import "KeychainWrapper.h"
 
 @interface AppDelegate ()
 
@@ -23,19 +25,21 @@
     
     //检测是否存在用户名和密码
 //    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-//
-//    if ([defaults objectForKey:@"sno"] == nil && [defaults objectForKey:@"pwd"] == nil) {
-//        //Load Login View if no username is found
-//        //设置窗口控制器为登陆View
-//        KWLoginViewController *loginVc = [[KWLoginViewController alloc]init];
-//        self.window.rootViewController = loginVc;//设置根控制器
-//    }
-//
-//    if ([defaults objectForKey:@"sno"] != nil && [defaults objectForKey:@"pwd"] != nil) {
+//    NSData *encryptedData  = [[NSUserDefaults standardUserDefaults] objectForKey:@"pwd"];
+//    NSString *pwd = [[NSString alloc] initWithData:[encryptedData DecryptAES:uuid] encoding:NSUTF8StringEncoding];
+    
+    //KeychainWrapper
+    NSString *sno = [wrapper myObjectForKey:(id)kSecAttrAccount];
+    if (![sno isEqualToString:@"Account"]) {
         //设置窗口控制器为主界面
         KWTabBarController *tabVc = [[KWTabBarController alloc]init];
         self.window.rootViewController = tabVc;//设置根控制器
-//    }
+    } else {
+        //Load Login View if no username is found
+        //设置窗口控制器为登陆View
+        KWLoginViewController *loginVc = [[KWLoginViewController alloc]init];
+        self.window.rootViewController = loginVc;//设置根控制器
+    }
 
     //3.显示窗口 1.成为UIApplication主窗口 2.
     [self.window makeKeyAndVisible];

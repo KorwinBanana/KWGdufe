@@ -17,8 +17,8 @@
 
 @implementation KWWeekDay
 
-- (instancetype)initWithFrame:(CGRect)frame{
-    if(self=[super initWithFrame:frame])
+- (instancetype)initWithFrame:(CGRect)frame {
+    if(self = [super initWithFrame:frame])
     {
         [self setUp];
         self.backgroundColor = [UIColor whiteColor];//

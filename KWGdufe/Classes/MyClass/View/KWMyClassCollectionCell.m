@@ -34,11 +34,9 @@
     _name.text = [NSString stringWithFormat:@"%@\n\n%@",model.name,model.location];
     _name.font = [UIFont systemFontOfSize:12];
     _name.numberOfLines = 0;
-    _name.backgroundColor = [UIColor whiteColor];
-//    if(![model.colors isEqualToString:@"#f5f5f5"])
+    //    if(![model.colors isEqualToString:@"#f5f5f5"])
     _name.textColor = [UIColor whiteColor];
     _name.alpha = 1;
-    _name.backgroundColor = [UIColor clearColor];
 
 }
 

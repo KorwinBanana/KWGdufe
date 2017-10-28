@@ -18,7 +18,6 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
 }
 
 - (void)setMsgValue:(NSString *)msgValue {

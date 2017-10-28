@@ -10,11 +10,11 @@
 			<key>dayInWeek</key>
 			<integer>3</integer>
 			<key>endSec</key>
-			<integer>12</integer>
+			<integer>7</integer>
 			<key>location</key>
 			<string>实验楼802</string>
 			<key>name</key>
-			<string>管理信息系统开发与设计</string>
+			<string>管理信息系统开发与设计开发与设计</string>
 			<key>period</key>
 			<string>1-16(周)</string>
 			<key>startSec</key>

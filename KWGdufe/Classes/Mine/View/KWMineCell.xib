@@ -4,7 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -19,11 +19,11 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="87.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="setup-head-default" translatesAutoresizingMaskIntoConstraints="NO" id="iDa-M3-xcf">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iDa-M3-xcf">
                         <rect key="frame" x="10" y="14" width="60" height="60"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="60" id="dIv-3f-rFC"/>
-                            <constraint firstAttribute="height" constant="60" id="mZT-4x-mmP"/>
+                            <constraint firstAttribute="height" priority="999" constant="60" id="mZT-4x-mmP"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="迪丽热巴" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qcy-26-etW">
@@ -70,7 +70,4 @@
             </connections>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="setup-head-default" width="36" height="36"/>
-    </resources>
 </document>

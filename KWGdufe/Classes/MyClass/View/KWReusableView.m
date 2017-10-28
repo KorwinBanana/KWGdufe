@@ -10,8 +10,8 @@
 #import "Utils.h"
 
 @implementation KWReusableView
-- (instancetype)initWithFrame:(CGRect)frame{
-    if(self=[super initWithFrame:frame]){
+- (instancetype)initWithFrame:(CGRect)frame {
+    if(self = [super initWithFrame:frame]){
         self.num = [[UILabel alloc] initWithFrame:self.bounds];
         _num.textAlignment = NSTextAlignmentCenter;
         _num.font = [UIFont systemFontOfSize:13];
