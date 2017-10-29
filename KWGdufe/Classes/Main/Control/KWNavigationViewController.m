@@ -21,8 +21,11 @@
     //设置导航栏标题——富文本
     NSMutableDictionary *attrs = [NSMutableDictionary dictionary];
     attrs[NSFontAttributeName] = [UIFont boldSystemFontOfSize:19];
+    attrs[NSForegroundColorAttributeName] = [UIColor whiteColor];
     [navBar setTitleTextAttributes:attrs];
-    [navBar setBackgroundImage:[UIImage imageNamed:@"navigationbarBackgroundWhite"] forBarMetrics:UIBarMetricsDefault];
+    [navBar setBackgroundImage:[UIImage imageNamed:@"navigationbarBackground42103111"] forBarMetrics:UIBarMetricsDefault];
+//    [navBar setBackgroundColor:[UIColor blackColor]];
+    navBar.translucent = YES;
 }
 
 - (void)viewDidLoad {

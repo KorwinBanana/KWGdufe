@@ -105,5 +105,10 @@
 //截取图片,生成图片缩略图的两种方案
 + (UIImage *)thumbnailWithImage:(UIImage *)image size:(CGSize)asize;
 + (UIImage *)thumbnailWithImageWithoutScale:(UIImage *)image size:(CGSize)asize;
+
+
++ (void)saveCache:(NSString *)type andID:(NSString *)_id andValue:(id)str;
++ (id)getCache:(NSString *)type andID:(NSString *)_id;
++ (void)removeCache:(NSString *)type andID:(NSString *)_id;
 @end
 

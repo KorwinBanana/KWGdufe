@@ -409,7 +409,29 @@
     }
     
     return newimage;
-    
 }
+
+#pragma mark - 数据写进、读取、删除Cache
++ (void)saveCache:(NSString *)type andID:(NSString *)_id andValue:(id)str {
+    NSUserDefaults * setting = [NSUserDefaults standardUserDefaults];
+    NSString * key = [NSString stringWithFormat:@"model-%@-%@",type, _id];
+    [setting setObject:str forKey:key];
+    [setting synchronize];
+}
+
++ (id)getCache:(NSString *)type andID:(NSString *)_id {
+    NSUserDefaults * setting = [NSUserDefaults standardUserDefaults];
+    NSString *key = [NSString stringWithFormat:@"model-%@-%@",type, _id];
+    id value = [setting objectForKey:key];
+    return value;
+}
+
++ (void)removeCache:(NSString *)type andID:(NSString *)_id {
+    NSUserDefaults * setting = [NSUserDefaults standardUserDefaults];
+    NSString * key = [NSString stringWithFormat:@"model-%@-%@",type, _id];
+    [setting removeObjectForKey:key];
+    [setting synchronize];
+}
+
 @end
 

@@ -15,8 +15,9 @@
 #import "KWLoginViewController.h"
 #import <MJRefresh/MJRefresh.h>
 #import "KeychainWrapper.h"
-
 #import "KWMyMsgCell.h"
+#import <SVProgressHUD/SVProgressHUD.h>
+#import "Utils.h"
 
 @interface KWMineViewController ()
 
@@ -41,12 +42,27 @@
     CGRect frame = CGRectMake(0, 0, 0, 0.1);
     self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:frame];
     
-    [self loadData];//加载数据
+    [SVProgressHUD showWithStatus:@"加载数据中"];
+    
+    [self getDataFromCache];//加载数据
+}
+
+- (void)getDataFromCache {
+    NSString *account = [wrapper myObjectForKey:(id)kSecAttrAccount];
+    NSDictionary *stuDict = [Utils getCache:account andID:@"StuModel"];
+    if (stuDict) {
+        //字典转模型
+        _stuModel = [KWStuModel mj_objectWithKeyValues:stuDict];
+        self.msgVc.stuModel = _stuModel;
+        [SVProgressHUD dismiss];
+        [self.tableView reloadData];
+    } else {
+        [self loadData];
+    }
 }
 
 #pragma mark - 加载数据
-- (void)loadData
-{
+- (void)loadData {
     //创建请求会话管理者
     AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
     
@@ -65,18 +81,18 @@
 //        [responseObject writeToFile:@"/Users/k/iOS-KW/project/stuModel.plist" atomically:nil];
         
         //获取字典
-        NSDictionary *adDict = responseObject[@"data"];
+        NSDictionary *stuDict = responseObject[@"data"];
+        
+        //缓存到本地
+        [Utils saveCache:sno andID:@"StuModel" andValue:stuDict];
         
         //字典转模型
-        _stuModel = [KWStuModel mj_objectWithKeyValues:adDict];
-        
+        _stuModel = [KWStuModel mj_objectWithKeyValues:stuDict];
         self.msgVc.stuModel = _stuModel;
-//        NSLog(@"_StuModel.name = %@",_stuModel.classroom);
         
         [self.tableView reloadData];
-        
+        [SVProgressHUD dismiss];//
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-//        NSLog(@"失败啦～～");
     }];
 }
 
@@ -104,12 +120,11 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [[UITableViewCell alloc]init];
-//    NSLog(@"%@",NSStringFromCGRect(cell.frame));
     if (indexPath.section == 0) {
         //nil加载cell
 //        KWMineCell *cell = [[KWMineCell alloc]init];
 //        cell = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([KWMineCell class]) owner:nil options:nil][0];
-////        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+//        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 //        cell.model = _stuModel;
         KWMyMsgCell *cell = [[KWMyMsgCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;//选中无色
@@ -147,6 +162,10 @@
 
 #pragma mark - 退出注销服务器缓存
 - (void)logout {
+    NSString *account = [wrapper myObjectForKey:(id)kSecAttrAccount];
+    //删除课程表缓存
+    [Utils removeCache:account andID:@"ClassModel"];
+    
     //删除账号密码
     [wrapper resetKeychainItem];
     

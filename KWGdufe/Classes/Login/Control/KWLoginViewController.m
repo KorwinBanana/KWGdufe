@@ -12,6 +12,7 @@
 #import "NSString+KWMD5.h"
 #import "NSData+KWAES.h"
 #import "KeychainWrapper.h"
+#import <SVProgressHUD/SVProgressHUD.h>
 //#import <MJExtension/MJExtension.h>
 
 @interface KWLoginViewController () {
@@ -24,6 +25,7 @@
 
 @implementation KWLoginViewController
 - (IBAction)login:(id)sender {
+    [SVProgressHUD showWithStatus:@"登录中"];
     [self loadData];
 }
 
@@ -65,15 +67,10 @@
     parements[@"sno"] = _sno.text;
     parements[@"pwd"] = _pwd.text;
     
-    //self的弱引用
-    KWLoginViewController * __weak weakSelf = self;
-    
     //发送请求
     [mgr POST:@"http://api.wegdufe.com:82/index.php?r=jw/get-basic" parameters:parements progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
 //        NSLog(@"%@",responseObject);
 //        [responseObject writeToFile:@"/Users/k/iOS-KW/project/stuModel.plist" atomically:nil];
-        
-        __strong __typeof__(self) strongSelf = weakSelf;
         
         //添加警告框
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleAlert];
@@ -84,6 +81,8 @@
         NSString *code = [responseObject objectForKey:@"code"];
         NSString *codeStr = [NSString stringWithFormat:@"%@",code];
 //        NSLog(@"self.loginBoolModel.code = %@",codeStr);
+        
+        [SVProgressHUD dismiss];
         
         //判断是否登陆
         if ([codeStr isEqualToString:@"0"]) {
@@ -108,19 +107,20 @@
             NSLog(@"喵～学号或者密码为空啦～～");
             //添加提示框
             alert.message = @"喵～学号或者密码为空啦～～";
-            [strongSelf presentViewController:alert animated:YES completion:nil];
+            [self presentViewController:alert animated:YES completion:nil];
         } else if ([codeStr isEqualToString:@"3001"]) {
             NSLog(@"喵～学号或密码错误啦～～");
             //添加提示框
             alert.message = @"喵～学号或密码错误啦～～";
-            [strongSelf presentViewController:alert animated:YES completion:nil];
+            [self presentViewController:alert animated:YES completion:nil];
         } else {
             alert.message = @"喵～系统崩溃啦～～";
-            [strongSelf presentViewController:alert animated:YES completion:nil];
+            [self presentViewController:alert animated:YES completion:nil];
         }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"失败啦～～");
+        [SVProgressHUD dismiss];
     }];
 }
 
@@ -128,19 +128,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-#pragma mark - UITexFiledDelagate
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 
 @end

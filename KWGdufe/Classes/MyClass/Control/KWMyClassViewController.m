@@ -44,7 +44,10 @@
     //设置标题
     self.navigationItem.title = @"课程表";
     
-    colors = @[@"#FF8C00",@"#F08080",@"#F08080",@"#BCEE68",@"#B03060",@"#AB82FF",@"#8470FF",@"#87CEFA",@"#76EEC6",@"#66CDAA",@"#4F4F4F"];
+    colors = @[@"#FF8C00",@"#F08080",@"#F08080",@"#BCEE68",@"#B03060",@"#AB82FF",@"#8470FF",@"#87CEFA",@"#76EEC6",@"#66CDAA",@"#4F4F4F",@"#FF8C00",@"#F08080",@"#F08080",@"#BCEE68",@"#B03060",@"#AB82FF",@"#8470FF",@"#87CEFA",@"#76EEC6",@"#66CDAA",@"#4F4F4F",@"#FF8C00",@"#F08080",@"#F08080",@"#BCEE68",@"#B03060",@"#AB82FF",@"#8470FF",@"#87CEFA",@"#76EEC6",@"#66CDAA",@"#4F4F4F",@"#FF8C00",@"#F08080",@"#F08080",@"#BCEE68",@"#B03060",@"#AB82FF",@"#8470FF",@"#87CEFA",@"#76EEC6",@"#66CDAA",@"#4F4F4F"];
+    //状态栏高度
+    CGRect rectStatus = [[UIApplication sharedApplication] statusBarFrame];
+    CGRect rectNav = self.navigationController.navigationBar.frame;
     
     //获取第几周
     [self getSchoolWeek];
@@ -52,8 +55,9 @@
     //提示用户当前正在加载数据 SVPro
     [SVProgressHUD showWithStatus:@"等一下能怎么样！？"];
     
-    //申请数据
-    [self loadData];
+    //获取缓存数据
+//    [self getDataFromCache];
+//    [self loadData];
     
     //获取课程展示的宽度
     addWidth= ([UIScreen mainScreen].bounds.size.width-30)/7.0 - 1;
@@ -62,16 +66,25 @@
     addWidthWeek= ([UIScreen mainScreen].bounds.size.width-30)/7.0;
     
     //获取高度
-    addHeight = (CGRectGetHeight([UIScreen mainScreen].bounds)-64-30)/9.7;
+    addHeight = (CGRectGetHeight([UIScreen mainScreen].bounds)-rectStatus.size.height-rectNav.size.height-30)/9.7;
     
     //设置星期一到星期日和第几周
     [self setWeekAndDays];
     
     //自定义流水布局——用于展示课表位置和大小
-    KWCollectionViewLayout *course = [[KWCollectionViewLayout alloc] init];
-    self.course = course;
+    self.course = [[KWCollectionViewLayout alloc] init];;
     self.course.width = addWidth;
-    _course.height = (CGRectGetHeight([UIScreen mainScreen].bounds)-64-30)/9.7;
+    _course.height = (CGRectGetHeight([UIScreen mainScreen].bounds)-rectStatus.size.height-rectNav.size.height-30)/9.7;
+    
+    NSString *account = [wrapper myObjectForKey:(id)kSecAttrAccount];
+    NSArray *dicAry = [Utils getCache:account andID:@"ClassModel"];
+    if (dicAry) {
+        _scheduleModel = [KWScheduleModel mj_objectArrayWithKeyValuesArray:dicAry];
+        self.course.array = [[NSArray alloc]initWithArray:_scheduleModel];
+        [SVProgressHUD dismiss];
+    } else {
+        [self loadData];
+    }
     
     //创建collectionVIew
     [self setupCollectionView];
@@ -79,8 +92,11 @@
 
 - (void)setupCollectionView
 {
+    //状态栏高度
+    CGRect rectStatus = [[UIApplication sharedApplication] statusBarFrame];
+    CGRect rectNav = self.navigationController.navigationBar.frame;
     //创建collectionView视图，应用自定义的collectionViewLayout：_course
-    collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 64+30, CGRectGetWidth([UIScreen mainScreen].bounds),CGRectGetHeight([UIScreen mainScreen].bounds)) collectionViewLayout:_course];
+    collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, rectStatus.size.height+rectNav.size.height+30, CGRectGetWidth([UIScreen mainScreen].bounds),CGRectGetHeight([UIScreen mainScreen].bounds)) collectionViewLayout:_course];
 //    bgHeight = CGRectGetHeight([UIScreen mainScreen].bounds)/12;//设置背景格子的高度
     collectionView.dataSource = self;
     collectionView.backgroundColor = [UIColor clearColor];
@@ -105,7 +121,10 @@
 /*
  设置格子背景
  问题：直接生成格子，会产生大量格子UIView对象，会造成整个APP卡顿
- 解决：先定义一个UIView容器：bgImageView，在UIView容器：bgImageView中生成格子，最后把bgImageView生成image保存到背景UIImageView里的Image中,并保持清晰度，最后把UIView容器：bgImageView中的所有UIView格子对象移除掉
+ 解决：
+ 先定义一个UIView容器：bgImageView，在UIView容器：bgImageView中生成格子，
+ 最后把bgImageView生成image保存到背景UIImageView里的Image中,并保持清晰度，
+ 最后把UIView容器：bgImageView中的所有UIView格子对象移除掉
  */
 - (void)setGeziBg
 {
@@ -151,13 +170,12 @@
 #pragma mark - 设置周
 - (void)setWeekAndDays{
     NSArray *weekStr = @[@"一",@"二",@"三",@"四",@"五",@"六",@"七"];
-//    NSArray *arrWeek=[NSArray arrayWithObjects:@"星期日",@"星期一",@"星期二",@"星期三",@"星期四",@"星期五",@"星期六",nil];
-    
     KWWeekDay *flag;
     CGFloat height = 30;
     CGFloat x=37;
-//    NSInteger startWeek = 0;
-    flag = [[KWWeekDay alloc] initWithFrame:CGRectMake(0, 64, 37, height)];
+    CGRect rectStatus = [[UIApplication sharedApplication] statusBarFrame];
+    CGRect rectNav = self.navigationController.navigationBar.frame;
+    flag = [[KWWeekDay alloc] initWithFrame:CGRectMake(0, rectStatus.size.height+rectNav.size.height, 37, height)];
     flag.alpha=0.8;
     [flag setDay:[NSString stringWithFormat:@"%ld周",(long)schoolWeek]];
     [self.view addSubview:flag];
@@ -165,7 +183,7 @@
     for(int i=1;i<=7;i++)
     {
         x--;
-        flag = [[KWWeekDay alloc] initWithFrame:CGRectMake(x, 64, addWidthWeek, height)];
+        flag = [[KWWeekDay alloc] initWithFrame:CGRectMake(x, rectStatus.size.height+rectNav.size.height, addWidthWeek, height)];
         x+=addWidthWeek;
         flag.alpha=0.8;
         [flag setDay:weekStr[i-1]];
@@ -196,7 +214,6 @@
 {
     //创建请求会话管理者
     AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
-    
     NSString *week = [NSString stringWithFormat:@"%ld",schoolWeek];
     
     //获取登陆的账号密码
@@ -218,6 +235,7 @@
 //        [responseObject writeToFile:@"/Users/k/iOS-KW/project/model.plist" atomically:nil];
         
         NSArray *dicAry = responseObject[@"data"];
+        [Utils saveCache:sno andID:@"ClassModel" andValue:dicAry];//保存到本地沙盒
         
         //暂时展示plist内容
 //        NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"model" ofType:@"plist"];
@@ -227,6 +245,7 @@
         //字典数组转模型数组
         _scheduleModel = [KWScheduleModel mj_objectArrayWithKeyValuesArray:dicAry];
         self.course.array = _scheduleModel;
+
         [collectionView reloadData];
         
         //取消提示框
@@ -259,7 +278,7 @@
     [collectionView sendSubviewToBack:bgView];//把格子背景放在最底层
     KWMyClassCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"course" forIndexPath:indexPath];
     cell.model = _scheduleModel[indexPath.row-12];
-    cell.name.backgroundColor = [Utils colorWithHexString:@"4F4F4F"];
+    cell.name.backgroundColor = [Utils colorWithHexString:colors[indexPath.row - 12 + 3]];
 //    NSLog(@"cell%ld = %@",indexPath.row - 12,NSStringFromCGRect(cell.frame));
     return cell;
 }
