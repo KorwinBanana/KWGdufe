@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>code</key>
+	<integer>0</integer>
+	<key>data</key>
+	<array>
+		<dict>
+			<key>name</key>
+			<string>身心素质</string>
+			<key>requireScore</key>
+			<string>1.5</string>
+			<key>score</key>
+			<string>1.6</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>文化艺术素质</string>
+			<key>requireScore</key>
+			<string>1.5</string>
+			<key>score</key>
+			<string>4.8</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>技能素质</string>
+			<key>requireScore</key>
+			<string>1.5</string>
+			<key>score</key>
+			<string>2.9</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>思想品德素质</string>
+			<key>requireScore</key>
+			<string>2.0</string>
+			<key>score</key>
+			<string>5.2</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>创新创业素质</string>
+			<key>requireScore</key>
+			<string>2.5</string>
+			<key>score</key>
+			<string>4.4</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>任选</string>
+			<key>requireScore</key>
+			<string>1.0</string>
+			<key>score</key>
+			<string>0.0</string>
+		</dict>
+	</array>
+	<key>msg</key>
+	<string></string>
+</dict>
+</plist>

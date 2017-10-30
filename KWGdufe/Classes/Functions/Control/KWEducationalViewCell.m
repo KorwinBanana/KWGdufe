@@ -8,8 +8,10 @@
 
 #import "KWEducationalViewCell.h"
 #import "KWFunctionsCell.h"
-//#import "KWGradeView.h"
 #import <QuartzCore/QuartzCore.h>
+#import "KWGradeCell.h"
+#import "KWSztzTableView.h"
+#import "KWGradeView.h"
 
 #define ID @"cell"
 
@@ -67,12 +69,10 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
         KWGradeView *gradeVc = [[KWGradeView alloc]init];
-//        CATransition* transition = [CATransition animation];
-//        transition.type = kCATransitionMoveIn;//类型
-//        transition.subtype = kCATransitionFromRight;//从右边push
-//        [_superViewController.view.layer addAnimation:transition forKey:kCATransition];
-//        [_superViewController pushViewController:gradeVc animated:nil];
         [_delegate pushVc:gradeVc];
+    } else if (indexPath.row == 1) {
+        KWSztzTableView *sztzVc = [[KWSztzTableView alloc]init];
+        [_delegate pushVc:sztzVc];
     }
 }
 

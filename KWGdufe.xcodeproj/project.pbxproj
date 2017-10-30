@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A0D9A091FA713D3009CB653 /* KWGradeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A0D9A081FA713D3009CB653 /* KWGradeModel.m */; };
+		0A0D9A0C1FA74B6B009CB653 /* KWGradeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A0D9A0B1FA74B6B009CB653 /* KWGradeCell.m */; };
+		0A0D9A121FA75024009CB653 /* KWSztzTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A0D9A111FA75024009CB653 /* KWSztzTableView.m */; };
+		0A0D9A151FA75056009CB653 /* KWSztzModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A0D9A141FA75056009CB653 /* KWSztzModel.m */; };
 		0A38FE811F9E2032007484BD /* model.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0A38FE801F9E2031007484BD /* model.plist */; };
 		0A5A5A0E1FA20164001B09FD /* KWEducationalViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5A5A0D1FA20164001B09FD /* KWEducationalViewCell.m */; };
 		0A5A5A121FA20542001B09FD /* KWFunctionsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5A5A101FA20542001B09FD /* KWFunctionsCell.m */; };
@@ -77,6 +81,14 @@
 /* Begin PBXFileReference section */
 		051C1E9532C05A1197E97386 /* libPods-KWGdufeUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-KWGdufeUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A09E86A1F7E91E600BAF64F /* KWGdufe.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWGdufe.pch; sourceTree = "<group>"; };
+		0A0D9A071FA713D3009CB653 /* KWGradeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWGradeModel.h; sourceTree = "<group>"; };
+		0A0D9A081FA713D3009CB653 /* KWGradeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWGradeModel.m; sourceTree = "<group>"; };
+		0A0D9A0A1FA74B6B009CB653 /* KWGradeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWGradeCell.h; sourceTree = "<group>"; };
+		0A0D9A0B1FA74B6B009CB653 /* KWGradeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWGradeCell.m; sourceTree = "<group>"; };
+		0A0D9A101FA75024009CB653 /* KWSztzTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWSztzTableView.h; sourceTree = "<group>"; };
+		0A0D9A111FA75024009CB653 /* KWSztzTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWSztzTableView.m; sourceTree = "<group>"; };
+		0A0D9A131FA75056009CB653 /* KWSztzModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWSztzModel.h; sourceTree = "<group>"; };
+		0A0D9A141FA75056009CB653 /* KWSztzModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWSztzModel.m; sourceTree = "<group>"; };
 		0A38FE801F9E2031007484BD /* model.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = model.plist; sourceTree = SOURCE_ROOT; };
 		0A5A5A0C1FA20164001B09FD /* KWEducationalViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWEducationalViewCell.h; sourceTree = "<group>"; };
 		0A5A5A0D1FA20164001B09FD /* KWEducationalViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWEducationalViewCell.m; sourceTree = "<group>"; };
@@ -521,8 +533,12 @@
 			children = (
 				0AA60B2F1F7C052600E0E87D /* KWFunctionsViewController.h */,
 				0AA60B301F7C052600E0E87D /* KWFunctionsViewController.m */,
+				0A5A5A0C1FA20164001B09FD /* KWEducationalViewCell.h */,
+				0A5A5A0D1FA20164001B09FD /* KWEducationalViewCell.m */,
 				0AD0134E1FA24B2A009D5C76 /* KWGradeView.h */,
 				0AD0134F1FA24B2A009D5C76 /* KWGradeView.m */,
+				0A0D9A101FA75024009CB653 /* KWSztzTableView.h */,
+				0A0D9A111FA75024009CB653 /* KWSztzTableView.m */,
 			);
 			path = Control;
 			sourceTree = "<group>";
@@ -530,6 +546,10 @@
 		0AA60B211F7C040000E0E87D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				0A0D9A071FA713D3009CB653 /* KWGradeModel.h */,
+				0A0D9A081FA713D3009CB653 /* KWGradeModel.m */,
+				0A0D9A131FA75056009CB653 /* KWSztzModel.h */,
+				0A0D9A141FA75056009CB653 /* KWSztzModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -537,11 +557,11 @@
 		0AA60B221F7C040000E0E87D /* View */ = {
 			isa = PBXGroup;
 			children = (
-				0A5A5A0C1FA20164001B09FD /* KWEducationalViewCell.h */,
-				0A5A5A0D1FA20164001B09FD /* KWEducationalViewCell.m */,
 				0A5A5A0F1FA20542001B09FD /* KWFunctionsCell.h */,
 				0A5A5A101FA20542001B09FD /* KWFunctionsCell.m */,
 				0A5A5A111FA20542001B09FD /* KWFunctionsCell.xib */,
+				0A0D9A0A1FA74B6B009CB653 /* KWGradeCell.h */,
+				0A0D9A0B1FA74B6B009CB653 /* KWGradeCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -906,7 +926,9 @@
 			files = (
 				0AA60B311F7C052600E0E87D /* KWFunctionsViewController.m in Sources */,
 				0AEA5C7B1F8E9056005C8DF2 /* KWMineMsgViewController.m in Sources */,
+				0A0D9A151FA75056009CB653 /* KWSztzModel.m in Sources */,
 				0A8077E51FA309A2009AA299 /* Utils.m in Sources */,
+				0A0D9A0C1FA74B6B009CB653 /* KWGradeCell.m in Sources */,
 				0AB186C91F895AA200A49F93 /* KWWeekDay.m in Sources */,
 				0AD013501FA24B2A009D5C76 /* KWGradeView.m in Sources */,
 				0ACC56C71F8E0FDD007DA2BD /* KWTabBar.m in Sources */,
@@ -915,12 +937,14 @@
 				0AA60B2E1F7C050E00E0E87D /* KWMyClassViewController.m in Sources */,
 				0AA443861F8E6DF800E48ADE /* KWStuModel.m in Sources */,
 				0AB186C01F89587C00A49F93 /* KWReusableView.m in Sources */,
+				0A0D9A091FA713D3009CB653 /* KWGradeModel.m in Sources */,
 				0ACC56CA1F8E10D9007DA2BD /* UIView+KWFrame.m in Sources */,
 				0A9F5B241F7D813C006FD696 /* KWMyClassCollectionCell.m in Sources */,
 				0A65AF9F1FA4778C003AC3A5 /* KeychainWrapper.m in Sources */,
 				0A5A5A0E1FA20164001B09FD /* KWEducationalViewCell.m in Sources */,
 				0AA60B1C1F7C027400E0E87D /* ViewController.m in Sources */,
 				0ACC56CE1F8E155F007DA2BD /* KWMineCell.m in Sources */,
+				0A0D9A121FA75024009CB653 /* KWSztzTableView.m in Sources */,
 				0AB186BD1F89527A00A49F93 /* KWCollectionViewLayout.m in Sources */,
 				0AA60B1B1F7C006800E0E87D /* KWTabBarController.m in Sources */,
 				0A5A5A121FA20542001B09FD /* KWFunctionsCell.m in Sources */,

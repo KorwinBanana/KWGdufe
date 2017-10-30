@@ -34,7 +34,7 @@
 }
 
 #pragma mark - KWPushDelegate
-- (void)pushVc:(KWGradeView *)gradeVc {
+- (void)pushVc:(id)gradeVc {
     [self.navigationController pushViewController:gradeVc animated:YES];
 }
 
@@ -59,8 +59,9 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;//不可选择
         return cell;
     } else {
-        UITableViewCell * cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"ID"];
-        cell.textLabel.text = @"图书馆系统的功能";
+        KWEducationalViewCell *cell = [[KWEducationalViewCell alloc]init];
+//        cell.textLabel.text = @"教务系统的功能;
+        cell.delegate = self;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;//不可选择
         return cell;
     }

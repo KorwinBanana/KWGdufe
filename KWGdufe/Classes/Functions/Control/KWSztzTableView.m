@@ -1,42 +1,36 @@
 //
-//  KWGradeView.m
+//  KWSztzTableView.m
 //  KWGdufe
 //
-//  Created by korwin on 2017/10/27.
+//  Created by korwin on 2017/10/30.
 //  Copyright © 2017年 korwin. All rights reserved.
 //
 
-#import "KWGradeView.h"
+#import "KWSztzTableView.h"
 #import <AFNetworking/AFNetworking.h>
 #import <MJExtension/MJExtension.h>
-#import "KWGradeModel.h"
+#import "KWSztzModel.h"
 #import <MJRefresh/MJRefresh.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "Utils.h"
 #import "KeychainWrapper.h"
 
-@interface KWGradeView ()
+@interface KWSztzTableView ()
 
-@property(nonatomic,strong) NSArray *gradeModel;
+@property(nonatomic,strong) NSArray *sztzModel;
 
 @end
 
-@implementation KWGradeView
+@implementation KWSztzTableView
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"我的成绩";
+    self.navigationItem.title = @"素拓信息";
     NSString *account = [wrapper myObjectForKey:(id)kSecAttrAccount];
-    NSArray *gradeDict = [Utils getCache:account andID:@"SztzModel"];
-    if (gradeDict) {
-        NSArray *gradeModel = [KWGradeModel mj_objectArrayWithKeyValuesArray:gradeDict];
-        NSMutableArray *gradeDictTimes = [[NSMutableArray alloc]init];
-        for (KWGradeModel *gradeDictTime in gradeModel) {
-            if ([gradeDictTime.time isEqualToString:@"2015-2016-2"]) {
-                [gradeDictTimes addObject:gradeDictTime];
-            }
-        }
-        _gradeModel = gradeDictTimes;
+    NSArray *sztzDict = [Utils getCache:account andID:@"GradeModel"];
+    if (sztzDict) {
+        NSArray *sztzArray = [KWSztzModel mj_objectArrayWithKeyValuesArray:sztzDict];
+        _sztzModel = sztzArray;
     } else {
         [self loadData];
     }
@@ -62,44 +56,37 @@
     parements[@"pwd"] = pwd;
     
     //发送请求
-    [mgr POST:@"http://api.wegdufe.com:82/index.php?r=jw/get-grade" parameters:parements progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [mgr POST:@"http://api.wegdufe.com:82/index.php?r=info/few-sztz" parameters:parements progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
 //        NSLog(@"%@",responseObject);
 //        [responseObject writeToFile:@"/Users/k/iOS-KW/project/KWGdufe/gradeModel.plist" atomically:nil];
         
         //获取字典
-        NSDictionary *gradeDict = responseObject[@"data"];
-        
+        NSDictionary *sztzDict = responseObject[@"data"];
+
         //缓存到本地
-        [Utils saveCache:sno andID:@"GradeModel" andValue:gradeDict];
-        
+        [Utils saveCache:sno andID:@"SztzModel" andValue:sztzDict];
+
         //字典转模型
-        NSArray *gradeModel = [KWGradeModel mj_objectArrayWithKeyValuesArray:gradeDict];
-        NSMutableArray *gradeDictTimes = [[NSMutableArray alloc]init];
-        for (KWGradeModel *gradeDictTime in gradeModel) {
-            if ([gradeDictTime.time isEqualToString:@"2015-2016-2"]) {
-                [gradeDictTimes addObject:gradeDictTime];
-            }
-        }
-        _gradeModel = gradeDictTimes;
+        NSArray *sztzArray = [KWSztzModel mj_objectArrayWithKeyValuesArray:sztzDict];
+        _sztzModel = sztzArray;
 
         [self.tableView reloadData];
-//        [SVProgressHUD dismiss];//
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
     }];
 }
 
 #pragma mark - Table view data source
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return _gradeModel.count;
+    return _sztzModel.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
 
     if (!cell) {
-       cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"Cell"];
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"Cell"];
     }
-    KWGradeModel *model = _gradeModel[indexPath.row];
+    KWSztzModel *model = _sztzModel[indexPath.row];
     cell.textLabel.text = model.name;
     return cell;
 }

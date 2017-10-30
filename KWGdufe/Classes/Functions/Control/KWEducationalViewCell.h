@@ -7,11 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "KWGradeView.h"
 
 /*代理方式让主NavigationController跳转*/
 @protocol KWPushDelegate <NSObject>
-- (void)pushVc:(KWGradeView *)gradeVc;
+- (void)pushVc:(id)gradeVc;
 @end
 
 @interface KWEducationalViewCell : UITableViewCell
