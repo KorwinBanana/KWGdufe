@@ -8,8 +8,9 @@
 
 #import "KWFunctionsViewController.h"
 #import "KWEducationalViewCell.h"
+#import "KWLibraryViewCell.h"
 
-@interface KWFunctionsViewController ()<KWPushDelegate>
+@interface KWFunctionsViewController ()<KWPushDelegate,KWLibraryPushDelegate>
 
 @end
 
@@ -59,7 +60,7 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;//不可选择
         return cell;
     } else {
-        KWEducationalViewCell *cell = [[KWEducationalViewCell alloc]init];
+        KWLibraryViewCell *cell = [[KWLibraryViewCell alloc]init];
 //        cell.textLabel.text = @"教务系统的功能;
         cell.delegate = self;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;//不可选择

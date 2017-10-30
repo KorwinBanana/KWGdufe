@@ -27,7 +27,7 @@
     [super viewDidLoad];
     self.navigationItem.title = @"素拓信息";
     NSString *account = [wrapper myObjectForKey:(id)kSecAttrAccount];
-    NSArray *sztzDict = [Utils getCache:account andID:@"GradeModel"];
+    NSArray *sztzDict = [Utils getCache:account andID:@"SztzModel"];
     if (sztzDict) {
         NSArray *sztzArray = [KWSztzModel mj_objectArrayWithKeyValuesArray:sztzDict];
         _sztzModel = sztzArray;

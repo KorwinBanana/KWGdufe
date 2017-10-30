@@ -27,7 +27,7 @@
     [super viewDidLoad];
     self.navigationItem.title = @"我的成绩";
     NSString *account = [wrapper myObjectForKey:(id)kSecAttrAccount];
-    NSArray *gradeDict = [Utils getCache:account andID:@"SztzModel"];
+    NSArray *gradeDict = [Utils getCache:account andID:@"GradeModel"];
     if (gradeDict) {
         NSArray *gradeModel = [KWGradeModel mj_objectArrayWithKeyValuesArray:gradeDict];
         NSMutableArray *gradeDictTimes = [[NSMutableArray alloc]init];

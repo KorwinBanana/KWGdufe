@@ -1,25 +1,22 @@
 //
-//  KWEducationalViewCell.m
+//  KWLibraryViewCell.m
 //  KWGdufe
 //
-//  Created by korwin on 2017/10/26.
+//  Created by korwin on 2017/10/30.
 //  Copyright © 2017年 korwin. All rights reserved.
 //
 
-#import "KWEducationalViewCell.h"
+#import "KWLibraryViewCell.h"
 #import "KWFunctionsCell.h"
 #import <QuartzCore/QuartzCore.h>
-#import "KWGradeCell.h"
-#import "KWSztzTableView.h"
-#import "KWGradeView.h"
 
 #define ID @"cell"
 
-@interface KWEducationalViewCell()<UICollectionViewDataSource,UICollectionViewDelegate>
+@interface KWLibraryViewCell()<UICollectionViewDataSource,UICollectionViewDelegate>
 
 @end
 
-@implementation KWEducationalViewCell
+@implementation KWLibraryViewCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
@@ -46,7 +43,7 @@
 
 #pragma mark - UICollectViewDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 3;
+    return 2;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -54,28 +51,25 @@
     [collectionView registerNib:nib forCellWithReuseIdentifier:ID];
     KWFunctionsCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ID forIndexPath:indexPath];
     if (indexPath.row == 0) {
-        cell.name = @"成绩查询";
-        cell.imageName = @"tabBar_new_click_icon";
-    } else if (indexPath.row == 1) {
-        cell.name = @"素拓信息";
-        cell.imageName = @"tabBar_friendTrends_click_icon";
-    } else {
-        cell.name = @"查四六级";
+        cell.name = @"当前借阅";
         cell.imageName = @"tabBar_essence_click_icon";
+    } else if (indexPath.row == 1) {
+        cell.name = @"历史借阅";
+        cell.imageName = @"tabBar_new_click_icon";
     }
     cell.backgroundColor = [UIColor clearColor];
     return cell;
 }
 
 #pragma mark - UICollectionDelegate
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == 0) {
-        KWGradeView *gradeVc = [[KWGradeView alloc]init];
-        [_delegate pushVc:gradeVc];
-    } else if (indexPath.row == 1) {
-        KWSztzTableView *sztzVc = [[KWSztzTableView alloc]init];
-        [_delegate pushVc:sztzVc];
-    }
-}
+//- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+////    if (indexPath.row == 0) {
+////        KWGradeView *gradeVc = [[KWGradeView alloc]init];
+////        [_delegate pushVc:gradeVc];
+////    } else if (indexPath.row == 1) {
+////        KWSztzTableView *sztzVc = [[KWSztzTableView alloc]init];
+////        [_delegate pushVc:sztzVc];
+////    }
+//}
 
 @end
