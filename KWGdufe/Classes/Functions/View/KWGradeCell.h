@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+@class KWGradeModel;
 
 @interface KWGradeCell : UITableViewCell
+
+@property (nonatomic,strong) KWGradeModel  *model;
 
 @end

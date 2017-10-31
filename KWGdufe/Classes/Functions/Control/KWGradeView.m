@@ -14,6 +14,7 @@
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "Utils.h"
 #import "KeychainWrapper.h"
+#import "KWGradeCell.h"
 
 @interface KWGradeView ()
 
@@ -40,6 +41,7 @@
     } else {
         [self loadData];
     }
+    NSLog(@"self.frame.size.width2 = %f",KWSCreenW);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -75,8 +77,10 @@
         //字典转模型
         NSArray *gradeModel = [KWGradeModel mj_objectArrayWithKeyValuesArray:gradeDict];
         NSMutableArray *gradeDictTimes = [[NSMutableArray alloc]init];
+        
+        //获取大三下学期成绩
         for (KWGradeModel *gradeDictTime in gradeModel) {
-            if ([gradeDictTime.time isEqualToString:@"2015-2016-2"]) {
+            if ([gradeDictTime.time isEqualToString:@"2016-2017-2"]) {
                 [gradeDictTimes addObject:gradeDictTime];
             }
         }
@@ -94,14 +98,18 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
-
+    KWGradeCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     if (!cell) {
-       cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"Cell"];
+       cell = [[KWGradeCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
     }
     KWGradeModel *model = _gradeModel[indexPath.row];
-    cell.textLabel.text = model.name;
+    cell.model = model;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 88;
 }
 
 @end
