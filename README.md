@@ -26,7 +26,7 @@
 
 ![image](https://github.com/KorwinBanana/KWGdufe/blob/master/READMEImage/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2.png)
 
-成绩信息（未把数据完全展示，下一步自定义cell展示成绩详细信息)
+成绩信息（展示成绩，下一步增加选择对应学期的成绩的功能)
 ![image](https://github.com/KorwinBanana/KWGdufe/blob/master/READMEImage/%E6%88%90%E7%BB%A9%E4%BF%A1%E6%81%AF%EF%BC%88%E6%9C%AA%E6%8A%8A%E6%95%B0%E6%8D%AE%E5%AE%8C%E5%85%A8%E5%B1%95%E7%A4%BA%EF%BC%89.png)
 
 素拓信息（未把数据完全展示，下一步自定义cell展示素拓详细信息)
