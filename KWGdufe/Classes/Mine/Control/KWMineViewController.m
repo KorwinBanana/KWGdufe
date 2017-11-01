@@ -7,7 +7,6 @@
 //
 
 #import "KWMineViewController.h"
-#import "KWMineCell.h"
 #import <AFNetworking/AFNetworking.h>
 #import <MJExtension/MJExtension.h>
 #import "KWStuModel.h"

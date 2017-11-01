@@ -8,6 +8,7 @@
 
 #import "KWLibraryViewCell.h"
 #import "KWFunctionsCell.h"
+#import "KWCurrentBookView.h"
 #import <QuartzCore/QuartzCore.h>
 
 #define ID @"cell"
@@ -59,6 +60,13 @@
     }
     cell.backgroundColor = [UIColor clearColor];
     return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == 0) {
+        KWCurrentBookView *currentVc = [[KWCurrentBookView alloc]init];
+        [_delegate pushVc:currentVc];
+    }
 }
 
 #pragma mark - UICollectionDelegate

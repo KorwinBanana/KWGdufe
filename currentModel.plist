@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>code</key>
+	<integer>0</integer>
+	<key>data</key>
+	<array>
+		<dict>
+			<key>author</key>
+			<string>(日)荻原刚志著</string>
+			<key>barId</key>
+			<string>S1401268</string>
+			<key>borrowedTime</key>
+			<string>2017-09-11</string>
+			<key>checkId</key>
+			<string>846AC077</string>
+			<key>location</key>
+			<string>广州校区自然科学图书区(N-Z类)</string>
+			<key>name</key>
+			<string>Objective-C编程全解</string>
+			<key>renewTimes</key>
+			<integer>0</integer>
+			<key>returnTime</key>
+			<string>2017-10-12</string>
+		</dict>
+		<dict>
+			<key>author</key>
+			<string>管蕾编著</string>
+			<key>barId</key>
+			<string>S1872580</string>
+			<key>borrowedTime</key>
+			<string>2017-09-11</string>
+			<key>checkId</key>
+			<string>1060DFC9</string>
+			<key>location</key>
+			<string>广州校区自然科学图书区(N-Z类)</string>
+			<key>name</key>
+			<string>iOS 10开发指南</string>
+			<key>renewTimes</key>
+			<integer>0</integer>
+			<key>returnTime</key>
+			<string>2017-10-12</string>
+		</dict>
+		<dict>
+			<key>author</key>
+			<string>(英)Edward Guiness著</string>
+			<key>barId</key>
+			<string>S1801733</string>
+			<key>borrowedTime</key>
+			<string>2017-09-25</string>
+			<key>checkId</key>
+			<string>B9A280AD</string>
+			<key>location</key>
+			<string>广州校区自然科学图书区(N-Z类)</string>
+			<key>name</key>
+			<string>智取程序员面试:160 questions and answers for success</string>
+			<key>renewTimes</key>
+			<integer>0</integer>
+			<key>returnTime</key>
+			<string>2017-10-26</string>
+		</dict>
+		<dict>
+			<key>author</key>
+			<string>严蔚敏,吴伟民编著</string>
+			<key>barId</key>
+			<string>JC021291</string>
+			<key>borrowedTime</key>
+			<string>2017-07-05</string>
+			<key>checkId</key>
+			<string>2E85E461</string>
+			<key>location</key>
+			<string>广州校区教材循环利用区</string>
+			<key>name</key>
+			<string>数据结构:C语言版</string>
+			<key>renewTimes</key>
+			<integer>0</integer>
+			<key>returnTime</key>
+			<string>2018-01-03</string>
+		</dict>
+	</array>
+	<key>msg</key>
+	<string></string>
+</dict>
+</plist>

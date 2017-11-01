@@ -41,7 +41,6 @@
     } else {
         [self loadData];
     }
-    NSLog(@"self.frame.size.width2 = %f",KWSCreenW);
 }
 
 - (void)didReceiveMemoryWarning {

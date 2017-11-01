@@ -13,6 +13,9 @@
 		0A0D9A151FA75056009CB653 /* KWSztzModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A0D9A141FA75056009CB653 /* KWSztzModel.m */; };
 		0A0D9A1E1FA75BFA009CB653 /* KWLibraryViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A0D9A1D1FA75BFA009CB653 /* KWLibraryViewCell.m */; };
 		0A38FE811F9E2032007484BD /* model.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0A38FE801F9E2031007484BD /* model.plist */; };
+		0A4483F61FA9F38800100DF8 /* KWCurrentBookView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A4483F51FA9F38800100DF8 /* KWCurrentBookView.m */; };
+		0A4483F91FA9F3F500100DF8 /* KWCurrentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A4483F81FA9F3F500100DF8 /* KWCurrentModel.m */; };
+		0A4483FC1FA9F76E00100DF8 /* KWCurrentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A4483FB1FA9F76E00100DF8 /* KWCurrentCell.m */; };
 		0A5A5A0E1FA20164001B09FD /* KWEducationalViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5A5A0D1FA20164001B09FD /* KWEducationalViewCell.m */; };
 		0A5A5A121FA20542001B09FD /* KWFunctionsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5A5A101FA20542001B09FD /* KWFunctionsCell.m */; };
 		0A5A5A131FA20542001B09FD /* KWFunctionsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A5A5A111FA20542001B09FD /* KWFunctionsCell.xib */; };
@@ -51,8 +54,6 @@
 		0ACC56C11F8E0C6F007DA2BD /* UIImage+KWImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ACC56C01F8E0C6E007DA2BD /* UIImage+KWImage.m */; };
 		0ACC56C71F8E0FDD007DA2BD /* KWTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ACC56C61F8E0FDD007DA2BD /* KWTabBar.m */; };
 		0ACC56CA1F8E10D9007DA2BD /* UIView+KWFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ACC56C91F8E10D9007DA2BD /* UIView+KWFrame.m */; };
-		0ACC56CE1F8E155F007DA2BD /* KWMineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ACC56CC1F8E155F007DA2BD /* KWMineCell.m */; };
-		0ACC56CF1F8E155F007DA2BD /* KWMineCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0ACC56CD1F8E155F007DA2BD /* KWMineCell.xib */; };
 		0ACC56D21F8E187E007DA2BD /* UIImage+KWExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ACC56D11F8E187E007DA2BD /* UIImage+KWExtension.m */; };
 		0AD013501FA24B2A009D5C76 /* KWGradeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AD0134F1FA24B2A009D5C76 /* KWGradeView.m */; };
 		0AD013521FA24F01009D5C76 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AD013511FA24F00009D5C76 /* QuartzCore.framework */; };
@@ -94,6 +95,12 @@
 		0A0D9A1C1FA75BFA009CB653 /* KWLibraryViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWLibraryViewCell.h; sourceTree = "<group>"; };
 		0A0D9A1D1FA75BFA009CB653 /* KWLibraryViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWLibraryViewCell.m; sourceTree = "<group>"; };
 		0A38FE801F9E2031007484BD /* model.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = model.plist; sourceTree = SOURCE_ROOT; };
+		0A4483F41FA9F38800100DF8 /* KWCurrentBookView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWCurrentBookView.h; sourceTree = "<group>"; };
+		0A4483F51FA9F38800100DF8 /* KWCurrentBookView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWCurrentBookView.m; sourceTree = "<group>"; };
+		0A4483F71FA9F3F500100DF8 /* KWCurrentModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWCurrentModel.h; sourceTree = "<group>"; };
+		0A4483F81FA9F3F500100DF8 /* KWCurrentModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWCurrentModel.m; sourceTree = "<group>"; };
+		0A4483FA1FA9F76E00100DF8 /* KWCurrentCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWCurrentCell.h; sourceTree = "<group>"; };
+		0A4483FB1FA9F76E00100DF8 /* KWCurrentCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWCurrentCell.m; sourceTree = "<group>"; };
 		0A5A5A0C1FA20164001B09FD /* KWEducationalViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWEducationalViewCell.h; sourceTree = "<group>"; };
 		0A5A5A0D1FA20164001B09FD /* KWEducationalViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWEducationalViewCell.m; sourceTree = "<group>"; };
 		0A5A5A0F1FA20542001B09FD /* KWFunctionsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWFunctionsCell.h; sourceTree = "<group>"; };
@@ -167,9 +174,6 @@
 		0ACC56C61F8E0FDD007DA2BD /* KWTabBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWTabBar.m; sourceTree = "<group>"; };
 		0ACC56C81F8E10D9007DA2BD /* UIView+KWFrame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+KWFrame.h"; sourceTree = "<group>"; };
 		0ACC56C91F8E10D9007DA2BD /* UIView+KWFrame.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+KWFrame.m"; sourceTree = "<group>"; };
-		0ACC56CB1F8E155F007DA2BD /* KWMineCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWMineCell.h; sourceTree = "<group>"; };
-		0ACC56CC1F8E155F007DA2BD /* KWMineCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWMineCell.m; sourceTree = "<group>"; };
-		0ACC56CD1F8E155F007DA2BD /* KWMineCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KWMineCell.xib; sourceTree = "<group>"; };
 		0ACC56D01F8E187E007DA2BD /* UIImage+KWExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+KWExtension.h"; sourceTree = "<group>"; };
 		0ACC56D11F8E187E007DA2BD /* UIImage+KWExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+KWExtension.m"; sourceTree = "<group>"; };
 		0AD0134E1FA24B2A009D5C76 /* KWGradeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWGradeView.h; sourceTree = "<group>"; };
@@ -338,9 +342,6 @@
 		0A8815201F7BDC5700AAB5BF /* View */ = {
 			isa = PBXGroup;
 			children = (
-				0ACC56CB1F8E155F007DA2BD /* KWMineCell.h */,
-				0ACC56CC1F8E155F007DA2BD /* KWMineCell.m */,
-				0ACC56CD1F8E155F007DA2BD /* KWMineCell.xib */,
 				0A65BB291F94A74B00DDC285 /* KWMsgCell.h */,
 				0A65BB2A1F94A74B00DDC285 /* KWMsgCell.m */,
 				0A65BB2B1F94A74B00DDC285 /* KWMsgCell.xib */,
@@ -541,12 +542,14 @@
 				0AA60B301F7C052600E0E87D /* KWFunctionsViewController.m */,
 				0A5A5A0C1FA20164001B09FD /* KWEducationalViewCell.h */,
 				0A5A5A0D1FA20164001B09FD /* KWEducationalViewCell.m */,
-				0A0D9A1C1FA75BFA009CB653 /* KWLibraryViewCell.h */,
-				0A0D9A1D1FA75BFA009CB653 /* KWLibraryViewCell.m */,
 				0AD0134E1FA24B2A009D5C76 /* KWGradeView.h */,
 				0AD0134F1FA24B2A009D5C76 /* KWGradeView.m */,
 				0A0D9A101FA75024009CB653 /* KWSztzTableView.h */,
 				0A0D9A111FA75024009CB653 /* KWSztzTableView.m */,
+				0A0D9A1C1FA75BFA009CB653 /* KWLibraryViewCell.h */,
+				0A0D9A1D1FA75BFA009CB653 /* KWLibraryViewCell.m */,
+				0A4483F41FA9F38800100DF8 /* KWCurrentBookView.h */,
+				0A4483F51FA9F38800100DF8 /* KWCurrentBookView.m */,
 			);
 			path = Control;
 			sourceTree = "<group>";
@@ -558,6 +561,8 @@
 				0A0D9A081FA713D3009CB653 /* KWGradeModel.m */,
 				0A0D9A131FA75056009CB653 /* KWSztzModel.h */,
 				0A0D9A141FA75056009CB653 /* KWSztzModel.m */,
+				0A4483F71FA9F3F500100DF8 /* KWCurrentModel.h */,
+				0A4483F81FA9F3F500100DF8 /* KWCurrentModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -572,6 +577,8 @@
 				0A0D9A0B1FA74B6B009CB653 /* KWGradeCell.m */,
 				0A8351701FA984CA00357F72 /* KWSztzCell.h */,
 				0A8351711FA984CA00357F72 /* KWSztzCell.m */,
+				0A4483FA1FA9F76E00100DF8 /* KWCurrentCell.h */,
+				0A4483FB1FA9F76E00100DF8 /* KWCurrentCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -755,7 +762,6 @@
 				0A6750D11F7BD7A000E46900 /* LaunchScreen.storyboard in Resources */,
 				0A9F5B251F7D813C006FD696 /* KWMyClassCollectionCell.xib in Resources */,
 				0AA763B41F8F2E40004E0222 /* KWLoginViewController.xib in Resources */,
-				0ACC56CF1F8E155F007DA2BD /* KWMineCell.xib in Resources */,
 				0A64D64D1F8D4C14008D33DB /* Assets.xcassets in Resources */,
 				0A38FE811F9E2032007484BD /* model.plist in Resources */,
 				0A6750CC1F7BD7A000E46900 /* Main.storyboard in Resources */,
@@ -936,6 +942,7 @@
 			files = (
 				0AA60B311F7C052600E0E87D /* KWFunctionsViewController.m in Sources */,
 				0AEA5C7B1F8E9056005C8DF2 /* KWMineMsgViewController.m in Sources */,
+				0A4483FC1FA9F76E00100DF8 /* KWCurrentCell.m in Sources */,
 				0A0D9A151FA75056009CB653 /* KWSztzModel.m in Sources */,
 				0A8077E51FA309A2009AA299 /* Utils.m in Sources */,
 				0A0D9A0C1FA74B6B009CB653 /* KWGradeCell.m in Sources */,
@@ -951,11 +958,11 @@
 				0A0D9A091FA713D3009CB653 /* KWGradeModel.m in Sources */,
 				0ACC56CA1F8E10D9007DA2BD /* UIView+KWFrame.m in Sources */,
 				0A8351721FA984CA00357F72 /* KWSztzCell.m in Sources */,
+				0A4483F91FA9F3F500100DF8 /* KWCurrentModel.m in Sources */,
 				0A9F5B241F7D813C006FD696 /* KWMyClassCollectionCell.m in Sources */,
 				0A65AF9F1FA4778C003AC3A5 /* KeychainWrapper.m in Sources */,
 				0A5A5A0E1FA20164001B09FD /* KWEducationalViewCell.m in Sources */,
 				0AA60B1C1F7C027400E0E87D /* ViewController.m in Sources */,
-				0ACC56CE1F8E155F007DA2BD /* KWMineCell.m in Sources */,
 				0A0D9A121FA75024009CB653 /* KWSztzTableView.m in Sources */,
 				0AB186BD1F89527A00A49F93 /* KWCollectionViewLayout.m in Sources */,
 				0AA60B1B1F7C006800E0E87D /* KWTabBarController.m in Sources */,
@@ -963,6 +970,7 @@
 				0AA60B1E1F7C029100E0E87D /* main.m in Sources */,
 				0A8077F31FA30AB4009AA299 /* NSData+KWAES.m in Sources */,
 				0A65BB2C1F94A74B00DDC285 /* KWMsgCell.m in Sources */,
+				0A4483F61FA9F38800100DF8 /* KWCurrentBookView.m in Sources */,
 				0A65AFA21FA4B374003AC3A5 /* KWMyMsgCell.m in Sources */,
 				0AA60B1D1F7C029100E0E87D /* AppDelegate.m in Sources */,
 				0AB186B71F89504400A49F93 /* KWScheduleModel.m in Sources */,
