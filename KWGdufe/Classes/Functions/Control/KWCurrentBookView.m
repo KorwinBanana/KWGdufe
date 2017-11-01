@@ -28,10 +28,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationItem.title = @"当前借阅";
+    self.navigationItem.title = _vcName;
     
     NSString *account = [wrapper myObjectForKey:(id)kSecAttrAccount];
-    NSArray *currentDict = [Utils getCache:account andID:@"CurrentBookModel"];
+    NSArray *currentDict = [Utils getCache:account andID:_modelSaveName];
     if (currentDict) {
         NSArray *currentModel = [KWCurrentModel mj_objectArrayWithKeyValuesArray:currentDict];
         _currentModel = currentModel;
@@ -56,7 +56,7 @@
     parements[@"pwd"] = pwd;
     
     //发送请求
-    [mgr POST:@"http://api.wegdufe.com:82/index.php?r=opac/current-book" parameters:parements progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [mgr POST:_url parameters:parements progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
 //        NSLog(@"%@",responseObject);
 //        [responseObject writeToFile:@"/Users/k/iOS-KW/project/KWGdufe/currentModel.plist" atomically:nil];
         
@@ -64,7 +64,7 @@
         NSDictionary *currentBookDict = responseObject[@"data"];
         
         //缓存到本地
-        [Utils saveCache:sno andID:@"CurrentBookModel" andValue:currentBookDict];
+        [Utils saveCache:sno andID:_modelSaveName andValue:currentBookDict];
         
         //字典转模型
         NSArray *currentArray = [KWCurrentModel mj_objectArrayWithKeyValuesArray:currentBookDict];

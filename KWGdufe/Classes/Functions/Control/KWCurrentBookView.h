@@ -10,4 +10,8 @@
 
 @interface KWCurrentBookView : UITableViewController
 
+@property (nonatomic,strong) NSString  *url;
+@property (nonatomic,strong) NSString  *modelSaveName;
+@property (nonatomic,strong) NSString  *vcName;
+
 @end

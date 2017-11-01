@@ -165,6 +165,7 @@
     //删除课程表缓存
     [Utils removeCache:account andID:@"ClassModel"];
     [Utils removeCache:account andID:@"GradeModel"];
+    [Utils removeCache:account andID:@"CurrentBookModel"];
     
     //删除账号密码
     [wrapper resetKeychainItem];
