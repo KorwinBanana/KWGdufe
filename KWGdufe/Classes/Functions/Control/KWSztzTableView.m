@@ -14,6 +14,7 @@
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "Utils.h"
 #import "KeychainWrapper.h"
+#import "KWSztzCell.h"
 
 @interface KWSztzTableView ()
 
@@ -81,14 +82,19 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    KWSztzCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
 
     if (!cell) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"Cell"];
+        cell = [[KWSztzCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"Cell"];
     }
     KWSztzModel *model = _sztzModel[indexPath.row];
-    cell.textLabel.text = model.name;
+    cell.model = model;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 74;
 }
 
 @end

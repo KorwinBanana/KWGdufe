@@ -29,6 +29,7 @@
 		0A8077E51FA309A2009AA299 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8077E41FA309A2009AA299 /* Utils.m */; };
 		0A8077F31FA30AB4009AA299 /* NSData+KWAES.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8077F21FA30AB4009AA299 /* NSData+KWAES.m */; };
 		0A8077F61FA30AE5009AA299 /* NSString+KWMD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8077F41FA30AE5009AA299 /* NSString+KWMD5.m */; };
+		0A8351721FA984CA00357F72 /* KWSztzCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8351711FA984CA00357F72 /* KWSztzCell.m */; };
 		0A9F5B241F7D813C006FD696 /* KWMyClassCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A9F5B221F7D813C006FD696 /* KWMyClassCollectionCell.m */; };
 		0A9F5B251F7D813C006FD696 /* KWMyClassCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A9F5B231F7D813C006FD696 /* KWMyClassCollectionCell.xib */; };
 		0AA443861F8E6DF800E48ADE /* KWStuModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AA443851F8E6DF800E48ADE /* KWStuModel.m */; };
@@ -123,6 +124,8 @@
 		0A8077F21FA30AB4009AA299 /* NSData+KWAES.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSData+KWAES.m"; sourceTree = "<group>"; };
 		0A8077F41FA30AE5009AA299 /* NSString+KWMD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+KWMD5.m"; sourceTree = "<group>"; };
 		0A8077F51FA30AE5009AA299 /* NSString+KWMD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+KWMD5.h"; sourceTree = "<group>"; };
+		0A8351701FA984CA00357F72 /* KWSztzCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWSztzCell.h; sourceTree = "<group>"; };
+		0A8351711FA984CA00357F72 /* KWSztzCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWSztzCell.m; sourceTree = "<group>"; };
 		0A8815261F7BDC5700AAB5BF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		0A8815271F7BDC5700AAB5BF /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		0A88152B1F7BDC5700AAB5BF /* UIButton+KWButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+KWButton.h"; sourceTree = "<group>"; };
@@ -567,6 +570,8 @@
 				0A5A5A111FA20542001B09FD /* KWFunctionsCell.xib */,
 				0A0D9A0A1FA74B6B009CB653 /* KWGradeCell.h */,
 				0A0D9A0B1FA74B6B009CB653 /* KWGradeCell.m */,
+				0A8351701FA984CA00357F72 /* KWSztzCell.h */,
+				0A8351711FA984CA00357F72 /* KWSztzCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -945,6 +950,7 @@
 				0AB186C01F89587C00A49F93 /* KWReusableView.m in Sources */,
 				0A0D9A091FA713D3009CB653 /* KWGradeModel.m in Sources */,
 				0ACC56CA1F8E10D9007DA2BD /* UIView+KWFrame.m in Sources */,
+				0A8351721FA984CA00357F72 /* KWSztzCell.m in Sources */,
 				0A9F5B241F7D813C006FD696 /* KWMyClassCollectionCell.m in Sources */,
 				0A65AF9F1FA4778C003AC3A5 /* KeychainWrapper.m in Sources */,
 				0A5A5A0E1FA20164001B09FD /* KWEducationalViewCell.m in Sources */,
