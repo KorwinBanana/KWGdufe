@@ -3,6 +3,7 @@
 连通学校各类信息系统，拥有查询课表、查询图书借阅、查询成绩等多种校园服务功能。
 
 *项目进度：*
+（任务：继续增加新功能和优化已完成的功能）
 
 做了简单的本地缓存处理，应用NSUserDefaults存储请求的课表数据等数据。
 
@@ -26,11 +27,11 @@
 
 ![image](https://github.com/KorwinBanana/KWGdufe/blob/master/READMEImage/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2.png)
 
-成绩信息（展示成绩，下一步增加选择对应学期的成绩的功能)
-![image](https://github.com/KorwinBanana/KWGdufe/blob/master/READMEImage/%E6%88%90%E7%BB%A9%E4%BF%A1%E6%81%AF%EF%BC%88%E6%9C%AA%E6%8A%8A%E6%95%B0%E6%8D%AE%E5%AE%8C%E5%85%A8%E5%B1%95%E7%A4%BA%EF%BC%89.png)
+成绩信息（应用Masnory做了自动布局，展示成绩，下一步增加选择对应学期的成绩的功能)
+![image](https://github.com/KorwinBanana/KWGdufe/blob/master/READMEImage/%E6%88%90%E7%BB%A9%E4%BF%A1%E6%81%AF.png)
 
-素拓信息（未把数据完全展示，下一步自定义cell展示素拓详细信息)
-![image](https://github.com/KorwinBanana/KWGdufe/blob/master/READMEImage/%E7%B4%A0%E6%8B%93%E4%BF%A1%E6%81%AF%EF%BC%88%E6%9C%AA%E6%8A%8A%E6%95%B0%E6%8D%AE%E5%AE%8C%E5%85%A8%E5%B1%95%E7%A4%BA%EF%BC%89.png)
+素拓信息（基本完成)
+![image](https://github.com/KorwinBanana/KWGdufe/blob/master/READMEImage/%E7%B4%A0%E6%8B%93%E4%BF%A1%E6%81%AF.png)
 
 * 我 界面（完成加载个人信息数据并展示，以及跳转至信息页面）
 
