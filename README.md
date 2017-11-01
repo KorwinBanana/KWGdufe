@@ -33,6 +33,9 @@
 素拓信息（基本完成)
 ![image](https://github.com/KorwinBanana/KWGdufe/blob/master/READMEImage/%E7%B4%A0%E6%8B%93%E4%BF%A1%E6%81%AF.png)
 
+当前借阅信息（基本完成，需要再优化）
+![image](https://github.com/KorwinBanana/KWGdufe/blob/master/READMEImage/%E5%BD%93%E5%89%8D%E5%80%9F%E9%98%85%E7%95%8C%E9%9D%A2.png)
+
 * 我 界面（完成加载个人信息数据并展示，以及跳转至信息页面）
 
 ![image](https://github.com/KorwinBanana/KWGdufe/blob/master/READMEImage/%E4%B8%AA%E4%BA%BA%E7%95%8C%E9%9D%A2.png)
