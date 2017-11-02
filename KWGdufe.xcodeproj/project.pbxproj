@@ -57,6 +57,7 @@
 		0ACC56D21F8E187E007DA2BD /* UIImage+KWExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ACC56D11F8E187E007DA2BD /* UIImage+KWExtension.m */; };
 		0AD013501FA24B2A009D5C76 /* KWGradeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AD0134F1FA24B2A009D5C76 /* KWGradeView.m */; };
 		0AD013521FA24F01009D5C76 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AD013511FA24F00009D5C76 /* QuartzCore.framework */; };
+		0AE342C51FAB3A8A008E4257 /* KWMyClassMsgViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE342C41FAB3A8A008E4257 /* KWMyClassMsgViewController.m */; };
 		0AEA5C7B1F8E9056005C8DF2 /* KWMineMsgViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AEA5C7A1F8E9056005C8DF2 /* KWMineMsgViewController.m */; };
 		0AEA5C7E1F8E90CC005C8DF2 /* UIBarButtonItem+KWBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AEA5C7D1F8E90CC005C8DF2 /* UIBarButtonItem+KWBarButtonItem.m */; };
 		2855E0A7848FC10914635CA1 /* libPods-KWGdufe.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 70BB40C444C8B28E8744C841 /* libPods-KWGdufe.a */; };
@@ -179,6 +180,8 @@
 		0AD0134E1FA24B2A009D5C76 /* KWGradeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWGradeView.h; sourceTree = "<group>"; };
 		0AD0134F1FA24B2A009D5C76 /* KWGradeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWGradeView.m; sourceTree = "<group>"; };
 		0AD013511FA24F00009D5C76 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		0AE342C31FAB3A8A008E4257 /* KWMyClassMsgViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWMyClassMsgViewController.h; sourceTree = "<group>"; };
+		0AE342C41FAB3A8A008E4257 /* KWMyClassMsgViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWMyClassMsgViewController.m; sourceTree = "<group>"; };
 		0AEA5C791F8E9056005C8DF2 /* KWMineMsgViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWMineMsgViewController.h; sourceTree = "<group>"; };
 		0AEA5C7A1F8E9056005C8DF2 /* KWMineMsgViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWMineMsgViewController.m; sourceTree = "<group>"; };
 		0AEA5C7C1F8E90CC005C8DF2 /* UIBarButtonItem+KWBarButtonItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+KWBarButtonItem.h"; sourceTree = "<group>"; };
@@ -389,6 +392,8 @@
 				0A9F5B231F7D813C006FD696 /* KWMyClassCollectionCell.xib */,
 				0AB186C71F895AA200A49F93 /* KWWeekDay.h */,
 				0AB186C81F895AA200A49F93 /* KWWeekDay.m */,
+				0AE342C31FAB3A8A008E4257 /* KWMyClassMsgViewController.h */,
+				0AE342C41FAB3A8A008E4257 /* KWMyClassMsgViewController.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -955,6 +960,7 @@
 				0AA60B2E1F7C050E00E0E87D /* KWMyClassViewController.m in Sources */,
 				0AA443861F8E6DF800E48ADE /* KWStuModel.m in Sources */,
 				0AB186C01F89587C00A49F93 /* KWReusableView.m in Sources */,
+				0AE342C51FAB3A8A008E4257 /* KWMyClassMsgViewController.m in Sources */,
 				0A0D9A091FA713D3009CB653 /* KWGradeModel.m in Sources */,
 				0ACC56CA1F8E10D9007DA2BD /* UIView+KWFrame.m in Sources */,
 				0A8351721FA984CA00357F72 /* KWSztzCell.m in Sources */,

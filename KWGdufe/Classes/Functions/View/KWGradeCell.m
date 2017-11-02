@@ -83,15 +83,18 @@
         
         _name = [[UILabel alloc]init];
         _name.text = @"我是帅哥";
+        [_name setFont:[UIFont fontWithName:@"Helvetica-Bold" size:18]];
         [view1 addSubview:_name];
         [_name mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(view1.mas_left).with.offset(10);
             make.top.equalTo(view1.mas_top);
+            make.right.equalTo(view1.mas_right);
 //            make.height.equalTo(view1.mas_height);
         }];
         
         _examType = [[UILabel alloc]init];
         _examType.text = @"我是帅哥,你是吗？";
+        [_examType setFont:[UIFont fontWithName:@"Helvetica-Bold" size:16]];
         [view2 addSubview:_examType];
         [_examType mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(view2.mas_left);

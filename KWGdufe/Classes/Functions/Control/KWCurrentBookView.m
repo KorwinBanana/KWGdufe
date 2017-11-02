@@ -38,7 +38,6 @@
     } else {
         [self loadData];
     }
-    
 }
 
 #pragma mark - 加载数据

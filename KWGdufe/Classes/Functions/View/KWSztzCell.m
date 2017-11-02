@@ -57,6 +57,7 @@
         }];
         
         _name = [[UILabel alloc] init];
+        [_name setFont:[UIFont fontWithName:@"Helvetica-Bold" size:18]];
         [view1 addSubview:_name];
         [_name mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(view1.mas_left);

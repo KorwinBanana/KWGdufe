@@ -18,8 +18,9 @@
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "NSData+KWAES.h"
 #import "KeychainWrapper.h"
+#import "KWMyClassMsgViewController.h"
 
-@interface KWMyClassViewController ()<UICollectionViewDataSource> {
+@interface KWMyClassViewController ()<UICollectionViewDataSource,UICollectionViewDelegate> {
     UICollectionView *collectionView;
     CGFloat addWidth;
     CGFloat addWidthWeek;
@@ -99,6 +100,7 @@
     collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, rectStatus.size.height+rectNav.size.height+30, CGRectGetWidth([UIScreen mainScreen].bounds),CGRectGetHeight([UIScreen mainScreen].bounds)) collectionViewLayout:_course];
 //    bgHeight = CGRectGetHeight([UIScreen mainScreen].bounds)/12;//设置背景格子的高度
     collectionView.dataSource = self;
+    collectionView.delegate = self;
     collectionView.backgroundColor = [UIColor clearColor];
     collectionView.bounces = NO;//取消弹回
     collectionView.showsVerticalScrollIndicator = NO;//隐藏滚动条
@@ -299,6 +301,13 @@
         Tag.num.textColor = [UIColor blackColor];//节数颜色
         return Tag;
     }
+}
+
+#pragma mark - UICollectionViewDelegate
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    KWMyClassMsgViewController *msgVc = [[KWMyClassMsgViewController alloc] init];
+    [self.navigationController pushViewController:msgVc animated:YES];
 }
 
 @end
