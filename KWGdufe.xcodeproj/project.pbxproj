@@ -376,6 +376,8 @@
 		0A8815231F7BDC5700AAB5BF /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				0AB186B51F89504400A49F93 /* KWScheduleModel.h */,
+				0AB186B61F89504400A49F93 /* KWScheduleModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -447,8 +449,6 @@
 		0A8815361F7BDC5700AAB5BF /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				0AB186B51F89504400A49F93 /* KWScheduleModel.h */,
-				0AB186B61F89504400A49F93 /* KWScheduleModel.m */,
 				0AA763B51F8F3187004E0222 /* KWLoginModel.h */,
 				0AA763B61F8F3187004E0222 /* KWLoginModel.m */,
 			);

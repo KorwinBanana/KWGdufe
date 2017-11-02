@@ -280,7 +280,7 @@
     [collectionView sendSubviewToBack:bgView];//把格子背景放在最底层
     KWMyClassCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"course" forIndexPath:indexPath];
     cell.model = _scheduleModel[indexPath.row-12];
-    cell.name.backgroundColor = [Utils colorWithHexString:colors[indexPath.row - 12 + 3]];
+    cell.view.backgroundColor = [Utils colorWithHexString:colors[indexPath.row - 12 + 3]];
 //    NSLog(@"cell%ld = %@",indexPath.row - 12,NSStringFromCGRect(cell.frame));
     return cell;
 }
@@ -307,6 +307,8 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     KWMyClassMsgViewController *msgVc = [[KWMyClassMsgViewController alloc] init];
+    KWScheduleModel *classModel = _scheduleModel[indexPath.row - 12];
+    msgVc.model = classModel;
     [self.navigationController pushViewController:msgVc animated:YES];
 }
 

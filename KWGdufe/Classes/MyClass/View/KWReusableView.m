@@ -10,6 +10,7 @@
 #import "Utils.h"
 
 @implementation KWReusableView
+
 - (instancetype)initWithFrame:(CGRect)frame {
     if(self = [super initWithFrame:frame]){
         self.num = [[UILabel alloc] initWithFrame:self.bounds];
@@ -21,4 +22,5 @@
     }
     return self;
 }
+
 @end

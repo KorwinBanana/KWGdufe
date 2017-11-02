@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+@class KWScheduleModel;
 
 @interface KWMyClassMsgViewController : UITableViewController
+
+@property (nonatomic,strong) KWScheduleModel *model;
 
 @end
