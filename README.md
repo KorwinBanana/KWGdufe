@@ -39,7 +39,7 @@
 历史借阅信息（基本完成，需要再优化）
 ![image](https://github.com/KorwinBanana/KWGdufe/blob/master/READMEImage/%E5%8E%86%E5%8F%B2%E5%80%9F%E9%98%85.png)
 
-* 我 界面（完成加载个人信息数据并展示，以及跳转至信息页面）
+* 我 界面（完成加载个人信息数据并展示，以及跳转至信息页面，**增加选择学期选项**）
 
 ![image](https://github.com/KorwinBanana/KWGdufe/blob/master/READMEImage/%E4%B8%AA%E4%BA%BA%E7%95%8C%E9%9D%A2.png)
 

@@ -17,6 +17,7 @@
 #import "KWMyMsgCell.h"
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "Utils.h"
+#import <ActionSheetPicker-3.0/ActionSheetStringPicker.h>
 
 @interface KWMineViewController ()
 
@@ -29,6 +30,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    _stuTime = @"2017-2018-1";//初始化stuTime
     
     self.view.backgroundColor = [UIColor whiteColor];
     
@@ -131,9 +134,17 @@
         return cell;
     } if (indexPath.section == 2) {
         cell.textLabel.text = @"退出";
-    } else {
-        cell.textLabel.text = @"选项待定";
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;//禁止选中
+    }
+    else if (indexPath.section == 1) {
+        if (indexPath.row == 0) {
+            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"stuTimeCell"];
+            cell.textLabel.text = [NSString stringWithFormat:@"当前学期"];
+            cell.detailTextLabel.text = _stuTime;
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;//选中无色
+        } else {
+            cell.textLabel.text = @"选项待定";
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;//禁止选中
+        }
     }
     return cell;
 }
@@ -150,6 +161,24 @@
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
             [self tomsgVc];
+        }
+    }
+    if (indexPath.section == 1) {
+        if (indexPath.row == 0) {
+            NSArray *colors = [NSArray arrayWithObjects:@"2014-2015-1", @"2014-2015-2", @"2015-2016-1", @"2015-2016-2", @"2016-2017-1", @"2016-2017-2", @"2017-2018-1", nil];
+            [ActionSheetStringPicker showPickerWithTitle:@"学期"
+                                                    rows:colors
+                                        initialSelection:0
+                                               doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+                                                   NSLog(@"selectedValue = %@",selectedValue);
+                                                   _stuTime = selectedValue;
+                                                   NSLog(@"stuTime = %@",_stuTime);
+                                                   [self.tableView reloadData];
+                                               }
+                                             cancelBlock:^(ActionSheetStringPicker *picker) {
+                                                 NSLog(@"Block Picker Canceled");
+                                             }
+                                                  origin:self.view];
         }
     }
     if (indexPath.section == 2) {

@@ -23,4 +23,5 @@ target 'KWGdufe' do
   pod 'Masonry'
   pod 'SVProgressHUD'
   pod 'MJRefresh'
+  pod 'ActionSheetPicker-3.0', '~> 2.2.0'
 end

@@ -16,8 +16,8 @@
     if(self=[super initWithFrame:frame]){
         self.view = [[UIView alloc] initWithFrame:CGRectMake(1, 1,CGRectGetWidth(frame)-2, CGRectGetHeight(frame)-2)];
         self.view.backgroundColor = [UIColor clearColor];
-        _view.layer.cornerRadius = 4;
-        _view.layer.masksToBounds = YES;
+//        _view.layer.cornerRadius = 4;
+//        _view.layer.masksToBounds = YES;
         [self addSubview:_view];
         
         //课程名

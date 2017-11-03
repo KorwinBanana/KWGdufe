@@ -45,7 +45,9 @@
     //设置标题
     self.navigationItem.title = @"课程表";
     
-    colors = @[@"#FF8C00",@"#F08080",@"#F08080",@"#BCEE68",@"#B03060",@"#AB82FF",@"#8470FF",@"#87CEFA",@"#76EEC6",@"#66CDAA",@"#4F4F4F",@"#FF8C00",@"#F08080",@"#F08080",@"#BCEE68",@"#B03060",@"#AB82FF",@"#8470FF",@"#87CEFA",@"#76EEC6",@"#66CDAA",@"#4F4F4F",@"#FF8C00",@"#F08080",@"#F08080",@"#BCEE68",@"#B03060",@"#AB82FF",@"#8470FF",@"#87CEFA",@"#76EEC6",@"#66CDAA",@"#4F4F4F",@"#FF8C00",@"#F08080",@"#F08080",@"#BCEE68",@"#B03060",@"#AB82FF",@"#8470FF",@"#87CEFA",@"#76EEC6",@"#66CDAA",@"#4F4F4F"];
+//    [_stuTime addObserver:self forKeyPath:@"stuTimeNew" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld  context:nil];
+    
+    colors = @[@"#37C6C0",@"#5A4446",@"#FB7C85",@"#373E40",@"#8BACA1",@"#39A9CF",@"#DEBE9B",@"#C9D2CB",@"#8C7E78",@"#8ECB78",@"#0973AF",@"#37C6C0",@"#5A4446",@"#FB7C85",@"#373E40",@"#8BACA1",@"#39A9CF",@"#DEBE9B",@"#C9D2CB",@"#8C7E78",@"#8ECB78",@"#0973AF",@"#37C6C0",@"#5A4446",@"#FB7C85",@"#373E40",@"#8BACA1",@"#39A9CF",@"#DEBE9B",@"#C9D2CB",@"#8C7E78",@"#8ECB78",@"#0973AF",@"#37C6C0",@"#5A4446",@"#FB7C85",@"#373E40",@"#8BACA1",@"#39A9CF",@"#DEBE9B",@"#C9D2CB",@"#8C7E78",@"#8ECB78",@"#0973AF"];
     //状态栏高度
     CGRect rectStatus = [[UIApplication sharedApplication] statusBarFrame];
     CGRect rectNav = self.navigationController.navigationBar.frame;
@@ -226,7 +228,7 @@
     NSMutableDictionary *parements = [NSMutableDictionary dictionary];
     parements[@"sno"] = sno;
     parements[@"pwd"] = pwd;
-    parements[@"stu_time"] = @"2016-2017-1";
+    parements[@"stu_time"] = _stuTime;
     parements[@"week"] = week;
     
     [self getSchoolWeek];

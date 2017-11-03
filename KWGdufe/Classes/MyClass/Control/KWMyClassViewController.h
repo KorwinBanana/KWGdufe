@@ -11,5 +11,8 @@
 #import "KWLoginModel.h"
 
 @interface KWMyClassViewController : UIViewController
+
 @property (nonatomic,strong) KWLoginModel *loginModel;
+@property (nonatomic,strong) NSString  *stuTime;
+
 @end
