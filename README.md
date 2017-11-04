@@ -4,6 +4,7 @@
 
 *项目进度：*
 （任务：继续增加新功能和优化已完成的功能）
+2017.11.4：**增加自动计算当前学期和计算大一到大四的八个学期的方法**
 
 做了简单的本地缓存处理，应用NSUserDefaults存储请求的课表数据等数据。
 
@@ -46,6 +47,8 @@
 * 个人信息界面
 
 ![image](https://github.com/KorwinBanana/KWGdufe/blob/master/READMEImage/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-10-30%20%E4%B8%8A%E5%8D%881.04.18.png)
+
+![image](https://github.com/KorwinBanana/KWGdufe/blob/master/READMEImage/%E9%80%89%E6%8B%A9%E6%97%A5%E6%9C%9F.png)
 
 * 登陆（实现登陆功能（**使用Keychain存储账号密码**），界面待完善,添加密码错误警告提示,**使用AES给密码加密保存**）
 
