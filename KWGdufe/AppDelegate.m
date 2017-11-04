@@ -12,6 +12,8 @@
 #import "NSData+KWAES.h"
 #import "KeychainWrapper.h"
 
+static NSString *stuTime;
+
 @interface AppDelegate ()
 
 @end
@@ -22,6 +24,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
+    
+    //初始化stuTime
+    stuTime = @"2015-2016-2";
     
     //检测是否存在用户名和密码
 //    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];

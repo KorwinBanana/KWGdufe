@@ -45,6 +45,10 @@
     //设置标题
     self.navigationItem.title = @"课程表";
     
+#warning 增加KVO刷新课表
+    //获取当前学期
+    NSString *sno = [wrapper myObjectForKey:(id)kSecAttrAccount];
+    _stuTime = [Utils getCache:sno andID:@"stuTime"];
 //    [_stuTime addObserver:self forKeyPath:@"stuTimeNew" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld  context:nil];
     
     colors = @[@"#37C6C0",@"#5A4446",@"#FB7C85",@"#373E40",@"#8BACA1",@"#39A9CF",@"#DEBE9B",@"#C9D2CB",@"#8C7E78",@"#8ECB78",@"#0973AF",@"#37C6C0",@"#5A4446",@"#FB7C85",@"#373E40",@"#8BACA1",@"#39A9CF",@"#DEBE9B",@"#C9D2CB",@"#8C7E78",@"#8ECB78",@"#0973AF",@"#37C6C0",@"#5A4446",@"#FB7C85",@"#373E40",@"#8BACA1",@"#39A9CF",@"#DEBE9B",@"#C9D2CB",@"#8C7E78",@"#8ECB78",@"#0973AF",@"#37C6C0",@"#5A4446",@"#FB7C85",@"#373E40",@"#8BACA1",@"#39A9CF",@"#DEBE9B",@"#C9D2CB",@"#8C7E78",@"#8ECB78",@"#0973AF"];
@@ -195,23 +199,23 @@
     }
 }
 
--(NSArray *)randomArray
-{
-    //随机数从这里边产生
-    NSMutableArray *startArray = [[NSMutableArray alloc] initWithObjects:@0,@1,@2,@3,@4,@5,@6,@7, nil];
-    
-    //随机数产生结果
-    NSMutableArray *resultArray = [[NSMutableArray alloc] initWithCapacity:0];
-    //随机数个数
-    NSInteger m=8;
-    for (int i=0; i<m; i++) {
-        int t=arc4random()%startArray.count;
-        resultArray[i]=startArray[t];
-        startArray[t]=[startArray lastObject]; //为更好的乱序，故交换下位置
-        [startArray removeLastObject];
-    }
-    return resultArray;
-}
+//-(NSArray *)randomArray
+//{
+//    //随机数从这里边产生
+//    NSMutableArray *startArray = [[NSMutableArray alloc] initWithObjects:@0,@1,@2,@3,@4,@5,@6,@7, nil];
+//
+//    //随机数产生结果
+//    NSMutableArray *resultArray = [[NSMutableArray alloc] initWithCapacity:0];
+//    //随机数个数
+//    NSInteger m=8;
+//    for (int i=0; i<m; i++) {
+//        int t=arc4random()%startArray.count;
+//        resultArray[i]=startArray[t];
+//        startArray[t]=[startArray lastObject]; //为更好的乱序，故交换下位置
+//        [startArray removeLastObject];
+//    }
+//    return resultArray;
+//}
 
 #pragma mark - 加载数据
 - (void)loadData

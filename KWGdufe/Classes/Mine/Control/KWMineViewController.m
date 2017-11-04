@@ -31,7 +31,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _stuTime = @"2017-2018-1";//初始化stuTime
+    //初始化当前学期
+    NSString *sno = [wrapper myObjectForKey:(id)kSecAttrAccount];
+    _stuTime = [Utils getCache:sno andID:@"stuTime"];
     
     self.view.backgroundColor = [UIColor whiteColor];
     
@@ -45,6 +47,8 @@
     self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:frame];
     
     [SVProgressHUD showWithStatus:@"加载数据中"];
+    NSMutableArray *stuTimes = [Utils getCache:sno andID:@"stuTimes"];
+    NSLog(@"stuTimes = %@",stuTimes);
     
     [self getDataFromCache];//加载数据
 }
@@ -165,9 +169,11 @@
     }
     if (indexPath.section == 1) {
         if (indexPath.row == 0) {
-            NSArray *colors = [NSArray arrayWithObjects:@"2014-2015-1", @"2014-2015-2", @"2015-2016-1", @"2015-2016-2", @"2016-2017-1", @"2016-2017-2", @"2017-2018-1", nil];
+            NSString *sno = [wrapper myObjectForKey:(id)kSecAttrAccount];
+            NSMutableArray *stuTimes = [Utils getCache:sno andID:@"stuTimes"];
+            NSLog(@"stuTimes = %@",stuTimes);
             [ActionSheetStringPicker showPickerWithTitle:@"学期"
-                                                    rows:colors
+                                                    rows:stuTimes
                                         initialSelection:0
                                                doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
                                                    NSLog(@"selectedValue = %@",selectedValue);
@@ -195,6 +201,8 @@
     [Utils removeCache:account andID:@"ClassModel"];
     [Utils removeCache:account andID:@"GradeModel"];
     [Utils removeCache:account andID:@"CurrentBookModel"];
+    [Utils removeCache:account andID:@"stuTimes"];
+    [Utils removeCache:account andID:@"stuTime"];
     
     //删除账号密码
     [wrapper resetKeychainItem];
