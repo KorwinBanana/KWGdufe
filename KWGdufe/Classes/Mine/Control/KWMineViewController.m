@@ -167,26 +167,6 @@
             [self tomsgVc];
         }
     }
-    if (indexPath.section == 1) {
-        if (indexPath.row == 0) {
-            NSString *sno = [wrapper myObjectForKey:(id)kSecAttrAccount];
-            NSMutableArray *stuTimes = [Utils getCache:sno andID:@"stuTimes"];
-            NSLog(@"stuTimes = %@",stuTimes);
-            [ActionSheetStringPicker showPickerWithTitle:@"学期"
-                                                    rows:stuTimes
-                                        initialSelection:0
-                                               doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
-                                                   NSLog(@"selectedValue = %@",selectedValue);
-                                                   _stuTime = selectedValue;
-                                                   NSLog(@"stuTime = %@",_stuTime);
-                                                   [self.tableView reloadData];
-                                               }
-                                             cancelBlock:^(ActionSheetStringPicker *picker) {
-                                                 NSLog(@"Block Picker Canceled");
-                                             }
-                                                  origin:self.view];
-        }
-    }
     if (indexPath.section == 2) {
         if (indexPath.row == 0) {
             [self logout];

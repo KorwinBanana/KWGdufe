@@ -433,5 +433,13 @@
     [setting synchronize];
 }
 
++ (void)updateCache:(NSString *)type andID:(NSString *)_id andValue:(id)str {
+    NSUserDefaults * setting = [NSUserDefaults standardUserDefaults];
+    NSString * key = [NSString stringWithFormat:@"model-%@-%@",type, _id];
+    [setting removeObjectForKey:key];
+    [setting setObject:str forKey:key];
+    [setting synchronize];
+}
+
 @end
 

@@ -10,6 +10,6 @@
 
 @interface KWMineViewController : UITableViewController
 
-@property (nonatomic,strong) NSString *stuTime;
+@property (nonatomic,copy) NSString *stuTime;
 
 @end

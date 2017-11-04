@@ -19,6 +19,8 @@
 #import "NSData+KWAES.h"
 #import "KeychainWrapper.h"
 #import "KWMyClassMsgViewController.h"
+#import "KWMineViewController.h"
+#import <ActionSheetPicker-3.0/ActionSheetStringPicker.h>
 
 @interface KWMyClassViewController ()<UICollectionViewDataSource,UICollectionViewDelegate> {
     UICollectionView *collectionView;
@@ -43,15 +45,13 @@
     //设置背景颜色
     self.view.backgroundColor = [UIColor whiteColor];
     //设置标题
-    self.navigationItem.title = @"课程表";
+    [self setupNavBar];
     
-#warning 增加KVO刷新课表
-    //获取当前学期
     NSString *sno = [wrapper myObjectForKey:(id)kSecAttrAccount];
-    _stuTime = [Utils getCache:sno andID:@"stuTime"];
-//    [_stuTime addObserver:self forKeyPath:@"stuTimeNew" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld  context:nil];
+    self.stuTime  = [Utils getCache:sno andID:@"stuTime"];
     
     colors = @[@"#37C6C0",@"#5A4446",@"#FB7C85",@"#373E40",@"#8BACA1",@"#39A9CF",@"#DEBE9B",@"#C9D2CB",@"#8C7E78",@"#8ECB78",@"#0973AF",@"#37C6C0",@"#5A4446",@"#FB7C85",@"#373E40",@"#8BACA1",@"#39A9CF",@"#DEBE9B",@"#C9D2CB",@"#8C7E78",@"#8ECB78",@"#0973AF",@"#37C6C0",@"#5A4446",@"#FB7C85",@"#373E40",@"#8BACA1",@"#39A9CF",@"#DEBE9B",@"#C9D2CB",@"#8C7E78",@"#8ECB78",@"#0973AF",@"#37C6C0",@"#5A4446",@"#FB7C85",@"#373E40",@"#8BACA1",@"#39A9CF",@"#DEBE9B",@"#C9D2CB",@"#8C7E78",@"#8ECB78",@"#0973AF"];
+    
     //状态栏高度
     CGRect rectStatus = [[UIApplication sharedApplication] statusBarFrame];
     CGRect rectNav = self.navigationController.navigationBar.frame;
@@ -65,6 +65,7 @@
     //获取缓存数据
 //    [self getDataFromCache];
 //    [self loadData];
+    [self loadAllData];//加载所以数据
     
     //获取课程展示的宽度
     addWidth= ([UIScreen mainScreen].bounds.size.width-30)/7.0 - 1;
@@ -83,6 +84,7 @@
     self.course.width = addWidth;
     _course.height = (CGRectGetHeight([UIScreen mainScreen].bounds)-rectStatus.size.height-rectNav.size.height-30)/9.7;
     
+    //缓存获取界面数据
     NSString *account = [wrapper myObjectForKey:(id)kSecAttrAccount];
     NSArray *dicAry = [Utils getCache:account andID:@"ClassModel"];
     if (dicAry) {
@@ -90,11 +92,44 @@
         self.course.array = [[NSArray alloc]initWithArray:_scheduleModel];
         [SVProgressHUD dismiss];
     } else {
-        [self loadData];
+        [self loadData:self.stuTime];
     }
     
     //创建collectionVIew
     [self setupCollectionView];
+}
+
+////初始化stuTime
+//- (void)setStuTime:(NSString *)stuTime {
+//    NSString *sno = [wrapper myObjectForKey:(id)kSecAttrAccount];
+//    stuTime = [Utils getCache:sno andID:@"stuTime"];
+//    self.stuTime = stuTime;
+//}
+
+#pragma mark - 设置导航条
+-(void)setupNavBar
+{
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithImage:[UIImage imageNamed:@"friendsRecommentIcon"] hightImage:[UIImage imageNamed:@"friendsRecommentIcon-click"] target:self action:@selector(selectYear)];
+    self.navigationItem.title = @"课程表";
+}
+
+-(void)selectYear
+{
+    NSString *account = [wrapper myObjectForKey:(id)kSecAttrAccount];
+    NSMutableArray *stuTimes = [Utils getCache:account andID:@"stuTimes"];
+//    NSLog(@"stuTimes = %@",stuTimes);
+    [ActionSheetStringPicker showPickerWithTitle:@"学期"
+                                            rows:stuTimes
+                                initialSelection:0
+                                       doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+                                           self.stuTime = selectedValue;
+                                           [SVProgressHUD showWithStatus:@"更新课表"];
+                                           [self loadData:self.stuTime];
+                                       }
+                                     cancelBlock:^(ActionSheetStringPicker *picker) {
+                                         NSLog(@"Block Picker Canceled");
+                                     }
+                                          origin:self.view];
 }
 
 - (void)setupCollectionView
@@ -218,7 +253,7 @@
 //}
 
 #pragma mark - 加载数据
-- (void)loadData
+- (void)loadData:(NSString *)selectStuTime
 {
     //创建请求会话管理者
     AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
@@ -232,7 +267,7 @@
     NSMutableDictionary *parements = [NSMutableDictionary dictionary];
     parements[@"sno"] = sno;
     parements[@"pwd"] = pwd;
-    parements[@"stu_time"] = _stuTime;
+    parements[@"stu_time"] = selectStuTime;
     parements[@"week"] = week;
     
     [self getSchoolWeek];
@@ -258,6 +293,45 @@
         
         //取消提示框
         [SVProgressHUD dismiss];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+    }];
+}
+
+- (void)loadAllData {
+    NSString *account = [wrapper myObjectForKey:(id)kSecAttrAccount];
+    NSMutableArray *stuTimes = [Utils getCache:account andID:@"stuTimes"];
+    NSString *loaDataStuTime = [[NSString alloc]init];
+    for (int i = 0; i < 8; i++) {
+        loaDataStuTime = stuTimes[i];
+        [self loadDataAll:loaDataStuTime];
+    }
+}
+
+- (void)loadDataAll:(NSString *)selectStuTime {
+    //创建请求会话管理者
+    AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
+    
+    //获取登陆的账号密码
+    NSString *sno = [wrapper myObjectForKey:(id)kSecAttrAccount];
+    NSString *pwd = [wrapper myObjectForKey:(id)kSecValueData];
+    
+    //拼接数据
+    NSMutableDictionary *parements = [NSMutableDictionary dictionary];
+    parements[@"sno"] = sno;
+    parements[@"pwd"] = pwd;
+    parements[@"stu_time"] = selectStuTime;
+    
+    [self getSchoolWeek];
+    
+    //发送请求
+    [mgr POST:@"http://api.wegdufe.com:82/index.php?r=jw/get-schedule" parameters:parements progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        [responseObject writeToFile:[NSString stringWithFormat:@"/Users/k/iOS-KW/project/classModel-%@.plist",selectStuTime] atomically:nil];
+        
+        NSArray *dicAry = responseObject[@"data"];
+        [Utils saveCache:sno andID:[NSString stringWithFormat:@"ClassModel-%@",selectStuTime] andValue:dicAry];//保存到本地沙盒
+        
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
     }];

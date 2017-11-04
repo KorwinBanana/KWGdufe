@@ -110,5 +110,6 @@
 + (void)saveCache:(NSString *)type andID:(NSString *)_id andValue:(id)str;
 + (id)getCache:(NSString *)type andID:(NSString *)_id;
 + (void)removeCache:(NSString *)type andID:(NSString *)_id;
++ (void)updateCache:(NSString *)type andID:(NSString *)_id andValue:(id)str;
 @end
 
