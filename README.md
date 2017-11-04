@@ -4,7 +4,7 @@
 
 *项目进度：*
 （任务：继续增加新功能和优化已完成的功能）
-2017.11.4：**增加自动计算当前学期和计算大一到大四的八个学期的方法**
+2017.11.4：**增加自动计算当前学期和计算大一到大四的八个学期的方法,已经增加选择各个学期课程表功能**
 
 做了简单的本地缓存处理，应用NSUserDefaults存储请求的课表数据等数据。
 
@@ -23,6 +23,10 @@
 ```
 
 ![image](https://github.com/KorwinBanana/KWGdufe/blob/master/READMEImage/%E8%AF%BE%E7%A8%8B%E8%A1%A8%E9%A1%B5%E9%9D%A2%EF%BC%88%E5%BE%85%E5%AE%8C%E5%96%84%E5%85%B6%E4%BB%96%E5%8A%9F%E8%83%BD%EF%BC%89.png)
+
+**选择各学期的课程表**（点击导航栏rightBarButtonItem按钮，选择学期）
+
+![image](https://github.com/KorwinBanana/KWGdufe/blob/master/READMEImage/%E9%80%89%E6%8B%A9%E5%90%84%E4%B8%AA%E5%AD%A6%E6%9C%9F%E8%AF%BE%E7%A8%8B%E8%A1%A8.png)
 
 * 快捷功能界面（自定义tableViewCell，里面用collectionView实现每个cell中有不同的功能,通过代理方式，实现collectionViewCell点击跳转到相应页面）
 
