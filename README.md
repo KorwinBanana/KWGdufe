@@ -29,6 +29,10 @@
 
 ![image](https://github.com/KorwinBanana/KWGdufe/blob/master/READMEImage/%E9%80%89%E6%8B%A9%E5%90%84%E4%B8%AA%E5%AD%A6%E6%9C%9F%E8%AF%BE%E7%A8%8B%E8%A1%A8.png)
 
+**选择个周的课程表**
+
+![image](https://github.com/KorwinBanana/KWGdufe/blob/master/READMEImage/%E9%80%89%E6%8B%A9%E5%91%A8%E6%9C%9F%E7%9A%84%E8%AF%BE%E7%A8%8B%E8%A1%A8.png)
+
 * 快捷功能界面（自定义tableViewCell，里面用collectionView实现每个cell中有不同的功能,通过代理方式，实现collectionViewCell点击跳转到相应页面）
 
 ![image](https://github.com/KorwinBanana/KWGdufe/blob/master/READMEImage/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2.png)
