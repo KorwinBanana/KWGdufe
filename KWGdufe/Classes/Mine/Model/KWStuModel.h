@@ -10,15 +10,15 @@
 
 @interface KWStuModel : NSObject
 
-@property(nonatomic,strong)NSString *department;
-@property(nonatomic,strong)NSString *major;
-@property(nonatomic,strong)NSString *classroom;
-@property(nonatomic,strong)NSString *name;
-@property(nonatomic,strong)NSString *sex;
-@property(nonatomic,strong)NSString *namePy;
-@property(nonatomic,strong)NSString *birthday;
-@property(nonatomic,strong)NSString *party;
-@property(nonatomic,strong)NSString *nation;
-@property(nonatomic,strong)NSString *education;
+@property(nonatomic,strong) NSString *department;
+@property(nonatomic,strong) NSString *major;
+@property(nonatomic,strong) NSString *classroom;
+@property(nonatomic,strong) NSString *name;
+@property(nonatomic,strong) NSString *sex;
+@property(nonatomic,strong) NSString *namePy;
+@property(nonatomic,strong) NSString *birthday;
+@property(nonatomic,strong) NSString *party;
+@property(nonatomic,strong) NSString *nation;
+@property(nonatomic,strong) NSString *education;
 
 @end

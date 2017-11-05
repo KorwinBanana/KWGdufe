@@ -75,8 +75,6 @@
     
     //获取高度
     addHeight = (KWSCreenH-rectStatus.size.height - rectNav.size.height - 30)/9.7;
-    NSLog(@"KWSCreenH = %f",KWSCreenH);
-    NSLog(@"addHeight = %f",addHeight);
     
     //设置星期一到星期日和第几周
     [self setWeekAndDays];

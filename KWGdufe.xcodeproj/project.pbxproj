@@ -13,6 +13,7 @@
 		0A0D9A151FA75056009CB653 /* KWSztzModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A0D9A141FA75056009CB653 /* KWSztzModel.m */; };
 		0A0D9A1E1FA75BFA009CB653 /* KWLibraryViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A0D9A1D1FA75BFA009CB653 /* KWLibraryViewCell.m */; };
 		0A38FE811F9E2032007484BD /* model.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0A38FE801F9E2031007484BD /* model.plist */; };
+		0A3BA3C81FAF06D800EBB96E /* KWCashModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A3BA3C71FAF06D800EBB96E /* KWCashModel.m */; };
 		0A4483F61FA9F38800100DF8 /* KWCurrentBookView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A4483F51FA9F38800100DF8 /* KWCurrentBookView.m */; };
 		0A4483F91FA9F3F500100DF8 /* KWCurrentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A4483F81FA9F3F500100DF8 /* KWCurrentModel.m */; };
 		0A4483FC1FA9F76E00100DF8 /* KWCurrentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A4483FB1FA9F76E00100DF8 /* KWCurrentCell.m */; };
@@ -96,6 +97,8 @@
 		0A0D9A1C1FA75BFA009CB653 /* KWLibraryViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWLibraryViewCell.h; sourceTree = "<group>"; };
 		0A0D9A1D1FA75BFA009CB653 /* KWLibraryViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWLibraryViewCell.m; sourceTree = "<group>"; };
 		0A38FE801F9E2031007484BD /* model.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = model.plist; sourceTree = SOURCE_ROOT; };
+		0A3BA3C61FAF06D800EBB96E /* KWCashModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWCashModel.h; sourceTree = "<group>"; };
+		0A3BA3C71FAF06D800EBB96E /* KWCashModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWCashModel.m; sourceTree = "<group>"; };
 		0A4483F41FA9F38800100DF8 /* KWCurrentBookView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWCurrentBookView.h; sourceTree = "<group>"; };
 		0A4483F51FA9F38800100DF8 /* KWCurrentBookView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWCurrentBookView.m; sourceTree = "<group>"; };
 		0A4483F71FA9F3F500100DF8 /* KWCurrentModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWCurrentModel.h; sourceTree = "<group>"; };
@@ -338,6 +341,8 @@
 			children = (
 				0AA443841F8E6DF800E48ADE /* KWStuModel.h */,
 				0AA443851F8E6DF800E48ADE /* KWStuModel.m */,
+				0A3BA3C61FAF06D800EBB96E /* KWCashModel.h */,
+				0A3BA3C71FAF06D800EBB96E /* KWCashModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -973,6 +978,7 @@
 				0AB186BD1F89527A00A49F93 /* KWCollectionViewLayout.m in Sources */,
 				0AA60B1B1F7C006800E0E87D /* KWTabBarController.m in Sources */,
 				0A5A5A121FA20542001B09FD /* KWFunctionsCell.m in Sources */,
+				0A3BA3C81FAF06D800EBB96E /* KWCashModel.m in Sources */,
 				0AA60B1E1F7C029100E0E87D /* main.m in Sources */,
 				0A8077F31FA30AB4009AA299 /* NSData+KWAES.m in Sources */,
 				0A65BB2C1F94A74B00DDC285 /* KWMsgCell.m in Sources */,

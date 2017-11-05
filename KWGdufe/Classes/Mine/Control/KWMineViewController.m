@@ -18,10 +18,12 @@
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "Utils.h"
 #import <ActionSheetPicker-3.0/ActionSheetStringPicker.h>
+#import "KWCashModel.h"
 
 @interface KWMineViewController ()
 
 @property(nonatomic,strong) KWStuModel *stuModel;
+@property (nonatomic,strong) KWCashModel *cardModel;
 @property (nonatomic,strong) KWMineMsgViewController  *msgVc;
 
 @end
@@ -47,10 +49,10 @@
     self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:frame];
     
     [SVProgressHUD showWithStatus:@"加载数据中"];
-    NSMutableArray *stuTimes = [Utils getCache:sno andID:@"stuTimes"];
-    NSLog(@"stuTimes = %@",stuTimes);
     
     [self getDataFromCache];//加载数据
+    
+    [self updateCashData];//加载校园卡余额
 }
 
 - (void)getDataFromCache {
@@ -102,6 +104,83 @@
     }];
 }
 
+//有网络时，更新本地Cash余额
+- (void)loadCardData {
+    //创建请求会话管理者
+    AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
+    
+    //获取登陆的账号密码
+    NSString *sno = [wrapper myObjectForKey:(id)kSecAttrAccount];
+    NSString *pwd = [wrapper myObjectForKey:(id)kSecValueData];
+    
+    //拼接数据
+    NSMutableDictionary *parements = [NSMutableDictionary dictionary];
+    parements[@"sno"] = sno;
+    parements[@"pwd"] = pwd;
+    
+    //发送请求
+    [mgr POST:@"http://api.wegdufe.com:82/index.php?r=card/current-cash" parameters:parements progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        //获取字典
+        NSDictionary *cardDict = responseObject[@"data"];
+        
+        //更新本地Cash
+        [Utils updateCache:sno andID:@"CardModel" andValue:cardDict];
+        NSLog(@"更新成功");
+        
+        //字典转模型
+        _cardModel = [KWCashModel mj_objectWithKeyValues:cardDict];
+//        self.msgVc.stuModel = _stuModel;
+        
+        [self.tableView reloadData];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    }];
+}
+
+/*
+ 缓存余额数据:有网络的时候，更新本地余额数据，无网络的时候不更新
+ */
+- (void) updateCashData {
+    //1.创建网络状态监测管理者
+    AFNetworkReachabilityManager *manager = [AFNetworkReachabilityManager  sharedManager];
+    //2.监听改变
+    [manager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus  status) {
+        switch (status) {
+            case  AFNetworkReachabilityStatusUnknown: {
+                NSLog(@"未知");
+                //缓存获取Cash余额
+                NSString *account = [wrapper myObjectForKey:(id)kSecAttrAccount];
+                NSDictionary *cashAry = [Utils getCache:account andID:@"CardModel"];
+                _cardModel = [KWCashModel mj_objectWithKeyValues:cashAry];
+                [self.tableView reloadData];
+                break;
+            }
+            case AFNetworkReachabilityStatusNotReachable:{
+                NSLog(@"没有网络");
+                //缓存获取Cash余额
+                NSString *account = [wrapper myObjectForKey:(id)kSecAttrAccount];
+                NSDictionary *cashAry = [Utils getCache:account andID:@"CardModel"];
+                _cardModel = [KWCashModel mj_objectWithKeyValues:cashAry];
+                [self.tableView reloadData];
+                 break;
+            }
+            case AFNetworkReachabilityStatusReachableViaWWAN: {
+                NSLog(@"3G|4G");
+                [self loadCardData];
+                break;
+            }
+            case AFNetworkReachabilityStatusReachableViaWiFi: {
+                NSLog(@"WiFi");
+                [self loadCardData];
+                break;
+            }
+            default:
+                break;
+        }
+    }];
+    [manager startMonitoring];//开始监听
+}
+
 #pragma mark - 设置导航条
 -(void)setupNavBar
 {
@@ -142,8 +221,8 @@
     else if (indexPath.section == 1) {
         if (indexPath.row == 0) {
             cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"stuTimeCell"];
-            cell.textLabel.text = [NSString stringWithFormat:@"当前学期"];
-            cell.detailTextLabel.text = _stuTime;
+            cell.textLabel.text = [NSString stringWithFormat:@"校园卡余额"];
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%@元",_cardModel.cash];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;//选中无色
         } else {
             cell.textLabel.text = @"选项待定";
