@@ -130,6 +130,7 @@
     }
     KWTodayBuyModel *model = _todayBuyModel[indexPath.row];
     cell.model = model;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 

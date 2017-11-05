@@ -1,23 +1,23 @@
 //
-//  KWLibraryViewCell.m
+//  KWOtherFuncViewCell.m
 //  KWGdufe
 //
-//  Created by korwin on 2017/10/30.
+//  Created by korwin on 2017/11/5.
 //  Copyright © 2017年 korwin. All rights reserved.
 //
 
-#import "KWLibraryViewCell.h"
+#import "KWOtherFuncViewCell.h"
 #import "KWFunctionsCell.h"
-#import "KWCurrentBookView.h"
+#import "KWSeElectViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
 #define ID @"cell"
 
-@interface KWLibraryViewCell()<UICollectionViewDataSource,UICollectionViewDelegate>
+@interface KWOtherFuncViewCell()<UICollectionViewDataSource,UICollectionViewDelegate>
 
 @end
 
-@implementation KWLibraryViewCell
+@implementation KWOtherFuncViewCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
@@ -44,7 +44,7 @@
 
 #pragma mark - UICollectViewDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 2;
+    return 1;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -52,10 +52,7 @@
     [collectionView registerNib:nib forCellWithReuseIdentifier:ID];
     KWFunctionsCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ID forIndexPath:indexPath];
     if (indexPath.row == 0) {
-        cell.name = @"当前借阅";
-        cell.imageName = @"tabBar_essence_click_icon";
-    } else if (indexPath.row == 1) {
-        cell.name = @"历史借阅";
+        cell.name = @"电控查询";
         cell.imageName = @"tabBar_new_click_icon";
     }
     cell.backgroundColor = [UIColor clearColor];
@@ -64,18 +61,8 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
-        KWCurrentBookView *currentVc = [[KWCurrentBookView alloc]init];
-        currentVc.url = @"http://api.wegdufe.com:82/index.php?r=opac/current-book";
-        currentVc.modelSaveName = @"CurrentBookModel";
-        currentVc.vcName = @"当前借阅";
-        [_delegate pushVc:currentVc];
-    } else if (indexPath.row == 1) {
-        KWCurrentBookView *borrowVc = [[KWCurrentBookView alloc]init];
-        borrowVc.url = @"http://api.wegdufe.com:82/index.php?r=opac/borrowed-book";
-        borrowVc.modelSaveName = @"BorrowedBookModel";
-        borrowVc.vcName = @"历史借阅";
-        [_delegate pushVc:borrowVc];
+        KWSeElectViewController *seElectVc = [[KWSeElectViewController alloc]init];
+        [_delegate pushVc:seElectVc];
     }
 }
-
 @end

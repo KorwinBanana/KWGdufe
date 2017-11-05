@@ -17,6 +17,8 @@
 		0A3BA3CB1FAF0EC400EBB96E /* KWTodayBuyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A3BA3CA1FAF0EC400EBB96E /* KWTodayBuyCell.m */; };
 		0A3BA3CE1FAF0EEB00EBB96E /* KWTodayBuyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A3BA3CD1FAF0EEB00EBB96E /* KWTodayBuyViewController.m */; };
 		0A3BA3D11FAF27DB00EBB96E /* KWTodayBuyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A3BA3D01FAF27DB00EBB96E /* KWTodayBuyModel.m */; };
+		0A3BA3D71FAF3B7200EBB96E /* KWOtherFuncViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A3BA3D61FAF3B7200EBB96E /* KWOtherFuncViewCell.m */; };
+		0A3BA3DA1FAF3E2100EBB96E /* KWSeElectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A3BA3D91FAF3E2100EBB96E /* KWSeElectViewController.m */; };
 		0A4483F61FA9F38800100DF8 /* KWCurrentBookView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A4483F51FA9F38800100DF8 /* KWCurrentBookView.m */; };
 		0A4483F91FA9F3F500100DF8 /* KWCurrentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A4483F81FA9F3F500100DF8 /* KWCurrentModel.m */; };
 		0A4483FC1FA9F76E00100DF8 /* KWCurrentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A4483FB1FA9F76E00100DF8 /* KWCurrentCell.m */; };
@@ -108,6 +110,10 @@
 		0A3BA3CD1FAF0EEB00EBB96E /* KWTodayBuyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWTodayBuyViewController.m; sourceTree = "<group>"; };
 		0A3BA3CF1FAF27DB00EBB96E /* KWTodayBuyModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWTodayBuyModel.h; sourceTree = "<group>"; };
 		0A3BA3D01FAF27DB00EBB96E /* KWTodayBuyModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWTodayBuyModel.m; sourceTree = "<group>"; };
+		0A3BA3D51FAF3B7200EBB96E /* KWOtherFuncViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWOtherFuncViewCell.h; sourceTree = "<group>"; };
+		0A3BA3D61FAF3B7200EBB96E /* KWOtherFuncViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWOtherFuncViewCell.m; sourceTree = "<group>"; };
+		0A3BA3D81FAF3E2100EBB96E /* KWSeElectViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWSeElectViewController.h; sourceTree = "<group>"; };
+		0A3BA3D91FAF3E2100EBB96E /* KWSeElectViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWSeElectViewController.m; sourceTree = "<group>"; };
 		0A4483F41FA9F38800100DF8 /* KWCurrentBookView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWCurrentBookView.h; sourceTree = "<group>"; };
 		0A4483F51FA9F38800100DF8 /* KWCurrentBookView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWCurrentBookView.m; sourceTree = "<group>"; };
 		0A4483F71FA9F3F500100DF8 /* KWCurrentModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWCurrentModel.h; sourceTree = "<group>"; };
@@ -575,6 +581,10 @@
 				0A0D9A1D1FA75BFA009CB653 /* KWLibraryViewCell.m */,
 				0A4483F41FA9F38800100DF8 /* KWCurrentBookView.h */,
 				0A4483F51FA9F38800100DF8 /* KWCurrentBookView.m */,
+				0A3BA3D51FAF3B7200EBB96E /* KWOtherFuncViewCell.h */,
+				0A3BA3D61FAF3B7200EBB96E /* KWOtherFuncViewCell.m */,
+				0A3BA3D81FAF3E2100EBB96E /* KWSeElectViewController.h */,
+				0A3BA3D91FAF3E2100EBB96E /* KWSeElectViewController.m */,
 			);
 			path = Control;
 			sourceTree = "<group>";
@@ -971,7 +981,9 @@
 				0A0D9A151FA75056009CB653 /* KWSztzModel.m in Sources */,
 				0A8077E51FA309A2009AA299 /* Utils.m in Sources */,
 				0A0D9A0C1FA74B6B009CB653 /* KWGradeCell.m in Sources */,
+				0A3BA3DA1FAF3E2100EBB96E /* KWSeElectViewController.m in Sources */,
 				0AB186C91F895AA200A49F93 /* KWWeekDay.m in Sources */,
+				0A3BA3D71FAF3B7200EBB96E /* KWOtherFuncViewCell.m in Sources */,
 				0AD013501FA24B2A009D5C76 /* KWGradeView.m in Sources */,
 				0ACC56C71F8E0FDD007DA2BD /* KWTabBar.m in Sources */,
 				0AA763B71F8F3187004E0222 /* KWLoginModel.m in Sources */,

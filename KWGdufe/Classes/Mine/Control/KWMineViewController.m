@@ -233,7 +233,7 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;//选中无色
         } else {
             cell.textLabel.text = @"选项待定";
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;//禁止选中
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
     }
     return cell;

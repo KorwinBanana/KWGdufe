@@ -9,8 +9,9 @@
 #import "KWFunctionsViewController.h"
 #import "KWEducationalViewCell.h"
 #import "KWLibraryViewCell.h"
+#import "KWOtherFuncViewCell.h"
 
-@interface KWFunctionsViewController ()<KWPushDelegate,KWLibraryPushDelegate>
+@interface KWFunctionsViewController ()<KWPushDelegate,KWLibraryPushDelegate,KWOtherPushDelegate>
 
 @end
 
@@ -42,7 +43,7 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -59,9 +60,15 @@
         cell.delegate = self;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;//不可选择
         return cell;
-    } else {
+    } else if (indexPath.section == 1) {
         KWLibraryViewCell *cell = [[KWLibraryViewCell alloc]init];
 //        cell.textLabel.text = @"教务系统的功能;
+        cell.delegate = self;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;//不可选择
+        return cell;
+    } else {
+        KWOtherFuncViewCell *cell = [[KWOtherFuncViewCell alloc]init];
+        //        cell.textLabel.text = @"教务系统的功能;
         cell.delegate = self;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;//不可选择
         return cell;
@@ -75,12 +82,15 @@
     UIView *customView = [[UIView alloc] initWithFrame:CGRectMake(15, 0, 320, KWSCreenW/15)];
     UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     headerLabel.backgroundColor = [UIColor clearColor];
-    headerLabel.font = [UIFont italicSystemFontOfSize:16];
+//    headerLabel.font = [UIFont italicSystemFontOfSize:16];
+    [headerLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:14]];
     headerLabel.frame = customView.frame;
     if (section == 0) {
         headerLabel.text = @"教务";
-    } else {
+    } else if (section == 1) {
         headerLabel.text = @"图书馆";
+    } else {
+        headerLabel.text = @"其他功能";
     }
     [customView addSubview:headerLabel];
     return customView;

@@ -51,6 +51,7 @@
         cell.textLabel.text = @"周数";
         cell.detailTextLabel.text = _model.period;
     }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 

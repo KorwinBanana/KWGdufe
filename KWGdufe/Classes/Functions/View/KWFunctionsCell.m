@@ -22,6 +22,7 @@
 }
 
 - (void)setName:(NSString *)name {
+    [_iconName setFont:[UIFont fontWithName:@"Helvetica-Bold" size:14]];
     _iconName.text = name;
 }
 
