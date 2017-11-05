@@ -10,7 +10,7 @@
 
 @interface KWCashModel : NSObject
 
-@property(nonatomic,copy) NSString *cashNum;
+@property(nonatomic,copy) NSString *cardNum;
 @property(nonatomic,copy) NSString *cash;
 @property(nonatomic,copy) NSString *cardState;
 @property(nonatomic,copy) NSString *checkState;

@@ -19,12 +19,14 @@
 #import "Utils.h"
 #import <ActionSheetPicker-3.0/ActionSheetStringPicker.h>
 #import "KWCashModel.h"
+#import "KWTodayBuyViewController.h"
 
 @interface KWMineViewController ()
 
 @property(nonatomic,strong) KWStuModel *stuModel;
 @property (nonatomic,strong) KWCashModel *cardModel;
 @property (nonatomic,strong) KWMineMsgViewController  *msgVc;
+@property (nonatomic,strong) KWTodayBuyViewController *todayBuyVc;
 
 @end
 
@@ -39,7 +41,8 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.msgVc = [[KWMineMsgViewController alloc]init];//初始化
+    self.msgVc = [[KWMineMsgViewController alloc]init];//初始化二级页面
+    self.todayBuyVc = [[KWTodayBuyViewController alloc]init];//初始化二级页面
 
     [self setupNavBar];
     
@@ -126,11 +129,13 @@
         
         //更新本地Cash
         [Utils updateCache:sno andID:@"CardModel" andValue:cardDict];
-        NSLog(@"更新成功");
+//        NSLog(@"更新成功");
         
         //字典转模型
         _cardModel = [KWCashModel mj_objectWithKeyValues:cardDict];
 //        self.msgVc.stuModel = _stuModel;
+        self.todayBuyVc.cardModel = _cardModel;
+//        NSLog(@"cardNum",_cardModel.cardNum);
         
         [self.tableView reloadData];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -152,6 +157,7 @@
                 NSString *account = [wrapper myObjectForKey:(id)kSecAttrAccount];
                 NSDictionary *cashAry = [Utils getCache:account andID:@"CardModel"];
                 _cardModel = [KWCashModel mj_objectWithKeyValues:cashAry];
+                self.todayBuyVc.cardModel = _cardModel;
                 [self.tableView reloadData];
                 break;
             }
@@ -161,6 +167,7 @@
                 NSString *account = [wrapper myObjectForKey:(id)kSecAttrAccount];
                 NSDictionary *cashAry = [Utils getCache:account andID:@"CardModel"];
                 _cardModel = [KWCashModel mj_objectWithKeyValues:cashAry];
+                self.todayBuyVc.cardModel = _cardModel;
                 [self.tableView reloadData];
                  break;
             }
@@ -221,7 +228,7 @@
     else if (indexPath.section == 1) {
         if (indexPath.row == 0) {
             cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"stuTimeCell"];
-            cell.textLabel.text = [NSString stringWithFormat:@"校园卡余额"];
+            cell.textLabel.text = [NSString stringWithFormat:@"校园卡余额(卡号:%@)",_cardModel.cardNum];
             cell.detailTextLabel.text = [NSString stringWithFormat:@"%@元",_cardModel.cash];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;//选中无色
         } else {
@@ -245,8 +252,11 @@
         if (indexPath.row == 0) {
             [self tomsgVc];
         }
-    }
-    if (indexPath.section == 2) {
+    } else if (indexPath.section == 1) {
+        if (indexPath.row == 0) {
+            [self toTodayBuyVc];
+        }
+    } else if (indexPath.section == 2) {
         if (indexPath.row == 0) {
             [self logout];
         }
@@ -262,6 +272,8 @@
     [Utils removeCache:account andID:@"CurrentBookModel"];
     [Utils removeCache:account andID:@"stuTimes"];
     [Utils removeCache:account andID:@"stuTime"];
+    [Utils removeCache:account andID:@"TodayBuyModel"];
+    [Utils removeCache:account andID:@"CardModel"];
     
     //删除账号密码
     [wrapper resetKeychainItem];
@@ -274,6 +286,11 @@
 //点击跳转到设置页面
 - (void)tomsgVc {
     [self.navigationController pushViewController:self.msgVc animated:YES];
+}
+
+//点击跳转到今日交易界面
+- (void)toTodayBuyVc {
+    [self.navigationController pushViewController:self.todayBuyVc animated:YES];
 }
 
 @end
