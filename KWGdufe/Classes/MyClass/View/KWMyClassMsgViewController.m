@@ -20,15 +20,10 @@
     self.navigationItem.title = _model.name;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 #pragma mark - Table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 4;
+    return 6;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -38,13 +33,23 @@
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"classMsgCell"];
     }
     if (indexPath.row == 0) {
-        cell.textLabel.text = _model.name;
+        cell.textLabel.text = @"课程名";
+        cell.detailTextLabel.text = _model.name;
     } else if (indexPath.row == 1) {
-        cell.textLabel.text = _model.teacher;
+        cell.textLabel.text = @"教师";
+        cell.detailTextLabel.text = _model.teacher;
     } else if (indexPath.row == 2) {
-        cell.textLabel.text = _model.location;
+        cell.textLabel.text = @"教室";
+        cell.detailTextLabel.text = _model.location;
     } else if (indexPath.row == 3) {
-        cell.textLabel.text = _model.period;
+        cell.textLabel.text = @"当前周";
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"第%ld周", (long)_model.dayInWeek];
+    } else if (indexPath.row == 4) {
+        cell.textLabel.text = @"节数";
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld-%ld节", (long)_model.startSec,(long)_model.endSec];
+    } else if (indexPath.row == 5) {
+        cell.textLabel.text = @"周数";
+        cell.detailTextLabel.text = _model.period;
     }
     return cell;
 }

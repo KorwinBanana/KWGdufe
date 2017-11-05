@@ -28,7 +28,7 @@
     CGFloat addWidthWeek;
     CGFloat addHeight;
     NSArray *colors;
-    NSInteger schoolWeek;
+    NSString *schoolWeek;
     UIImageView *bgView;
 }
 
@@ -68,13 +68,13 @@
     [self loadAllData];//加载所以数据
     
     //获取课程展示的宽度
-    addWidth= ([UIScreen mainScreen].bounds.size.width-30)/7.0 - 1;
+    addWidth= (KWSCreenW-30)/7.0 - 1;
     
     //获取星期的宽度
-    addWidthWeek= ([UIScreen mainScreen].bounds.size.width-30)/7.0;
+    addWidthWeek= (KWSCreenW-30)/7.0;
     
     //获取高度
-    addHeight = (CGRectGetHeight([UIScreen mainScreen].bounds)-rectStatus.size.height-rectNav.size.height-30)/9.7;
+    addHeight = (KWSCreenH-rectStatus.size.height-rectNav.size.height-30)/9.7;
     
     //设置星期一到星期日和第几周
     [self setWeekAndDays];
@@ -82,7 +82,7 @@
     //自定义流水布局——用于展示课表位置和大小
     self.course = [[KWCollectionViewLayout alloc] init];;
     self.course.width = addWidth;
-    _course.height = (CGRectGetHeight([UIScreen mainScreen].bounds)-rectStatus.size.height-rectNav.size.height-30)/9.7;
+    _course.height = (KWSCreenH-rectStatus.size.height-rectNav.size.height-30)/9.7;
     
     //缓存获取界面数据
     NSString *account = [wrapper myObjectForKey:(id)kSecAttrAccount];
@@ -92,7 +92,7 @@
         self.course.array = [[NSArray alloc]initWithArray:_scheduleModel];
         [SVProgressHUD dismiss];
     } else {
-        [self loadData:self.stuTime];
+        [self loadData:self.stuTime week:schoolWeek];
     }
     
     //创建collectionVIew
@@ -107,14 +107,13 @@
 //}
 
 #pragma mark - 设置导航条
--(void)setupNavBar
-{
+- (void)setupNavBar {
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithImage:[UIImage imageNamed:@"friendsRecommentIcon"] hightImage:[UIImage imageNamed:@"friendsRecommentIcon-click"] target:self action:@selector(selectYear)];
+    self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithImage:[UIImage imageNamed:@"friendsRecommentIcon"] hightImage:[UIImage imageNamed:@"friendsRecommentIcon-click"] target:self action:@selector(selectWeek)];
     self.navigationItem.title = @"课程表";
 }
 
--(void)selectYear
-{
+- (void)selectYear {
     NSString *account = [wrapper myObjectForKey:(id)kSecAttrAccount];
     NSMutableArray *stuTimes = [Utils getCache:account andID:@"stuTimes"];
 //    NSLog(@"stuTimes = %@",stuTimes);
@@ -124,7 +123,29 @@
                                        doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
                                            self.stuTime = selectedValue;
                                            [SVProgressHUD showWithStatus:@"更新课表"];
-                                           [self loadData:self.stuTime];
+                                           [self loadData:self.stuTime week:schoolWeek];
+                                       }
+                                     cancelBlock:^(ActionSheetStringPicker *picker) {
+                                         NSLog(@"Block Picker Canceled");
+                                     }
+                                          origin:self.view];
+}
+
+- (void)selectWeek {
+    NSArray *stuWeek = @[@"当前周", @"第1周", @"第2周", @"第3周", @"第4周", @"第5周", @"第6周", @"第7周", @"第8周", @"第9周", @"第10周", @"第11周", @"第12周", @"第13周", @"第14周", @"第15周", @"第16周", @"第17周", @"第18周"];
+    [ActionSheetStringPicker showPickerWithTitle:@"周"
+                                            rows:stuWeek
+                                initialSelection:0
+                                       doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+                                           if (selectedIndex == 0) {
+                                               [self getSchoolWeek];
+                                               [SVProgressHUD showWithStatus:@"更新课表"];
+                                               [self loadData:self.stuTime week:schoolWeek];
+                                           } else {
+                                               schoolWeek = [NSString stringWithFormat:@"%ld", (long)selectedIndex];
+                                               [SVProgressHUD showWithStatus:@"更新课表"];
+                                               [self loadData:self.stuTime week:schoolWeek];
+                                           }
                                        }
                                      cancelBlock:^(ActionSheetStringPicker *picker) {
                                          NSLog(@"Block Picker Canceled");
@@ -138,7 +159,7 @@
     CGRect rectStatus = [[UIApplication sharedApplication] statusBarFrame];
     CGRect rectNav = self.navigationController.navigationBar.frame;
     //创建collectionView视图，应用自定义的collectionViewLayout：_course
-    collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, rectStatus.size.height+rectNav.size.height+30, CGRectGetWidth([UIScreen mainScreen].bounds),CGRectGetHeight([UIScreen mainScreen].bounds)) collectionViewLayout:_course];
+    collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, rectStatus.size.height+rectNav.size.height+30, KWSCreenW,KWSCreenH) collectionViewLayout:_course];
 //    bgHeight = CGRectGetHeight([UIScreen mainScreen].bounds)/12;//设置背景格子的高度
     collectionView.dataSource = self;
     collectionView.delegate = self;
@@ -220,7 +241,7 @@
     CGRect rectNav = self.navigationController.navigationBar.frame;
     flag = [[KWWeekDay alloc] initWithFrame:CGRectMake(0, rectStatus.size.height+rectNav.size.height, 37, height)];
     flag.alpha=0.8;
-    [flag setDay:[NSString stringWithFormat:@"%ld周",(long)schoolWeek]];
+    [flag setDay:[NSString stringWithFormat:@"%@周",schoolWeek]];
     [self.view addSubview:flag];
     
     for(int i=1;i<=7;i++)
@@ -234,30 +255,11 @@
     }
 }
 
-//-(NSArray *)randomArray
-//{
-//    //随机数从这里边产生
-//    NSMutableArray *startArray = [[NSMutableArray alloc] initWithObjects:@0,@1,@2,@3,@4,@5,@6,@7, nil];
-//
-//    //随机数产生结果
-//    NSMutableArray *resultArray = [[NSMutableArray alloc] initWithCapacity:0];
-//    //随机数个数
-//    NSInteger m=8;
-//    for (int i=0; i<m; i++) {
-//        int t=arc4random()%startArray.count;
-//        resultArray[i]=startArray[t];
-//        startArray[t]=[startArray lastObject]; //为更好的乱序，故交换下位置
-//        [startArray removeLastObject];
-//    }
-//    return resultArray;
-//}
-
 #pragma mark - 加载数据
-- (void)loadData:(NSString *)selectStuTime
+- (void)loadData:(NSString *)selectStuTime week:(NSString *)selectWeek
 {
     //创建请求会话管理者
     AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
-    NSString *week = [NSString stringWithFormat:@"%ld",schoolWeek];
     
     //获取登陆的账号密码
     NSString *sno = [wrapper myObjectForKey:(id)kSecAttrAccount];
@@ -268,7 +270,7 @@
     parements[@"sno"] = sno;
     parements[@"pwd"] = pwd;
     parements[@"stu_time"] = selectStuTime;
-    parements[@"week"] = week;
+    parements[@"week"] = selectWeek;
     
     [self getSchoolWeek];
     
@@ -347,7 +349,7 @@
     NSDate * date1 = [df dateFromString:dateBeginTime];
     NSDate * date2 = [df dateFromString:dateNowTime];
     NSTimeInterval time = [date2 timeIntervalSinceDate:date1]; //date1是前一个时间(早)，date2是后一个时间(晚)
-    schoolWeek = (NSInteger)time/604800;
+    schoolWeek = [NSString stringWithFormat:@"%ld",(NSInteger)time/604800];
 }
 
 #pragma mark - UICollectionViewDataSource
