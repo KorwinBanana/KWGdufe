@@ -33,6 +33,9 @@
     int i = 0;
     CGFloat btnW = self.KW_width / count;
     CGFloat btnH = self.KW_height;
+    if (btnH == 83.00) {
+        btnH = btnH - 17;
+    }
     CGFloat x = 0;
     //跳转tabBar按钮位置
     //遍历子控件 调整布局

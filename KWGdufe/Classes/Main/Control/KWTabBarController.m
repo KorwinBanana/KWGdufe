@@ -71,11 +71,6 @@
     
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 - (void)setupAllChildViewController
 {
     KWMyClassViewController *mcVc = [[KWMyClassViewController alloc]init];

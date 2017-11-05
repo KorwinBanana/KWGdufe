@@ -74,7 +74,9 @@
     addWidthWeek= (KWSCreenW-30)/7.0;
     
     //获取高度
-    addHeight = (KWSCreenH-rectStatus.size.height-rectNav.size.height-30)/9.7;
+    addHeight = (KWSCreenH-rectStatus.size.height - rectNav.size.height - 30)/9.7;
+    NSLog(@"KWSCreenH = %f",KWSCreenH);
+    NSLog(@"addHeight = %f",addHeight);
     
     //设置星期一到星期日和第几周
     [self setWeekAndDays];
@@ -82,7 +84,7 @@
     //自定义流水布局——用于展示课表位置和大小
     self.course = [[KWCollectionViewLayout alloc] init];;
     self.course.width = addWidth;
-    _course.height = (KWSCreenH-rectStatus.size.height-rectNav.size.height-30)/9.7;
+    _course.height = (KWSCreenH - rectStatus.size.height - rectNav.size.height - 30)/9.7;
     
     //缓存获取界面数据
     NSString *account = [wrapper myObjectForKey:(id)kSecAttrAccount];
@@ -159,16 +161,25 @@
     CGRect rectStatus = [[UIApplication sharedApplication] statusBarFrame];
     CGRect rectNav = self.navigationController.navigationBar.frame;
     //创建collectionView视图，应用自定义的collectionViewLayout：_course
-    collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, rectStatus.size.height+rectNav.size.height+30, KWSCreenW,KWSCreenH) collectionViewLayout:_course];
+    
+    //适配iPhone X
+    CGFloat myHeight;
+    if (KWSCreenH == 812.0000) {
+        myHeight = KWSCreenH - 22;
+    } else {
+        myHeight = KWSCreenH;
+    }
+    collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, rectStatus.size.height+rectNav.size.height+30, KWSCreenW,myHeight) collectionViewLayout:_course];
 //    bgHeight = CGRectGetHeight([UIScreen mainScreen].bounds)/12;//设置背景格子的高度
     collectionView.dataSource = self;
     collectionView.delegate = self;
     collectionView.backgroundColor = [UIColor clearColor];
     collectionView.bounces = NO;//取消弹回
     collectionView.showsVerticalScrollIndicator = NO;//隐藏滚动条
+//    collectionView.backgroundColor = [UIColor blueColor];
     
     //设置格子背景
-    UIImageView *bg = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, CGRectGetWidth([UIScreen mainScreen].bounds),12*addHeight)];
+    UIImageView *bg = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, KWSCreenW,12*addHeight)];
     bgView = bg;
     bgView.backgroundColor = [UIColor clearColor];
     bgView.alpha = 0.5;
