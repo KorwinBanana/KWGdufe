@@ -5,7 +5,7 @@
 *项目进度：*
 （任务：继续增加新功能和优化已完成的功能）
 2017.11.4：**1.增加自动计算当前学期和计算大一到大四的八个学期的方法 2.已经增加选择各个学期课程表功能**
-2017.11.5: **1.增加，选择查看课程表，当前周或其他周所对应的课程 2.以简单适配iPhone X 3.增加校园卡余额显示**
+2017.11.5: **1.增加，选择查看课程表，当前周或其他周所对应的课程 2.以简单适配iPhone X 3.增加校园卡余额显示 4.增加校园卡余额查询的缓存逻辑：有网络连接的时候，网络请求并更新本地数据；无网络连接的时候，直接使用本地数据**
 
 做了简单的本地缓存处理，应用NSUserDefaults存储请求的课表数据等数据。
 
@@ -25,7 +25,7 @@
 
 ![image](https://github.com/KorwinBanana/KWGdufe/blob/master/READMEImage/%E8%AF%BE%E7%A8%8B%E8%A1%A8%E9%A1%B5%E9%9D%A2%EF%BC%88%E5%BE%85%E5%AE%8C%E5%96%84%E5%85%B6%E4%BB%96%E5%8A%9F%E8%83%BD%EF%BC%89.png)
 
-**选择各学期的课程表**（点击导航栏rightBarButtonItem按钮，选择学期）
+**选择各学期的课程表**（点击导航栏右按钮，选择学期；点击左按钮，选择周期）
 
 ![image](https://github.com/KorwinBanana/KWGdufe/blob/master/READMEImage/%E9%80%89%E6%8B%A9%E5%90%84%E4%B8%AA%E5%AD%A6%E6%9C%9F%E8%AF%BE%E7%A8%8B%E8%A1%A8.png)
 
@@ -45,9 +45,13 @@
 历史借阅信息（基本完成，需要再优化）
 ![image](https://github.com/KorwinBanana/KWGdufe/blob/master/READMEImage/%E5%8E%86%E5%8F%B2%E5%80%9F%E9%98%85.png)
 
-* 我 界面（完成加载个人信息数据并展示，以及跳转至信息页面，**增加选择学期选项**）
+* 我 界面（完成加载个人信息数据并展示，以及跳转至信息页面，**增加校园卡余额展示**）
 
 ![image](https://github.com/KorwinBanana/KWGdufe/blob/master/READMEImage/%E4%B8%AA%E4%BA%BA%E7%95%8C%E9%9D%A2.png)
+
+**今日交易界面**
+
+![image](https://github.com/KorwinBanana/KWGdufe/blob/master/READMEImage/%E4%BB%8A%E6%97%A5%E4%BA%A4%E6%98%93.png)
 
 * 个人信息界面
 
