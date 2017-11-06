@@ -15,6 +15,7 @@
 #import "Utils.h"
 #import "KeychainWrapper.h"
 #import "KWCurrentCell.h"
+#import <MJRefresh/MJRefresh.h>
 //#import "KWSztzCell.h"
 
 @interface KWCurrentBookView ()
@@ -29,6 +30,8 @@
     [super viewDidLoad];
     
     self.navigationItem.title = _vcName;
+    
+//    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
     
     NSString *account = [wrapper myObjectForKey:(id)kSecAttrAccount];
     NSArray *currentDict = [Utils getCache:account andID:_modelSaveName];
@@ -70,6 +73,7 @@
         _currentModel = currentArray;
         
         [self.tableView reloadData];
+//        [self.tableView.mj_header beginRefreshing];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
     }];
 }
