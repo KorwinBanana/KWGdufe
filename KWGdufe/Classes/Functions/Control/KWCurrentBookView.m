@@ -31,7 +31,32 @@
     
     self.navigationItem.title = _vcName;
     
-//    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
+    __unsafe_unretained UITableView *tableView = self.tableView;
+    
+    //状态栏高度
+    CGRect rectStatus = [[UIApplication sharedApplication] statusBarFrame];
+    CGRect rectNav = self.navigationController.navigationBar.frame;
+    
+    //设置头部
+    if (@available(iOS 11.0, *)) {
+        self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    } else {
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }
+    self.tableView.contentInset = UIEdgeInsetsMake(rectStatus.size.height + rectNav.size.height, 0, 0, 0);
+    self.tableView.scrollIndicatorInsets = self.tableView.contentInset;
+    
+    // 下拉刷新
+    tableView.mj_header= [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            // 结束刷新
+            [self loadData];
+            [tableView.mj_header endRefreshing];
+        });
+    }];
+    
+    // 设置自动切换透明度(在导航栏下面自动隐藏)
+    tableView.mj_header.automaticallyChangeAlpha = YES;
     
     NSString *account = [wrapper myObjectForKey:(id)kSecAttrAccount];
     NSArray *currentDict = [Utils getCache:account andID:_modelSaveName];
@@ -73,20 +98,19 @@
         _currentModel = currentArray;
         
         [self.tableView reloadData];
+        NSLog(@"刷新成功");
 //        [self.tableView.mj_header beginRefreshing];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
     }];
 }
 
 #pragma mark - Table view data source
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return _currentModel.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     KWCurrentCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
-    
     if (!cell) {
         cell = [[KWCurrentCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
     }

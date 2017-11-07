@@ -30,6 +30,32 @@
     [super viewDidLoad];
     self.navigationItem.title = @"今日交易";
     [SVProgressHUD showWithStatus:@"刷新今日交易"];
+    
+    __unsafe_unretained UITableView *tableView = self.tableView;
+    
+    //状态栏高度
+    CGRect rectStatus = [[UIApplication sharedApplication] statusBarFrame];
+    CGRect rectNav = self.navigationController.navigationBar.frame;
+    
+    //设置头部
+    if (@available(iOS 11.0, *)) {
+        self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    } else {
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }
+    self.tableView.contentInset = UIEdgeInsetsMake(rectStatus.size.height + rectNav.size.height, 0, 0, 0);
+    self.tableView.scrollIndicatorInsets = self.tableView.contentInset;
+    
+    // 下拉刷新
+    tableView.mj_header= [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        // 结束刷新
+        [self loadTodayData];
+        [tableView.mj_header endRefreshing];
+    }];
+    
+    // 设置自动切换透明度(在导航栏下面自动隐藏)
+    tableView.mj_header.automaticallyChangeAlpha = YES;
+    
     [self updateTodayData];
 }
 
@@ -54,12 +80,14 @@
         NSDictionary *todayDict = responseObject[@"data"];
         
         //更新本地Cash
-        [Utils saveCache:sno andID:@"TodayBuyModel" andValue:todayDict];
+        [Utils updateCache:sno andID:@"TodayBuyModel" andValue:todayDict];
         NSLog(@"更新成功");
         
         //字典数组转模型
         _todayBuyModel = [KWTodayBuyModel mj_objectArrayWithKeyValuesArray:todayDict];
+        
         [SVProgressHUD dismiss];
+        
         if(_todayBuyModel.count == 0) {
             //添加警告框
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleAlert];
@@ -68,6 +96,7 @@
             alert.message = @"喵~没有交易记录哦~";
             [self presentViewController:alert animated:YES completion:nil];
         }
+        
         [self.tableView reloadData];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
@@ -119,7 +148,6 @@
 }
 
 #pragma mark - Table view data source
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return _todayBuyModel.count;
 }

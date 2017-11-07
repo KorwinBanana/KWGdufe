@@ -162,19 +162,21 @@
             make.left.equalTo(view7.mas_left).with.offset(10);
             make.centerY.mas_equalTo(view7.mas_centerY);
         }];
+        
     }
     return self;
 }
 
 - (void)setModel:(KWCurrentModel *)model {
     _model = model;
-    _name.text = _model.name;
-    _author.text = _model.author;
-    _borrowedTime.text = [NSString stringWithFormat:@"借阅时间:%@",_model.borrowedTime];
-    _returnTime.text = [NSString stringWithFormat:@"归还时间:%@",_model.returnTime];
-    _renewTimes.text = [NSString stringWithFormat:@"已续借次数:%ld",(long)_model.renewTimes];
-    _barId.text = [NSString stringWithFormat:@"条码号:%@",_model.barId];
-    _location.text = [NSString stringWithFormat:@"馆藏地:%@",_model.location];
+    _name.text = model.name;
+    _author.text = model.author;
+    _borrowedTime.text = [NSString stringWithFormat:@"借阅时间:%@",model.borrowedTime];
+    _returnTime.text = [NSString stringWithFormat:@"归还时间:%@",model.returnTime];
+    _renewTimes.text = [NSString stringWithFormat:@"已续借次数:%ld",(long)model.renewTimes];
+    _barId.text = [NSString stringWithFormat:@"条码号:%@",model.barId];
+    _location.text = [NSString stringWithFormat:@"馆藏地:%@",model.location];
+
 }
 
 @end
