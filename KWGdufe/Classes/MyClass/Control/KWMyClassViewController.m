@@ -285,30 +285,34 @@
     
     [self getSchoolWeek];
     
-    //发送请求
-    [mgr POST:@"http://api.wegdufe.com:82/index.php?r=jw/get-schedule" parameters:parements progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-//        NSLog(@"%@",responseObject);
-//        [responseObject writeToFile:@"/Users/k/iOS-KW/project/model.plist" atomically:nil];
-        
-        NSArray *dicAry = responseObject[@"data"];
-        [Utils saveCache:sno andID:@"ClassModel" andValue:dicAry];//保存到本地沙盒
-        
-        //暂时展示plist内容
-//        NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"model" ofType:@"plist"];
-//        NSDictionary *data = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
-//        NSArray *dicAry = data[@"data"];
-
-        //字典数组转模型数组
-        _scheduleModel = [KWScheduleModel mj_objectArrayWithKeyValuesArray:dicAry];
-        self.course.array = _scheduleModel;
-
-        [collectionView reloadData];
-        
-        //取消提示框
-        [SVProgressHUD dismiss];
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
-    }];
+    //异步请求
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        //发送请求
+        [mgr POST:@"http://api.wegdufe.com:82/index.php?r=jw/get-schedule" parameters:parements progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            //        NSLog(@"%@",responseObject);
+            //        [responseObject writeToFile:@"/Users/k/iOS-KW/project/model.plist" atomically:nil];
+            
+            NSArray *dicAry = responseObject[@"data"];
+            [Utils saveCache:sno andID:@"ClassModel" andValue:dicAry];//保存到本地沙盒
+            
+            //暂时展示plist内容
+            //        NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"model" ofType:@"plist"];
+            //        NSDictionary *data = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
+            //        NSArray *dicAry = data[@"data"];
+            
+            //字典数组转模型数组
+            _scheduleModel = [KWScheduleModel mj_objectArrayWithKeyValuesArray:dicAry];
+            self.course.array = _scheduleModel;
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [collectionView reloadData];
+                //取消提示框
+                [SVProgressHUD dismiss];
+            });
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            
+        }];
+    });
 }
 
 - (void)loadAllData {
