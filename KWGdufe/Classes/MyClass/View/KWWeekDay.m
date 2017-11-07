@@ -33,7 +33,7 @@
     day.textColor = [UIColor blackColor];//日期字体
     day.font = [UIFont systemFontOfSize:13];
     day.textAlignment = NSTextAlignmentCenter;
-    self.layer.borderWidth = 1;
+    self.layer.borderWidth = 0.25;
     self.layer.borderColor = [Utils colorWithHexString:@"#696969"].CGColor;
     self.clipsToBounds = true;
     [self addSubview:day];

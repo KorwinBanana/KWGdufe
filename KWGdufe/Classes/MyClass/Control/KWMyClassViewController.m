@@ -68,13 +68,13 @@
     [self loadAllData];//加载所以数据
     
     //获取课程展示的宽度
-    addWidth= (KWSCreenW-30)/7.0 - 1;
+    addWidth= (KWSCreenW-20-8)/7.0;
     
     //获取星期的宽度
-    addWidthWeek= (KWSCreenW-30)/7.0;
+    addWidthWeek= (KWSCreenW-20)/7.0;
     
     //获取高度
-    addHeight = (KWSCreenH-rectStatus.size.height - rectNav.size.height - 30)/9.7;
+    addHeight = (KWSCreenH-rectStatus.size.height - rectNav.size.height - 20)/10;
     
     //设置星期一到星期日和第几周
     [self setWeekAndDays];
@@ -82,7 +82,7 @@
     //自定义流水布局——用于展示课表位置和大小
     self.course = [[KWCollectionViewLayout alloc] init];;
     self.course.width = addWidth;
-    _course.height = (KWSCreenH - rectStatus.size.height - rectNav.size.height - 30)/9.7;
+    _course.height = (KWSCreenH - rectStatus.size.height - rectNav.size.height - 20)/10;
     
     //缓存获取界面数据
     NSString *account = [wrapper myObjectForKey:(id)kSecAttrAccount];
@@ -206,14 +206,14 @@
     
     UIView *bgImageView = [[UIView alloc]initWithFrame:bgView.bounds];
     for (int j = 0; j<12; j++) {
-        x = 37;
+        x = 26.5;
         for(int i=1;i<=7;i++)
         {
             x--;
             @autoreleasepool {
                 flag = [[KWWeekDay alloc] initWithFrame:CGRectMake(x, 0+j*addHeight, addWidthWeek, addHeight)];
                 x+=addWidthWeek;
-                flag.alpha=0.2;//格子颜色深浅
+                flag.alpha=0.5;//格子颜色深浅
             }
             [bgImageView addSubview:flag];
         }
@@ -245,10 +245,10 @@
     NSArray *weekStr = @[@"一",@"二",@"三",@"四",@"五",@"六",@"七"];
     KWWeekDay *flag;
     CGFloat height = 30;
-    CGFloat x=37;
+    CGFloat x=27;
     CGRect rectStatus = [[UIApplication sharedApplication] statusBarFrame];
     CGRect rectNav = self.navigationController.navigationBar.frame;
-    flag = [[KWWeekDay alloc] initWithFrame:CGRectMake(0, rectStatus.size.height+rectNav.size.height, 37, height)];
+    flag = [[KWWeekDay alloc] initWithFrame:CGRectMake(0, rectStatus.size.height+rectNav.size.height, 26.5, height)];
     flag.alpha=0.8;
     [flag setDay:[NSString stringWithFormat:@"%@周",schoolWeek]];
     [self.view addSubview:flag];
@@ -257,6 +257,7 @@
     {
         x--;
         flag = [[KWWeekDay alloc] initWithFrame:CGRectMake(x, rectStatus.size.height+rectNav.size.height, addWidthWeek, height)];
+//        NSLog(@"%f",addWidthWeek);
         x+=addWidthWeek;
         flag.alpha=0.8;
         [flag setDay:weekStr[i-1]];
@@ -387,7 +388,7 @@
         Tag.num.text = NULL;
         return Tag;
     }else {
-        Tag.self.layer.borderWidth = 0.5;
+        Tag.self.layer.borderWidth = 0.25;
         Tag.num.text = [NSString stringWithFormat:@"%ld",indexPath.row+1];
         Tag.num.textColor = [UIColor blackColor];//节数颜色
         return Tag;
@@ -395,7 +396,6 @@
 }
 
 #pragma mark - UICollectionViewDelegate
-
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     KWMyClassMsgViewController *msgVc = [[KWMyClassMsgViewController alloc] init];
     KWScheduleModel *classModel = _scheduleModel[indexPath.row - 12];

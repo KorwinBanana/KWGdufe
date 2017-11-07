@@ -103,7 +103,7 @@ struct Tag{
 
 - (UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath{
     UICollectionViewLayoutAttributes *attr = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
-    attr.frame = CGRectMake(36.5 + _width*(tag.weekDay-1),_height*(tag.start-1), _width, _height*(tag.end-tag.start+1));
+    attr.frame = CGRectMake(26.5 + _width*(tag.weekDay-1),_height*(tag.start-1), _width, _height*(tag.end-tag.start+1));
 //    NSLog(@"layoutAttributesForItemAtIndexPath = %@",NSStringFromCGRect(attributes.frame));
 //    NSLog(@"aaaaaa = %ld",aaaaaa++);
     return attr;
@@ -112,7 +112,7 @@ struct Tag{
 
 - (UICollectionViewLayoutAttributes*)layoutAttributesForSupplementaryViewOfKind:(NSString *)elementKind atIndexPath:(NSIndexPath *)indexPath{
     UICollectionViewLayoutAttributes *attr = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:elementKind withIndexPath:indexPath];
-    attr.frame = CGRectMake(0, _height * indexPath.row, 36.5, _height);
+    attr.frame = CGRectMake(0, _height * indexPath.row, 26.5, _height);
 //    NSLog(@"layoutAttributesForSupplementaryViewOfKind = %@",NSStringFromCGRect(attributes.frame));
 //    NSLog(@"abc = %ld",abc++);
     return attr;
