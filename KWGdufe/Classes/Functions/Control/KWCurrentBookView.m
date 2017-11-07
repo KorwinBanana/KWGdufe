@@ -64,7 +64,7 @@
         NSArray *currentModel = [KWCurrentModel mj_objectArrayWithKeyValuesArray:currentDict];
         _currentModel = currentModel;
     } else {
-        [self loadData];
+        [tableView.mj_header beginRefreshing];
     }
 }
 

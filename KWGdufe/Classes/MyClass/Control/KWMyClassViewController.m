@@ -68,7 +68,7 @@
     [self loadAllData];//加载所以数据
     
     //获取课程展示的宽度
-    addWidth= (KWSCreenW-20-8)/7.0;
+    addWidth= (KWSCreenW-20-7)/7.0;
     
     //获取星期的宽度
     addWidthWeek= (KWSCreenW-20)/7.0;
@@ -123,6 +123,7 @@
                                        doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
                                            self.stuTime = selectedValue;
                                            [SVProgressHUD showWithStatus:@"更新课表"];
+                                           [Utils updateCache:[wrapper myObjectForKey:(id)kSecAttrAccount] andID:@"stuTime" andValue:selectedValue];
                                            [self loadData:self.stuTime week:schoolWeek];
                                        }
                                      cancelBlock:^(ActionSheetStringPicker *picker) {
@@ -206,7 +207,7 @@
     
     UIView *bgImageView = [[UIView alloc]initWithFrame:bgView.bounds];
     for (int j = 0; j<12; j++) {
-        x = 26.5;
+        x = 27;
         for(int i=1;i<=7;i++)
         {
             x--;
