@@ -82,8 +82,8 @@
     UIView *customView = [[UIView alloc] initWithFrame:CGRectMake(15, 0, 320, KWSCreenW/15)];
     UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     headerLabel.backgroundColor = [UIColor clearColor];
-//    headerLabel.font = [UIFont italicSystemFontOfSize:16];
-    [headerLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:14]];
+    headerLabel.font = [UIFont italicSystemFontOfSize:14];
+//    [headerLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:14]];
     headerLabel.frame = customView.frame;
     if (section == 0) {
         headerLabel.text = @"教务";

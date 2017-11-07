@@ -92,6 +92,7 @@
     }
     KWCurrentModel *model = _currentModel[indexPath.row];
     cell.model = model;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 

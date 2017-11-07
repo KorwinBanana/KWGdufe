@@ -53,6 +53,11 @@
     
     [SVProgressHUD showWithStatus:@"加载数据中"];
     
+    NSString *account = [wrapper myObjectForKey:(id)kSecAttrAccount];
+    NSDictionary *cashAry = [Utils getCache:account andID:@"CardModel"];
+    _cardModel = [KWCashModel mj_objectWithKeyValues:cashAry];
+    self.todayBuyVc.cardModel = _cardModel;
+    
     [self getDataFromCache];//加载数据
     
     [self updateCashData];//加载校园卡余额
