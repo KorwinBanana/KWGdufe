@@ -6,21 +6,22 @@
 //  Copyright © 2017年 korwin. All rights reserved.
 //
 
+#import "Utils.h"
 #import "KWMyClassViewController.h"
 #import "KWMyClassCollectionCell.h"
 #import "KWCollectionViewLayout.h"
 #import "KWReusableView.h"
 #import "KWReusableView.h"
 #import "KWWeekDay.h"
-#import "Utils.h"
+#import "NSData+KWAES.h"
+#import "KWMyClassMsgViewController.h"
+#import "KWMineViewController.h"
+#import "KeychainWrapper.h"
 #import <AFNetworking/AFNetworking.h>
 #import <MJExtension/MJExtension.h>
 #import <SVProgressHUD/SVProgressHUD.h>
-#import "NSData+KWAES.h"
-#import "KeychainWrapper.h"
-#import "KWMyClassMsgViewController.h"
-#import "KWMineViewController.h"
 #import <ActionSheetPicker-3.0/ActionSheetStringPicker.h>
+
 
 @interface KWMyClassViewController ()<UICollectionViewDataSource,UICollectionViewDelegate> {
     UICollectionView *collectionView;
@@ -384,7 +385,7 @@
 
 
 - (UICollectionReusableView*)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
-    [collectionView sendSubviewToBack:bgView];//把格子背景放在最底层
+    [collectionView sendSubviewToBack:bgView];
     KWReusableView *Tag = [collectionView dequeueReusableSupplementaryViewOfKind:@"number" withReuseIdentifier:@"num" forIndexPath:indexPath];
 //    NSLog(@"%@",NSStringFromCGRect(Tag.frame));
     //防止循环利用cell多增加了一行cell
