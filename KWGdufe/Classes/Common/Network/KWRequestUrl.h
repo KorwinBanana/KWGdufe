@@ -9,7 +9,10 @@
 #ifndef KWRequestUrl_h
 #define KWRequestUrl_h
 
+//登录服务
 #define LoginAPI @"http://api.wegdufe.com:82/index.php?r=jw/get-basic"
+
+//校园各功能服务
 #define GetScheduleAPI @"http://api.wegdufe.com:82/index.php?r=jw/get-schedule"
 #define GetGradeAPI @"http://api.wegdufe.com:82/index.php?r=jw/get-grade"
 #define GetSztzAPI @"http://api.wegdufe.com:82/index.php?r=info/few-sztz"

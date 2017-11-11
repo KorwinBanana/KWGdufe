@@ -23,6 +23,7 @@
 		0A4483F91FA9F3F500100DF8 /* KWCurrentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A4483F81FA9F3F500100DF8 /* KWCurrentModel.m */; };
 		0A4483FC1FA9F76E00100DF8 /* KWCurrentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A4483FB1FA9F76E00100DF8 /* KWCurrentCell.m */; };
 		0A5118B61FB7073400D45995 /* KWAFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5118B51FB7073400D45995 /* KWAFNetworking.m */; };
+		0A5118BD1FB7204700D45995 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5118BB1FB7204600D45995 /* ViewController.m */; };
 		0A5A5A0E1FA20164001B09FD /* KWEducationalViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5A5A0D1FA20164001B09FD /* KWEducationalViewCell.m */; };
 		0A5A5A121FA20542001B09FD /* KWFunctionsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5A5A101FA20542001B09FD /* KWFunctionsCell.m */; };
 		0A5A5A131FA20542001B09FD /* KWFunctionsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A5A5A111FA20542001B09FD /* KWFunctionsCell.xib */; };
@@ -44,7 +45,6 @@
 		0A9F5B251F7D813C006FD696 /* KWMyClassCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A9F5B231F7D813C006FD696 /* KWMyClassCollectionCell.xib */; };
 		0AA443861F8E6DF800E48ADE /* KWStuModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AA443851F8E6DF800E48ADE /* KWStuModel.m */; };
 		0AA60B1B1F7C006800E0E87D /* KWTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AA60B1A1F7C006800E0E87D /* KWTabBarController.m */; };
-		0AA60B1C1F7C027400E0E87D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8815331F7BDC5700AAB5BF /* ViewController.m */; };
 		0AA60B1D1F7C029100E0E87D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8815271F7BDC5700AAB5BF /* AppDelegate.m */; };
 		0AA60B1E1F7C029100E0E87D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8815311F7BDC5700AAB5BF /* main.m */; };
 		0AA60B2E1F7C050E00E0E87D /* KWMyClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AA60B2D1F7C050E00E0E87D /* KWMyClassViewController.m */; };
@@ -124,6 +124,8 @@
 		0A5118B41FB7073400D45995 /* KWAFNetworking.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWAFNetworking.h; sourceTree = "<group>"; };
 		0A5118B51FB7073400D45995 /* KWAFNetworking.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWAFNetworking.m; sourceTree = "<group>"; };
 		0A5118BA1FB70AEF00D45995 /* KWRequestUrl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWRequestUrl.h; sourceTree = "<group>"; };
+		0A5118BB1FB7204600D45995 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		0A5118BC1FB7204700D45995 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		0A5A5A0C1FA20164001B09FD /* KWEducationalViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWEducationalViewCell.h; sourceTree = "<group>"; };
 		0A5A5A0D1FA20164001B09FD /* KWEducationalViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWEducationalViewCell.m; sourceTree = "<group>"; };
 		0A5A5A0F1FA20542001B09FD /* KWFunctionsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWFunctionsCell.h; sourceTree = "<group>"; };
@@ -161,8 +163,6 @@
 		0A88152B1F7BDC5700AAB5BF /* UIButton+KWButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+KWButton.h"; sourceTree = "<group>"; };
 		0A88152C1F7BDC5700AAB5BF /* UIButton+KWButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+KWButton.m"; sourceTree = "<group>"; };
 		0A8815311F7BDC5700AAB5BF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		0A8815321F7BDC5700AAB5BF /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		0A8815331F7BDC5700AAB5BF /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		0A9F5B211F7D813C006FD696 /* KWMyClassCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWMyClassCollectionCell.h; sourceTree = "<group>"; };
 		0A9F5B221F7D813C006FD696 /* KWMyClassCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWMyClassCollectionCell.m; sourceTree = "<group>"; };
 		0A9F5B231F7D813C006FD696 /* KWMyClassCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KWMyClassCollectionCell.xib; sourceTree = "<group>"; };
@@ -248,14 +248,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0A5118B31FB7070B00D45995 /* KWNetwork */ = {
+		0A5118B31FB7070B00D45995 /* Network */ = {
 			isa = PBXGroup;
 			children = (
 				0A5118B41FB7073400D45995 /* KWAFNetworking.h */,
 				0A5118B51FB7073400D45995 /* KWAFNetworking.m */,
 				0A5118BA1FB70AEF00D45995 /* KWRequestUrl.h */,
 			);
-			path = KWNetwork;
+			path = Network;
+			sourceTree = "<group>";
+		};
+		0A5118BE1FB7209200D45995 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				0A09E86A1F7E91E600BAF64F /* KWGdufe.pch */,
+			);
+			path = Config;
 			sourceTree = "<group>";
 		};
 		0A6750B81F7BD79F00E46900 = {
@@ -290,8 +298,8 @@
 				0A8815261F7BDC5700AAB5BF /* AppDelegate.h */,
 				0A8815271F7BDC5700AAB5BF /* AppDelegate.m */,
 				0A8815311F7BDC5700AAB5BF /* main.m */,
-				0A8815321F7BDC5700AAB5BF /* ViewController.h */,
-				0A8815331F7BDC5700AAB5BF /* ViewController.m */,
+				0A5118BC1FB7204700D45995 /* ViewController.h */,
+				0A5118BB1FB7204600D45995 /* ViewController.m */,
 				0A6750CF1F7BD7A000E46900 /* LaunchScreen.storyboard */,
 				0A6750D21F7BD7A000E46900 /* Info.plist */,
 			);
@@ -452,7 +460,6 @@
 		0A8815281F7BDC5700AAB5BF /* Category */ = {
 			isa = PBXGroup;
 			children = (
-				0A09E86A1F7E91E600BAF64F /* KWGdufe.pch */,
 				0A8077E31FA309A2009AA299 /* Utils.h */,
 				0A8077E41FA309A2009AA299 /* Utils.m */,
 				0A88152B1F7BDC5700AAB5BF /* UIButton+KWButton.h */,
@@ -472,7 +479,8 @@
 		0A8815341F7BDC5700AAB5BF /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				0A5118B31FB7070B00D45995 /* KWNetwork */,
+				0A5118BE1FB7209200D45995 /* Config */,
+				0A5118B31FB7070B00D45995 /* Network */,
 				0A8815351F7BDC5700AAB5BF /* Control */,
 				0A8815361F7BDC5700AAB5BF /* Model */,
 				0A8815371F7BDC5700AAB5BF /* View */,
@@ -1016,7 +1024,6 @@
 				0A9F5B241F7D813C006FD696 /* KWMyClassCollectionCell.m in Sources */,
 				0A65AF9F1FA4778C003AC3A5 /* KeychainWrapper.m in Sources */,
 				0A5A5A0E1FA20164001B09FD /* KWEducationalViewCell.m in Sources */,
-				0AA60B1C1F7C027400E0E87D /* ViewController.m in Sources */,
 				0A0D9A121FA75024009CB653 /* KWSztzTableView.m in Sources */,
 				0AB186BD1F89527A00A49F93 /* KWCollectionViewLayout.m in Sources */,
 				0AA60B1B1F7C006800E0E87D /* KWTabBarController.m in Sources */,
@@ -1033,6 +1040,7 @@
 				0A3BA3D11FAF27DB00EBB96E /* KWTodayBuyModel.m in Sources */,
 				0ACC56C11F8E0C6F007DA2BD /* UIImage+KWImage.m in Sources */,
 				0AA60B341F7C053B00E0E87D /* KWMineViewController.m in Sources */,
+				0A5118BD1FB7204700D45995 /* ViewController.m in Sources */,
 				0A8077F61FA30AE5009AA299 /* NSString+KWMD5.m in Sources */,
 				0ACC56D21F8E187E007DA2BD /* UIImage+KWExtension.m in Sources */,
 				0AEA5C7E1F8E90CC005C8DF2 /* UIBarButtonItem+KWBarButtonItem.m in Sources */,
@@ -1204,7 +1212,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = E33T36MPH2;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "/Users/k/iOS-KW/project/KWGdufe/KWGdufe/Classes/Other/Category/KWGdufe.pch";
+				GCC_PREFIX_HEADER = "/Users/k/iOS-KW/KWGdufe/KWGdufe/Classes/Common/Config/KWGdufe.pch";
 				INFOPLIST_FILE = KWGdufe/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1248,7 +1256,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = E33T36MPH2;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "/Users/k/iOS-KW/project/KWGdufe/KWGdufe/Classes/Other/Category/KWGdufe.pch";
+				GCC_PREFIX_HEADER = "/Users/k/iOS-KW/KWGdufe/KWGdufe/Classes/Common/Config/KWGdufe.pch";
 				INFOPLIST_FILE = KWGdufe/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
