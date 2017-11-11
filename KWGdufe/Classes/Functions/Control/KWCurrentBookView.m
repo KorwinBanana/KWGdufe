@@ -16,6 +16,8 @@
 #import "KeychainWrapper.h"
 #import "KWCurrentCell.h"
 #import <MJRefresh/MJRefresh.h>
+#import "KWAFNetworking.h"
+#import "KWRequestUrl.h"
 //#import "KWSztzCell.h"
 
 @interface KWCurrentBookView ()
@@ -70,28 +72,17 @@
 
 #pragma mark - 加载数据
 - (void)loadData {
-    //创建请求会话管理者
-    AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
-    
-    //获取登陆的账号密码
-    NSString *sno = [wrapper myObjectForKey:(id)kSecAttrAccount];
-    NSString *pwd = [wrapper myObjectForKey:(id)kSecValueData];
-    
     //拼接数据
     NSMutableDictionary *parements = [NSMutableDictionary dictionary];
-    parements[@"sno"] = sno;
-    parements[@"pwd"] = pwd;
+    parements[@"sno"] = gdufeAccount;
+    parements[@"pwd"] = gdufePassword;
     
-    //发送请求
-    [mgr POST:_url parameters:parements progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-//        NSLog(@"%@",responseObject);
-//        [responseObject writeToFile:@"/Users/k/iOS-KW/project/KWGdufe/currentModel.plist" atomically:nil];
-        
+    [KWAFNetworking postWithUrlString:_url parameters:parements success:^(id data) {
         //获取字典
-        NSDictionary *currentBookDict = responseObject[@"data"];
+        NSDictionary *currentBookDict = data[@"data"];
         
         //缓存到本地
-        [Utils saveCache:sno andID:_modelSaveName andValue:currentBookDict];
+        [Utils saveCache:gdufeAccount andID:_modelSaveName andValue:currentBookDict];
         
         //字典转模型
         NSArray *currentArray = [KWCurrentModel mj_objectArrayWithKeyValuesArray:currentBookDict];
@@ -99,8 +90,8 @@
         
         [self.tableView reloadData];
         NSLog(@"刷新成功");
-//        [self.tableView.mj_header beginRefreshing];
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    } failure:^(NSError *error) {
+        
     }];
 }
 

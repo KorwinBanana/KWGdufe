@@ -16,6 +16,8 @@
 #import "Utils.h"
 #import "KWCashModel.h"
 #import <MJRefresh/MJRefresh.h>
+#import "KWAFNetworking.h"
+#import "KWRequestUrl.h"
 
 
 @interface KWTodayBuyViewController ()
@@ -61,26 +63,18 @@
 
 #pragma mark - 请求json
 - (void)loadTodayData {
-    //创建请求会话管理者
-    AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
-    
-    //获取登陆的账号密码
-    NSString *sno = [wrapper myObjectForKey:(id)kSecAttrAccount];
-    NSString *pwd = [wrapper myObjectForKey:(id)kSecValueData];
-    
     //拼接数据
     NSMutableDictionary *parements = [NSMutableDictionary dictionary];
-    parements[@"sno"] = sno;
-    parements[@"pwd"] = pwd;
+    parements[@"sno"] = gdufeAccount;
+    parements[@"pwd"] = gdufePassword;
     parements[@"cardNum"] = _cardModel.cardNum;
     
-    //发送请求
-    [mgr POST:@"http://api.wegdufe.com:82/index.php?r=card/consume-today" parameters:parements progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [KWAFNetworking postWithUrlString:GetCurrentBookAPI parameters:parements success:^(id data) {
         //获取字典
-        NSDictionary *todayDict = responseObject[@"data"];
+        NSDictionary *todayDict = data[@"data"];
         
         //更新本地Cash
-        [Utils updateCache:sno andID:@"TodayBuyModel" andValue:todayDict];
+        [Utils updateCache:gdufeAccount andID:@"TodayBuyModel" andValue:todayDict];
         NSLog(@"更新成功");
         
         //字典数组转模型
@@ -98,7 +92,7 @@
         }
         
         [self.tableView reloadData];
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    } failure:^(NSError *error) {
         
     }];
 }

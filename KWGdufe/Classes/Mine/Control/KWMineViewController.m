@@ -20,6 +20,8 @@
 #import <ActionSheetPicker-3.0/ActionSheetStringPicker.h>
 #import "KWCashModel.h"
 #import "KWTodayBuyViewController.h"
+#import "KWAFNetworking.h"
+#import "KWRequestUrl.h"
 
 @interface KWMineViewController ()
 
@@ -79,71 +81,54 @@
 
 #pragma mark - 加载数据
 - (void)loadData {
-    //创建请求会话管理者
-    AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
-    
-    //获取登陆的账号密码
-    NSString *sno = [wrapper myObjectForKey:(id)kSecAttrAccount];
-    NSString *pwd = [wrapper myObjectForKey:(id)kSecValueData];
     
     //拼接数据
     NSMutableDictionary *parements = [NSMutableDictionary dictionary];
-    parements[@"sno"] = sno;
-    parements[@"pwd"] = pwd;
-
-    //发送请求
-    [mgr POST:@"http://api.wegdufe.com:82/index.php?r=jw/get-basic" parameters:parements progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-//        NSLog(@"%@",responseObject);
-//        [responseObject writeToFile:@"/Users/k/iOS-KW/project/stuModel.plist" atomically:nil];
-        
+    parements[@"sno"] = gdufeAccount;
+    parements[@"pwd"] = gdufePassword;
+    
+    [KWAFNetworking postWithUrlString:GetBasicAPI parameters:parements success:^(id data) {
         //获取字典
-        NSDictionary *stuDict = responseObject[@"data"];
+        NSDictionary *stuDict = data[@"data"];
         
         //缓存到本地
-        [Utils saveCache:sno andID:@"StuModel" andValue:stuDict];
+        [Utils saveCache:gdufeAccount andID:@"StuModel" andValue:stuDict];
         
         //字典转模型
         _stuModel = [KWStuModel mj_objectWithKeyValues:stuDict];
         self.msgVc.stuModel = _stuModel;
         
         [self.tableView reloadData];
-        [SVProgressHUD dismiss];//
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [SVProgressHUD dismiss];
+    } failure:^(NSError *error) {
+        
     }];
 }
 
 //有网络时，更新本地Cash余额
 - (void)loadCardData {
-    //创建请求会话管理者
-    AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
-    
-    //获取登陆的账号密码
-    NSString *sno = [wrapper myObjectForKey:(id)kSecAttrAccount];
-    NSString *pwd = [wrapper myObjectForKey:(id)kSecValueData];
-    
     //拼接数据
     NSMutableDictionary *parements = [NSMutableDictionary dictionary];
-    parements[@"sno"] = sno;
-    parements[@"pwd"] = pwd;
+    parements[@"sno"] = gdufeAccount;
+    parements[@"pwd"] = gdufePassword;
     
-    //发送请求
-    [mgr POST:@"http://api.wegdufe.com:82/index.php?r=card/current-cash" parameters:parements progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        
+    [KWAFNetworking postWithUrlString:GetCurrentBookAPI parameters:parements success:^(id data) {
         //获取字典
-        NSDictionary *cardDict = responseObject[@"data"];
+        NSDictionary *cardDict = data[@"data"];
         
         //更新本地Cash
-        [Utils updateCache:sno andID:@"CardModel" andValue:cardDict];
-//        NSLog(@"更新成功");
+        [Utils updateCache:gdufeAccount andID:@"CardModel" andValue:cardDict];
+        //        NSLog(@"更新成功");
         
         //字典转模型
         _cardModel = [KWCashModel mj_objectWithKeyValues:cardDict];
-//        self.msgVc.stuModel = _stuModel;
+        //        self.msgVc.stuModel = _stuModel;
         self.todayBuyVc.cardModel = _cardModel;
-//        NSLog(@"cardNum",_cardModel.cardNum);
+        //        NSLog(@"cardNum",_cardModel.cardNum);
         
         [self.tableView reloadData];
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    } failure:^(NSError *error) {
+        
     }];
 }
 

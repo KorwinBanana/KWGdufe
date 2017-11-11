@@ -18,9 +18,11 @@
 #import "KWMineViewController.h"
 #import "KeychainWrapper.h"
 #import <AFNetworking/AFNetworking.h>
+#import "KWAFNetworking.h"
 #import <MJExtension/MJExtension.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import <ActionSheetPicker-3.0/ActionSheetStringPicker.h>
+#import "KWRequestUrl.h"
 
 
 @interface KWMyClassViewController ()<UICollectionViewDataSource,UICollectionViewDelegate> {
@@ -48,8 +50,7 @@
     //设置标题
     [self setupNavBar];
     
-    NSString *sno = [wrapper myObjectForKey:(id)kSecAttrAccount];
-    self.stuTime  = [Utils getCache:sno andID:@"stuTime"];
+    self.stuTime  = [Utils getCache:gdufeAccount andID:@"stuTime"];
     
     colors = @[@"#37C6C0",@"#5A4446",@"#FB7C85",@"#373E40",@"#8BACA1",@"#39A9CF",@"#DEBE9B",@"#C9D2CB",@"#8C7E78",@"#8ECB78",@"#0973AF",@"#37C6C0",@"#5A4446",@"#FB7C85",@"#373E40",@"#8BACA1",@"#39A9CF",@"#DEBE9B",@"#C9D2CB",@"#8C7E78",@"#8ECB78",@"#0973AF",@"#37C6C0",@"#5A4446",@"#FB7C85",@"#373E40",@"#8BACA1",@"#39A9CF",@"#DEBE9B",@"#C9D2CB",@"#8C7E78",@"#8ECB78",@"#0973AF",@"#37C6C0",@"#5A4446",@"#FB7C85",@"#373E40",@"#8BACA1",@"#39A9CF",@"#DEBE9B",@"#C9D2CB",@"#8C7E78",@"#8ECB78",@"#0973AF"];
     
@@ -86,8 +87,7 @@
     _course.height = (KWSCreenH - rectStatus.size.height - rectNav.size.height - 20)/10;
     
     //缓存获取界面数据
-    NSString *account = [wrapper myObjectForKey:(id)kSecAttrAccount];
-    NSArray *dicAry = [Utils getCache:account andID:@"ClassModel"];
+    NSArray *dicAry = [Utils getCache:gdufeAccount andID:@"ClassModel"];
     if (dicAry) {
         _scheduleModel = [KWScheduleModel mj_objectArrayWithKeyValuesArray:dicAry];
         self.course.array = [[NSArray alloc]initWithArray:_scheduleModel];
@@ -124,7 +124,7 @@
                                        doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
                                            self.stuTime = selectedValue;
                                            [SVProgressHUD showWithStatus:@"更新课表"];
-                                           [Utils updateCache:[wrapper myObjectForKey:(id)kSecAttrAccount] andID:@"stuTime" andValue:selectedValue];
+                                           [Utils updateCache:gdufeAccount andID:@"stuTime" andValue:selectedValue];
                                            [self loadData:self.stuTime week:schoolWeek];
                                        }
                                      cancelBlock:^(ActionSheetStringPicker *picker) {
@@ -270,50 +270,32 @@
 #pragma mark - 加载数据
 - (void)loadData:(NSString *)selectStuTime week:(NSString *)selectWeek
 {
-    //创建请求会话管理者
-    AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
-    
-    //获取登陆的账号密码
-    NSString *sno = [wrapper myObjectForKey:(id)kSecAttrAccount];
-    NSString *pwd = [wrapper myObjectForKey:(id)kSecValueData];
-    
     //拼接数据
     NSMutableDictionary *parements = [NSMutableDictionary dictionary];
-    parements[@"sno"] = sno;
-    parements[@"pwd"] = pwd;
+    parements[@"sno"] = gdufeAccount;
+    parements[@"pwd"] = gdufePassword;
     parements[@"stu_time"] = selectStuTime;
     parements[@"week"] = selectWeek;
     
     [self getSchoolWeek];
     
-    //异步请求
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-        //发送请求
-        [mgr POST:@"http://api.wegdufe.com:82/index.php?r=jw/get-schedule" parameters:parements progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-            //        NSLog(@"%@",responseObject);
-            //        [responseObject writeToFile:@"/Users/k/iOS-KW/project/model.plist" atomically:nil];
-            
-            NSArray *dicAry = responseObject[@"data"];
-            [Utils saveCache:sno andID:@"ClassModel" andValue:dicAry];//保存到本地沙盒
-            
-            //暂时展示plist内容
-            //        NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"model" ofType:@"plist"];
-            //        NSDictionary *data = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
-            //        NSArray *dicAry = data[@"data"];
-            
-            //字典数组转模型数组
-            _scheduleModel = [KWScheduleModel mj_objectArrayWithKeyValuesArray:dicAry];
-            self.course.array = _scheduleModel;
-            
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [collectionView reloadData];
-                //取消提示框
-                [SVProgressHUD dismiss];
-            });
-        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            
-        }];
-    });
+    [KWAFNetworking postWithUrlString:@"http://api.wegdufe.com:82/index.php?r=jw/get-schedule" parameters:parements success:^(id data) {
+        
+        NSArray *dicAry = data[@"data"];;
+        [Utils saveCache:gdufeAccount andID:@"ClassModel" andValue:dicAry];//保存到本地沙盒
+
+        //字典数组转模型数组
+        _scheduleModel = [KWScheduleModel mj_objectArrayWithKeyValuesArray:dicAry];
+        self.course.array = _scheduleModel;
+
+        [collectionView reloadData];
+
+        //取消提示框
+        [SVProgressHUD dismiss];
+        
+    } failure:^(NSError *error) {
+        
+    }];
 }
 
 - (void)loadAllData {
@@ -327,30 +309,22 @@
 }
 
 - (void)loadDataAll:(NSString *)selectStuTime {
-    //创建请求会话管理者
-    AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
-    
-    //获取登陆的账号密码
-    NSString *sno = [wrapper myObjectForKey:(id)kSecAttrAccount];
-    NSString *pwd = [wrapper myObjectForKey:(id)kSecValueData];
-    
     //拼接数据
     NSMutableDictionary *parements = [NSMutableDictionary dictionary];
-    parements[@"sno"] = sno;
-    parements[@"pwd"] = pwd;
+    parements[@"sno"] = gdufeAccount;
+    parements[@"pwd"] = gdufePassword;
     parements[@"stu_time"] = selectStuTime;
     
     [self getSchoolWeek];
     
-    //发送请求
-    [mgr POST:@"http://api.wegdufe.com:82/index.php?r=jw/get-schedule" parameters:parements progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [KWAFNetworking postWithUrlString:GetScheduleAPI parameters:parements success:^(id data) {
         
-        [responseObject writeToFile:[NSString stringWithFormat:@"/Users/k/iOS-KW/project/classModel-%@.plist",selectStuTime] atomically:nil];
+        [data writeToFile:[NSString stringWithFormat:@"/Users/k/iOS-KW/project/classModel-%@.plist",selectStuTime] atomically:nil];
         
-        NSArray *dicAry = responseObject[@"data"];
-        [Utils saveCache:sno andID:[NSString stringWithFormat:@"ClassModel-%@",selectStuTime] andValue:dicAry];//保存到本地沙盒
+        NSArray *dicAry = data[@"data"];
+        [Utils saveCache:gdufeAccount andID:[NSString stringWithFormat:@"ClassModel-%@",selectStuTime] andValue:dicAry];//保存到本地沙盒
         
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    } failure:^(NSError *error) {
         
     }];
 }

@@ -29,6 +29,12 @@
 
 #define wrapper [[KeychainWrapper alloc] init]
 
+//账号
+#define gdufeAccount [wrapper myObjectForKey:(id)kSecAttrAccount]
+
+//密码
+#define gdufePassword [wrapper myObjectForKey:(id)kSecValueData]
+
 #define topHeight 20
 
 #define KWLog NSLog(@"%s",__func__)

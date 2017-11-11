@@ -22,6 +22,7 @@
 		0A4483F61FA9F38800100DF8 /* KWCurrentBookView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A4483F51FA9F38800100DF8 /* KWCurrentBookView.m */; };
 		0A4483F91FA9F3F500100DF8 /* KWCurrentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A4483F81FA9F3F500100DF8 /* KWCurrentModel.m */; };
 		0A4483FC1FA9F76E00100DF8 /* KWCurrentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A4483FB1FA9F76E00100DF8 /* KWCurrentCell.m */; };
+		0A5118B61FB7073400D45995 /* KWAFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5118B51FB7073400D45995 /* KWAFNetworking.m */; };
 		0A5A5A0E1FA20164001B09FD /* KWEducationalViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5A5A0D1FA20164001B09FD /* KWEducationalViewCell.m */; };
 		0A5A5A121FA20542001B09FD /* KWFunctionsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5A5A101FA20542001B09FD /* KWFunctionsCell.m */; };
 		0A5A5A131FA20542001B09FD /* KWFunctionsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A5A5A111FA20542001B09FD /* KWFunctionsCell.xib */; };
@@ -120,6 +121,9 @@
 		0A4483F81FA9F3F500100DF8 /* KWCurrentModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWCurrentModel.m; sourceTree = "<group>"; };
 		0A4483FA1FA9F76E00100DF8 /* KWCurrentCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWCurrentCell.h; sourceTree = "<group>"; };
 		0A4483FB1FA9F76E00100DF8 /* KWCurrentCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWCurrentCell.m; sourceTree = "<group>"; };
+		0A5118B41FB7073400D45995 /* KWAFNetworking.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWAFNetworking.h; sourceTree = "<group>"; };
+		0A5118B51FB7073400D45995 /* KWAFNetworking.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWAFNetworking.m; sourceTree = "<group>"; };
+		0A5118BA1FB70AEF00D45995 /* KWRequestUrl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWRequestUrl.h; sourceTree = "<group>"; };
 		0A5A5A0C1FA20164001B09FD /* KWEducationalViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWEducationalViewCell.h; sourceTree = "<group>"; };
 		0A5A5A0D1FA20164001B09FD /* KWEducationalViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWEducationalViewCell.m; sourceTree = "<group>"; };
 		0A5A5A0F1FA20542001B09FD /* KWFunctionsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWFunctionsCell.h; sourceTree = "<group>"; };
@@ -244,6 +248,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A5118B31FB7070B00D45995 /* KWNetwork */ = {
+			isa = PBXGroup;
+			children = (
+				0A5118B41FB7073400D45995 /* KWAFNetworking.h */,
+				0A5118B51FB7073400D45995 /* KWAFNetworking.m */,
+				0A5118BA1FB70AEF00D45995 /* KWRequestUrl.h */,
+			);
+			path = KWNetwork;
+			sourceTree = "<group>";
+		};
 		0A6750B81F7BD79F00E46900 = {
 			isa = PBXGroup;
 			children = (
@@ -324,7 +338,7 @@
 				0AA60B1F1F7C03FF00E0E87D /* Functions */,
 				0A88151D1F7BDC5700AAB5BF /* Mine */,
 				0A8815381F7BDC5700AAB5BF /* Setting */,
-				0A8815341F7BDC5700AAB5BF /* Publish */,
+				0A8815341F7BDC5700AAB5BF /* Common */,
 				0A8815251F7BDC5700AAB5BF /* Other */,
 			);
 			path = Classes;
@@ -455,14 +469,15 @@
 			path = Category;
 			sourceTree = "<group>";
 		};
-		0A8815341F7BDC5700AAB5BF /* Publish */ = {
+		0A8815341F7BDC5700AAB5BF /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				0A5118B31FB7070B00D45995 /* KWNetwork */,
 				0A8815351F7BDC5700AAB5BF /* Control */,
 				0A8815361F7BDC5700AAB5BF /* Model */,
 				0A8815371F7BDC5700AAB5BF /* View */,
 			);
-			path = Publish;
+			path = Common;
 			sourceTree = "<group>";
 		};
 		0A8815351F7BDC5700AAB5BF /* Control */ = {
@@ -987,6 +1002,7 @@
 				0AD013501FA24B2A009D5C76 /* KWGradeView.m in Sources */,
 				0ACC56C71F8E0FDD007DA2BD /* KWTabBar.m in Sources */,
 				0AA763B71F8F3187004E0222 /* KWLoginModel.m in Sources */,
+				0A5118B61FB7073400D45995 /* KWAFNetworking.m in Sources */,
 				0A0D9A1E1FA75BFA009CB653 /* KWLibraryViewCell.m in Sources */,
 				0AA60B371F7C05D000E0E87D /* KWNavigationViewController.m in Sources */,
 				0AA60B2E1F7C050E00E0E87D /* KWMyClassViewController.m in Sources */,

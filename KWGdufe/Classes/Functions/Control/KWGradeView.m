@@ -15,6 +15,8 @@
 #import "Utils.h"
 #import "KeychainWrapper.h"
 #import "KWGradeCell.h"
+#import "KWAFNetworking.h"
+#import "KWRequestUrl.h"
 
 @interface KWGradeView ()
 
@@ -27,8 +29,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"我的成绩";
-    NSString *account = [wrapper myObjectForKey:(id)kSecAttrAccount];
-    NSArray *gradeDict = [Utils getCache:account andID:@"GradeModel"];
+    NSArray *gradeDict = [Utils getCache:gdufeAccount andID:@"GradeModel"];
     if (gradeDict) {
         NSArray *gradeModel = [KWGradeModel mj_objectArrayWithKeyValuesArray:gradeDict];
         NSMutableArray *gradeDictTimes = [[NSMutableArray alloc]init];
@@ -50,28 +51,17 @@
 
 #pragma mark - 加载数据
 - (void)loadData {
-    //创建请求会话管理者
-    AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
-    
-    //获取登陆的账号密码
-    NSString *sno = [wrapper myObjectForKey:(id)kSecAttrAccount];
-    NSString *pwd = [wrapper myObjectForKey:(id)kSecValueData];
-    
     //拼接数据
     NSMutableDictionary *parements = [NSMutableDictionary dictionary];
-    parements[@"sno"] = sno;
-    parements[@"pwd"] = pwd;
+    parements[@"sno"] = gdufeAccount;
+    parements[@"pwd"] = gdufePassword;
     
-    //发送请求
-    [mgr POST:@"http://api.wegdufe.com:82/index.php?r=jw/get-grade" parameters:parements progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-//        NSLog(@"%@",responseObject);
-//        [responseObject writeToFile:@"/Users/k/iOS-KW/project/KWGdufe/gradeModel.plist" atomically:nil];
-        
+    [KWAFNetworking postWithUrlString:GetGradeAPI parameters:parements success:^(id data) {
         //获取字典
-        NSDictionary *gradeDict = responseObject[@"data"];
+        NSDictionary *gradeDict = data[@"data"];
         
         //缓存到本地
-        [Utils saveCache:sno andID:@"GradeModel" andValue:gradeDict];
+        [Utils saveCache:gdufeAccount andID:@"GradeModel" andValue:gradeDict];
         
         //字典转模型
         NSArray *gradeModel = [KWGradeModel mj_objectArrayWithKeyValuesArray:gradeDict];
@@ -84,10 +74,10 @@
             }
         }
         _gradeModel = gradeDictTimes;
-
+        
         [self.tableView reloadData];
-//        [SVProgressHUD dismiss];//
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    } failure:^(NSError *error) {
+        
     }];
 }
 

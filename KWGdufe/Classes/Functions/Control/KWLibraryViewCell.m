@@ -10,6 +10,7 @@
 #import "KWFunctionsCell.h"
 #import "KWCurrentBookView.h"
 #import <QuartzCore/QuartzCore.h>
+#import "KWRequestUrl.h"
 
 #define ID @"cell"
 
@@ -65,13 +66,13 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
         KWCurrentBookView *currentVc = [[KWCurrentBookView alloc]init];
-        currentVc.url = @"http://api.wegdufe.com:82/index.php?r=opac/current-book";
+        currentVc.url = GetCurrentBookAPI;
         currentVc.modelSaveName = @"CurrentBookModel";
         currentVc.vcName = @"当前借阅";
         [_delegate pushVc:currentVc];
     } else if (indexPath.row == 1) {
         KWCurrentBookView *borrowVc = [[KWCurrentBookView alloc]init];
-        borrowVc.url = @"http://api.wegdufe.com:82/index.php?r=opac/borrowed-book";
+        borrowVc.url = GetBorrowedBookAPI;
         borrowVc.modelSaveName = @"BorrowedBookModel";
         borrowVc.vcName = @"历史借阅";
         [_delegate pushVc:borrowVc];

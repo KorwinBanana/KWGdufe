@@ -14,6 +14,8 @@
 #import "KeychainWrapper.h"
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "Utils.h"
+#import "KWAFNetworking.h"
+#import "KWRequestUrl.h"
 //#import <MJExtension/MJExtension.h>
 
 @interface KWLoginViewController () {
@@ -60,37 +62,30 @@
 #pragma mark - 验证登陆
 - (void)loadData
 {
-    //创建请求会话管理者
-    AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
-    
     //拼接数据
     NSMutableDictionary *parements = [NSMutableDictionary dictionary];
     parements[@"sno"] = _sno.text;
     parements[@"pwd"] = _pwd.text;
     
-    //发送请求
-    [mgr POST:@"http://api.wegdufe.com:82/index.php?r=jw/get-basic" parameters:parements progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-//        NSLog(@"%@",responseObject);
-//        [responseObject writeToFile:@"/Users/k/iOS-KW/project/stuModel.plist" atomically:nil];
-        
+    [KWAFNetworking postWithUrlString:LoginAPI parameters:parements success:^(id data) {
         //添加警告框
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDestructive handler:nil];
         [alert addAction:okAction];
         
         //获取字典
-        NSString *code = [responseObject objectForKey:@"code"];
+        NSString *code = [data objectForKey:@"code"];
         NSString *codeStr = [NSString stringWithFormat:@"%@",code];
-//        NSLog(@"self.loginBoolModel.code = %@",codeStr);
+        //NSLog(@"self.loginBoolModel.code = %@",codeStr);
         
         [SVProgressHUD dismiss];
         
         //判断是否登陆
         if ([codeStr isEqualToString:@"0"]) {
             /** 初始化一个保存用户帐号的KeychainWrapper */
-//            NSLog(@"%@",uuid);
-//            NSData *data = [_pwd.text dataUsingEncoding:NSUTF8StringEncoding];
-//            NSData *encryptedData = [data EncryptAES:uuid];
+            //            NSLog(@"%@",uuid);
+            //            NSData *data = [_pwd.text dataUsingEncoding:NSUTF8StringEncoding];
+            //            NSData *encryptedData = [data EncryptAES:uuid];
             
             //保存密码
             [wrapper mySetObject:_pwd.text forKey:(id)kSecValueData];
@@ -106,8 +101,8 @@
             [Utils saveCache:[wrapper myObjectForKey:(id)kSecAttrAccount] andID:@"stuTime" andValue:stuTime];
             
             //使用md5加密
-//            NSString *pwdByMD5 = [NSString md5To32bit:_pwd.text];
-//            [userDefaults setObject:pwdByMD5 forKey:@"pwd"];
+            //            NSString *pwdByMD5 = [NSString md5To32bit:_pwd.text];
+            //            [userDefaults setObject:pwdByMD5 forKey:@"pwd"];
             
             //AES加密
             KWTabBarController *tabVc = [[KWTabBarController alloc]init];
@@ -127,8 +122,7 @@
             alert.message = @"喵～系统崩溃啦～～";
             [self presentViewController:alert animated:YES completion:nil];
         }
-        
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    } failure:^(NSError *error) {
         NSLog(@"失败啦～～");
         [SVProgressHUD dismiss];
     }];
