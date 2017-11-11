@@ -69,7 +69,7 @@
     parements[@"pwd"] = gdufePassword;
     parements[@"cardNum"] = _cardModel.cardNum;
     
-    [KWAFNetworking postWithUrlString:GetCurrentBookAPI parameters:parements success:^(id data) {
+    [KWAFNetworking postWithUrlString:GetTodayCashAPI parameters:parements success:^(id data) {
         //获取字典
         NSDictionary *todayDict = data[@"data"];
         

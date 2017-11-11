@@ -112,7 +112,7 @@
     parements[@"sno"] = gdufeAccount;
     parements[@"pwd"] = gdufePassword;
     
-    [KWAFNetworking postWithUrlString:GetCurrentBookAPI parameters:parements success:^(id data) {
+    [KWAFNetworking postWithUrlString:GetCashAPI parameters:parements success:^(id data) {
         //获取字典
         NSDictionary *cardDict = data[@"data"];
         
@@ -144,8 +144,7 @@
             case  AFNetworkReachabilityStatusUnknown: {
                 NSLog(@"未知");
                 //缓存获取Cash余额
-                NSString *account = [wrapper myObjectForKey:(id)kSecAttrAccount];
-                NSDictionary *cashAry = [Utils getCache:account andID:@"CardModel"];
+                NSDictionary *cashAry = [Utils getCache:gdufeAccount andID:@"CardModel"];
                 _cardModel = [KWCashModel mj_objectWithKeyValues:cashAry];
                 self.todayBuyVc.cardModel = _cardModel;
                 [self.tableView reloadData];
@@ -154,8 +153,7 @@
             case AFNetworkReachabilityStatusNotReachable:{
                 NSLog(@"没有网络");
                 //缓存获取Cash余额
-                NSString *account = [wrapper myObjectForKey:(id)kSecAttrAccount];
-                NSDictionary *cashAry = [Utils getCache:account andID:@"CardModel"];
+                NSDictionary *cashAry = [Utils getCache:gdufeAccount andID:@"CardModel"];
                 _cardModel = [KWCashModel mj_objectWithKeyValues:cashAry];
                 self.todayBuyVc.cardModel = _cardModel;
                 [self.tableView reloadData];
