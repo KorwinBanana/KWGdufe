@@ -20,6 +20,9 @@ static NSString *stuTime;
 
 @implementation AppDelegate
 
+/*
+ *开始界面优化。
+ */
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
