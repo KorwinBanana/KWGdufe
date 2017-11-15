@@ -97,8 +97,10 @@
  *  @return 返回YES
  */
 + (BOOL)isNullOfInput:(NSString *)string;
+
 //颜色转换 IOS中十六进制的颜色转换为UIColor
 + (UIColor *)colorWithHexString: (NSString *)color;
+
 + (UIImage *)image:(UIImage *)image rotation:(UIImageOrientation)orientation;
 + (NSArray *)separatedString:(NSString *)str charactersInString:(NSString *)character;
 + (NSString *) stringDeleteString:(NSString *)str;

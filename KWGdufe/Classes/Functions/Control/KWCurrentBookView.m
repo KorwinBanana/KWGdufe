@@ -45,7 +45,7 @@
     } else {
         self.automaticallyAdjustsScrollViewInsets = NO;
     }
-    self.tableView.contentInset = UIEdgeInsetsMake(rectStatus.size.height + rectNav.size.height, 0, 0, 0);
+//    self.tableView.contentInset = UIEdgeInsetsMake(-rectStatus.size.height - rectNav.size.height, 0, 0, 0);
     self.tableView.scrollIndicatorInsets = self.tableView.contentInset;
     
     // 下拉刷新

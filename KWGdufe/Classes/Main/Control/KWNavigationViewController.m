@@ -7,6 +7,7 @@
 //
 
 #import "KWNavigationViewController.h"
+#import "Utils.h"
 
 @interface KWNavigationViewController ()<UIGestureRecognizerDelegate>
 
@@ -21,11 +22,13 @@
     //设置导航栏标题——富文本
     NSMutableDictionary *attrs = [NSMutableDictionary dictionary];
     attrs[NSFontAttributeName] = [UIFont boldSystemFontOfSize:19];
-    attrs[NSForegroundColorAttributeName] = [UIColor whiteColor];
+    attrs[NSForegroundColorAttributeName] = [Utils colorWithHexString:@"#1E2832"];
     [navBar setTitleTextAttributes:attrs];
-    [navBar setBackgroundImage:[UIImage imageNamed:@"navigationbarBackground42103111"] forBarMetrics:UIBarMetricsDefault];
+    [navBar setBackgroundImage:[UIImage imageNamed:@"navigationbarBackground104187125"] forBarMetrics:UIBarMetricsDefault];
 //    [navBar setBackgroundColor:[UIColor blackColor]];
-    navBar.translucent = YES;
+//    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+//    [statusBar setBackgroundColor:[UIColor blackColor]];
+    navBar.translucent = NO;//设置是否透明
 }
 
 - (void)viewDidLoad {
@@ -71,10 +74,5 @@
  UIPanGestureRecognizer：全屏滑动手势
  UIScreenEdgePanGestureRecognizer：导航条的手势：边缘滑动手势，继承与UIPanGestureRecognizer
  */
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 @end

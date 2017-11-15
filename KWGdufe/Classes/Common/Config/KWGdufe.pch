@@ -25,6 +25,7 @@
 #define iphone7 (KWSCreenH == 667)
 #define iphonese (KWSCreenH == 568)
 
+/*****************数据存储*********************/
 #define uuid [[NSUUID UUID] UUIDString]
 
 #define wrapper [[KeychainWrapper alloc] init]
@@ -35,8 +36,11 @@
 //密码
 #define gdufePassword [wrapper myObjectForKey:(id)kSecValueData]
 
-#define topHeight 20
 
+/*****************基本属性*********************/
+#define topHeight 20
 #define KWLog NSLog(@"%s",__func__)
+
+/*****************颜色色系*********************/
 
 

@@ -76,7 +76,7 @@
     addWidthWeek= (KWSCreenW-20)/7.0;
     
     //获取高度
-    addHeight = (KWSCreenH-rectStatus.size.height - rectNav.size.height - 20)/10;
+    addHeight = (KWSCreenH - 20)/10;
     
     //设置星期一到星期日和第几周
     [self setWeekAndDays];
@@ -84,7 +84,7 @@
     //自定义流水布局——用于展示课表位置和大小
     self.course = [[KWCollectionViewLayout alloc] init];;
     self.course.width = addWidth;
-    _course.height = (KWSCreenH - rectStatus.size.height - rectNav.size.height - 20)/10;
+    _course.height = (KWSCreenH - 20)/10;
     
     //缓存获取界面数据
     NSArray *dicAry = [Utils getCache:gdufeAccount andID:@"ClassModel"];
@@ -169,7 +169,7 @@
     } else {
         myHeight = KWSCreenH;
     }
-    collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, rectStatus.size.height+rectNav.size.height+30, KWSCreenW,myHeight) collectionViewLayout:_course];
+    collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 30, KWSCreenW,myHeight) collectionViewLayout:_course];
 //    bgHeight = CGRectGetHeight([UIScreen mainScreen].bounds)/12;//设置背景格子的高度
     collectionView.dataSource = self;
     collectionView.delegate = self;
@@ -250,7 +250,7 @@
     CGFloat x=27;
     CGRect rectStatus = [[UIApplication sharedApplication] statusBarFrame];
     CGRect rectNav = self.navigationController.navigationBar.frame;
-    flag = [[KWWeekDay alloc] initWithFrame:CGRectMake(0, rectStatus.size.height+rectNav.size.height, 26.5, height)];
+    flag = [[KWWeekDay alloc] initWithFrame:CGRectMake(0, 0 , 26.5, height)];
     flag.alpha=0.8;
     [flag setDay:[NSString stringWithFormat:@"%@周",schoolWeek]];
     [self.view addSubview:flag];
@@ -258,7 +258,7 @@
     for(int i=1;i<=7;i++)
     {
         x--;
-        flag = [[KWWeekDay alloc] initWithFrame:CGRectMake(x, rectStatus.size.height+rectNav.size.height, addWidthWeek, height)];
+        flag = [[KWWeekDay alloc] initWithFrame:CGRectMake(x, 0 , addWidthWeek, height)];
 //        NSLog(@"%f",addWidthWeek);
         x+=addWidthWeek;
         flag.alpha=0.8;
