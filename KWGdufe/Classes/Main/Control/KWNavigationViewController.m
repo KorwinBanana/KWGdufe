@@ -22,9 +22,9 @@
     //设置导航栏标题——富文本
     NSMutableDictionary *attrs = [NSMutableDictionary dictionary];
     attrs[NSFontAttributeName] = [UIFont boldSystemFontOfSize:19];
-    attrs[NSForegroundColorAttributeName] = [Utils colorWithHexString:@"#1E2832"];
+    attrs[NSForegroundColorAttributeName] = [UIColor whiteColor];
     [navBar setTitleTextAttributes:attrs];
-    [navBar setBackgroundImage:[UIImage imageNamed:@"navigationbarBackground104187125"] forBarMetrics:UIBarMetricsDefault];
+    [navBar setBackgroundImage:[UIImage imageNamed:@"navigationbarBackground4671172"] forBarMetrics:UIBarMetricsDefault];
 //    [navBar setBackgroundColor:[UIColor blackColor]];
 //    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
 //    [statusBar setBackgroundColor:[UIColor blackColor]];

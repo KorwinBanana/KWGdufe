@@ -27,6 +27,25 @@
     return [[UIBarButtonItem alloc]initWithCustomView:containView];
 }
 
++ (UIBarButtonItem *) itemWithString:(NSString *)name target:( id)target action:(SEL)action
+{
+    //1.左边按钮
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btn setTitle:name forState:UIControlStateNormal];
+    [btn.titleLabel setFont:[UIFont boldSystemFontOfSize:16]];
+    [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [btn setTitleColor:[UIColor blackColor] forState:UIControlStateHighlighted];
+    [btn addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
+    [btn sizeToFit];
+    
+    //把Button先包装成UIView，在把UIView包装成UIButtonItem
+    UIView *containView = [[UIView alloc]initWithFrame:btn.bounds];
+    [containView addSubview:btn];
+    
+    //把UIButton包装成UIButtonItem.就会导致按钮点击区域扩大，
+    return [[UIBarButtonItem alloc]initWithCustomView:containView];
+}
+
 + (UIBarButtonItem *) itemWithImage:(UIImage *)image selectImage:(UIImage *)selectImage target:( id)target action:(SEL)action
 {
     //1.左边按钮

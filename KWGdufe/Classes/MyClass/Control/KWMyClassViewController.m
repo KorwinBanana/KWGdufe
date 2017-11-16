@@ -32,7 +32,9 @@
     CGFloat addHeight;
     NSArray *colors;
     NSString *schoolWeek;
+    NSString *selectSchoolWeek;
     UIImageView *bgView;
+    KWWeekDay *weekView;
 }
 
 @property (nonatomic,strong) NSArray  *scheduleModel;
@@ -47,19 +49,19 @@
     
     //设置背景颜色
     self.view.backgroundColor = [UIColor whiteColor];
+    //获取第几周
+    [Utils getSchoolWeek];
+    schoolWeek = [Utils getCache:gdufeAccount andID:@"schoolWeek"];
+    NSLog(@"初始化的shoolYear = %@",[Utils getCache:gdufeAccount andID:@"schoolYear"]);
+
     //设置标题
-    [self setupNavBar];
-    
-    self.stuTime  = [Utils getCache:gdufeAccount andID:@"stuTime"];
+    [self setupNavBarRightName:[Utils getCache:gdufeAccount andID:@"schoolYear"] setleftName:[NSString stringWithFormat:@"第%@周",schoolWeek]];
     
     colors = @[@"#37C6C0",@"#5A4446",@"#FB7C85",@"#373E40",@"#8BACA1",@"#39A9CF",@"#DEBE9B",@"#C9D2CB",@"#8C7E78",@"#8ECB78",@"#0973AF",@"#37C6C0",@"#5A4446",@"#FB7C85",@"#373E40",@"#8BACA1",@"#39A9CF",@"#DEBE9B",@"#C9D2CB",@"#8C7E78",@"#8ECB78",@"#0973AF",@"#37C6C0",@"#5A4446",@"#FB7C85",@"#373E40",@"#8BACA1",@"#39A9CF",@"#DEBE9B",@"#C9D2CB",@"#8C7E78",@"#8ECB78",@"#0973AF",@"#37C6C0",@"#5A4446",@"#FB7C85",@"#373E40",@"#8BACA1",@"#39A9CF",@"#DEBE9B",@"#C9D2CB",@"#8C7E78",@"#8ECB78",@"#0973AF"];
     
-    //状态栏高度
-    CGRect rectStatus = [[UIApplication sharedApplication] statusBarFrame];
-    CGRect rectNav = self.navigationController.navigationBar.frame;
-    
-    //获取第几周
-    [self getSchoolWeek];
+//    //状态栏高度
+//    CGRect rectStatus = [[UIApplication sharedApplication] statusBarFrame];
+//    CGRect rectNav = self.navigationController.navigationBar.frame;
     
     //提示用户当前正在加载数据 SVPro
     [SVProgressHUD showWithStatus:@"等一下能怎么样！？"];
@@ -67,7 +69,6 @@
     //获取缓存数据
 //    [self getDataFromCache];
 //    [self loadData];
-    [self loadAllData];//加载所以数据
     
     //获取课程展示的宽度
     addWidth= (KWSCreenW-20-7)/7.0;
@@ -108,58 +109,113 @@
 //}
 
 #pragma mark - 设置导航条
-- (void)setupNavBar {
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithImage:[UIImage imageNamed:@"friendsRecommentIcon"] hightImage:[UIImage imageNamed:@"friendsRecommentIcon-click"] target:self action:@selector(selectYear)];
-    self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithImage:[UIImage imageNamed:@"friendsRecommentIcon"] hightImage:[UIImage imageNamed:@"friendsRecommentIcon-click"] target:self action:@selector(selectWeek)];
+- (void)setupNavBarRightName:(NSString *)rightName setleftName:(NSString *)lefrName {
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithString:rightName target:self action:@selector(selectYear)];
+    self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithString:lefrName target:self action:@selector(selectWeek)];
     self.navigationItem.title = @"课程表";
 }
 
 - (void)selectYear {
     NSString *account = [wrapper myObjectForKey:(id)kSecAttrAccount];
     NSMutableArray *stuTimes = [Utils getCache:account andID:@"stuTimes"];
-//    NSLog(@"stuTimes = %@",stuTimes);
-    [ActionSheetStringPicker showPickerWithTitle:@"学期"
-                                            rows:stuTimes
-                                initialSelection:0
-                                       doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
-                                           self.stuTime = selectedValue;
-                                           [SVProgressHUD showWithStatus:@"更新课表"];
-                                           [Utils updateCache:gdufeAccount andID:@"stuTime" andValue:selectedValue];
-                                           [self loadData:self.stuTime week:schoolWeek];
-                                       }
-                                     cancelBlock:^(ActionSheetStringPicker *picker) {
-                                         NSLog(@"Block Picker Canceled");
-                                     }
-                                          origin:self.view];
+    
+    ActionSheetStringPicker *picker = [[ActionSheetStringPicker alloc]initWithTitle:@"学期" rows:stuTimeForSchool initialSelection:0 doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+        if(selectedIndex == 0){
+            [Utils getNowYear];
+            self.stuTime = [Utils getCache:gdufeAccount andID:@"stuTime"];//获取大几的时间
+            
+            [Utils getStuTimeSchool:self.stuTime];//获取大几
+            
+            [SVProgressHUD showWithStatus:@"更新课表"];
+            
+            [Utils updateCache:gdufeAccount andID:@"stuTime" andValue:self.stuTime];
+            
+            [self loadData:self.stuTime week:schoolWeek];//更新数据
+            
+            [Utils updateCache:gdufeAccount andID:@"schoolYear" andValue:[Utils getCache:gdufeAccount andID:@"schoolYear"]];
+            
+            [self setupNavBarRightName:[Utils getCache:gdufeAccount andID:@"schoolYear"] setleftName:[NSString stringWithFormat:@"第%@周",schoolWeek]];
+            
+            NSLog(@"0 = %@",[Utils getCache:gdufeAccount andID:@"schoolYear"]);
+        } else {
+            self.stuTime = stuTimes[selectedIndex-1];
+            [SVProgressHUD showWithStatus:@"更新课表"];
+            [Utils updateCache:gdufeAccount andID:@"stuTime" andValue:stuTimes[selectedIndex-1]];
+            [self loadData:self.stuTime week:schoolWeek];
+            [self setupNavBarRightName:selectedValue setleftName:[NSString stringWithFormat:@"第%@周",schoolWeek]];
+            [Utils updateCache:gdufeAccount andID:@"schoolYear" andValue:selectedValue];
+            NSLog(@"%@",[Utils getCache:gdufeAccount andID:@"schoolYear"]);
+        }
+    } cancelBlock:^(ActionSheetStringPicker *picker) {
+        NSLog(@"Block Picker Canceled");
+    } origin:self.view];
+    
+    UIButton *cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [cancelButton setTitle:@"取消" forState:UIControlStateNormal];
+    [cancelButton.titleLabel setFont:[UIFont boldSystemFontOfSize:16]];
+    [cancelButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [cancelButton setTitleColor:[Utils colorWithHexString:@"#2E47AC"] forState:UIControlStateHighlighted];
+    [cancelButton setFrame:CGRectMake(0, 0, 32, 32)];
+    [picker setCancelButton:[[UIBarButtonItem alloc] initWithCustomView:cancelButton]];
+    
+    UIButton *doneButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [doneButton setTitle:@"完成" forState:UIControlStateNormal];
+    [doneButton.titleLabel setFont:[UIFont boldSystemFontOfSize:16]];
+    [doneButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [doneButton setTitleColor:[Utils colorWithHexString:@"#2E47AC"] forState:UIControlStateHighlighted];
+    [doneButton setFrame:CGRectMake(0, 0, 32, 32)];
+    [picker setDoneButton:[[UIBarButtonItem alloc] initWithCustomView:doneButton]];
+    
+    [picker showActionSheetPicker];
 }
 
 - (void)selectWeek {
     NSArray *stuWeek = @[@"当前周", @"第1周", @"第2周", @"第3周", @"第4周", @"第5周", @"第6周", @"第7周", @"第8周", @"第9周", @"第10周", @"第11周", @"第12周", @"第13周", @"第14周", @"第15周", @"第16周", @"第17周", @"第18周"];
-    [ActionSheetStringPicker showPickerWithTitle:@"周"
-                                            rows:stuWeek
-                                initialSelection:0
-                                       doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
-                                           if (selectedIndex == 0) {
-                                               [self getSchoolWeek];
-                                               [SVProgressHUD showWithStatus:@"更新课表"];
-                                               [self loadData:self.stuTime week:schoolWeek];
-                                           } else {
-                                               schoolWeek = [NSString stringWithFormat:@"%ld", (long)selectedIndex];
-                                               [SVProgressHUD showWithStatus:@"更新课表"];
-                                               [self loadData:self.stuTime week:schoolWeek];
-                                           }
-                                       }
-                                     cancelBlock:^(ActionSheetStringPicker *picker) {
-                                         NSLog(@"Block Picker Canceled");
-                                     }
-                                          origin:self.view];
+    
+    ActionSheetStringPicker *picker = [[ActionSheetStringPicker alloc]initWithTitle:@"周" rows:stuWeek initialSelection:0 doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+        if (selectedIndex == 0) {
+            [Utils getSchoolWeek];
+            schoolWeek = [Utils getCache:gdufeAccount andID:@"schoolWeek"];
+            [SVProgressHUD showWithStatus:@"更新课表"];
+            [self loadData:self.stuTime week:schoolWeek];
+            [self setupNavBarRightName:[Utils getCache:gdufeAccount andID:@"schoolYear"] setleftName:[NSString stringWithFormat:@"第%@周",schoolWeek]];
+//            [weekView setDay:[NSString stringWithFormat:@"%@周",schoolWeek]];
+        } else {
+            schoolWeek = [NSString stringWithFormat:@"%ld", (long)selectedIndex];
+            [SVProgressHUD showWithStatus:@"更新课表"];
+            [Utils saveCache:gdufeAccount andID:@"schoolWeek" andValue:[NSString stringWithFormat:@"%ld",(long)selectedIndex]];
+            schoolWeek = [Utils getCache:gdufeAccount andID:@"schoolWeek"];
+//            NSLog(@"选择的schoolweek = %@",schoolWeek);
+            [self loadData:self.stuTime week:schoolWeek];
+            [self setupNavBarRightName:[Utils getCache:gdufeAccount andID:@"schoolYear"] setleftName:[NSString stringWithFormat:@"第%ld周",(long)selectedIndex]];
+//            [weekView setDay:[NSString stringWithFormat:@"%ld周",(long)selectedIndex]];
+            
+        }
+    } cancelBlock:^(ActionSheetStringPicker *picker) {
+        NSLog(@"Block Picker Canceled");
+    } origin:self.view];
+    
+    UIButton *cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [cancelButton setTitle:@"取消" forState:UIControlStateNormal];
+    [cancelButton.titleLabel setFont:[UIFont boldSystemFontOfSize:16]];
+    [cancelButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [cancelButton setTitleColor:[Utils colorWithHexString:@"#2E47AC"] forState:UIControlStateHighlighted];
+    [cancelButton setFrame:CGRectMake(0, 0, 32, 32)];
+    [picker setCancelButton:[[UIBarButtonItem alloc] initWithCustomView:cancelButton]];
+    
+    UIButton *doneButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [doneButton setTitle:@"完成" forState:UIControlStateNormal];
+    [doneButton.titleLabel setFont:[UIFont boldSystemFontOfSize:16]];
+    [doneButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [doneButton setTitleColor:[Utils colorWithHexString:@"#2E47AC"] forState:UIControlStateHighlighted];
+    [doneButton setFrame:CGRectMake(0, 0, 32, 32)];
+    [picker setDoneButton:[[UIBarButtonItem alloc] initWithCustomView:doneButton]];
+    
+    [picker showActionSheetPicker];
 }
 
 - (void)setupCollectionView
 {
-    //状态栏高度
-    CGRect rectStatus = [[UIApplication sharedApplication] statusBarFrame];
-    CGRect rectNav = self.navigationController.navigationBar.frame;
     //创建collectionView视图，应用自定义的collectionViewLayout：_course
     
     //适配iPhone X
@@ -247,13 +303,11 @@
     NSArray *weekStr = @[@"一",@"二",@"三",@"四",@"五",@"六",@"七"];
     KWWeekDay *flag;
     CGFloat height = 30;
-    CGFloat x=27;
-    CGRect rectStatus = [[UIApplication sharedApplication] statusBarFrame];
-    CGRect rectNav = self.navigationController.navigationBar.frame;
-    flag = [[KWWeekDay alloc] initWithFrame:CGRectMake(0, 0 , 26.5, height)];
-    flag.alpha=0.8;
-    [flag setDay:[NSString stringWithFormat:@"%@周",schoolWeek]];
-    [self.view addSubview:flag];
+    CGFloat x=27.25;
+    weekView = [[KWWeekDay alloc] initWithFrame:CGRectMake(0, 0 , x  , height)];
+    weekView.alpha=0.8;
+//    [weekView setDay:[NSString stringWithFormat:@"%@周",schoolWeek]];
+    [self.view addSubview:weekView];
     
     for(int i=1;i<=7;i++)
     {
@@ -277,7 +331,7 @@
     parements[@"stu_time"] = selectStuTime;
     parements[@"week"] = selectWeek;
     
-    [self getSchoolWeek];
+//    NSLog(@"加载数据的schoolweek = %@",selectWeek);
     
     [KWAFNetworking postWithUrlString:@"http://api.wegdufe.com:82/index.php?r=jw/get-schedule" parameters:parements success:^(id data) {
         
@@ -296,50 +350,6 @@
     } failure:^(NSError *error) {
         
     }];
-}
-
-- (void)loadAllData {
-    NSString *account = [wrapper myObjectForKey:(id)kSecAttrAccount];
-    NSMutableArray *stuTimes = [Utils getCache:account andID:@"stuTimes"];
-    NSString *loaDataStuTime = [[NSString alloc]init];
-    for (int i = 0; i < 8; i++) {
-        loaDataStuTime = stuTimes[i];
-        [self loadDataAll:loaDataStuTime];
-    }
-}
-
-- (void)loadDataAll:(NSString *)selectStuTime {
-    //拼接数据
-    NSMutableDictionary *parements = [NSMutableDictionary dictionary];
-    parements[@"sno"] = gdufeAccount;
-    parements[@"pwd"] = gdufePassword;
-    parements[@"stu_time"] = selectStuTime;
-    
-    [self getSchoolWeek];
-    
-    [KWAFNetworking postWithUrlString:GetScheduleAPI parameters:parements success:^(id data) {
-        
-        [data writeToFile:[NSString stringWithFormat:@"/Users/k/iOS-KW/project/classModel-%@.plist",selectStuTime] atomically:nil];
-        
-        NSArray *dicAry = data[@"data"];
-        [Utils saveCache:gdufeAccount andID:[NSString stringWithFormat:@"ClassModel-%@",selectStuTime] andValue:dicAry];//保存到本地沙盒
-        
-    } failure:^(NSError *error) {
-        
-    }];
-}
-
-//获取第几周
-- (void)getSchoolWeek
-{
-    NSDateFormatter * df = [[NSDateFormatter alloc] init];
-    df.dateFormat = @"yyyy-MM-dd";
-    NSString * dateBeginTime = @"2017-09-04";//开学日期（需要每学期修改）
-    NSString *dateNowTime = [df stringFromDate:[NSDate date]];//当前日期;
-    NSDate * date1 = [df dateFromString:dateBeginTime];
-    NSDate * date2 = [df dateFromString:dateNowTime];
-    NSTimeInterval time = [date2 timeIntervalSinceDate:date1]; //date1是前一个时间(早)，date2是后一个时间(晚)
-    schoolWeek = [NSString stringWithFormat:@"%ld",(NSInteger)time/604800];
 }
 
 #pragma mark - UICollectionViewDataSource

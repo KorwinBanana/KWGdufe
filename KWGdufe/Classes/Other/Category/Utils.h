@@ -113,5 +113,10 @@
 + (id)getCache:(NSString *)type andID:(NSString *)_id;
 + (void)removeCache:(NSString *)type andID:(NSString *)_id;
 + (void)updateCache:(NSString *)type andID:(NSString *)_id andValue:(id)str;
+
++ (void)getStuYears:(NSString *)firstStuTime mySno:(NSString *)mySno;
++ (void)getNowYear;
++ (void)getStuTimeSchool:(NSString *)stuTimeNow;
++ (void)getSchoolWeek;
 @end
 

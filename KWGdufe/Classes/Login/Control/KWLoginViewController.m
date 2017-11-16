@@ -93,12 +93,13 @@
             
             //把学期保存到NSUserDefaults
             NSString *whenStuTime = [_sno.text substringToIndex:2];
-            NSLog(@"whenStuTime = %@",whenStuTime);
-            [self getStuYears:whenStuTime mySno:[wrapper myObjectForKey:(id)kSecAttrAccount]];
+//            NSLog(@"whenStuTime = %@",whenStuTime);
+            [Utils getStuYears:whenStuTime mySno:[wrapper myObjectForKey:(id)kSecAttrAccount]];
             
-            //保存当前学期
-            NSString *stuTime = [self getNowYear];
-            [Utils saveCache:[wrapper myObjectForKey:(id)kSecAttrAccount] andID:@"stuTime" andValue:stuTime];
+            //计算当前学期
+            [Utils getNowYear];
+            //保存当前大学
+            [Utils getStuTimeSchool:[Utils getCache:gdufeAccount andID:@"stuTime"]];
             
             //使用md5加密
             //            NSString *pwdByMD5 = [NSString md5To32bit:_pwd.text];
@@ -127,41 +128,4 @@
         [SVProgressHUD dismiss];
     }];
 }
-
-//计算大一到大四的学期数组NSArray
-- (void)getStuYears:(NSString *)firstStuTime mySno:(NSString *)mySno {
-    NSInteger year = [firstStuTime integerValue];//转NSInteger
-    NSLog(@"year = %ld",(long)year);
-    NSMutableArray *stuTimes = [[NSMutableArray alloc]init];
-    for (int i = 0; i < 4; i++) {
-        NSInteger beginYear = 2000 + year + i;
-        NSInteger endYear = 2000 + year + i + 1;
-        [stuTimes addObject:[NSString stringWithFormat:@"%ld-%ld-%d",(long)beginYear,(long)endYear,1]];
-        [stuTimes addObject:[NSString stringWithFormat:@"%ld-%ld-%d",(long)beginYear,(long)endYear,2]];
-    }
-//    NSLog(@"stuTimes = %@",stuTimes);
-    [Utils saveCache:mySno andID:@"stuTimes" andValue:stuTimes];
-}
-
-//获取当前学期
-- (NSString *)getNowYear {
-    NSString *nowYear = [[NSString alloc]init];
-    NSDateFormatter * df = [[NSDateFormatter alloc] init];
-    df.dateFormat = @"yyyy-MM-dd";
-    NSString * dateBeginTime = @"2017-09-01";//每学期开学日期（默认9月1号开学）
-    NSString *dateNowTime = [df stringFromDate:[NSDate date]];//当前日期;
-    NSDate * date1 = [df dateFromString:dateBeginTime];
-    NSDate * date2 = [df dateFromString:dateNowTime];
-    NSTimeInterval time = [date2 timeIntervalSinceDate:date1]; //date1是前一个时间(早)，date2是后一个时间(晚)
-    if (time) {
-        NSInteger lastYear = [[dateNowTime substringToIndex:4] integerValue] + 1;
-        nowYear = [NSString stringWithFormat:@"%@-%ld-%d",[dateNowTime substringToIndex:4],(long)lastYear,1];
-    } else {
-        NSInteger beginYear = [[dateNowTime substringToIndex:4] integerValue] - 1;
-        nowYear = [NSString stringWithFormat:@"%ld-%@-%d",(long)beginYear,[dateNowTime substringToIndex:4],2];
-    }
-    NSLog(@"stuTime = %@",nowYear);
-    return nowYear;
-}
-
 @end

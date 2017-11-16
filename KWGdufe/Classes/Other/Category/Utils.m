@@ -7,6 +7,7 @@
 //
 
 #import "Utils.h"
+#import "KeychainWrapper.h"
 
 @implementation Utils
 /**
@@ -439,6 +440,70 @@
     [setting removeObjectForKey:key];
     [setting setObject:str forKey:key];
     [setting synchronize];
+}
+
+//计算大一到大四的学期数组NSArray
++ (void)getStuYears:(NSString *)firstStuTime mySno:(NSString *)mySno {
+    NSInteger year = [firstStuTime integerValue];//转NSInteger
+    NSLog(@"year = %ld",(long)year);
+    NSMutableArray *stuTimes = [[NSMutableArray alloc]init];
+    for (int i = 0; i < 4; i++) {
+        NSInteger beginYear = 2000 + year + i;
+        NSInteger endYear = 2000 + year + i + 1;
+        [stuTimes addObject:[NSString stringWithFormat:@"%ld-%ld-%d",(long)beginYear,(long)endYear,1]];
+        [stuTimes addObject:[NSString stringWithFormat:@"%ld-%ld-%d",(long)beginYear,(long)endYear,2]];
+    }
+    //    NSLog(@"stuTimes = %@",stuTimes);
+    [Utils saveCache:mySno andID:@"stuTimes" andValue:stuTimes];
+}
+
+//获取当前学期
++ (void)getNowYear {
+    NSString *nowYear = [[NSString alloc]init];
+    NSDateFormatter * df = [[NSDateFormatter alloc] init];
+    df.dateFormat = @"yyyy-MM-dd";
+    NSString * dateBeginTime = @"2017-09-01";//每学期开学日期（默认9月1号开学）
+    NSString *dateNowTime = [df stringFromDate:[NSDate date]];//当前日期;
+    NSDate * date1 = [df dateFromString:dateBeginTime];
+    NSDate * date2 = [df dateFromString:dateNowTime];
+    NSTimeInterval time = [date2 timeIntervalSinceDate:date1]; //date1是前一个时间(早)，date2是后一个时间(晚)
+    if (time) {
+        NSInteger lastYear = [[dateNowTime substringToIndex:4] integerValue] + 1;
+        nowYear = [NSString stringWithFormat:@"%@-%ld-%d",[dateNowTime substringToIndex:4],(long)lastYear,1];
+    } else {
+        NSInteger beginYear = [[dateNowTime substringToIndex:4] integerValue] - 1;
+        nowYear = [NSString stringWithFormat:@"%ld-%@-%d",(long)beginYear,[dateNowTime substringToIndex:4],2];
+    }
+    //保存当前学期
+    [Utils saveCache:gdufeAccount andID:@"stuTime" andValue:nowYear];
+}
+
+//保存当前大几
++ (void)getStuTimeSchool:(NSString *)stuTimeNow {
+    NSArray *stuTimesNow = [Utils getCache:gdufeAccount andID:@"stuTimes"];
+    NSInteger i = 0;
+    for (stuTimeNow in stuTimesNow) {
+        if (![stuTimeNow isEqualToString:stuTimesNow[i]]) {
+            ++i;
+        }
+    }
+    
+    [Utils saveCache:gdufeAccount andID:@"schoolYear" andValue:stuTimeForSchool[i]];
+    NSLog(@"保存的大几 = %@",stuTimeForSchool[i]);
+    NSLog(@"%ld",(long)i);
+}
+
+//获取第几周
++ (void)getSchoolWeek {
+    NSDateFormatter * df = [[NSDateFormatter alloc] init];
+    df.dateFormat = @"yyyy-MM-dd";
+    NSString * dateBeginTime = @"2017-09-04";//开学日期（需要每学期修改）
+    NSString *dateNowTime = [df stringFromDate:[NSDate date]];//当前日期;
+    NSDate * date1 = [df dateFromString:dateBeginTime];
+    NSDate * date2 = [df dateFromString:dateNowTime];
+    NSTimeInterval time = [date2 timeIntervalSinceDate:date1]; //date1是前一个时间(早)，date2是后一个时间(晚)
+    NSString *schoolWeek = [NSString stringWithFormat:@"%ld",(NSInteger)time/604800];
+    [Utils saveCache:gdufeAccount andID:@"schoolWeek" andValue:schoolWeek];
 }
 
 @end
