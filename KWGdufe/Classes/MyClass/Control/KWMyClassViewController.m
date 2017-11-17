@@ -49,10 +49,9 @@
     
     //设置背景颜色
     self.view.backgroundColor = [UIColor whiteColor];
-    //获取第几周
-    [Utils getSchoolWeek];
+    
     schoolWeek = [Utils getCache:gdufeAccount andID:@"schoolWeek"];
-    NSLog(@"初始化的shoolYear = %@",[Utils getCache:gdufeAccount andID:@"schoolYear"]);
+//    NSLog(@"初始化的shoolYear = %@",[Utils getCache:gdufeAccount andID:@"schoolYear"]);
 
     //设置标题
     [self setupNavBarRightName:[Utils getCache:gdufeAccount andID:@"schoolYear"] setleftName:[NSString stringWithFormat:@"第%@周",schoolWeek]];
@@ -177,7 +176,7 @@
             [Utils getSchoolWeek];
             schoolWeek = [Utils getCache:gdufeAccount andID:@"schoolWeek"];
             [SVProgressHUD showWithStatus:@"更新课表"];
-            [self loadData:self.stuTime week:schoolWeek];
+            [self loadData:[Utils getCache:gdufeAccount andID:@"stuTime"] week:schoolWeek];
             [self setupNavBarRightName:[Utils getCache:gdufeAccount andID:@"schoolYear"] setleftName:[NSString stringWithFormat:@"第%@周",schoolWeek]];
 //            [weekView setDay:[NSString stringWithFormat:@"%@周",schoolWeek]];
         } else {
@@ -186,7 +185,7 @@
             [Utils saveCache:gdufeAccount andID:@"schoolWeek" andValue:[NSString stringWithFormat:@"%ld",(long)selectedIndex]];
             schoolWeek = [Utils getCache:gdufeAccount andID:@"schoolWeek"];
 //            NSLog(@"选择的schoolweek = %@",schoolWeek);
-            [self loadData:self.stuTime week:schoolWeek];
+            [self loadData:[Utils getCache:gdufeAccount andID:@"stuTime"] week:schoolWeek];
             [self setupNavBarRightName:[Utils getCache:gdufeAccount andID:@"schoolYear"] setleftName:[NSString stringWithFormat:@"第%ld周",(long)selectedIndex]];
 //            [weekView setDay:[NSString stringWithFormat:@"%ld周",(long)selectedIndex]];
             

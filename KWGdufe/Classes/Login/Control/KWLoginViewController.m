@@ -100,6 +100,8 @@
             [Utils getNowYear];
             //保存当前大学
             [Utils getStuTimeSchool:[Utils getCache:gdufeAccount andID:@"stuTime"]];
+            //获取第几周
+            [Utils getSchoolWeek];
             
             //使用md5加密
             //            NSString *pwdByMD5 = [NSString md5To32bit:_pwd.text];
