@@ -474,8 +474,10 @@
         NSInteger beginYear = [[dateNowTime substringToIndex:4] integerValue] - 1;
         nowYear = [NSString stringWithFormat:@"%ld-%@-%d",(long)beginYear,[dateNowTime substringToIndex:4],2];
     }
-    //保存当前学期
+    //保存当前学期（课表）
     [Utils saveCache:gdufeAccount andID:@"stuTime" andValue:nowYear];
+    [Utils saveCache:gdufeAccount andID:@"stuTimeForGrade" andValue:nowYear];
+
 }
 
 //保存当前大几
@@ -489,8 +491,7 @@
     }
     
     [Utils saveCache:gdufeAccount andID:@"schoolYear" andValue:stuTimeForSchool[i]];
-    NSLog(@"保存的大几 = %@",stuTimeForSchool[i]);
-    NSLog(@"%ld",(long)i);
+    [Utils saveCache:gdufeAccount andID:@"schoolYearForGrade" andValue:stuTimeForSchool[i]];
 }
 
 //获取第几周

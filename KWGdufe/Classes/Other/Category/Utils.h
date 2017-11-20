@@ -118,5 +118,6 @@
 + (void)getNowYear;
 + (void)getStuTimeSchool:(NSString *)stuTimeNow;
 + (void)getSchoolWeek;
+
 @end
 

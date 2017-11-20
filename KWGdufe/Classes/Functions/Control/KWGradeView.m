@@ -17,6 +17,7 @@
 #import "KWGradeCell.h"
 #import "KWAFNetworking.h"
 #import "KWRequestUrl.h"
+#import <ActionSheetPicker-3.0/ActionSheetStringPicker.h>
 
 @interface KWGradeView ()
 
@@ -28,33 +29,71 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"我的成绩";
+    
+    [self setupNavBarRightName:[Utils getCache:gdufeAccount andID:@"schoolYearForGrade"]];
+    [SVProgressHUD showWithStatus:@"刷新中~"];
     NSArray *gradeDict = [Utils getCache:gdufeAccount andID:@"GradeModel"];
     if (gradeDict) {
         NSArray *gradeModel = [KWGradeModel mj_objectArrayWithKeyValuesArray:gradeDict];
-        NSMutableArray *gradeDictTimes = [[NSMutableArray alloc]init];
-        for (KWGradeModel *gradeDictTime in gradeModel) {
-            if ([gradeDictTime.time isEqualToString:@"2015-2016-2"]) {
-                [gradeDictTimes addObject:gradeDictTime];
-            }
-        }
-        _gradeModel = gradeDictTimes;
+        _gradeModel = gradeModel;
+        [self.tableView reloadData];
+        [SVProgressHUD dismiss];
     } else {
-        [self loadData];
+        [self loadDataWithStuTime:[Utils getCache:gdufeAccount andID:@"stuTimeForGrade"]];
     }
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)setupNavBarRightName:(NSString *)rightName {
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithString:rightName target:self action:@selector(selectYear)];
+    self.navigationItem.title = @"我的成绩";
+}
+
+- (void)selectYear {
+    NSMutableArray *stuTimes = [Utils getCache:gdufeAccount andID:@"stuTimes"];
+    
+    ActionSheetStringPicker *picker = [[ActionSheetStringPicker alloc]initWithTitle:@"学期" rows:stuTimesForGrade initialSelection:0 doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+        if(selectedIndex == 0){
+            [SVProgressHUD showWithStatus:@"刷新中~"];
+            [self loadDataWithStuTime:0];
+            [Utils updateCache:gdufeAccount andID:@"schoolYearForGrade" andValue:selectedValue];
+            [self setupNavBarRightName:[Utils getCache:gdufeAccount andID:@"schoolYearForGrade"]];
+        } else {
+            [SVProgressHUD showWithStatus:@"刷新中~"];
+            [Utils updateCache:gdufeAccount andID:@"stuTimeForGrade" andValue:stuTimes[selectedIndex-1]];
+            [self loadDataWithStuTime:[Utils getCache:gdufeAccount andID:@"stuTimeForGrade"]];
+            [Utils updateCache:gdufeAccount andID:@"schoolYearForGrade" andValue:selectedValue];
+            [self setupNavBarRightName:[Utils getCache:gdufeAccount andID:@"schoolYearForGrade"]];
+        }
+    } cancelBlock:^(ActionSheetStringPicker *picker) {
+        NSLog(@"Block Picker Canceled");
+    } origin:self.view];
+    
+    UIButton *cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [cancelButton setTitle:@"取消" forState:UIControlStateNormal];
+    [cancelButton.titleLabel setFont:[UIFont boldSystemFontOfSize:16]];
+    [cancelButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [cancelButton setTitleColor:[Utils colorWithHexString:@"#2E47AC"] forState:UIControlStateHighlighted];
+    [cancelButton setFrame:CGRectMake(0, 0, 32, 32)];
+    [picker setCancelButton:[[UIBarButtonItem alloc] initWithCustomView:cancelButton]];
+    
+    UIButton *doneButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [doneButton setTitle:@"完成" forState:UIControlStateNormal];
+    [doneButton.titleLabel setFont:[UIFont boldSystemFontOfSize:16]];
+    [doneButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [doneButton setTitleColor:[Utils colorWithHexString:@"#2E47AC"] forState:UIControlStateHighlighted];
+    [doneButton setFrame:CGRectMake(0, 0, 32, 32)];
+    [picker setDoneButton:[[UIBarButtonItem alloc] initWithCustomView:doneButton]];
+    
+    [picker showActionSheetPicker];
 }
 
 #pragma mark - 加载数据
-- (void)loadData {
+- (void)loadDataWithStuTime:(NSString *)stuTimeForGrade {
     //拼接数据
     NSMutableDictionary *parements = [NSMutableDictionary dictionary];
     parements[@"sno"] = gdufeAccount;
     parements[@"pwd"] = gdufePassword;
+    parements[@"stu_time"] = stuTimeForGrade;
     
     [KWAFNetworking postWithUrlString:GetGradeAPI parameters:parements success:^(id data) {
         //获取字典
@@ -65,17 +104,20 @@
         
         //字典转模型
         NSArray *gradeModel = [KWGradeModel mj_objectArrayWithKeyValuesArray:gradeDict];
-        NSMutableArray *gradeDictTimes = [[NSMutableArray alloc]init];
         
-        //获取大三下学期成绩
-        for (KWGradeModel *gradeDictTime in gradeModel) {
-            if ([gradeDictTime.time isEqualToString:@"2016-2017-2"]) {
-                [gradeDictTimes addObject:gradeDictTime];
-            }
-        }
-        _gradeModel = gradeDictTimes;
+//        NSMutableArray *gradeDictTimes = [[NSMutableArray alloc]init];
+//
+//        //获取大三下学期成绩
+//        for (KWGradeModel *gradeDictTime in gradeModel) {
+//            if ([gradeDictTime.time isEqualToString:@"2016-2017-2"]) {
+//                [gradeDictTimes addObject:gradeDictTime];
+//            }
+//        }
+        
+        _gradeModel = gradeModel;
         
         [self.tableView reloadData];
+        [SVProgressHUD dismiss];
     } failure:^(NSError *error) {
         
     }];

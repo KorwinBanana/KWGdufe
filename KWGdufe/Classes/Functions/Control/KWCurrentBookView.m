@@ -33,11 +33,11 @@
     
     self.navigationItem.title = _vcName;
     
+    [self setupHeadView];
+}
+
+- (void)setupHeadView {
     __unsafe_unretained UITableView *tableView = self.tableView;
-    
-    //状态栏高度
-    CGRect rectStatus = [[UIApplication sharedApplication] statusBarFrame];
-    CGRect rectNav = self.navigationController.navigationBar.frame;
     
     //设置头部
     if (@available(iOS 11.0, *)) {
@@ -45,7 +45,7 @@
     } else {
         self.automaticallyAdjustsScrollViewInsets = NO;
     }
-//    self.tableView.contentInset = UIEdgeInsetsMake(-rectStatus.size.height - rectNav.size.height, 0, 0, 0);
+    //    self.tableView.contentInset = UIEdgeInsetsMake(-rectStatus.size.height - rectNav.size.height, 0, 0, 0);
     self.tableView.scrollIndicatorInsets = self.tableView.contentInset;
     
     // 下拉刷新
@@ -60,11 +60,11 @@
     // 设置自动切换透明度(在导航栏下面自动隐藏)
     tableView.mj_header.automaticallyChangeAlpha = YES;
     
-    NSString *account = [wrapper myObjectForKey:(id)kSecAttrAccount];
-    NSArray *currentDict = [Utils getCache:account andID:_modelSaveName];
+    NSArray *currentDict = [Utils getCache:gdufeAccount andID:_modelSaveName];
     if (currentDict) {
         NSArray *currentModel = [KWCurrentModel mj_objectArrayWithKeyValuesArray:currentDict];
         _currentModel = currentModel;
+        [tableView.mj_header beginRefreshing];
     } else {
         [tableView.mj_header beginRefreshing];
     }

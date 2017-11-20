@@ -54,10 +54,10 @@
     KWFunctionsCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ID forIndexPath:indexPath];
     if (indexPath.row == 0) {
         cell.name = @"当前借阅";
-        cell.imageName = @"tabBar_essence_click_icon";
+        cell.imageName = @"setup-head-default";
     } else if (indexPath.row == 1) {
         cell.name = @"历史借阅";
-        cell.imageName = @"tabBar_new_click_icon";
+        cell.imageName = @"setup-head-default";
     }
     cell.backgroundColor = [UIColor clearColor];
     return cell;

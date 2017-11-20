@@ -115,8 +115,7 @@
 }
 
 - (void)selectYear {
-    NSString *account = [wrapper myObjectForKey:(id)kSecAttrAccount];
-    NSMutableArray *stuTimes = [Utils getCache:account andID:@"stuTimes"];
+    NSMutableArray *stuTimes = [Utils getCache:gdufeAccount andID:@"stuTimes"];
     
     ActionSheetStringPicker *picker = [[ActionSheetStringPicker alloc]initWithTitle:@"学期" rows:stuTimeForSchool initialSelection:0 doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
         if(selectedIndex == 0){
@@ -143,7 +142,7 @@
             [self loadData:self.stuTime week:schoolWeek];
             [self setupNavBarRightName:selectedValue setleftName:[NSString stringWithFormat:@"第%@周",schoolWeek]];
             [Utils updateCache:gdufeAccount andID:@"schoolYear" andValue:selectedValue];
-            NSLog(@"%@",[Utils getCache:gdufeAccount andID:@"schoolYear"]);
+//            NSLog(@"%@",[Utils getCache:gdufeAccount andID:@"schoolYear"]);
         }
     } cancelBlock:^(ActionSheetStringPicker *picker) {
         NSLog(@"Block Picker Canceled");

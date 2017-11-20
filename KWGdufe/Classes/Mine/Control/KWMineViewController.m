@@ -264,6 +264,8 @@
     [Utils removeCache:account andID:@"CardModel"];
     [Utils removeCache:account andID:@"schoolWeek"];
     [Utils removeCache:account andID:@"schoolYear"];
+    [Utils removeCache:account andID:@"stuTimeForGrade"];
+    [Utils removeCache:account andID:@"schoolYearForGrade"];
     
     //删除账号密码
     [wrapper resetKeychainItem];

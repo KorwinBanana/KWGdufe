@@ -55,13 +55,13 @@
     KWFunctionsCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ID forIndexPath:indexPath];
     if (indexPath.row == 0) {
         cell.name = @"成绩查询";
-        cell.imageName = @"tabBar_new_click_icon";
+        cell.imageName = @"setup-head-default";
     } else if (indexPath.row == 1) {
         cell.name = @"素拓信息";
-        cell.imageName = @"tabBar_friendTrends_click_icon";
+        cell.imageName = @"setup-head-default";
     } else {
         cell.name = @"查四六级";
-        cell.imageName = @"tabBar_essence_click_icon";
+        cell.imageName = @"setup-head-default";
     }
     cell.backgroundColor = [UIColor clearColor];
     return cell;
