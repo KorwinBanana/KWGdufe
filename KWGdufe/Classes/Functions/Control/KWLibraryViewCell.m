@@ -11,6 +11,7 @@
 #import "KWCurrentBookView.h"
 #import <QuartzCore/QuartzCore.h>
 #import "KWRequestUrl.h"
+#import "KWSearchBookView.h"
 
 #define ID @"cell"
 
@@ -45,7 +46,7 @@
 
 #pragma mark - UICollectViewDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 2;
+    return 3;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -57,6 +58,9 @@
         cell.imageName = @"setup-head-default";
     } else if (indexPath.row == 1) {
         cell.name = @"历史借阅";
+        cell.imageName = @"setup-head-default";
+    } else if (indexPath.row == 2) {
+        cell.name = @"馆藏查询";
         cell.imageName = @"setup-head-default";
     }
     cell.backgroundColor = [UIColor clearColor];
@@ -76,6 +80,12 @@
         borrowVc.modelSaveName = @"BorrowedBookModel";
         borrowVc.vcName = @"历史借阅";
         [_delegate pushVc:borrowVc];
+    } else if (indexPath.row == 2) {
+        KWSearchBookView *searchBookVc = [[KWSearchBookView alloc]init];
+//        borrowVc.url = GetBorrowedBookAPI;
+//        borrowVc.modelSaveName = @"BorrowedBookModel";
+//        borrowVc.vcName = @"历史借阅";
+        [_delegate pushVc:searchBookVc];
     }
 }
 

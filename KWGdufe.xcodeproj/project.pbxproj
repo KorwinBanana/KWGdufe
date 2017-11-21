@@ -12,6 +12,7 @@
 		0A0D9A121FA75024009CB653 /* KWSztzTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A0D9A111FA75024009CB653 /* KWSztzTableView.m */; };
 		0A0D9A151FA75056009CB653 /* KWSztzModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A0D9A141FA75056009CB653 /* KWSztzModel.m */; };
 		0A0D9A1E1FA75BFA009CB653 /* KWLibraryViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A0D9A1D1FA75BFA009CB653 /* KWLibraryViewCell.m */; };
+		0A10DB2A1FC483E3006B5196 /* KWSearchBookView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A10DB291FC483E3006B5196 /* KWSearchBookView.m */; };
 		0A38FE811F9E2032007484BD /* model.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0A38FE801F9E2031007484BD /* model.plist */; };
 		0A3BA3C81FAF06D800EBB96E /* KWCashModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A3BA3C71FAF06D800EBB96E /* KWCashModel.m */; };
 		0A3BA3CB1FAF0EC400EBB96E /* KWTodayBuyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A3BA3CA1FAF0EC400EBB96E /* KWTodayBuyCell.m */; };
@@ -102,6 +103,8 @@
 		0A0D9A141FA75056009CB653 /* KWSztzModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWSztzModel.m; sourceTree = "<group>"; };
 		0A0D9A1C1FA75BFA009CB653 /* KWLibraryViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWLibraryViewCell.h; sourceTree = "<group>"; };
 		0A0D9A1D1FA75BFA009CB653 /* KWLibraryViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWLibraryViewCell.m; sourceTree = "<group>"; };
+		0A10DB281FC483E3006B5196 /* KWSearchBookView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWSearchBookView.h; sourceTree = "<group>"; };
+		0A10DB291FC483E3006B5196 /* KWSearchBookView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWSearchBookView.m; sourceTree = "<group>"; };
 		0A38FE801F9E2031007484BD /* model.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = model.plist; sourceTree = SOURCE_ROOT; };
 		0A3BA3C61FAF06D800EBB96E /* KWCashModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWCashModel.h; sourceTree = "<group>"; };
 		0A3BA3C71FAF06D800EBB96E /* KWCashModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWCashModel.m; sourceTree = "<group>"; };
@@ -604,6 +607,8 @@
 				0A0D9A1D1FA75BFA009CB653 /* KWLibraryViewCell.m */,
 				0A4483F41FA9F38800100DF8 /* KWCurrentBookView.h */,
 				0A4483F51FA9F38800100DF8 /* KWCurrentBookView.m */,
+				0A10DB281FC483E3006B5196 /* KWSearchBookView.h */,
+				0A10DB291FC483E3006B5196 /* KWSearchBookView.m */,
 				0A3BA3D51FAF3B7200EBB96E /* KWOtherFuncViewCell.h */,
 				0A3BA3D61FAF3B7200EBB96E /* KWOtherFuncViewCell.m */,
 				0A3BA3D81FAF3E2100EBB96E /* KWSeElectViewController.h */,
@@ -999,6 +1004,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0AA60B311F7C052600E0E87D /* KWFunctionsViewController.m in Sources */,
+				0A10DB2A1FC483E3006B5196 /* KWSearchBookView.m in Sources */,
 				0AEA5C7B1F8E9056005C8DF2 /* KWMineMsgViewController.m in Sources */,
 				0A4483FC1FA9F76E00100DF8 /* KWCurrentCell.m in Sources */,
 				0A0D9A151FA75056009CB653 /* KWSztzModel.m in Sources */,

@@ -7,8 +7,14 @@
 //
 
 #import "KWSeElectViewController.h"
+#import "KWAFNetworking.h"
+#import <MJExtension/MJExtension.h>
 
 @interface KWSeElectViewController ()
+
+@property (nonatomic,strong) UITextField *dormitory;
+@property (nonatomic,strong) UITextField *room;
+@property(nonatomic,strong) NSArray *electricModel;
 
 @end
 
@@ -58,6 +64,7 @@
     }];
     
     UITextField *dormitoryField = [[UITextField alloc]init];
+    self.dormitory = dormitoryField;
     dormitoryField.borderStyle = UITextBorderStyleRoundedRect;
     dormitoryField.placeholder = @"楼号";
     dormitoryField.clearButtonMode = UITextFieldViewModeAlways;
@@ -70,6 +77,7 @@
     }];
     
     UITextField *roomField = [[UITextField alloc]init];
+    self.room = roomField;
     roomField.borderStyle = UITextBorderStyleRoundedRect;
     roomField.placeholder = @"房间号";
     roomField.clearButtonMode = UITextFieldViewModeAlways;
@@ -83,10 +91,36 @@
     
     UIButton *findBtn = [UIButton buttonWithType:UIButtonTypeSystem];
     [findBtn setTitle:@"查询" forState:UIControlStateNormal];
+    [findBtn addTarget:self action:@selector(loadDataPushToView) forControlEvents:UIControlEventTouchUpInside];
     [view1 addSubview:findBtn];
     [findBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(view1.mas_centerX);
         make.bottom.equalTo(view1.mas_bottom);
+    }];
+}
+
+- (void)loadDataPushToView {
+    NSMutableDictionary *parements = [NSMutableDictionary dictionary];
+    parements[@"building"] = self.dormitory.text;
+    parements[@"room"] = self.room.text;
+    
+    [KWAFNetworking postWithUrlString:@"http://api.wegdufe.com:82/index.php?r=card/get-electric" parameters:parements success:^(id data) {
+        //获取字典
+//        NSDictionary *gradeDict = data[@"data"];
+        NSLog(@"data = %@",data);
+        
+        //缓存到本地
+//        [Utils saveCache:gdufeAccount andID:@"GradeModel" andValue:gradeDict];
+        
+        //字典转模型
+//        NSArray *gradeModel = [KWGradeModel mj_objectArrayWithKeyValuesArray:gradeDict];
+//
+//        _gradeModel = gradeModel;
+//
+//        [self.tableView reloadData];
+//        [SVProgressHUD dismiss];
+    } failure:^(NSError *error) {
+        
     }];
 }
 
