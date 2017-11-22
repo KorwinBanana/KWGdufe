@@ -41,6 +41,9 @@
     pan.delegate = self;
     //禁止之前的手势
     self.interactivePopGestureRecognizer.enabled = NO;
+    
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+
 }
 
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
@@ -74,5 +77,10 @@
  UIPanGestureRecognizer：全屏滑动手势
  UIScreenEdgePanGestureRecognizer：导航条的手势：边缘滑动手势，继承与UIPanGestureRecognizer
  */
+
+//状态栏文字颜色  此方法直接添加在需要更改的控制器上即可,无需调用
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
+}
 
 @end

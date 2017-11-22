@@ -47,6 +47,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self preferredStatusBarStyle];
     //设置背景颜色
     self.view.backgroundColor = [UIColor whiteColor];
     
