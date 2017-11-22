@@ -11,6 +11,7 @@
 #import <Masonry/Masonry.h>
 
 @interface KWGradeCell()
+
 @property (nonatomic,strong) UILabel *name;
 @property (nonatomic,strong) UILabel *examType;
 @property (nonatomic,strong) UILabel *dailyScore;
