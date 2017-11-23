@@ -32,7 +32,7 @@
         
         [nameANumView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.mas_top).with.offset(10);
-            make.left.equalTo(self.mas_left).with.offset(20);
+            make.left.equalTo(self.mas_left).with.offset(15);
             make.bottom.equalTo(self.mas_bottom).with.offset(-10);
             make.width.mas_equalTo(@((self.bounds.size.width - 50)*0.75));
         }];
@@ -40,7 +40,7 @@
         [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(nameANumView.mas_top);
             make.left.equalTo(nameANumView.mas_right).with.offset(10);
-            make.right.equalTo(self.mas_right).with.offset(-20);
+            make.right.equalTo(self.mas_right).with.offset(-40);
             make.bottom.equalTo(nameANumView.mas_bottom);
         }];
         
@@ -56,14 +56,14 @@
         
         [_name mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(nameANumView.mas_top);
-            make.left.equalTo(nameANumView.mas_left).with.offset(10);
+            make.left.equalTo(nameANumView.mas_left).with.offset(0);
             make.right.equalTo(nameANumView.mas_right);
             make.height.mas_equalTo(40);
         }];
         
         [_num mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(_name.mas_bottom).with.offset(10);
-            make.left.equalTo(nameANumView.mas_left).with.offset(10);
+            make.left.equalTo(nameANumView.mas_left).with.offset(0);
             make.right.equalTo(nameANumView.mas_right);
             make.bottom.equalTo(nameANumView.mas_bottom);
         }];

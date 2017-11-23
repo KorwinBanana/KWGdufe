@@ -107,7 +107,7 @@
 #pragma mark - UISearchBarDelegate
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
-    NSLog(@"文字改变 = %@",searchText);
+//    NSLog(@"文字改变 = %@",searchText);
     [self loadSearchBookWithBookName:searchText];
 }
 

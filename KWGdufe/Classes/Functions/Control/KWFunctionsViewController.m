@@ -20,7 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    self.tableView = [[UITableView alloc]initWithFrame:self.tableView.bounds style:UITableViewStyleGrouped];
+    self.tableView = [[UITableView alloc]initWithFrame:self.tableView.frame style:UITableViewStyleGrouped];
     self.tableView.sectionFooterHeight = 0.1;//footView的高度
     [self setupNavBar];
 }
@@ -82,8 +82,8 @@
     UIView *customView = [[UIView alloc] initWithFrame:CGRectMake(15, 0, 320, KWSCreenW/15)];
     UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     headerLabel.backgroundColor = [UIColor clearColor];
-    headerLabel.font = [UIFont italicSystemFontOfSize:14];
-//    [headerLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:14]];
+//    headerLabel.font = [UIFont italicSystemFontOfSize:14];
+    [headerLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:15]];
     headerLabel.frame = customView.frame;
     if (section == 0) {
         headerLabel.text = @"教务";
@@ -95,6 +95,16 @@
     [customView addSubview:headerLabel];
     return customView;
 }
+
+//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+//    if (section == 0) {
+//        return @"教务";
+//    } else if (section == 1) {
+//        return @"图书馆";
+//    } else {
+//        return @"其他功能";
+//    }
+//}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return KWSCreenW/15;

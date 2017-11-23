@@ -207,6 +207,7 @@
 //        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 //        cell.model = _stuModel;
         KWMyMsgCell *cell = [[KWMyMsgCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;//选中无色
         cell.model = _stuModel;
         return cell;
@@ -216,8 +217,8 @@
     else if (indexPath.section == 1) {
         if (indexPath.row == 0) {
             cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"stuTimeCell"];
-            cell.textLabel.text = [NSString stringWithFormat:@"校园卡余额(卡号:%@)",_cardModel.cardNum];
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"%@元",_cardModel.cash];
+            cell.textLabel.text = @"钱包";
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             cell.selectionStyle = UITableViewCellSelectionStyleNone;//选中无色
         } else {
             cell.textLabel.text = @"选项待定";

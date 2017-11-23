@@ -30,15 +30,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"今日交易";
+    self.navigationItem.title = @"校园卡";
     [SVProgressHUD showWithStatus:@"刷新今日交易"];
     
     __unsafe_unretained UITableView *tableView = self.tableView;
-    
-    //状态栏高度
-    CGRect rectStatus = [[UIApplication sharedApplication] statusBarFrame];
-    CGRect rectNav = self.navigationController.navigationBar.frame;
-    
+        
     //设置头部
     if (@available(iOS 11.0, *)) {
         self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
@@ -54,7 +50,7 @@
         [self loadTodayData];
         [tableView.mj_header endRefreshing];
     }];
-    
+
     // 设置自动切换透明度(在导航栏下面自动隐藏)
     tableView.mj_header.automaticallyChangeAlpha = YES;
     
@@ -142,8 +138,17 @@
 }
 
 #pragma mark - Table view data source
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 2;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return _todayBuyModel.count;
+    if (section == 0) {
+        return 1;
+    } else {
+        return _todayBuyModel.count;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -151,14 +156,31 @@
     if (!cell) {
         cell = [[KWTodayBuyCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"todayBuyCell"];
     }
-    KWTodayBuyModel *model = _todayBuyModel[indexPath.row];
-    cell.model = model;
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    return cell;
+    if (indexPath.section == 0) {
+        UITableViewCell *moneyCell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"moneyCell"];
+        moneyCell.textLabel.text = [NSString stringWithFormat:@"卡号(%@)",_cardModel.cardNum];
+        moneyCell.detailTextLabel.text = [NSString stringWithFormat:@"%@元",_cardModel.cash];;
+        return moneyCell;
+    } else {
+        KWTodayBuyModel *model = _todayBuyModel[indexPath.row];
+        cell.model = model;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 108;
+    if (indexPath.section == 1) {
+        return 108;
+    } else return 44;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    if (section == 0) {
+        return [NSString stringWithFormat:@"校园卡余额"];
+    } else {
+        return @"今日交易";
+    }
 }
 
 @end
