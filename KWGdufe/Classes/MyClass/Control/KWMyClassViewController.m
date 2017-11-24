@@ -24,6 +24,7 @@
 #import <ActionSheetPicker-3.0/ActionSheetStringPicker.h>
 #import "KWRequestUrl.h"
 
+static float progress = 0.0f;
 
 @interface KWMyClassViewController ()<UICollectionViewDataSource,UICollectionViewDelegate> {
     UICollectionView *collectionView;
@@ -125,7 +126,9 @@
             
             [Utils getStuTimeSchool:self.stuTime];//获取大几
             
-            [SVProgressHUD showWithStatus:@"更新课表"];
+//            [SVProgressHUD showWithStatus:@"更新课表"];
+//            [SVProgressHUD showProgress:0.05 status:@"加载课表"];
+            [self performSelector:@selector(increaseProgress) withObject:nil afterDelay:0.3f];
             
             [Utils updateCache:gdufeAccount andID:@"stuTime" andValue:self.stuTime];
             
@@ -138,7 +141,10 @@
             NSLog(@"0 = %@",[Utils getCache:gdufeAccount andID:@"schoolYear"]);
         } else {
             self.stuTime = stuTimes[selectedIndex-1];
-            [SVProgressHUD showWithStatus:@"更新课表"];
+//            [SVProgressHUD showWithStatus:@"更新课表"];
+//            [SVProgressHUD showProgress:0.05 status:@"加载课表"];
+            [self performSelector:@selector(increaseProgress) withObject:nil afterDelay:0.3f];
+            
             [Utils updateCache:gdufeAccount andID:@"stuTime" andValue:stuTimes[selectedIndex-1]];
             [self loadData:self.stuTime week:schoolWeek];
             [self setupNavBarRightName:selectedValue setleftName:[NSString stringWithFormat:@"第%@周",schoolWeek]];
@@ -175,13 +181,17 @@
         if (selectedIndex == 0) {
             [Utils getSchoolWeek];
             schoolWeek = [Utils getCache:gdufeAccount andID:@"schoolWeek"];
-            [SVProgressHUD showWithStatus:@"更新课表"];
+//            [SVProgressHUD showWithStatus:@"更新课表"];
+            [self performSelector:@selector(increaseProgress) withObject:nil afterDelay:0.3f];
+            
             [self loadData:[Utils getCache:gdufeAccount andID:@"stuTime"] week:schoolWeek];
             [self setupNavBarRightName:[Utils getCache:gdufeAccount andID:@"schoolYear"] setleftName:[NSString stringWithFormat:@"第%@周",schoolWeek]];
 //            [weekView setDay:[NSString stringWithFormat:@"%@周",schoolWeek]];
         } else {
             schoolWeek = [NSString stringWithFormat:@"%ld", (long)selectedIndex];
-            [SVProgressHUD showWithStatus:@"更新课表"];
+//            [SVProgressHUD showWithStatus:@"更新课表"];
+            [self performSelector:@selector(increaseProgress) withObject:nil afterDelay:0.3f];
+            
             [Utils saveCache:gdufeAccount andID:@"schoolWeek" andValue:[NSString stringWithFormat:@"%ld",(long)selectedIndex]];
             schoolWeek = [Utils getCache:gdufeAccount andID:@"schoolWeek"];
 //            NSLog(@"选择的schoolweek = %@",schoolWeek);
@@ -390,6 +400,23 @@
     KWScheduleModel *classModel = _scheduleModel[indexPath.row - 12];
     msgVc.model = classModel;
     [self.navigationController pushViewController:msgVc animated:YES];
+}
+
+#pragma mark - SVProgress
+
+- (void)increaseProgress {
+    progress += 0.1f;
+    [SVProgressHUD showProgress:progress status:@"Loading"];
+    
+    if(progress < 1.0f){
+        [self performSelector:@selector(increaseProgress) withObject:nil afterDelay:0.3f];
+    } else {
+        [self performSelector:@selector(dismissSVProgressHUD) withObject:nil afterDelay:0.4f];
+    }
+}
+
+- (void)dismissSVProgressHUD {
+    [SVProgressHUD dismiss];
 }
 
 @end

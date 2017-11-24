@@ -31,17 +31,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"校园卡";
-    [SVProgressHUD showWithStatus:@"刷新今日交易"];
     
+    [self setupRefreshing];
+    
+    [self updateTodayData];
+}
+
+#pragma mark - setupRefreshing
+- (void)setupRefreshing {
     __unsafe_unretained UITableView *tableView = self.tableView;
-        
+    
     //设置头部
     if (@available(iOS 11.0, *)) {
         self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     } else {
         self.automaticallyAdjustsScrollViewInsets = NO;
     }
-//    self.tableView.contentInset = UIEdgeInsetsMake(rectStatus.size.height + rectNav.size.height, 0, 0, 0);
+    //    self.tableView.contentInset = UIEdgeInsetsMake(rectStatus.size.height + rectNav.size.height, 0, 0, 0);
     self.tableView.scrollIndicatorInsets = self.tableView.contentInset;
     
     // 下拉刷新
@@ -50,11 +56,9 @@
         [self loadTodayData];
         [tableView.mj_header endRefreshing];
     }];
-
+    
     // 设置自动切换透明度(在导航栏下面自动隐藏)
     tableView.mj_header.automaticallyChangeAlpha = YES;
-    
-    [self updateTodayData];
 }
 
 #pragma mark - 请求json
@@ -81,7 +85,7 @@
         if(_todayBuyModel.count == 0) {
             //添加警告框
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDestructive handler:nil];
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:nil];
             [alert addAction:okAction];
             alert.message = @"喵~没有交易记录哦~";
             [self presentViewController:alert animated:YES completion:nil];
@@ -122,12 +126,12 @@
             }
             case AFNetworkReachabilityStatusReachableViaWWAN: {
                 NSLog(@"3G|4G");
-                [self loadTodayData];
+                [self.tableView.mj_header beginRefreshing];
                 break;
             }
             case AFNetworkReachabilityStatusReachableViaWiFi: {
                 NSLog(@"WiFi");
-                [self loadTodayData];
+                [self.tableView.mj_header beginRefreshing];
                 break;
             }
             default:

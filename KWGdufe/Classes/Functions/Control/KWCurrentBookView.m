@@ -18,6 +18,7 @@
 #import <MJRefresh/MJRefresh.h>
 #import "KWAFNetworking.h"
 #import "KWRequestUrl.h"
+#import "KWSBookMostMsgView.h"
 //#import "KWSztzCell.h"
 
 @interface KWCurrentBookView ()
@@ -34,6 +35,15 @@
     self.navigationItem.title = _vcName;
     
     [self setupHeadView];
+    
+    NSArray *currentDict = [Utils getCache:gdufeAccount andID:_modelSaveName];
+    if (currentDict) {
+        NSArray *currentModel = [KWCurrentModel mj_objectArrayWithKeyValuesArray:currentDict];
+        _currentModel = currentModel;
+        [self.tableView reloadData];
+    } else {
+        [self.tableView.mj_header beginRefreshing];
+    }
 }
 
 - (void)setupHeadView {
@@ -60,14 +70,6 @@
     // 设置自动切换透明度(在导航栏下面自动隐藏)
     tableView.mj_header.automaticallyChangeAlpha = YES;
     
-    NSArray *currentDict = [Utils getCache:gdufeAccount andID:_modelSaveName];
-    if (currentDict) {
-        NSArray *currentModel = [KWCurrentModel mj_objectArrayWithKeyValuesArray:currentDict];
-        _currentModel = currentModel;
-        [tableView.mj_header beginRefreshing];
-    } else {
-        [tableView.mj_header beginRefreshing];
-    }
 }
 
 #pragma mark - 加载数据
@@ -109,6 +111,11 @@
     cell.model = model;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    KWSBookMostMsgView *sbVc = [[KWSBookMostMsgView alloc]init];
+    [self.navigationController pushViewController:sbVc animated:YES];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

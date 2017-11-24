@@ -29,19 +29,39 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"素拓信息";
+    [self setupRefreshing];
     NSString *account = [wrapper myObjectForKey:(id)kSecAttrAccount];
     NSArray *sztzDict = [Utils getCache:account andID:@"SztzModel"];
     if (sztzDict) {
         NSArray *sztzArray = [KWSztzModel mj_objectArrayWithKeyValuesArray:sztzDict];
         _sztzModel = sztzArray;
     } else {
-        [self loadData];
+        [self.tableView.mj_header beginRefreshing];
     }
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+#pragma mark - setupRefreshing
+- (void)setupRefreshing {
+    __unsafe_unretained UITableView *tableView = self.tableView;
+    
+    //设置头部
+    if (@available(iOS 11.0, *)) {
+        self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    } else {
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }
+    //    self.tableView.contentInset = UIEdgeInsetsMake(rectStatus.size.height + rectNav.size.height, 0, 0, 0);
+    self.tableView.scrollIndicatorInsets = self.tableView.contentInset;
+    
+    // 下拉刷新
+    tableView.mj_header= [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        // 结束刷新
+        [self loadData];
+        [tableView.mj_header endRefreshing];
+    }];
+    
+    // 设置自动切换透明度(在导航栏下面自动隐藏)
+    tableView.mj_header.automaticallyChangeAlpha = YES;
 }
 
 #pragma mark - 加载数据

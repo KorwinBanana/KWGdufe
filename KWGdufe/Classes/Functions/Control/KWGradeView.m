@@ -31,16 +31,41 @@
     [super viewDidLoad];
     
     [self setupNavBarRightName:[Utils getCache:gdufeAccount andID:@"schoolYearForGrade"]];
-    [SVProgressHUD showWithStatus:@"刷新中~"];
+    
+    [self setupRefreshing];
+    
     NSArray *gradeDict = [Utils getCache:gdufeAccount andID:@"GradeModel"];
     if (gradeDict) {
         NSArray *gradeModel = [KWGradeModel mj_objectArrayWithKeyValuesArray:gradeDict];
         _gradeModel = gradeModel;
         [self.tableView reloadData];
-        [SVProgressHUD dismiss];
     } else {
-        [self loadDataWithStuTime:[Utils getCache:gdufeAccount andID:@"stuTimeForGrade"]];
+        [self.tableView.mj_header beginRefreshing];
     }
+}
+
+#pragma mark - setupRefreshing
+- (void)setupRefreshing {
+    __unsafe_unretained UITableView *tableView = self.tableView;
+    
+    //设置头部
+    if (@available(iOS 11.0, *)) {
+        self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    } else {
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }
+    //    self.tableView.contentInset = UIEdgeInsetsMake(rectStatus.size.height + rectNav.size.height, 0, 0, 0);
+    self.tableView.scrollIndicatorInsets = self.tableView.contentInset;
+    
+    // 下拉刷新
+    tableView.mj_header= [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        // 结束刷新
+        [self loadDataWithStuTime:[Utils getCache:gdufeAccount andID:@"stuTimeForGrade"]];
+        [tableView.mj_header endRefreshing];
+    }];
+    
+    // 设置自动切换透明度(在导航栏下面自动隐藏)
+    tableView.mj_header.automaticallyChangeAlpha = YES;
 }
 
 - (void)setupNavBarRightName:(NSString *)rightName {

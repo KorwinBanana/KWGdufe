@@ -22,6 +22,7 @@
 #import "KWTodayBuyViewController.h"
 #import "KWAFNetworking.h"
 #import "KWRequestUrl.h"
+#import "KWLogoutCell.h"
 
 @interface KWMineViewController ()
 
@@ -193,13 +194,12 @@
     if (section == 0) {
         return 1;
     } else if (section == 1) {
-        return 3;
+        return 2;
     } else return 1;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [[UITableViewCell alloc]init];
     if (indexPath.section == 0) {
         //nil加载cell
 //        KWMineCell *cell = [[KWMineCell alloc]init];
@@ -211,21 +211,25 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;//选中无色
         cell.model = _stuModel;
         return cell;
-    } if (indexPath.section == 2) {
-        cell.textLabel.text = @"退出";
-    }
-    else if (indexPath.section == 1) {
+    } else if (indexPath.section == 1) {
         if (indexPath.row == 0) {
+            UITableViewCell *cell = [[UITableViewCell alloc]init];
             cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"stuTimeCell"];
             cell.textLabel.text = @"钱包";
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             cell.selectionStyle = UITableViewCellSelectionStyleNone;//选中无色
+            return cell;
         } else {
-            cell.textLabel.text = @"选项待定";
+            UITableViewCell *cell = [[UITableViewCell alloc]init];
+            cell.textLabel.text = @"关于我们";
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            return cell;
         }
+    }  else {
+        KWLogoutCell *cell = [[KWLogoutCell alloc]init];
+        cell = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([KWLogoutCell class]) owner:nil options:nil][0];
+        return cell;
     }
-    return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -254,26 +258,43 @@
 
 #pragma mark - 退出注销服务器缓存
 - (void)logout {
-    NSString *account = [wrapper myObjectForKey:(id)kSecAttrAccount];
-    //删除课程表缓存
-    [Utils removeCache:account andID:@"ClassModel"];
-    [Utils removeCache:account andID:@"GradeModel"];
-    [Utils removeCache:account andID:@"CurrentBookModel"];
-    [Utils removeCache:account andID:@"stuTimes"];
-    [Utils removeCache:account andID:@"stuTime"];
-    [Utils removeCache:account andID:@"TodayBuyModel"];
-    [Utils removeCache:account andID:@"CardModel"];
-    [Utils removeCache:account andID:@"schoolWeek"];
-    [Utils removeCache:account andID:@"schoolYear"];
-    [Utils removeCache:account andID:@"stuTimeForGrade"];
-    [Utils removeCache:account andID:@"schoolYearForGrade"];
+    //UIAlertController风格：UIAlertControllerStyleAlert
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"是否退出"
+                                                                             message:nil
+                                                                      preferredStyle:UIAlertControllerStyleAlert ];
     
-    //删除账号密码
-    [wrapper resetKeychainItem];
+    //添加取消到UIAlertController中
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    [alertController addAction:cancelAction];
     
-    //跳转页面
-    KWLoginViewController *loginVc = [[KWLoginViewController alloc]init];
-    [UIApplication sharedApplication].keyWindow.rootViewController = loginVc;
+    //添加确定到UIAlertController中
+    UIAlertAction *OKAction = [UIAlertAction actionWithTitle:@"退出" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action) {
+        NSString *account = [wrapper myObjectForKey:(id)kSecAttrAccount];
+        //删除课程表缓存
+        [Utils removeCache:account andID:@"ClassModel"];
+        [Utils removeCache:account andID:@"GradeModel"];
+        [Utils removeCache:account andID:@"CurrentBookModel"];
+        [Utils removeCache:account andID:@"stuTimes"];
+        [Utils removeCache:account andID:@"stuTime"];
+        [Utils removeCache:account andID:@"TodayBuyModel"];
+        [Utils removeCache:account andID:@"CardModel"];
+        [Utils removeCache:account andID:@"schoolWeek"];
+        [Utils removeCache:account andID:@"schoolYear"];
+        [Utils removeCache:account andID:@"stuTimeForGrade"];
+        [Utils removeCache:account andID:@"schoolYearForGrade"];
+        
+        //删除账号密码
+        [wrapper resetKeychainItem];
+        
+        //跳转页面
+        KWLoginViewController *loginVc = [[KWLoginViewController alloc]init];
+        [UIApplication sharedApplication].keyWindow.rootViewController = loginVc;
+        
+        NSLog(@"退出成功");
+    }];
+    [alertController addAction:OKAction];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 //点击跳转到设置页面
