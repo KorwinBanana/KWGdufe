@@ -68,7 +68,7 @@
             make.bottom.equalTo(nameANumView.mas_bottom);
         }];
         
-        UIImageView *image = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"setup-head-default"]];
+        UIImageView *image = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"mine3"]];
         [imageView addSubview:image];
         [image mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(imageView.mas_top);

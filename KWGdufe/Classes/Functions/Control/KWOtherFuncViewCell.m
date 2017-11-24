@@ -53,7 +53,7 @@
     KWFunctionsCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ID forIndexPath:indexPath];
     if (indexPath.row == 0) {
         cell.name = @"电控查询";
-        cell.imageName = @"setup-head-default";
+        cell.imageName = @"elect";
     }
     cell.backgroundColor = [UIColor clearColor];
     return cell;

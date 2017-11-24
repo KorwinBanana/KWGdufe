@@ -54,7 +54,7 @@
     CGRect frame = CGRectMake(0, 0, 0, 0.1);
     self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:frame];
     
-    [SVProgressHUD showWithStatus:@"加载数据中"];
+//    [SVProgressHUD show];
     
     NSString *account = [wrapper myObjectForKey:(id)kSecAttrAccount];
     NSDictionary *cashAry = [Utils getCache:account andID:@"CardModel"];
@@ -222,6 +222,7 @@
         } else {
             UITableViewCell *cell = [[UITableViewCell alloc]init];
             cell.textLabel.text = @"关于我们";
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
         }

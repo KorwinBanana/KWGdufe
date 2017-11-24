@@ -65,7 +65,7 @@ static float progress = 0.0f;
 //    CGRect rectNav = self.navigationController.navigationBar.frame;
     
     //提示用户当前正在加载数据 SVPro
-    [SVProgressHUD showWithStatus:@"等一下能怎么样！？"];
+//    [SVProgressHUD showWithStatus:@"等一下能怎么样！？"];
     
     //获取缓存数据
 //    [self getDataFromCache];
