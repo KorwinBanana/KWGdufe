@@ -35,7 +35,26 @@
     NSMutableDictionary *parements = [NSMutableDictionary dictionary];
     parements[@"macno"] = macno;
     
-    [KWAFNetworking postWithUrlString:@"http://api.wegdufe.com:82/index.php?r=opac/get-book-store-detail" parameters:parements success:^(id data) {
+//    [KWAFNetworking postWithUrlString:@"http://api.wegdufe.com:82/index.php?r=opac/get-book-store-detail" parameters:parements success:^(id data) {
+//        NSLog(@"data = %@",data);
+//        //获取字典
+//        NSDictionary *bookDict = data[@"data"];
+//        NSString *code = [data objectForKey:@"code"];
+//        NSString *codeStr = [NSString stringWithFormat:@"%@",code];
+//
+//        if ([codeStr isEqualToString:@"0"]) {
+//            //字典转模型
+//            NSArray *bookModel = [KWSBookModel mj_objectArrayWithKeyValuesArray:bookDict];
+//            _bookModel = bookModel;
+//
+//            [self.tableView reloadData];
+//            [SVProgressHUD dismiss];
+//            NSLog(@"刷新成功");
+//        }
+//    } failure:^(NSError *error) {
+//
+//    }];
+    [KWAFNetworking postWithUrlString:@"http://api.wegdufe.com:82/index.php?r=opac/get-book-store-detail" vController:self parameters:parements success:^(id data) {
         NSLog(@"data = %@",data);
         //获取字典
         NSDictionary *bookDict = data[@"data"];

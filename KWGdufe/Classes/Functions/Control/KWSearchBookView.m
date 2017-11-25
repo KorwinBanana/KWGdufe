@@ -14,6 +14,7 @@
 #import "KWSearchBookEndCell.h"
 #import "KWSBookMostMsgView.h"
 #import <SVProgressHUD/SVProgressHUD.h>
+#import "Utils.h"
 
 @interface KWSearchBookView ()<UISearchBarDelegate>
 
@@ -41,6 +42,9 @@
         make.right.equalTo(header.mas_right);
         make.top.equalTo(header.mas_top);
     }];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [searchBar becomeFirstResponder];//延迟2秒弹出键盘
+    });
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -60,15 +64,40 @@
     NSMutableDictionary *parements = [NSMutableDictionary dictionary];
     parements[@"bookName"] = bookName;
     
-    [KWAFNetworking postWithUrlString:@"http://api.wegdufe.com:82/index.php?r=opac/search-book" parameters:parements success:^(id data) {
+//    [KWAFNetworking postWithUrlString:@"http://api.wegdufe.com:82/index.php?r=opac/search-book" parameters:parements success:^(id data) {
+//        NSLog(@"data = %@",data);
+//        //获取字典
+//        NSDictionary *searchBookDict = data[@"data"];
+//        NSString *code = [data objectForKey:@"code"];
+//        NSString *codeStr = [NSString stringWithFormat:@"%@",code];
+//
+//        //缓存到本地
+////        [Utils saveCache:gdufeAccount andID:_modelSaveName andValue:currentBookDict];
+//
+//        if ([codeStr isEqualToString:@"0"]) {
+//            //字典转模型
+//            NSArray *searchBookModel = [KWSearchBookModel mj_objectArrayWithKeyValuesArray:searchBookDict];
+//            _searchBookModel = searchBookModel;
+//            [self.tableView reloadData];
+//            [SVProgressHUD dismiss];
+//        } else if ([codeStr isEqualToString:@"2003"]) {
+//            NSLog(@"喵～馆藏查询系统崩啦～～");
+//            //添加提示框
+//            [SVProgressHUD dismiss];
+//            [self showDismissWithTitle:@"喵～馆藏查询系统崩啦～～" message:nil parent:self];
+//        }
+//    } failure:^(NSError *error) {
+//
+//    }];
+    [KWAFNetworking postWithUrlString:@"http://api.wegdufe.com:82/index.php?r=opac/search-book" vController:self parameters:parements success:^(id data) {
         NSLog(@"data = %@",data);
         //获取字典
         NSDictionary *searchBookDict = data[@"data"];
         NSString *code = [data objectForKey:@"code"];
         NSString *codeStr = [NSString stringWithFormat:@"%@",code];
-
+        
         //缓存到本地
-//        [Utils saveCache:gdufeAccount andID:_modelSaveName andValue:currentBookDict];
+        //        [Utils saveCache:gdufeAccount andID:_modelSaveName andValue:currentBookDict];
         
         if ([codeStr isEqualToString:@"0"]) {
             //字典转模型
@@ -142,23 +171,15 @@
 
 #pragma mark - AlertController
 - (void)showDismissWithTitle:(NSString *)title  message:(NSString *)message parent:(UIViewController *)parentController {
-    
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleActionSheet];
-    
     [self presentViewController:alert animated:YES completion:nil];
-    
     [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(creatAlert:) userInfo:alert repeats:NO];
-    
 }
 
-- (void)creatAlert:(NSTimer *)timer{
-    
+- (void)creatAlert:(NSTimer *)timer {
     UIAlertController * alert = (UIAlertController *)[timer userInfo];
-    
     [alert dismissViewControllerAnimated:YES completion:nil];
-    
     alert = nil;
-    
 }
 
 @end

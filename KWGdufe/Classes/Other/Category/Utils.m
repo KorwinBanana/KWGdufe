@@ -507,5 +507,15 @@
     [Utils saveCache:gdufeAccount andID:@"schoolWeek" andValue:schoolWeek];
 }
 
+#pragma mark - AlertController
++ (void)showDismissWithTitle:(NSString *)title  message:(NSString *)message parent:(UIViewController *)parentController time:(CGFloat)disMissTime {
+    UIAlertController __block *alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleActionSheet];
+    [parentController presentViewController:alert animated:YES completion:nil];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(disMissTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [alert dismissViewControllerAnimated:YES completion:nil];
+        alert = nil;
+    });
+}
+
 @end
 

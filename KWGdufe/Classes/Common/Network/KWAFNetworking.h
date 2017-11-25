@@ -19,6 +19,8 @@ typedef void (^HttpFailure)(NSError *error);
 +(void)getWithUrlString:(NSString *)urlString success:(HttpSuccess)success failure:(HttpFailure)failure;
 
 //post请求
-+(void)postWithUrlString:(NSString *)urlString parameters:(NSDictionary *)parameters success:(HttpSuccess)success failure:(HttpFailure)failure;
++ (void)postWithUrlString:(NSString *)urlString parameters:(NSDictionary *)parameters success:(HttpSuccess)success failure:(HttpFailure)failure;
+
++ (void)postWithUrlString:(NSString *)urlString vController:(UIViewController *)vController parameters:(NSDictionary *)parameters success:(HttpSuccess)success failure:(HttpFailure)failure;
 
 @end

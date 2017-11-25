@@ -113,6 +113,7 @@
                 NSDictionary *todayAry = [Utils getCache:account andID:@"TodayBuyModel"];
                 _todayBuyModel = [KWTodayBuyModel mj_objectArrayWithKeyValuesArray:todayAry];
                 [self.tableView reloadData];
+                
                 break;
             }
             case AFNetworkReachabilityStatusNotReachable:{

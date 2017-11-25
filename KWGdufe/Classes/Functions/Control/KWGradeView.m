@@ -120,7 +120,34 @@
     parements[@"pwd"] = gdufePassword;
     parements[@"stu_time"] = stuTimeForGrade;
     
-    [KWAFNetworking postWithUrlString:GetGradeAPI parameters:parements success:^(id data) {
+//    [KWAFNetworking postWithUrlString:GetGradeAPI parameters:parements success:^(id data) {
+//        //获取字典
+//        NSDictionary *gradeDict = data[@"data"];
+//
+//        //缓存到本地
+//        [Utils saveCache:gdufeAccount andID:@"GradeModel" andValue:gradeDict];
+//
+//        //字典转模型
+//        NSArray *gradeModel = [KWGradeModel mj_objectArrayWithKeyValuesArray:gradeDict];
+//
+////        NSMutableArray *gradeDictTimes = [[NSMutableArray alloc]init];
+////
+////        //获取大三下学期成绩
+////        for (KWGradeModel *gradeDictTime in gradeModel) {
+////            if ([gradeDictTime.time isEqualToString:@"2016-2017-2"]) {
+////                [gradeDictTimes addObject:gradeDictTime];
+////            }
+////        }
+//
+//        _gradeModel = gradeModel;
+//
+//        [self.tableView reloadData];
+//        [SVProgressHUD dismiss];
+//    } failure:^(NSError *error) {
+//
+//    }];
+    
+    [KWAFNetworking postWithUrlString:GetGradeAPI vController:self parameters:parements success:^(id data) {
         //获取字典
         NSDictionary *gradeDict = data[@"data"];
         

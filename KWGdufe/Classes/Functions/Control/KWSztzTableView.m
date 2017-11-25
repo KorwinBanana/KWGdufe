@@ -71,7 +71,22 @@
     parements[@"sno"] = gdufeAccount;
     parements[@"pwd"] = gdufePassword;
     
-    [KWAFNetworking postWithUrlString:GetSztzAPI parameters:parements success:^(id data) {
+//    [KWAFNetworking postWithUrlString:GetSztzAPI parameters:parements success:^(id data) {
+//        //获取字典
+//        NSDictionary *sztzDict = data[@"data"];
+//
+//        //缓存到本地
+//        [Utils saveCache:gdufeAccount andID:@"SztzModel" andValue:sztzDict];
+//
+//        //字典转模型
+//        NSArray *sztzArray = [KWSztzModel mj_objectArrayWithKeyValuesArray:sztzDict];
+//        _sztzModel = sztzArray;
+//
+//        [self.tableView reloadData];
+//    } failure:^(NSError *error) {
+//
+//    }];
+    [KWAFNetworking postWithUrlString:GetSztzAPI vController:self parameters:parements success:^(id data) {
         //获取字典
         NSDictionary *sztzDict = data[@"data"];
         
@@ -86,7 +101,6 @@
     } failure:^(NSError *error) {
         
     }];
-
 }
 
 #pragma mark - Table view data source

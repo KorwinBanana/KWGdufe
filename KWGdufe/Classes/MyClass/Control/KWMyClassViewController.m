@@ -128,7 +128,8 @@ static float progress = 0.0f;
             
 //            [SVProgressHUD showWithStatus:@"更新课表"];
 //            [SVProgressHUD showProgress:0.05 status:@"加载课表"];
-            [self performSelector:@selector(increaseProgress) withObject:nil afterDelay:0.3f];
+//            [self performSelector:@selector(increaseProgress) withObject:nil afterDelay:0.3f];
+            [SVProgressHUD show];
             
             [Utils updateCache:gdufeAccount andID:@"stuTime" andValue:self.stuTime];
             
@@ -143,7 +144,8 @@ static float progress = 0.0f;
             self.stuTime = stuTimes[selectedIndex-1];
 //            [SVProgressHUD showWithStatus:@"更新课表"];
 //            [SVProgressHUD showProgress:0.05 status:@"加载课表"];
-            [self performSelector:@selector(increaseProgress) withObject:nil afterDelay:0.3f];
+//            [self performSelector:@selector(increaseProgress) withObject:nil afterDelay:0.3f];
+            [SVProgressHUD show];
             
             [Utils updateCache:gdufeAccount andID:@"stuTime" andValue:stuTimes[selectedIndex-1]];
             [self loadData:self.stuTime week:schoolWeek];
@@ -182,7 +184,8 @@ static float progress = 0.0f;
             [Utils getSchoolWeek];
             schoolWeek = [Utils getCache:gdufeAccount andID:@"schoolWeek"];
 //            [SVProgressHUD showWithStatus:@"更新课表"];
-            [self performSelector:@selector(increaseProgress) withObject:nil afterDelay:0.3f];
+//            [self performSelector:@selector(increaseProgress) withObject:nil afterDelay:0.3f];
+            [SVProgressHUD show];
             
             [self loadData:[Utils getCache:gdufeAccount andID:@"stuTime"] week:schoolWeek];
             [self setupNavBarRightName:[Utils getCache:gdufeAccount andID:@"schoolYear"] setleftName:[NSString stringWithFormat:@"第%@周",schoolWeek]];
@@ -190,7 +193,8 @@ static float progress = 0.0f;
         } else {
             schoolWeek = [NSString stringWithFormat:@"%ld", (long)selectedIndex];
 //            [SVProgressHUD showWithStatus:@"更新课表"];
-            [self performSelector:@selector(increaseProgress) withObject:nil afterDelay:0.3f];
+//            [self performSelector:@selector(increaseProgress) withObject:nil afterDelay:0.3f];
+            [SVProgressHUD show];
             
             [Utils saveCache:gdufeAccount andID:@"schoolWeek" andValue:[NSString stringWithFormat:@"%ld",(long)selectedIndex]];
             schoolWeek = [Utils getCache:gdufeAccount andID:@"schoolWeek"];
@@ -341,21 +345,18 @@ static float progress = 0.0f;
     parements[@"week"] = selectWeek;
     
 //    NSLog(@"加载数据的schoolweek = %@",selectWeek);
-    
-    [KWAFNetworking postWithUrlString:@"http://api.wegdufe.com:82/index.php?r=jw/get-schedule" parameters:parements success:^(id data) {
-        
+    [KWAFNetworking postWithUrlString:@"http://api.wegdufe.com:82/index.php?r=jw/get-schedule" vController:self parameters:parements success:^(id data) {
         NSArray *dicAry = data[@"data"];;
         [Utils saveCache:gdufeAccount andID:@"ClassModel" andValue:dicAry];//保存到本地沙盒
-
+        
         //字典数组转模型数组
         _scheduleModel = [KWScheduleModel mj_objectArrayWithKeyValuesArray:dicAry];
         self.course.array = _scheduleModel;
-
+        
         [collectionView reloadData];
-
+        
         //取消提示框
         [SVProgressHUD dismiss];
-        
     } failure:^(NSError *error) {
         
     }];

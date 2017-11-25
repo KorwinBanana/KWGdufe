@@ -79,7 +79,23 @@
     parements[@"sno"] = gdufeAccount;
     parements[@"pwd"] = gdufePassword;
     
-    [KWAFNetworking postWithUrlString:_url parameters:parements success:^(id data) {
+//    [KWAFNetworking postWithUrlString:_url parameters:parements success:^(id data) {
+//        //获取字典
+//        NSDictionary *currentBookDict = data[@"data"];
+//
+//        //缓存到本地
+//        [Utils saveCache:gdufeAccount andID:_modelSaveName andValue:currentBookDict];
+//
+//        //字典转模型
+//        NSArray *currentArray = [KWCurrentModel mj_objectArrayWithKeyValuesArray:currentBookDict];
+//        _currentModel = currentArray;
+//
+//        [self.tableView reloadData];
+//        NSLog(@"刷新成功");
+//    } failure:^(NSError *error) {
+//
+//    }];
+    [KWAFNetworking postWithUrlString:_url vController:self parameters:parements success:^(id data) {
         //获取字典
         NSDictionary *currentBookDict = data[@"data"];
         

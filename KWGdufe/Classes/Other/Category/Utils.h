@@ -119,5 +119,7 @@
 + (void)getStuTimeSchool:(NSString *)stuTimeNow;
 + (void)getSchoolWeek;
 
++ (void)showDismissWithTitle:(NSString *)title  message:(NSString *)message parent:(UIViewController *)parentController time:(CGFloat)disMissTime;//提示框显示
+
 @end
 
