@@ -66,9 +66,11 @@
             NSArray *bookModel = [KWSBookModel mj_objectArrayWithKeyValuesArray:bookDict];
             _bookModel = bookModel;
             
-            [self.tableView reloadData];
-            [SVProgressHUD dismiss];
-            NSLog(@"刷新成功");
+            dispatch_async(dispatch_get_main_queue(), ^{ //主线程刷新界面
+                [self.tableView reloadData];
+                [SVProgressHUD dismiss];
+//                NSLog(@"刷新成功");
+            });
         }
     } failure:^(NSError *error) {
         

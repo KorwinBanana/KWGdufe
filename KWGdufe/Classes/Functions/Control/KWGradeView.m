@@ -61,7 +61,6 @@
     tableView.mj_header= [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         // 结束刷新
         [self loadDataWithStuTime:[Utils getCache:gdufeAccount andID:@"stuTimeForGrade"]];
-        [tableView.mj_header endRefreshing];
     }];
     
     // 设置自动切换透明度(在导航栏下面自动隐藏)
@@ -168,8 +167,11 @@
         
         _gradeModel = gradeModel;
         
-        [self.tableView reloadData];
-        [SVProgressHUD dismiss];
+        dispatch_async(dispatch_get_main_queue(), ^{ //主线程刷新界面
+            [self.tableView reloadData];
+            [SVProgressHUD dismiss];
+            [self.tableView.mj_header endRefreshing];
+        });
     } failure:^(NSError *error) {
         
     }];

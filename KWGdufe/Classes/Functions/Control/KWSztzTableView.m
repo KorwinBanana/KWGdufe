@@ -97,7 +97,9 @@
         NSArray *sztzArray = [KWSztzModel mj_objectArrayWithKeyValuesArray:sztzDict];
         _sztzModel = sztzArray;
         
-        [self.tableView reloadData];
+        dispatch_async(dispatch_get_main_queue(), ^{ //主线程刷新界面
+            [self.tableView reloadData];
+        });
     } failure:^(NSError *error) {
         
     }];

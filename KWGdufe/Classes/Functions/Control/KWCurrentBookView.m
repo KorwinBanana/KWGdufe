@@ -63,7 +63,6 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             // 结束刷新
             [self loadData];
-            [tableView.mj_header endRefreshing];
         });
     }];
     
@@ -106,8 +105,11 @@
         NSArray *currentArray = [KWCurrentModel mj_objectArrayWithKeyValuesArray:currentBookDict];
         _currentModel = currentArray;
         
-        [self.tableView reloadData];
-        NSLog(@"刷新成功");
+        dispatch_async(dispatch_get_main_queue(), ^{ //主线程刷新界面
+            [self.tableView reloadData];
+            [self.tableView.mj_header endRefreshing];//结束下拉刷新
+//            NSLog(@"刷新成功");
+        });
     } failure:^(NSError *error) {
         
     }];

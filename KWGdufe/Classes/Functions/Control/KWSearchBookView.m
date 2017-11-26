@@ -103,13 +103,17 @@
             //字典转模型
             NSArray *searchBookModel = [KWSearchBookModel mj_objectArrayWithKeyValuesArray:searchBookDict];
             _searchBookModel = searchBookModel;
-            [self.tableView reloadData];
-            [SVProgressHUD dismiss];
+            dispatch_async(dispatch_get_main_queue(), ^{ //主线程刷新界面
+                [self.tableView reloadData];
+                [SVProgressHUD dismiss];
+            });
         } else if ([codeStr isEqualToString:@"2003"]) {
             NSLog(@"喵～馆藏查询系统崩啦～～");
-            //添加提示框
-            [SVProgressHUD dismiss];
-            [self showDismissWithTitle:@"喵～馆藏查询系统崩啦～～" message:nil parent:self];
+            dispatch_async(dispatch_get_main_queue(), ^{ //主线程刷新界面
+                [SVProgressHUD dismiss];
+                //添加提示框
+                [self showDismissWithTitle:@"喵～馆藏查询系统崩啦～～" message:nil parent:self];
+            });
         }
     } failure:^(NSError *error) {
         

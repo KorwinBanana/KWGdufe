@@ -69,32 +69,34 @@
     parements[@"pwd"] = gdufePassword;
     parements[@"cardNum"] = _cardModel.cardNum;
     
-    [KWAFNetworking postWithUrlString:GetTodayCashAPI parameters:parements success:^(id data) {
-        //获取字典
-        NSDictionary *todayDict = data[@"data"];
-        
-        //更新本地Cash
-        [Utils updateCache:gdufeAccount andID:@"TodayBuyModel" andValue:todayDict];
-        NSLog(@"更新成功");
-        
-        //字典数组转模型
-        _todayBuyModel = [KWTodayBuyModel mj_objectArrayWithKeyValuesArray:todayDict];
-        
-        [SVProgressHUD dismiss];
-        
-        if(_todayBuyModel.count == 0) {
-            //添加警告框
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:nil];
-            [alert addAction:okAction];
-            alert.message = @"喵~没有交易记录哦~";
-            [self presentViewController:alert animated:YES completion:nil];
-        }
-        
-        [self.tableView reloadData];
-    } failure:^(NSError *error) {
-        
-    }];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{ // 1
+        [KWAFNetworking postWithUrlString:GetTodayCashAPI parameters:parements success:^(id data) {
+            //获取字典
+            NSDictionary *todayDict = data[@"data"];
+            
+            //更新本地Cash
+            [Utils updateCache:gdufeAccount andID:@"TodayBuyModel" andValue:todayDict];
+            NSLog(@"更新成功");
+            
+            //字典数组转模型
+            _todayBuyModel = [KWTodayBuyModel mj_objectArrayWithKeyValuesArray:todayDict];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{ // 2
+                if(_todayBuyModel.count == 0) {
+                    //添加警告框
+                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleAlert];
+                    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:nil];
+                    [alert addAction:okAction];
+                    alert.message = @"喵~没有交易记录哦~";
+                    [self presentViewController:alert animated:YES completion:nil];
+                }
+                [self.tableView reloadData];
+                [SVProgressHUD dismiss]; // 3
+            });
+        } failure:^(NSError *error) {
+            
+        }];
+    });
 }
 
 /*

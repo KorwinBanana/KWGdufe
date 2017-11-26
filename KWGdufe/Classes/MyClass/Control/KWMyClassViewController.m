@@ -353,10 +353,11 @@ static float progress = 0.0f;
         _scheduleModel = [KWScheduleModel mj_objectArrayWithKeyValuesArray:dicAry];
         self.course.array = _scheduleModel;
         
-        [collectionView reloadData];
-        
-        //取消提示框
-        [SVProgressHUD dismiss];
+        dispatch_async(dispatch_get_main_queue(), ^{ //主线程刷新界面
+            [collectionView reloadData];
+            //取消提示框
+            [SVProgressHUD dismiss];
+        });
     } failure:^(NSError *error) {
         
     }];

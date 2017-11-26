@@ -508,13 +508,18 @@
 }
 
 #pragma mark - AlertController
-+ (void)showDismissWithTitle:(NSString *)title  message:(NSString *)message parent:(UIViewController *)parentController time:(CGFloat)disMissTime {
++ (void)showDismissWithTitle:(NSString *)title  message:(NSString *)message parent:(UIViewController *)parentController time:(double)delayInSeconds {
     UIAlertController __block *alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleActionSheet];
     [parentController presentViewController:alert animated:YES completion:nil];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(disMissTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC)); // 延迟
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void) {
         [alert dismissViewControllerAnimated:YES completion:nil];
         alert = nil;
     });
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(disMissTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        [alert dismissViewControllerAnimated:YES completion:nil];
+//        alert = nil;
+//    });
 }
 
 @end

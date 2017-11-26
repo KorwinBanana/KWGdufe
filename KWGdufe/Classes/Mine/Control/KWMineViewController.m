@@ -88,22 +88,26 @@
     parements[@"sno"] = gdufeAccount;
     parements[@"pwd"] = gdufePassword;
     
-    [KWAFNetworking postWithUrlString:GetBasicAPI parameters:parements success:^(id data) {
-        //获取字典
-        NSDictionary *stuDict = data[@"data"];
-        
-        //缓存到本地
-        [Utils saveCache:gdufeAccount andID:@"StuModel" andValue:stuDict];
-        
-        //字典转模型
-        _stuModel = [KWStuModel mj_objectWithKeyValues:stuDict];
-        self.msgVc.stuModel = _stuModel;
-        
-        [self.tableView reloadData];
-        [SVProgressHUD dismiss];
-    } failure:^(NSError *error) {
-        
-    }];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{ // 1
+        [KWAFNetworking postWithUrlString:GetBasicAPI parameters:parements success:^(id data) {
+            //获取字典
+            NSDictionary *stuDict = data[@"data"];
+            
+            //缓存到本地
+            [Utils saveCache:gdufeAccount andID:@"StuModel" andValue:stuDict];
+            
+            //字典转模型
+            _stuModel = [KWStuModel mj_objectWithKeyValues:stuDict];
+            self.msgVc.stuModel = _stuModel;
+            
+            dispatch_async(dispatch_get_main_queue(), ^{ // 2
+                [self.tableView reloadData];
+                [SVProgressHUD dismiss]; // 3
+            });
+        } failure:^(NSError *error) {
+            
+        }];
+    });
 }
 
 //有网络时，更新本地Cash余额
@@ -113,24 +117,28 @@
     parements[@"sno"] = gdufeAccount;
     parements[@"pwd"] = gdufePassword;
     
-    [KWAFNetworking postWithUrlString:GetCashAPI parameters:parements success:^(id data) {
-        //获取字典
-        NSDictionary *cardDict = data[@"data"];
-        
-        //更新本地Cash
-        [Utils updateCache:gdufeAccount andID:@"CardModel" andValue:cardDict];
-        //        NSLog(@"更新成功");
-        
-        //字典转模型
-        _cardModel = [KWCashModel mj_objectWithKeyValues:cardDict];
-        //        self.msgVc.stuModel = _stuModel;
-        self.todayBuyVc.cardModel = _cardModel;
-        //        NSLog(@"cardNum",_cardModel.cardNum);
-        
-        [self.tableView reloadData];
-    } failure:^(NSError *error) {
-        
-    }];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{ // 1
+        [KWAFNetworking postWithUrlString:GetCashAPI parameters:parements success:^(id data) {
+            //获取字典
+            NSDictionary *cardDict = data[@"data"];
+            
+            //更新本地Cash
+            [Utils updateCache:gdufeAccount andID:@"CardModel" andValue:cardDict];
+            //        NSLog(@"更新成功");
+            
+            //字典转模型
+            _cardModel = [KWCashModel mj_objectWithKeyValues:cardDict];
+            //        self.msgVc.stuModel = _stuModel;
+            self.todayBuyVc.cardModel = _cardModel;
+            //        NSLog(@"cardNum",_cardModel.cardNum);
+            
+            dispatch_async(dispatch_get_main_queue(), ^{ // 2
+                [self.tableView reloadData]; // 3
+            });
+        } failure:^(NSError *error) {
+            
+        }];
+    });
 }
 
 /*
