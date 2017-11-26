@@ -112,6 +112,8 @@
         });
     } failure:^(NSError *error) {
         
+    } noNetworking:^{
+        [self.tableView.mj_header endRefreshing];
     }];
 }
 

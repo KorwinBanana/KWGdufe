@@ -77,16 +77,24 @@
     
     ActionSheetStringPicker *picker = [[ActionSheetStringPicker alloc]initWithTitle:@"学期" rows:stuTimesForGrade initialSelection:0 doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
         if(selectedIndex == 0){
-            [SVProgressHUD showWithStatus:@"刷新中~"];
-            [self loadDataWithStuTime:0];
-            [Utils updateCache:gdufeAccount andID:@"schoolYearForGrade" andValue:selectedValue];
-            [self setupNavBarRightName:[Utils getCache:gdufeAccount andID:@"schoolYearForGrade"]];
+            [KWAFNetworking iSNetWorkingWithController:self isNetworking:^{
+                [SVProgressHUD showWithStatus:@"刷新中~"];
+                [self loadDataWithStuTime:0];
+                [Utils updateCache:gdufeAccount andID:@"schoolYearForGrade" andValue:selectedValue];
+                [self setupNavBarRightName:[Utils getCache:gdufeAccount andID:@"schoolYearForGrade"]];
+            } noNetworking:^{
+                NSLog(@"Block Picker Canceled");
+            }];
         } else {
-            [SVProgressHUD showWithStatus:@"刷新中~"];
-            [Utils updateCache:gdufeAccount andID:@"stuTimeForGrade" andValue:stuTimes[selectedIndex-1]];
-            [self loadDataWithStuTime:[Utils getCache:gdufeAccount andID:@"stuTimeForGrade"]];
-            [Utils updateCache:gdufeAccount andID:@"schoolYearForGrade" andValue:selectedValue];
-            [self setupNavBarRightName:[Utils getCache:gdufeAccount andID:@"schoolYearForGrade"]];
+            [KWAFNetworking iSNetWorkingWithController:self isNetworking:^{
+                [SVProgressHUD showWithStatus:@"刷新中~"];
+                [Utils updateCache:gdufeAccount andID:@"stuTimeForGrade" andValue:stuTimes[selectedIndex-1]];
+                [self loadDataWithStuTime:[Utils getCache:gdufeAccount andID:@"stuTimeForGrade"]];
+                [Utils updateCache:gdufeAccount andID:@"schoolYearForGrade" andValue:selectedValue];
+                [self setupNavBarRightName:[Utils getCache:gdufeAccount andID:@"schoolYearForGrade"]];
+            } noNetworking:^{
+                NSLog(@"Block Picker Canceled");
+            }];
         }
     } cancelBlock:^(ActionSheetStringPicker *picker) {
         NSLog(@"Block Picker Canceled");
@@ -170,10 +178,11 @@
         dispatch_async(dispatch_get_main_queue(), ^{ //主线程刷新界面
             [self.tableView reloadData];
             [SVProgressHUD dismiss];
-            [self.tableView.mj_header endRefreshing];
         });
     } failure:^(NSError *error) {
         
+    } noNetworking:^{
+        [self.tableView.mj_header endRefreshing];
     }];
 }
 

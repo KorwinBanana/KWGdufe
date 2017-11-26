@@ -117,6 +117,8 @@
         }
     } failure:^(NSError *error) {
         
+    } noNetworking:^{
+        
     }];
 }
 

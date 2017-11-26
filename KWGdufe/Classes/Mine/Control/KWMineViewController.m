@@ -278,11 +278,14 @@
     
     //添加确定到UIAlertController中
     UIAlertAction *OKAction = [UIAlertAction actionWithTitle:@"退出" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action) {
+        
         NSString *account = [wrapper myObjectForKey:(id)kSecAttrAccount];
+        
         //删除课程表缓存
         [Utils removeCache:account andID:@"ClassModel"];
         [Utils removeCache:account andID:@"GradeModel"];
         [Utils removeCache:account andID:@"CurrentBookModel"];
+        [Utils removeCache:account andID:@"BorrowedBookModel"];
         [Utils removeCache:account andID:@"stuTimes"];
         [Utils removeCache:account andID:@"stuTime"];
         [Utils removeCache:account andID:@"TodayBuyModel"];

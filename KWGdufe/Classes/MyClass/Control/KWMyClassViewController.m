@@ -121,37 +121,43 @@ static float progress = 0.0f;
     
     ActionSheetStringPicker *picker = [[ActionSheetStringPicker alloc]initWithTitle:@"学期" rows:stuTimeForSchool initialSelection:0 doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
         if(selectedIndex == 0){
-            [Utils getNowYear];
-            self.stuTime = [Utils getCache:gdufeAccount andID:@"stuTime"];//获取大几的时间
-            
-            [Utils getStuTimeSchool:self.stuTime];//获取大几
-            
-//            [SVProgressHUD showWithStatus:@"更新课表"];
-//            [SVProgressHUD showProgress:0.05 status:@"加载课表"];
-//            [self performSelector:@selector(increaseProgress) withObject:nil afterDelay:0.3f];
-            [SVProgressHUD show];
-            
-            [Utils updateCache:gdufeAccount andID:@"stuTime" andValue:self.stuTime];
-            
-            [self loadData:self.stuTime week:schoolWeek];//更新数据
-            
-            [Utils updateCache:gdufeAccount andID:@"schoolYear" andValue:[Utils getCache:gdufeAccount andID:@"schoolYear"]];
-            
-            [self setupNavBarRightName:[Utils getCache:gdufeAccount andID:@"schoolYear"] setleftName:[NSString stringWithFormat:@"第%@周",schoolWeek]];
-            
-            NSLog(@"0 = %@",[Utils getCache:gdufeAccount andID:@"schoolYear"]);
+            [KWAFNetworking iSNetWorkingWithController:self isNetworking:^{
+                [Utils getNowYear];
+                self.stuTime = [Utils getCache:gdufeAccount andID:@"stuTime"];//获取大几的时间
+                
+                [Utils getStuTimeSchool:self.stuTime];//获取大几
+                
+                //            [SVProgressHUD showWithStatus:@"更新课表"];
+                //            [SVProgressHUD showProgress:0.05 status:@"加载课表"];
+                //            [self performSelector:@selector(increaseProgress) withObject:nil afterDelay:0.3f];
+                [SVProgressHUD show];
+                
+                [Utils updateCache:gdufeAccount andID:@"stuTime" andValue:self.stuTime];
+                
+                [self loadData:self.stuTime week:schoolWeek];//更新数据
+                
+                [Utils updateCache:gdufeAccount andID:@"schoolYear" andValue:[Utils getCache:gdufeAccount andID:@"schoolYear"]];
+                
+                [self setupNavBarRightName:[Utils getCache:gdufeAccount andID:@"schoolYear"] setleftName:[NSString stringWithFormat:@"第%@周",schoolWeek]];
+            } noNetworking:^{
+                NSLog(@"Block Picker Canceled");
+            }];
         } else {
-            self.stuTime = stuTimes[selectedIndex-1];
-//            [SVProgressHUD showWithStatus:@"更新课表"];
-//            [SVProgressHUD showProgress:0.05 status:@"加载课表"];
-//            [self performSelector:@selector(increaseProgress) withObject:nil afterDelay:0.3f];
-            [SVProgressHUD show];
-            
-            [Utils updateCache:gdufeAccount andID:@"stuTime" andValue:stuTimes[selectedIndex-1]];
-            [self loadData:self.stuTime week:schoolWeek];
-            [self setupNavBarRightName:selectedValue setleftName:[NSString stringWithFormat:@"第%@周",schoolWeek]];
-            [Utils updateCache:gdufeAccount andID:@"schoolYear" andValue:selectedValue];
-//            NSLog(@"%@",[Utils getCache:gdufeAccount andID:@"schoolYear"]);
+            [KWAFNetworking iSNetWorkingWithController:self isNetworking:^{
+                self.stuTime = stuTimes[selectedIndex-1];
+//              [SVProgressHUD showWithStatus:@"更新课表"];
+//              [SVProgressHUD showProgress:0.05 status:@"加载课表"];
+//              [self performSelector:@selector(increaseProgress) withObject:nil afterDelay:0.3f];
+                [SVProgressHUD show];
+                
+                [Utils updateCache:gdufeAccount andID:@"stuTime" andValue:stuTimes[selectedIndex-1]];
+                [self loadData:self.stuTime week:schoolWeek];
+                [self setupNavBarRightName:selectedValue setleftName:[NSString stringWithFormat:@"第%@周",schoolWeek]];
+                [Utils updateCache:gdufeAccount andID:@"schoolYear" andValue:selectedValue];
+//               NSLog(@"%@",[Utils getCache:gdufeAccount andID:@"schoolYear"]);
+            } noNetworking:^{
+                NSLog(@"Block Picker Canceled");
+            }];
         }
     } cancelBlock:^(ActionSheetStringPicker *picker) {
         NSLog(@"Block Picker Canceled");
@@ -181,28 +187,37 @@ static float progress = 0.0f;
     
     ActionSheetStringPicker *picker = [[ActionSheetStringPicker alloc]initWithTitle:@"周" rows:stuWeek initialSelection:0 doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
         if (selectedIndex == 0) {
-            [Utils getSchoolWeek];
-            schoolWeek = [Utils getCache:gdufeAccount andID:@"schoolWeek"];
-//            [SVProgressHUD showWithStatus:@"更新课表"];
-//            [self performSelector:@selector(increaseProgress) withObject:nil afterDelay:0.3f];
-            [SVProgressHUD show];
-            
-            [self loadData:[Utils getCache:gdufeAccount andID:@"stuTime"] week:schoolWeek];
-            [self setupNavBarRightName:[Utils getCache:gdufeAccount andID:@"schoolYear"] setleftName:[NSString stringWithFormat:@"第%@周",schoolWeek]];
-//            [weekView setDay:[NSString stringWithFormat:@"%@周",schoolWeek]];
+            [KWAFNetworking iSNetWorkingWithController:self isNetworking:^{
+                [Utils getSchoolWeek];
+                schoolWeek = [Utils getCache:gdufeAccount andID:@"schoolWeek"];
+//              [SVProgressHUD showWithStatus:@"更新课表"];
+//              [self performSelector:@selector(increaseProgress) withObject:nil afterDelay:0.3f];
+                [SVProgressHUD show];
+                
+                [self loadData:[Utils getCache:gdufeAccount andID:@"stuTime"] week:schoolWeek];
+                [self setupNavBarRightName:[Utils getCache:gdufeAccount andID:@"schoolYear"] setleftName:[NSString stringWithFormat:@"第%@周",schoolWeek]];
+//               [weekView setDay:[NSString stringWithFormat:@"%@周",schoolWeek]];
+            } noNetworking:^{
+                NSLog(@"Block Picker Canceled");
+            }];
+
         } else {
-            schoolWeek = [NSString stringWithFormat:@"%ld", (long)selectedIndex];
-//            [SVProgressHUD showWithStatus:@"更新课表"];
-//            [self performSelector:@selector(increaseProgress) withObject:nil afterDelay:0.3f];
-            [SVProgressHUD show];
-            
-            [Utils saveCache:gdufeAccount andID:@"schoolWeek" andValue:[NSString stringWithFormat:@"%ld",(long)selectedIndex]];
-            schoolWeek = [Utils getCache:gdufeAccount andID:@"schoolWeek"];
-//            NSLog(@"选择的schoolweek = %@",schoolWeek);
-            [self loadData:[Utils getCache:gdufeAccount andID:@"stuTime"] week:schoolWeek];
-            [self setupNavBarRightName:[Utils getCache:gdufeAccount andID:@"schoolYear"] setleftName:[NSString stringWithFormat:@"第%ld周",(long)selectedIndex]];
-//            [weekView setDay:[NSString stringWithFormat:@"%ld周",(long)selectedIndex]];
-            
+            [KWAFNetworking iSNetWorkingWithController:self isNetworking:^{
+                schoolWeek = [NSString stringWithFormat:@"%ld", (long)selectedIndex];
+//              [SVProgressHUD showWithStatus:@"更新课表"];
+//                [self performSelector:@selector(increaseProgress) withObject:nil afterDelay:0.3f];
+                [SVProgressHUD show];
+                
+                [Utils saveCache:gdufeAccount andID:@"schoolWeek" andValue:[NSString stringWithFormat:@"%ld",(long)selectedIndex]];
+                schoolWeek = [Utils getCache:gdufeAccount andID:@"schoolWeek"];
+//             NSLog(@"选择的schoolweek = %@",schoolWeek);
+                [self loadData:[Utils getCache:gdufeAccount andID:@"stuTime"] week:schoolWeek];
+                [self setupNavBarRightName:[Utils getCache:gdufeAccount andID:@"schoolYear"] setleftName:[NSString stringWithFormat:@"第%ld周",(long)selectedIndex]];
+//              [weekView setDay:[NSString stringWithFormat:@"%ld周",(long)selectedIndex]];
+                
+            } noNetworking:^{
+                NSLog(@"Block Picker Canceled");
+            }];
         }
     } cancelBlock:^(ActionSheetStringPicker *picker) {
         NSLog(@"Block Picker Canceled");
@@ -359,6 +374,8 @@ static float progress = 0.0f;
             [SVProgressHUD dismiss];
         });
     } failure:^(NSError *error) {
+        
+    } noNetworking:^{
         
     }];
 }

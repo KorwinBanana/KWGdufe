@@ -74,6 +74,8 @@
         }
     } failure:^(NSError *error) {
         
+    } noNetworking:^{
+        
     }];
 }
 

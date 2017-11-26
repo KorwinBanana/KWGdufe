@@ -10,6 +10,7 @@
 #import <AFNetworking/AFNetworking.h>
 #import "Utils.h"
 #import <SVProgressHUD/SVProgressHUD.h>
+#import <MJRefresh/MJRefresh.h>
 
 @implementation KWAFNetworking
 
@@ -51,7 +52,7 @@
 }
 
 //POST请求
-+ (void)postWithUrlString:(NSString *)urlString vController:(UIViewController *)vController parameters:(NSDictionary *)parameters success:(HttpSuccess)success failure:(HttpFailure)failure {
++ (void)postWithUrlString:(NSString *)urlString vController:(UIViewController *)vController parameters:(NSDictionary *)parameters success:(HttpSuccess)success failure:(HttpFailure)failure noNetworking:(HttpNoNetworking) noNetworking{
     //异步处理网络请求
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{ // 1
         //创建请求管理者
@@ -67,12 +68,14 @@
                     NSLog(@"未知");
                     [Utils showDismissWithTitle:@"未知网络" message:nil parent:vController time:1];
                     [SVProgressHUD dismiss];
+                    noNetworking();
                     break;
                 }
                 case AFNetworkReachabilityStatusNotReachable:{
                     NSLog(@"没有网络");
                     [Utils showDismissWithTitle:@"没有网络" message:nil parent:vController time:1];
                     [SVProgressHUD dismiss];
+                    noNetworking();
                     break;
                 }
                 case AFNetworkReachabilityStatusReachableViaWWAN: {
@@ -105,6 +108,46 @@
         }];
         [networkManager startMonitoring];//开始监听
     });
+}
+
+#pragma mark - NetWorkingByAFNetWorking
+//网络监听
++ (void)iSNetWorkingWithController:(UIViewController *)vController isNetworking:(HttpIsNetworking)isNetworking noNetworking:(HttpNoNetworking) noNetworking {
+    //创建网络状态监测管理者
+    AFNetworkReachabilityManager *networkManager = [AFNetworkReachabilityManager sharedManager];
+    
+    //监听改变
+    [networkManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus  status) {
+        switch (status) {
+            case  AFNetworkReachabilityStatusUnknown: {
+                NSLog(@"未知");
+                [Utils showDismissWithTitle:@"未知网络" message:nil parent:vController time:1];
+                noNetworking();
+                break;
+            }
+            case AFNetworkReachabilityStatusNotReachable:{
+                NSLog(@"没有网络");
+                [Utils showDismissWithTitle:@"没有网络" message:nil parent:vController time:1];
+                noNetworking();
+                break;
+            }
+            case AFNetworkReachabilityStatusReachableViaWWAN: {
+                NSLog(@"3G|4G");
+                //post请求
+                isNetworking();
+                break;
+            }
+            case AFNetworkReachabilityStatusReachableViaWiFi: {
+                NSLog(@"WiFi");
+                //post请求
+                isNetworking();
+                break;
+            }
+            default:
+                break;
+        }
+    }];
+    [networkManager startMonitoring];//开始监听
 }
 
 @end
