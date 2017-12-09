@@ -15,7 +15,7 @@
     self = [super initWithFrame:frame];
     
     //1. 设置光标颜色为白色
-    self.tintColor = [UIColor whiteColor];
+    self.tintColor = [UIColor blueColor];
     
     //2. 监听文本框编辑：1.代理 2.通知 3. target
     //原则不能成为自己代理
@@ -28,9 +28,9 @@
 - (void) textBgein
 {
     //设置占位文字变成白色
-    NSMutableDictionary *attrs = [NSMutableDictionary dictionary];
-    attrs[NSForegroundColorAttributeName] = [UIColor whiteColor];
-    self.attributedPlaceholder = [[NSAttributedString alloc] initWithString:self.placeholder attributes:attrs];
+//    NSMutableDictionary *attrs = [NSMutableDictionary dictionary];
+//    attrs[NSForegroundColorAttributeName] = [UIColor whiteColor];
+//    self.attributedPlaceholder = [[NSAttributedString alloc] initWithString:self.placeholder attributes:attrs];
 }
 
 - (void) textEnd

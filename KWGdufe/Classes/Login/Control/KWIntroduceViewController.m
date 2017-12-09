@@ -9,6 +9,8 @@
 #import "KWIntroduceViewController.h"
 #import "Utils.h"
 #import "KWLoginViewController.h"
+#import "KWLoginTableViewController.h"
+#import "KWNavigationViewController.h"
 
 @interface KWIntroduceViewController ()
 
@@ -28,6 +30,7 @@
     
     [self loadBackground];
     [self loadIntroduceView];
+    
 }
 
 #pragma mark - 初始化背景
@@ -84,8 +87,9 @@
 }
 
 - (void)pushLoginView {
-    KWLoginViewController *loginView = [[KWLoginViewController alloc]init];
-    [self presentViewController:loginView animated:YES completion:nil];
+    KWLoginTableViewController *loginView = [[KWLoginTableViewController alloc]init];
+    KWNavigationViewController *nav1 = [[KWNavigationViewController alloc]initWithRootViewController:loginView];
+    [self presentViewController:nav1 animated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {

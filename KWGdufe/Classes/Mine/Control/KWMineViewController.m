@@ -23,6 +23,7 @@
 #import "KWAFNetworking.h"
 #import "KWRequestUrl.h"
 #import "KWLogoutCell.h"
+#import "KWIntroduceViewController.h"
 
 @interface KWMineViewController ()
 
@@ -299,7 +300,7 @@
         [wrapper resetKeychainItem];
         
         //跳转页面
-        KWLoginViewController *loginVc = [[KWLoginViewController alloc]init];
+        KWIntroduceViewController *loginVc = [[KWIntroduceViewController alloc]init];
         [UIApplication sharedApplication].keyWindow.rootViewController = loginVc;
         
         NSLog(@"退出成功");
