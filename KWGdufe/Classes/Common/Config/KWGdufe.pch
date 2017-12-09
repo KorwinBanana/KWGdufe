@@ -10,7 +10,7 @@
 #import "UIView+KWFrame.h"
 #import "UIImage+KWImage.h"
 #import "UIBarButtonItem+KWBarButtonItem.h"
-#import "UIButton+KWButton.h"
+#import "UIButton+KWMineButton.h"
 //#import "KeychainWrapper.h"//keychain保存账号密码
 
 /*****************上课时间表*******************/
