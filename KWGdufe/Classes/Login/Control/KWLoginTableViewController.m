@@ -90,6 +90,7 @@
     if (indexPath.section == 1) {
         if (indexPath.row == 0) {
             [self.view endEditing:YES];
+            [SVProgressHUD show];
             [self loadData];
         }
     }
@@ -139,14 +140,9 @@
             //获取第几周
             [Utils getSchoolWeek];
             
-            //使用md5加密
-            //            NSString *pwdByMD5 = [NSString md5To32bit:_pwd.text];
-            //            [userDefaults setObject:pwdByMD5 forKey:@"pwd"];
-            
-            //AES加密
             KWTabBarController *tabVc = [[KWTabBarController alloc]init];
             [UIApplication sharedApplication].keyWindow.rootViewController = tabVc;
-            
+            [SVProgressHUD dismiss];
         } else if ([codeStr isEqualToString:@"3000"]) {
             NSLog(@"喵～学号或者密码为空啦～～");
             //添加提示框

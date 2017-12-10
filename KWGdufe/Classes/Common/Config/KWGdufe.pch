@@ -6,7 +6,8 @@
 //  Copyright © 2017年 korwin. All rights reserved.
 //
 
-#import <Masonry.h> //自动布局
+//#import <Masnory.h> //自动布局
+#import <Masonry/Masonry.h>
 #import "UIView+KWFrame.h"
 #import "UIImage+KWImage.h"
 #import "UIBarButtonItem+KWBarButtonItem.h"
