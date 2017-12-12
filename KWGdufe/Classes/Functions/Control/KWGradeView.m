@@ -178,6 +178,7 @@
         dispatch_async(dispatch_get_main_queue(), ^{ //主线程刷新界面
             [self.tableView reloadData];
             [SVProgressHUD dismiss];
+            [self.tableView.mj_header endRefreshing];
         });
     } failure:^(NSError *error) {
         

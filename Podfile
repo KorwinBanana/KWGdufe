@@ -19,9 +19,10 @@ target 'KWGdufe' do
   pod 'AFNetworking', '~> 3.1.0'
   pod 'MJExtension', '~> 3.0.13'
   platform :ios, '7.0'
-  pod 'SDWebImage', '~>3.8'
+  pod 'SDWebImage', '~> 4.0'
   pod 'Masonry'
   pod 'SVProgressHUD'
   pod 'MJRefresh'
   pod 'ActionSheetPicker-3.0', '~> 2.2.0'
-end
+  pod 'SDCycleScrollView','~> 1.75'
+  end

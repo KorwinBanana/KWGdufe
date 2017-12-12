@@ -8,6 +8,7 @@
 
 #import "KWNavigationViewController.h"
 #import "Utils.h"
+#import <SVProgressHUD/SVProgressHUD.h>
 
 @interface KWNavigationViewController ()<UIGestureRecognizerDelegate>
 
@@ -64,6 +65,7 @@
 //返回上一个控制器
 -(void)back
 {
+    [SVProgressHUD dismiss];
     [self popViewControllerAnimated:YES];
 }
 

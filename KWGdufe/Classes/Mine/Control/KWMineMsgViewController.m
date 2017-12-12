@@ -51,6 +51,7 @@
     }
 //    KWMsgCell *cell = [[KWMsgCell alloc]init];
 //    cell = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([KWMsgCell class]) owner:nil options:nil][0];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
             cell.msgName = @"姓名";

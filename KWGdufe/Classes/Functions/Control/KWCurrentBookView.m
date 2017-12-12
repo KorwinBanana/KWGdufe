@@ -60,10 +60,8 @@
     
     // 下拉刷新
     tableView.mj_header= [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        dispatch_async(dispatch_get_main_queue(), ^{
-            // 结束刷新
-            [self loadData];
-        });
+        // 结束刷新
+        [self loadData];
     }];
     
     // 设置自动切换透明度(在导航栏下面自动隐藏)
