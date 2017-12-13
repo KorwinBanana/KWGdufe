@@ -14,9 +14,10 @@
 #import "KWImageViewCell.h"
 #import "KWFlowLayout.h"
 
+#define pageControlHeight 80
 static NSString * const ID = @"cell";
 
-@interface KWIntroduceViewController ()<UICollectionViewDataSource>
+@interface KWIntroduceViewController ()<UICollectionViewDataSource,UIScrollViewDelegate>
 
 @property (nonatomic,copy) NSArray  *labelArray;
 
@@ -25,6 +26,11 @@ static NSString * const ID = @"cell";
 
 @property (nonatomic,strong) UIButton  *loginBtn;
 @property (nonatomic,strong) UIButton  *tryBtn;
+
+//UIScrollView
+@property (strong, nonatomic) UIScrollView *scrollView;
+@property (strong, nonatomic) NSArray *contentList;
+@property (strong, nonatomic) UIPageControl *pageControl;
 
 @end
 
@@ -36,7 +42,8 @@ static NSString * const ID = @"cell";
     
     [self loadBackground];
     [self loadIntroduceView];
-    [self setupIntroduceView];
+    [self setupScrollView];
+//    [self setupIntroduceView];
 }
 
 #pragma mark - 初始化背景
@@ -53,7 +60,7 @@ static NSString * const ID = @"cell";
         make.left.equalTo(self.view.mas_left);
         make.right.equalTo(self.view.mas_right);
         make.bottom.equalTo(self.view.mas_bottom);
-        make.height.equalTo(@100);
+        make.height.equalTo(@80);
     }];
     
     //上层View
@@ -104,6 +111,54 @@ static NSString * const ID = @"cell";
     [_introduceView addSubview:collection];
 }
 
+- (void)setupScrollView {
+    // 1.初始化数组
+    self.contentList = @[@"46find", @"borrowedBook", @"currentBook"];
+    
+    // 2.将scrollView和pageControl添加到view
+    [self.view addSubview:self.scrollView];
+    [self.view addSubview:self.pageControl];
+    
+    // 3.为scrollView每一页添加图片
+    for (NSUInteger i=0; i<self.contentList.count; ++i) {
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.scrollView.frame) * i, 0, CGRectGetWidth(self.scrollView.frame), CGRectGetHeight(self.scrollView.frame))];
+        imageView.contentMode = UIViewContentModeScaleAspectFit;
+        imageView.image = [UIImage imageNamed:self.contentList[i]];
+        [self.scrollView addSubview:imageView];
+    }
+}
+
+#pragma mark - UIScrollViewDelegate
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    CGFloat pageWidth = CGRectGetWidth(self.scrollView.frame);
+    NSUInteger page = floor(scrollView.contentOffset.x - pageWidth/2)/pageWidth + 1;
+    self.pageControl.currentPage = page;
+}
+
+- (UIScrollView *)scrollView {
+    if (!_scrollView) {
+        _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, pageControlHeight, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame) - 2.2*pageControlHeight)];
+        _scrollView.contentSize = CGSizeMake(CGRectGetWidth(self.view.frame) * self.contentList.count, CGRectGetHeight(self.view.frame) - 2.2*pageControlHeight);
+        _scrollView.backgroundColor = [UIColor clearColor];
+        _scrollView.pagingEnabled = YES;
+        _scrollView.delegate = self;
+        _scrollView.showsHorizontalScrollIndicator = NO;
+    }
+    return _scrollView;
+}
+
+- (UIPageControl *)pageControl {
+    if (!_pageControl) {
+        _pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, CGRectGetHeight(self.view.frame) - 1.2*pageControlHeight, CGRectGetWidth(self.view.frame), 0.2*pageControlHeight)];
+        _pageControl.numberOfPages = self.contentList.count;
+        _pageControl.currentPage = 0;
+        _pageControl.enabled = NO;
+        _pageControl.backgroundColor = [UIColor clearColor];
+    }
+    return _pageControl;
+}
+
 #pragma mark - 体验登录/登录
 - (void)loadLoginButton {
     _loginBtn = [UIButton buttonWithType:UIButtonTypeSystem];
@@ -145,6 +200,10 @@ static NSString * const ID = @"cell";
     cell.label.text = _labelArray[indexPath.row];
     NSLog(@"%@",_labelArray[indexPath.row]);
     return cell;
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
 }
 
 - (void)didReceiveMemoryWarning {
