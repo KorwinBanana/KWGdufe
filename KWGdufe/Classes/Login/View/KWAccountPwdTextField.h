@@ -10,4 +10,6 @@
 
 @interface KWAccountPwdTextField : UITextField
 
+@property(nonatomic,assign) BOOL snoOrPwd;
+
 @end

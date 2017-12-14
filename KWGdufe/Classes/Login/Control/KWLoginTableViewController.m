@@ -18,6 +18,7 @@
 #import "Utils.h"
 #import "KWAFNetworking.h"
 #import "KWRequestUrl.h"
+#import "KWPasswordTextField.h"
 
 @interface KWLoginTableViewController ()
 
@@ -43,6 +44,7 @@
 }
 
 - (void)pushDownView {
+    [self.view endEditing:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -72,10 +74,15 @@
         if (indexPath.row == 0) {
             cell.placeholderText = @"学号";
             _sno = cell.accountLogin;
+            _sno.snoOrPwd = 0;
+            _sno.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
+            [_sno becomeFirstResponder];
             return cell;
         } else if (indexPath.row == 1) {
             cell.placeholderText = @"密码";
             _pwd = cell.accountLogin;
+            _pwd.snoOrPwd = 1;
+            _pwd.secureTextEntry = YES;
             return cell;
         }
     }
@@ -163,4 +170,5 @@
     }];
 }
 
+- 
 @end

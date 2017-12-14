@@ -23,7 +23,6 @@
         _accountLogin = [[KWAccountPwdTextField alloc] init];
         _accountLogin.delegate = self;
         [self addSubview:_accountLogin];
-        
         [_accountLogin mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.right.bottom.equalTo(self);
             make.left.equalTo(self.mas_left).with.offset(16);

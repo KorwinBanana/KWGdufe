@@ -41,6 +41,7 @@
 		0A6750D11F7BD7A000E46900 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A6750CF1F7BD7A000E46900 /* LaunchScreen.storyboard */; };
 		0A6750DE1F7BD7A000E46900 /* KWGdufeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A6750DD1F7BD7A000E46900 /* KWGdufeTests.m */; };
 		0A6750E91F7BD7A000E46900 /* KWGdufeUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A6750E81F7BD7A000E46900 /* KWGdufeUITests.m */; };
+		0A740FAF1FE2EDA700BCC8EE /* KWPasswordTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A740FAE1FE2EDA700BCC8EE /* KWPasswordTextField.m */; };
 		0A8077E51FA309A2009AA299 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8077E41FA309A2009AA299 /* Utils.m */; };
 		0A8077F31FA30AB4009AA299 /* NSData+KWAES.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8077F21FA30AB4009AA299 /* NSData+KWAES.m */; };
 		0A8077F61FA30AE5009AA299 /* NSString+KWMD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8077F41FA30AE5009AA299 /* NSString+KWMD5.m */; };
@@ -176,6 +177,8 @@
 		0A6750E41F7BD7A000E46900 /* KWGdufeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KWGdufeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A6750E81F7BD7A000E46900 /* KWGdufeUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWGdufeUITests.m; sourceTree = "<group>"; };
 		0A6750EA1F7BD7A000E46900 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0A740FAD1FE2EDA700BCC8EE /* KWPasswordTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWPasswordTextField.h; sourceTree = "<group>"; };
+		0A740FAE1FE2EDA700BCC8EE /* KWPasswordTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWPasswordTextField.m; sourceTree = "<group>"; };
 		0A8077E31FA309A2009AA299 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		0A8077E41FA309A2009AA299 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
 		0A8077F11FA30AB4009AA299 /* NSData+KWAES.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSData+KWAES.h"; sourceTree = "<group>"; };
@@ -728,6 +731,8 @@
 			children = (
 				0A8337791FDBA5A00098A486 /* KWAccountPwdTextField.h */,
 				0A83377A1FDBA5A00098A486 /* KWAccountPwdTextField.m */,
+				0A740FAD1FE2EDA700BCC8EE /* KWPasswordTextField.h */,
+				0A740FAE1FE2EDA700BCC8EE /* KWPasswordTextField.m */,
 				0A8337881FDBBD940098A486 /* KWAPTextFieldCell.h */,
 				0A8337891FDBBD940098A486 /* KWAPTextFieldCell.m */,
 				0A83377C1FDBA5CA0098A486 /* KWFasstButton.h */,
@@ -1101,6 +1106,7 @@
 				0ACC56C71F8E0FDD007DA2BD /* KWTabBar.m in Sources */,
 				0AA763B71F8F3187004E0222 /* KWLoginModel.m in Sources */,
 				0A5118B61FB7073400D45995 /* KWAFNetworking.m in Sources */,
+				0A740FAF1FE2EDA700BCC8EE /* KWPasswordTextField.m in Sources */,
 				0A0D9A1E1FA75BFA009CB653 /* KWLibraryViewCell.m in Sources */,
 				0A83377B1FDBA5A00098A486 /* KWAccountPwdTextField.m in Sources */,
 				0AA60B371F7C05D000E0E87D /* KWNavigationViewController.m in Sources */,
