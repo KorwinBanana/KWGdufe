@@ -36,13 +36,24 @@
     UISearchBar *searchBar = [[UISearchBar alloc]init];
     searchBar.showsCancelButton = YES;
     searchBar.delegate = self;
+    for (id obj in [searchBar subviews]) {
+        if ([obj isKindOfClass:[UIView class]]) {
+            for (id obj2 in [obj subviews]) {
+                if ([obj2 isKindOfClass:[UIButton class]]) {
+                    UIButton *btn = (UIButton *)obj2;
+                    [btn setTitle:@"取消" forState:UIControlStateNormal];
+                    [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+                }
+            }
+        }
+    }
     [header addSubview:searchBar];
     [searchBar mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(header.mas_left);
         make.right.equalTo(header.mas_right);
         make.top.equalTo(header.mas_top);
     }];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [searchBar becomeFirstResponder];//延迟2秒弹出键盘
     });
 }
@@ -64,31 +75,6 @@
     NSMutableDictionary *parements = [NSMutableDictionary dictionary];
     parements[@"bookName"] = bookName;
     
-//    [KWAFNetworking postWithUrlString:@"http://api.wegdufe.com:82/index.php?r=opac/search-book" parameters:parements success:^(id data) {
-//        NSLog(@"data = %@",data);
-//        //获取字典
-//        NSDictionary *searchBookDict = data[@"data"];
-//        NSString *code = [data objectForKey:@"code"];
-//        NSString *codeStr = [NSString stringWithFormat:@"%@",code];
-//
-//        //缓存到本地
-////        [Utils saveCache:gdufeAccount andID:_modelSaveName andValue:currentBookDict];
-//
-//        if ([codeStr isEqualToString:@"0"]) {
-//            //字典转模型
-//            NSArray *searchBookModel = [KWSearchBookModel mj_objectArrayWithKeyValuesArray:searchBookDict];
-//            _searchBookModel = searchBookModel;
-//            [self.tableView reloadData];
-//            [SVProgressHUD dismiss];
-//        } else if ([codeStr isEqualToString:@"2003"]) {
-//            NSLog(@"喵～馆藏查询系统崩啦～～");
-//            //添加提示框
-//            [SVProgressHUD dismiss];
-//            [self showDismissWithTitle:@"喵～馆藏查询系统崩啦～～" message:nil parent:self];
-//        }
-//    } failure:^(NSError *error) {
-//
-//    }];
     [KWAFNetworking postWithUrlString:@"http://api.wegdufe.com:82/index.php?r=opac/search-book" vController:self parameters:parements success:^(id data) {
         NSLog(@"data = %@",data);
         //获取字典

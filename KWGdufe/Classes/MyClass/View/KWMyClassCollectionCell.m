@@ -16,7 +16,7 @@
     if(self=[super initWithFrame:frame]){
 //        self.view = [[UIView alloc] initWithFrame:CGRectMake(0.5, 0.5, CGRectGetWidth(frame)-1.5, CGRectGetHeight(frame)-1.5)];
         self.view = [[UIView alloc] init];
-//        _view.layer.cornerRadius = 4;
+        _view.layer.cornerRadius = 4;
 //        _view.layer.masksToBounds = YES;
         [self addSubview:_view];
         [_view mas_makeConstraints:^(MASConstraintMaker *make) {

@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "navigationButtonReturnClick.png",
+      "filename" : "navigationButtonReturn.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "navigationButtonReturnClick@2x.png",
+      "filename" : "navigationButtonReturn@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "navigationButtonReturnClick@3x.png",
+      "filename" : "navigationButtonReturn@3x.png",
       "scale" : "3x"
     }
   ],

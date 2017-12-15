@@ -1329,10 +1329,17 @@ static const CGFloat SVProgressHUDLabelSpacing = 8.0f;
 #if !defined(SV_APP_EXTENSIONS)
     UIWindow *keyboardWindow = nil;
     for (UIWindow *testWindow in [[UIApplication sharedApplication] windows]) {
+        #ifdef __IPHONE_11_2
+        if([[testWindow class] isEqual:NSClassFromString(@"UIRemoteKeyboardWindow")]) {
+            keyboardWindow = testWindow;
+            break;
+        }
+        #else
         if(![[testWindow class] isEqual:[UIWindow class]]) {
             keyboardWindow = testWindow;
             break;
         }
+        #endif
     }
     
     for (__strong UIView *possibleKeyboard in [keyboardWindow subviews]) {

@@ -131,11 +131,6 @@
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    KWSBookMostMsgView *sbVc = [[KWSBookMostMsgView alloc]init];
-    [self.navigationController pushViewController:sbVc animated:YES];
-}
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 174;
 }
