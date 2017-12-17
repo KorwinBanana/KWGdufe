@@ -39,7 +39,7 @@ static NSString * const ID = @"cell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    [NSThread sleepForTimeInterval:2.0];  
     [self loadBackground];
     [self loadIntroduceView];
     [self setupScrollView];
@@ -113,7 +113,7 @@ static NSString * const ID = @"cell";
 
 - (void)setupScrollView {
     // 1.初始化数组
-    self.contentList = @[@"46find", @"borrowedBook", @"currentBook"];
+    self.contentList = @[@"Introduce1", @"Introduce1", @"Introduce1"];
     
     // 2.将scrollView和pageControl添加到view
     [self.view addSubview:self.scrollView];
@@ -139,6 +139,8 @@ static NSString * const ID = @"cell";
 - (UIScrollView *)scrollView {
     if (!_scrollView) {
         _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, pageControlHeight, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame) - 2.2*pageControlHeight)];
+        NSLog(@"%f",(CGRectGetHeight(self.view.frame) - 2.2*pageControlHeight));
+        NSLog(@"%f",CGRectGetWidth(self.view.frame));
         _scrollView.contentSize = CGSizeMake(CGRectGetWidth(self.view.frame) * self.contentList.count, CGRectGetHeight(self.view.frame) - 2.2*pageControlHeight);
         _scrollView.backgroundColor = [UIColor clearColor];
         _scrollView.pagingEnabled = YES;
@@ -161,23 +163,25 @@ static NSString * const ID = @"cell";
 
 #pragma mark - 体验登录/登录
 - (void)loadLoginButton {
-    _loginBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-    [_loginBtn setTitle:@"登录" forState:UIControlStateNormal];
-    [_loginBtn addTarget:nil action:@selector(pushLoginView) forControlEvents:UIControlEventTouchUpInside];
+//    _loginBtn = [UIButton buttonWithType:UIButtonTypeSystem];
+//    [_loginBtn setTitle:@"登录" forState:UIControlStateNormal];
+//    [_loginBtn addTarget:nil action:@selector(pushLoginView) forControlEvents:UIControlEventTouchUpInside];
+    
+    _loginBtn = [UIButton buttonWithTitle:@"登录" titleColorN:[UIColor whiteColor] titleColorH:[UIColor whiteColor] image:[UIImage imageNamed:@"friendsTrend_login"] hightImage:[UIImage imageNamed:@"friendsTrend_login_click"] target:self action:@selector(pushLoginView)];
+    
     [_buttonView addSubview:_loginBtn];
     [_loginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(_buttonView.mas_centerY);
 //        make.top.equalTo(_buttonView.mas_top);
-        make.right.equalTo(_buttonView.mas_right).with.offset(-20);
+        make.right.equalTo(_buttonView.mas_right).with.offset(-KWSCreenW/8);
     }];
     
-    _tryBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-    [_tryBtn setTitle:@"体验" forState:UIControlStateNormal];
+    _tryBtn = [UIButton buttonWithTitle:@"体验" titleColorN:[UIColor whiteColor] titleColorH:[UIColor whiteColor] image:[UIImage imageNamed:@"friendsTrend_login"] hightImage:[UIImage imageNamed:@"friendsTrend_login_click"] target:self action:@selector(pushLoginView)];
     [_buttonView addSubview:_tryBtn];
     [_tryBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(_buttonView.mas_centerY);
 //        make.top.equalTo(_buttonView.mas_top);
-        make.left.equalTo(_buttonView.mas_left).with.offset(20);
+        make.left.equalTo(_buttonView.mas_left).with.offset(KWSCreenW/8);
     }];
 }
 
