@@ -73,12 +73,14 @@
         currentVc.url = GetCurrentBookAPI;
         currentVc.modelSaveName = @"CurrentBookModel";
         currentVc.vcName = @"当前借阅";
+        currentVc.boolHistory = 0;
         [_delegate pushVc:currentVc];
     } else if (indexPath.row == 1) {
         KWCurrentBookView *borrowVc = [[KWCurrentBookView alloc]init];
         borrowVc.url = GetBorrowedBookAPI;
         borrowVc.modelSaveName = @"BorrowedBookModel";
         borrowVc.vcName = @"历史借阅";
+        borrowVc.boolHistory = 1;
         [_delegate pushVc:borrowVc];
     } else if (indexPath.row == 2) {
         KWSearchBookView *searchBookVc = [[KWSearchBookView alloc]init];

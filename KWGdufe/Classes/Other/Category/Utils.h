@@ -120,6 +120,6 @@
 + (void)getSchoolWeek;
 
 + (void)showDismissWithTitle:(NSString *)title  message:(NSString *)message parent:(UIViewController *)parentController time:(double)delayInSeconds;//提示框显示
-
++ (NSString *)replaceStringWithString :(NSMutableString *)string;//去除空格换行
 @end
 

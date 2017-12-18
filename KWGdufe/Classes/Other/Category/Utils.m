@@ -522,5 +522,15 @@
 //    });
 }
 
+//去除空格换行等
++ (NSString *)replaceStringWithString :(NSString *)string
+{
+    NSString *newString = [string stringByReplacingOccurrencesOfString:@"\n" withString:@""] ;
+    newString = [newString stringByReplacingOccurrencesOfString:@" " withString:@""] ;
+    newString = [newString stringByReplacingOccurrencesOfString:@"\r" withString:@""] ;
+    newString = [newString stringByReplacingOccurrencesOfString:@"\t" withString:@""] ;
+    return newString ;
+}
+
 @end
 

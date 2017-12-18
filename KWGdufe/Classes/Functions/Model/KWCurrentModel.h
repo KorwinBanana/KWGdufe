@@ -17,6 +17,6 @@
 @property(nonatomic,strong)NSString *returnTime;//应归还时间
 @property(nonatomic,assign)NSInteger renewTimes;//已续借次数
 @property(nonatomic,strong)NSString *location;//馆藏地
-@property(nonatomic,strong)NSString *NcheckId;//续借用到的码
+@property(nonatomic,strong)NSString *checkId;//续借用到的码
 
 @end

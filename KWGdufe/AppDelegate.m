@@ -13,6 +13,7 @@
 #import "KWTabBarController.h"
 #import "NSData+KWAES.h"
 #import "KeychainWrapper.h"
+#import <SVProgressHUD/SVProgressHUD.h>
 
 static NSString *stuTime;
 
@@ -24,7 +25,7 @@ static NSString *stuTime;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    
+    [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
     //初始化窗口
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
     

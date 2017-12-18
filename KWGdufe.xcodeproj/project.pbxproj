@@ -41,6 +41,11 @@
 		0A6750D11F7BD7A000E46900 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A6750CF1F7BD7A000E46900 /* LaunchScreen.storyboard */; };
 		0A6750DE1F7BD7A000E46900 /* KWGdufeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A6750DD1F7BD7A000E46900 /* KWGdufeTests.m */; };
 		0A6750E91F7BD7A000E46900 /* KWGdufeUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A6750E81F7BD7A000E46900 /* KWGdufeUITests.m */; };
+		0A71470A1FE827AA00DD9349 /* KWBorrowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7147091FE827AA00DD9349 /* KWBorrowCell.m */; };
+		0A71470E1FE829BA00DD9349 /* KWGoOnBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A71470C1FE829BA00DD9349 /* KWGoOnBookViewController.m */; };
+		0A71470F1FE829BA00DD9349 /* KWGoOnBookViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A71470D1FE829BA00DD9349 /* KWGoOnBookViewController.xib */; };
+		0A7147121FE82E3B00DD9349 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7147111FE82E3B00DD9349 /* NSData+Base64.m */; };
+		0A7147151FE839CE00DD9349 /* KWVerifyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7147141FE839CE00DD9349 /* KWVerifyModel.m */; };
 		0A740FAF1FE2EDA700BCC8EE /* KWPasswordTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A740FAE1FE2EDA700BCC8EE /* KWPasswordTextField.m */; };
 		0A8077E51FA309A2009AA299 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8077E41FA309A2009AA299 /* Utils.m */; };
 		0A8077F31FA30AB4009AA299 /* NSData+KWAES.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8077F21FA30AB4009AA299 /* NSData+KWAES.m */; };
@@ -178,6 +183,15 @@
 		0A6750E41F7BD7A000E46900 /* KWGdufeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KWGdufeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A6750E81F7BD7A000E46900 /* KWGdufeUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWGdufeUITests.m; sourceTree = "<group>"; };
 		0A6750EA1F7BD7A000E46900 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0A7147081FE827AA00DD9349 /* KWBorrowCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWBorrowCell.h; sourceTree = "<group>"; };
+		0A7147091FE827AA00DD9349 /* KWBorrowCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWBorrowCell.m; sourceTree = "<group>"; };
+		0A71470B1FE829BA00DD9349 /* KWGoOnBookViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWGoOnBookViewController.h; sourceTree = "<group>"; };
+		0A71470C1FE829BA00DD9349 /* KWGoOnBookViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWGoOnBookViewController.m; sourceTree = "<group>"; };
+		0A71470D1FE829BA00DD9349 /* KWGoOnBookViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KWGoOnBookViewController.xib; sourceTree = "<group>"; };
+		0A7147101FE82E3B00DD9349 /* NSData+Base64.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
+		0A7147111FE82E3B00DD9349 /* NSData+Base64.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
+		0A7147131FE839CE00DD9349 /* KWVerifyModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWVerifyModel.h; sourceTree = "<group>"; };
+		0A7147141FE839CE00DD9349 /* KWVerifyModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWVerifyModel.m; sourceTree = "<group>"; };
 		0A740FAD1FE2EDA700BCC8EE /* KWPasswordTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWPasswordTextField.h; sourceTree = "<group>"; };
 		0A740FAE1FE2EDA700BCC8EE /* KWPasswordTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWPasswordTextField.m; sourceTree = "<group>"; };
 		0A8077E31FA309A2009AA299 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
@@ -531,6 +545,8 @@
 				0AEA5C7D1F8E90CC005C8DF2 /* UIBarButtonItem+KWBarButtonItem.m */,
 				0A83377F1FDBA7B40098A486 /* UIButton+KWMineButton.h */,
 				0A8337801FDBA7B40098A486 /* UIButton+KWMineButton.m */,
+				0A7147101FE82E3B00DD9349 /* NSData+Base64.h */,
+				0A7147111FE82E3B00DD9349 /* NSData+Base64.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -663,6 +679,9 @@
 				0A0D9A1D1FA75BFA009CB653 /* KWLibraryViewCell.m */,
 				0A4483F41FA9F38800100DF8 /* KWCurrentBookView.h */,
 				0A4483F51FA9F38800100DF8 /* KWCurrentBookView.m */,
+				0A71470B1FE829BA00DD9349 /* KWGoOnBookViewController.h */,
+				0A71470C1FE829BA00DD9349 /* KWGoOnBookViewController.m */,
+				0A71470D1FE829BA00DD9349 /* KWGoOnBookViewController.xib */,
 				0A10DB281FC483E3006B5196 /* KWSearchBookView.h */,
 				0A10DB291FC483E3006B5196 /* KWSearchBookView.m */,
 				0AE17BD11FC711BF007B4BC7 /* KWSBookMostMsgView.h */,
@@ -688,6 +707,8 @@
 				0A4613401FC56650000121CD /* KWSearchBookModel.m */,
 				0AE17BD41FC7164D007B4BC7 /* KWSBookModel.h */,
 				0AE17BD51FC7164D007B4BC7 /* KWSBookModel.m */,
+				0A7147131FE839CE00DD9349 /* KWVerifyModel.h */,
+				0A7147141FE839CE00DD9349 /* KWVerifyModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -704,6 +725,8 @@
 				0A8351711FA984CA00357F72 /* KWSztzCell.m */,
 				0A4483FA1FA9F76E00100DF8 /* KWCurrentCell.h */,
 				0A4483FB1FA9F76E00100DF8 /* KWCurrentCell.m */,
+				0A7147081FE827AA00DD9349 /* KWBorrowCell.h */,
+				0A7147091FE827AA00DD9349 /* KWBorrowCell.m */,
 				0A4613421FC56956000121CD /* KWSearchBookEndCell.h */,
 				0A4613431FC56956000121CD /* KWSearchBookEndCell.m */,
 				0A1FD89A1FC8585B00115277 /* KWSBookShowCell.h */,
@@ -913,6 +936,7 @@
 				0A6750D11F7BD7A000E46900 /* LaunchScreen.storyboard in Resources */,
 				0A9F5B251F7D813C006FD696 /* KWMyClassCollectionCell.xib in Resources */,
 				0AA763B41F8F2E40004E0222 /* KWLoginViewController.xib in Resources */,
+				0A71470F1FE829BA00DD9349 /* KWGoOnBookViewController.xib in Resources */,
 				0AEF81DB1FC71AA4001DED6B /* KWLogoutCell.xib in Resources */,
 				0A64D64D1F8D4C14008D33DB /* Assets.xcassets in Resources */,
 				0A38FE811F9E2032007484BD /* model.plist in Resources */,
@@ -1092,7 +1116,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A71470E1FE829BA00DD9349 /* KWGoOnBookViewController.m in Sources */,
 				0AA60B311F7C052600E0E87D /* KWFunctionsViewController.m in Sources */,
+				0A7147151FE839CE00DD9349 /* KWVerifyModel.m in Sources */,
 				0A10DB2A1FC483E3006B5196 /* KWSearchBookView.m in Sources */,
 				0AEA5C7B1F8E9056005C8DF2 /* KWMineMsgViewController.m in Sources */,
 				0A4483FC1FA9F76E00100DF8 /* KWCurrentCell.m in Sources */,
@@ -1126,11 +1152,13 @@
 				0A1FD89C1FC8585B00115277 /* KWSBookShowCell.m in Sources */,
 				0A0D9A091FA713D3009CB653 /* KWGradeModel.m in Sources */,
 				0ACC56CA1F8E10D9007DA2BD /* UIView+KWFrame.m in Sources */,
+				0A71470A1FE827AA00DD9349 /* KWBorrowCell.m in Sources */,
 				0A8351721FA984CA00357F72 /* KWSztzCell.m in Sources */,
 				0A4483F91FA9F3F500100DF8 /* KWCurrentModel.m in Sources */,
 				0A9F5B241F7D813C006FD696 /* KWMyClassCollectionCell.m in Sources */,
 				0A8337811FDBA7B40098A486 /* UIButton+KWMineButton.m in Sources */,
 				0A65AF9F1FA4778C003AC3A5 /* KeychainWrapper.m in Sources */,
+				0A7147121FE82E3B00DD9349 /* NSData+Base64.m in Sources */,
 				0AF983371FE64E790004AB33 /* KWLoginButton.m in Sources */,
 				0A5A5A0E1FA20164001B09FD /* KWEducationalViewCell.m in Sources */,
 				0AA5F20D1FDCF67E00DA9994 /* KWFlowLayout.m in Sources */,

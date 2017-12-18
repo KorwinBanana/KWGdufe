@@ -19,6 +19,8 @@
 #import "KWAFNetworking.h"
 #import "KWRequestUrl.h"
 #import "KWSBookMostMsgView.h"
+#import "KWBorrowCell.h"
+#import "KWGoOnBookViewController.h"
 //#import "KWSztzCell.h"
 
 @interface KWCurrentBookView ()
@@ -76,22 +78,6 @@
     parements[@"sno"] = gdufeAccount;
     parements[@"pwd"] = gdufePassword;
     
-//    [KWAFNetworking postWithUrlString:_url parameters:parements success:^(id data) {
-//        //获取字典
-//        NSDictionary *currentBookDict = data[@"data"];
-//
-//        //缓存到本地
-//        [Utils saveCache:gdufeAccount andID:_modelSaveName andValue:currentBookDict];
-//
-//        //字典转模型
-//        NSArray *currentArray = [KWCurrentModel mj_objectArrayWithKeyValuesArray:currentBookDict];
-//        _currentModel = currentArray;
-//
-//        [self.tableView reloadData];
-//        NSLog(@"刷新成功");
-//    } failure:^(NSError *error) {
-//
-//    }];
     [KWAFNetworking postWithUrlString:_url vController:self parameters:parements success:^(id data) {
         //获取字典
         NSDictionary *currentBookDict = data[@"data"];
@@ -121,18 +107,59 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    KWCurrentCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
-    if (!cell) {
-        cell = [[KWCurrentCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
+    if (_boolHistory == 0) {
+        KWCurrentCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+        if (!cell) {
+            cell = [[KWCurrentCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
+        }
+        KWCurrentModel *model = _currentModel[indexPath.row];
+        cell.model = model;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
+    } else {
+        KWBorrowCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+        if (!cell) {
+            cell = [[KWBorrowCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
+        }
+        KWCurrentModel *model = _currentModel[indexPath.row];
+        cell.model = model;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
     }
-    KWCurrentModel *model = _currentModel[indexPath.row];
-    cell.model = model;
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 174;
+    if (_boolHistory == 0) {
+        return 174;
+    } else return 152;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (_boolHistory == 0) {
+        KWCurrentModel *model = _currentModel[indexPath.row];
+        //UIAlertController风格：UIAlertControllerStyleAlert
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:[NSString stringWithFormat:@"续借《%@》",model.name]
+                                                                                 message:nil
+                                                                          preferredStyle:UIAlertControllerStyleAlert ];
+        
+        //添加取消到UIAlertController中
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+        [alertController addAction:cancelAction];
+        
+        //添加确定到UIAlertController中
+        UIAlertAction *OKAction = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+            KWGoOnBookViewController *goOnView = [[KWGoOnBookViewController alloc]init];
+            goOnView.title = [NSString stringWithFormat:@"续借:%@",model.name];
+            goOnView.name = model.name;
+            goOnView.barId = model.barId;
+            goOnView.checkId = model.checkId;
+            goOnView.KWCBVc = self;
+            [self.navigationController pushViewController:goOnView animated:YES];
+            NSLog(@"确认续借");
+        }];
+        [alertController addAction:OKAction];
+        [self presentViewController:alertController animated:YES completion:nil];
+    }
 }
 
 @end

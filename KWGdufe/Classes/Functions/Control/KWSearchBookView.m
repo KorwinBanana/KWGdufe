@@ -19,6 +19,7 @@
 @interface KWSearchBookView ()<UISearchBarDelegate>
 
 @property(nonatomic,strong) NSArray *searchBookModel;
+@property(nonatomic,strong) UISearchBar *searchBar;
 
 @end
 
@@ -34,6 +35,7 @@
     self.tableView.tableHeaderView = header;
     
     UISearchBar *searchBar = [[UISearchBar alloc]init];
+    _searchBar = searchBar;
     searchBar.showsCancelButton = YES;
     searchBar.delegate = self;
     for (id obj in [searchBar subviews]) {
@@ -53,9 +55,14 @@
         make.right.equalTo(header.mas_right);
         make.top.equalTo(header.mas_top);
     }];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [searchBar becomeFirstResponder];//延迟2秒弹出键盘
-    });
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        [searchBar becomeFirstResponder];//延迟2秒弹出键盘
+//    });
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [_searchBar becomeFirstResponder];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

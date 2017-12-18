@@ -13,5 +13,6 @@
 @property (nonatomic,strong) NSString  *url;
 @property (nonatomic,strong) NSString  *modelSaveName;
 @property (nonatomic,strong) NSString  *vcName;
+@property (nonatomic,assign) NSInteger  boolHistory;
 
 @end

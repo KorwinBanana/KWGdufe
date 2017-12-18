@@ -37,6 +37,11 @@
     self.view.backgroundColor = [UIColor whiteColor];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [_sno becomeFirstResponder];
+}
+
 #pragma mark - 设置导航条
 - (void)setupNavBar{
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithImage:[UIImage imageNamed:@"login_close_icon"] hightImage:[UIImage imageNamed:@"login_close_icon"] target:self action:@selector(pushDownView)];
@@ -76,7 +81,6 @@
             _sno = cell.accountLogin;
             _sno.snoOrPwd = 0;
             _sno.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
-            [_sno becomeFirstResponder];
             return cell;
         } else if (indexPath.row == 1) {
             cell.placeholderText = @"密码";
