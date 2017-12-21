@@ -28,4 +28,5 @@ typedef void (^HttpIsNetworking)(void);
 + (void)postWithUrlString:(NSString *)urlString vController:(UIViewController *)vController parameters:(NSDictionary *)parameters success:(HttpSuccess)success failure:(HttpFailure)failure noNetworking:(HttpNoNetworking) noNetworking;
 
 + (void)iSNetWorkingWithController:(UIViewController *)vController isNetworking:(HttpIsNetworking)isNetworking noNetworking:(HttpNoNetworking) noNetworking;
+
 @end

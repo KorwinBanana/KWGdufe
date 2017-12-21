@@ -42,6 +42,7 @@
     } else {
         [self.tableView.mj_header beginRefreshing];
     }
+    
 }
 
 #pragma mark - setupRefreshing

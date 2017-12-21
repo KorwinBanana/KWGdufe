@@ -142,6 +142,52 @@
     });
 }
 
+//退出清空账户缓存
+- (void)logoutAccount {
+    //拼接数据
+    NSMutableDictionary *parements = [NSMutableDictionary dictionary];
+    parements[@"sno"] = gdufeAccount;
+    [SVProgressHUD showWithStatus:@"退出中..."];
+    [KWAFNetworking postWithUrlString:@"http://api.wegdufe.com:82/index.php?r=work/all-logout" vController:self parameters:parements success:^(id data) {
+        dispatch_queue_t HUDQueue = dispatch_queue_create("HUDQueue", DISPATCH_QUEUE_SERIAL);
+        dispatch_async(HUDQueue, ^{
+            NSString *account = [wrapper myObjectForKey:(id)kSecAttrAccount];
+            
+            //删除课程表缓存
+            [Utils removeCache:account andID:@"ClassModel"];
+            [Utils removeCache:account andID:@"GradeModel"];
+            [Utils removeCache:account andID:@"CurrentBookModel"];
+            [Utils removeCache:account andID:@"BorrowedBookModel"];
+            [Utils removeCache:account andID:@"stuTimes"];
+            [Utils removeCache:account andID:@"stuTime"];
+            [Utils removeCache:account andID:@"TodayBuyModel"];
+            [Utils removeCache:account andID:@"CardModel"];
+            [Utils removeCache:account andID:@"schoolWeek"];
+            [Utils removeCache:account andID:@"schoolYear"];
+            [Utils removeCache:account andID:@"stuTimeForGrade"];
+            [Utils removeCache:account andID:@"schoolYearForGrade"];
+            
+            //删除账号密码
+            [wrapper resetKeychainItem];
+            
+            [SVProgressHUD dismiss];
+            [SVProgressHUD showSuccessWithStatus:[NSString stringWithFormat:@"退出成功"]];
+            sleep(1);
+            [SVProgressHUD dismiss];
+            //跳转页面
+            KWIntroduceViewController *loginVc = [[KWIntroduceViewController alloc]init];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [UIApplication sharedApplication].keyWindow.rootViewController = loginVc;
+            });
+            NSLog(@"退出成功");
+        });
+    } failure:^(NSError *error) {
+        
+    } noNetworking:^{
+        
+    }];
+}
+
 /*
  缓存余额数据:有网络的时候，更新本地余额数据，无网络的时候不更新
  */
@@ -279,31 +325,38 @@
     
     //添加确定到UIAlertController中
     UIAlertAction *OKAction = [UIAlertAction actionWithTitle:@"退出" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action) {
-        
-        NSString *account = [wrapper myObjectForKey:(id)kSecAttrAccount];
-        
-        //删除课程表缓存
-        [Utils removeCache:account andID:@"ClassModel"];
-        [Utils removeCache:account andID:@"GradeModel"];
-        [Utils removeCache:account andID:@"CurrentBookModel"];
-        [Utils removeCache:account andID:@"BorrowedBookModel"];
-        [Utils removeCache:account andID:@"stuTimes"];
-        [Utils removeCache:account andID:@"stuTime"];
-        [Utils removeCache:account andID:@"TodayBuyModel"];
-        [Utils removeCache:account andID:@"CardModel"];
-        [Utils removeCache:account andID:@"schoolWeek"];
-        [Utils removeCache:account andID:@"schoolYear"];
-        [Utils removeCache:account andID:@"stuTimeForGrade"];
-        [Utils removeCache:account andID:@"schoolYearForGrade"];
-        
-        //删除账号密码
-        [wrapper resetKeychainItem];
-        
-        //跳转页面
-        KWIntroduceViewController *loginVc = [[KWIntroduceViewController alloc]init];
-        [UIApplication sharedApplication].keyWindow.rootViewController = loginVc;
-        
-        NSLog(@"退出成功");
+        dispatch_queue_t HUDQueue = dispatch_queue_create("HUDQueue", DISPATCH_QUEUE_SERIAL);
+        dispatch_async(HUDQueue, ^{
+            NSString *account = [wrapper myObjectForKey:(id)kSecAttrAccount];
+            
+            //删除课程表缓存
+            [Utils removeCache:account andID:@"ClassModel"];
+            [Utils removeCache:account andID:@"GradeModel"];
+            [Utils removeCache:account andID:@"CurrentBookModel"];
+            [Utils removeCache:account andID:@"BorrowedBookModel"];
+            [Utils removeCache:account andID:@"stuTimes"];
+            [Utils removeCache:account andID:@"stuTime"];
+            [Utils removeCache:account andID:@"TodayBuyModel"];
+            [Utils removeCache:account andID:@"CardModel"];
+            [Utils removeCache:account andID:@"schoolWeek"];
+            [Utils removeCache:account andID:@"schoolYear"];
+            [Utils removeCache:account andID:@"stuTimeForGrade"];
+            [Utils removeCache:account andID:@"schoolYearForGrade"];
+            
+            //删除账号密码
+            [wrapper resetKeychainItem];
+            
+            [SVProgressHUD dismiss];
+            [SVProgressHUD showSuccessWithStatus:[NSString stringWithFormat:@"退出成功"]];
+            sleep(1);
+            [SVProgressHUD dismiss];
+            //跳转页面
+            KWIntroduceViewController *loginVc = [[KWIntroduceViewController alloc]init];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [UIApplication sharedApplication].keyWindow.rootViewController = loginVc;
+            });
+            NSLog(@"退出成功");
+        });
     }];
     [alertController addAction:OKAction];
     

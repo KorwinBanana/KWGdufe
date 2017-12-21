@@ -19,6 +19,7 @@
 #import "KWAFNetworking.h"
 #import "KWRequestUrl.h"
 #import "KWPasswordTextField.h"
+#import "KWLoginCell.h"
 
 @interface KWLoginTableViewController ()
 
@@ -89,6 +90,11 @@
             _pwd.secureTextEntry = YES;
             return cell;
         }
+    } else if (indexPath.section == 1) {
+        KWLoginCell *cell = [[KWLoginCell alloc]init];
+        cell = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([KWLoginCell class]) owner:nil options:nil][0];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
     }
     return cell;
 }
@@ -101,7 +107,7 @@
     if (indexPath.section == 1) {
         if (indexPath.row == 0) {
             [self.view endEditing:YES];
-            [SVProgressHUD show];
+            [SVProgressHUD showWithStatus:@"登录中..."];
             [self loadData];
         }
     }
