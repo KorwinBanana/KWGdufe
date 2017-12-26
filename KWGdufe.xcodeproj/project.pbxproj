@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A0618331FF278890063A32B /* KWRealm.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A0618321FF278890063A32B /* KWRealm.m */; };
+		0A0618361FF28B8D0063A32B /* KWSztzObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A0618351FF28B8D0063A32B /* KWSztzObject.m */; };
 		0A0D9A091FA713D3009CB653 /* KWGradeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A0D9A081FA713D3009CB653 /* KWGradeModel.m */; };
 		0A0D9A0C1FA74B6B009CB653 /* KWGradeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A0D9A0B1FA74B6B009CB653 /* KWGradeCell.m */; };
 		0A0D9A121FA75024009CB653 /* KWSztzTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A0D9A111FA75024009CB653 /* KWSztzTableView.m */; };
@@ -119,6 +121,10 @@
 
 /* Begin PBXFileReference section */
 		051C1E9532C05A1197E97386 /* libPods-KWGdufeUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-KWGdufeUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A0618311FF278890063A32B /* KWRealm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWRealm.h; sourceTree = "<group>"; };
+		0A0618321FF278890063A32B /* KWRealm.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWRealm.m; sourceTree = "<group>"; };
+		0A0618341FF28B8D0063A32B /* KWSztzObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWSztzObject.h; sourceTree = "<group>"; };
+		0A0618351FF28B8D0063A32B /* KWSztzObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWSztzObject.m; sourceTree = "<group>"; };
 		0A09E86A1F7E91E600BAF64F /* KWGdufe.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWGdufe.pch; sourceTree = "<group>"; };
 		0A0D9A071FA713D3009CB653 /* KWGradeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWGradeModel.h; sourceTree = "<group>"; };
 		0A0D9A081FA713D3009CB653 /* KWGradeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWGradeModel.m; sourceTree = "<group>"; };
@@ -326,6 +332,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A06182D1FF278340063A32B /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				0A0618311FF278890063A32B /* KWRealm.h */,
+				0A0618321FF278890063A32B /* KWRealm.m */,
+			);
+			path = Realm;
+			sourceTree = "<group>";
+		};
 		0A5118B31FB7070B00D45995 /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -574,6 +589,7 @@
 				0A5118BE1FB7209200D45995 /* Config */,
 				0A6C9EE21FEBEADF0057D26E /* KWHUD */,
 				0A5118B31FB7070B00D45995 /* Network */,
+				0A06182D1FF278340063A32B /* Realm */,
 				0A8815351F7BDC5700AAB5BF /* Control */,
 				0A8815361F7BDC5700AAB5BF /* Model */,
 				0A8815371F7BDC5700AAB5BF /* View */,
@@ -727,6 +743,8 @@
 				0AE17BD51FC7164D007B4BC7 /* KWSBookModel.m */,
 				0A7147131FE839CE00DD9349 /* KWVerifyModel.h */,
 				0A7147141FE839CE00DD9349 /* KWVerifyModel.m */,
+				0A0618341FF28B8D0063A32B /* KWSztzObject.h */,
+				0A0618351FF28B8D0063A32B /* KWSztzObject.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1179,6 +1197,7 @@
 				0A8351721FA984CA00357F72 /* KWSztzCell.m in Sources */,
 				0A4483F91FA9F3F500100DF8 /* KWCurrentModel.m in Sources */,
 				0A9F5B241F7D813C006FD696 /* KWMyClassCollectionCell.m in Sources */,
+				0A0618361FF28B8D0063A32B /* KWSztzObject.m in Sources */,
 				0A8337811FDBA7B40098A486 /* UIButton+KWMineButton.m in Sources */,
 				0A65AF9F1FA4778C003AC3A5 /* KeychainWrapper.m in Sources */,
 				0A7147121FE82E3B00DD9349 /* NSData+Base64.m in Sources */,
@@ -1201,6 +1220,7 @@
 				0A8337781FDBA4E50098A486 /* KWLoginingViewController.m in Sources */,
 				0AB186B71F89504400A49F93 /* KWScheduleModel.m in Sources */,
 				0A3BA3D11FAF27DB00EBB96E /* KWTodayBuyModel.m in Sources */,
+				0A0618331FF278890063A32B /* KWRealm.m in Sources */,
 				0ACC56C11F8E0C6F007DA2BD /* UIImage+KWImage.m in Sources */,
 				0A6C9EE01FEBE3ED0057D26E /* KWLoginCell.m in Sources */,
 				0AA60B341F7C053B00E0E87D /* KWMineViewController.m in Sources */,

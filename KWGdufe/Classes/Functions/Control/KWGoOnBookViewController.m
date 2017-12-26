@@ -138,7 +138,7 @@
         //获取code
         NSString *code = [data objectForKey:@"code"];
         NSString *codeStr = [NSString stringWithFormat:@"%@",code];
-        NSString *newString = [Utils replaceStringWithString:renewModel.data];
+        NSMutableString *newString = [Utils replaceStringWithString:renewModel.data];
         
         [SVProgressHUD showWithStatus:@"续借中..."];
         dispatch_queue_t HUDQueue = dispatch_queue_create("HUDQueue", DISPATCH_QUEUE_SERIAL);

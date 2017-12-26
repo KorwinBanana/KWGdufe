@@ -17,6 +17,8 @@
 #import "KWSztzCell.h"
 #import "KWAFNetworking.h"
 #import "KWRequestUrl.h"
+#import "KWRealm.h"
+#import "KWSztzObject.h"
 
 @interface KWSztzTableView ()
 
@@ -30,13 +32,22 @@
     [super viewDidLoad];
     self.navigationItem.title = @"素拓信息";
     [self setupRefreshing];
-    NSString *account = [wrapper myObjectForKey:(id)kSecAttrAccount];
-    NSArray *sztzDict = [Utils getCache:account andID:@"SztzModel"];
-    if (sztzDict) {
-        NSArray *sztzArray = [KWSztzModel mj_objectArrayWithKeyValuesArray:sztzDict];
-        _sztzModel = sztzArray;
-    } else {
+
+    RLMRealm *real = [KWRealm getRealmWith:mineDataBase];
+    RLMResults *results = [KWSztzObject allObjectsInRealm:real];
+    
+    if (!results.count) {
+        //无
         [self.tableView.mj_header beginRefreshing];
+        NSLog(@"无");
+    } else {
+        //有
+        NSMutableArray *array = [NSMutableArray array];
+        for (RLMObject *object in results) {
+            [array addObject:object];
+        }
+        NSLog(@"有");
+        _sztzModel = array;
     }
 }
 
@@ -70,31 +81,41 @@
     parements[@"sno"] = gdufeAccount;
     parements[@"pwd"] = gdufePassword;
     
-//    [KWAFNetworking postWithUrlString:GetSztzAPI parameters:parements success:^(id data) {
-//        //获取字典
-//        NSDictionary *sztzDict = data[@"data"];
-//
-//        //缓存到本地
-//        [Utils saveCache:gdufeAccount andID:@"SztzModel" andValue:sztzDict];
-//
-//        //字典转模型
-//        NSArray *sztzArray = [KWSztzModel mj_objectArrayWithKeyValuesArray:sztzDict];
-//        _sztzModel = sztzArray;
-//
-//        [self.tableView reloadData];
-//    } failure:^(NSError *error) {
-//
-//    }];
     [KWAFNetworking postWithUrlString:GetSztzAPI vController:self parameters:parements success:^(id data) {
         //获取字典
         NSDictionary *sztzDict = data[@"data"];
         
         //缓存到本地
-        [Utils saveCache:gdufeAccount andID:@"SztzModel" andValue:sztzDict];
+//        [Utils saveCache:gdufeAccount andID:@"SztzModel" andValue:sztzDict];
         
         //字典转模型
         NSArray *sztzArray = [KWSztzModel mj_objectArrayWithKeyValuesArray:sztzDict];
-        _sztzModel = sztzArray;
+//        _sztzModel = sztzArray;
+        
+        //存入数据库
+        RLMRealm *real = [KWRealm getRealmWith:mineDataBase];
+        KWSztzObject *sztzObject = [[KWSztzObject alloc] init];
+        RLMResults *results = [KWSztzObject allObjectsInRealm:real];
+        if (!results) {
+            for (int i = 0; i<6; i++) {
+                sztzObject = [[KWSztzObject alloc] initWithValue:sztzArray[i]];
+                [KWRealm saveRLMObject:real rlmObject:sztzObject];
+            }
+        } else {
+            for (int i = 0; i<6; i++) {
+                sztzObject = [[KWSztzObject alloc] initWithValue:sztzArray[i]];
+                [KWRealm addOrUpdateObject:real rlmObject:sztzObject];
+            }
+        }
+        
+        NSMutableArray *array = [NSMutableArray array];
+        for (RLMObject *object in results) {
+            [array addObject:object];
+        }
+        NSLog(@"****************results******************* = %@",results);
+        NSLog(@"****************array******************* = %@",array);
+        NSLog(@"%ld",(long)array.count);
+        _sztzModel = array;
         
         dispatch_async(dispatch_get_main_queue(), ^{ //主线程刷新界面
             [self.tableView reloadData];

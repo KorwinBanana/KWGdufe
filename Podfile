@@ -25,4 +25,6 @@ target 'KWGdufe' do
   pod 'MJRefresh'
   pod 'ActionSheetPicker-3.0', '~> 2.2.0'
   pod 'SDCycleScrollView','~> 1.75'
-  end
+  pod 'Realm'  
+  pod 'Realm/Headers'
+end

@@ -353,7 +353,8 @@
             //跳转页面
             KWIntroduceViewController *loginVc = [[KWIntroduceViewController alloc]init];
             dispatch_async(dispatch_get_main_queue(), ^{
-                [UIApplication sharedApplication].keyWindow.rootViewController = loginVc;
+//                [UIApplication sharedApplication].keyWindow.rootViewController = loginVc;
+                [self presentViewController:loginVc animated:YES completion:nil];
             });
             NSLog(@"退出成功");
         });
