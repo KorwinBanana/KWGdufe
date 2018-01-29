@@ -11,7 +11,6 @@
 #import <MJExtension/MJExtension.h>
 #import "KWStuModel.h"
 #import "KWMineMsgViewController.h"
-#import "KWLoginViewController.h"
 #import <MJRefresh/MJRefresh.h>
 #import "KeychainWrapper.h"
 #import "KWMyMsgCell.h"
@@ -24,6 +23,8 @@
 #import "KWRequestUrl.h"
 #import "KWLogoutCell.h"
 #import "KWIntroduceViewController.h"
+#import "KWRealm.h"
+#import "KWSztzObject.h"
 
 @interface KWMineViewController ()
 
@@ -166,6 +167,11 @@
             [Utils removeCache:account andID:@"schoolYear"];
             [Utils removeCache:account andID:@"stuTimeForGrade"];
             [Utils removeCache:account andID:@"schoolYearForGrade"];
+            
+            //删除素质拓展数据库
+            RLMRealm *real = [KWRealm getRealmWith:GdufeDataBase];
+            KWSztzObject *sztzObject = [[KWSztzObject alloc] init];
+            [KWRealm deleteObject:real rlmObject:sztzObject];
             
             //删除账号密码
             [wrapper resetKeychainItem];

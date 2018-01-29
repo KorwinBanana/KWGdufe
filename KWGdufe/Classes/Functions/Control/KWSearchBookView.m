@@ -98,6 +98,7 @@
             _searchBookModel = searchBookModel;
             dispatch_async(dispatch_get_main_queue(), ^{ //主线程刷新界面
                 [self.tableView reloadData];
+                NSLog(@"查询书本信息成功~");
                 [SVProgressHUD dismiss];
             });
         } else if ([codeStr isEqualToString:@"2003"]) {

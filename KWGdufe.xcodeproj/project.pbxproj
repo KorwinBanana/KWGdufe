@@ -30,6 +30,7 @@
 		0A4613441FC56956000121CD /* KWSearchBookEndCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A4613431FC56956000121CD /* KWSearchBookEndCell.m */; };
 		0A5118B61FB7073400D45995 /* KWAFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5118B51FB7073400D45995 /* KWAFNetworking.m */; };
 		0A5118BD1FB7204700D45995 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5118BB1FB7204600D45995 /* ViewController.m */; };
+		0A575704201A3F820039F7CC /* KWGradeObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A575703201A3F820039F7CC /* KWGradeObject.m */; };
 		0A5A5A0E1FA20164001B09FD /* KWEducationalViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5A5A0D1FA20164001B09FD /* KWEducationalViewCell.m */; };
 		0A5A5A121FA20542001B09FD /* KWFunctionsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5A5A101FA20542001B09FD /* KWFunctionsCell.m */; };
 		0A5A5A131FA20542001B09FD /* KWFunctionsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A5A5A111FA20542001B09FD /* KWFunctionsCell.xib */; };
@@ -165,6 +166,8 @@
 		0A5118BA1FB70AEF00D45995 /* KWRequestUrl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWRequestUrl.h; sourceTree = "<group>"; };
 		0A5118BB1FB7204600D45995 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		0A5118BC1FB7204700D45995 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		0A575702201A3F820039F7CC /* KWGradeObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWGradeObject.h; sourceTree = "<group>"; };
+		0A575703201A3F820039F7CC /* KWGradeObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWGradeObject.m; sourceTree = "<group>"; };
 		0A5A5A0C1FA20164001B09FD /* KWEducationalViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWEducationalViewCell.h; sourceTree = "<group>"; };
 		0A5A5A0D1FA20164001B09FD /* KWEducationalViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWEducationalViewCell.m; sourceTree = "<group>"; };
 		0A5A5A0F1FA20542001B09FD /* KWFunctionsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWFunctionsCell.h; sourceTree = "<group>"; };
@@ -338,6 +341,8 @@
 			children = (
 				0A0618341FF28B8D0063A32B /* KWSztzObject.h */,
 				0A0618351FF28B8D0063A32B /* KWSztzObject.m */,
+				0A575702201A3F820039F7CC /* KWGradeObject.h */,
+				0A575703201A3F820039F7CC /* KWGradeObject.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1215,6 +1220,7 @@
 				0A3BA3C81FAF06D800EBB96E /* KWCashModel.m in Sources */,
 				0AA60B1E1F7C029100E0E87D /* main.m in Sources */,
 				0A8077F31FA30AB4009AA299 /* NSData+KWAES.m in Sources */,
+				0A575704201A3F820039F7CC /* KWGradeObject.m in Sources */,
 				0A65BB2C1F94A74B00DDC285 /* KWMsgCell.m in Sources */,
 				0A4483F61FA9F38800100DF8 /* KWCurrentBookView.m in Sources */,
 				0A65AFA21FA4B374003AC3A5 /* KWMyMsgCell.m in Sources */,
@@ -1316,6 +1322,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = E33T36MPH2;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -1371,6 +1378,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = E33T36MPH2;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -1394,8 +1402,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = E33T36MPH2;
+				DEVELOPMENT_TEAM = 69MYRJBQQ9;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "/Users/k/iOS-KW/KWGdufe/KWGdufe/Classes/Common/Config/KWGdufe.pch";
 				INFOPLIST_FILE = KWGdufe/Info.plist;
@@ -1427,8 +1436,10 @@
 					"\"UIKit\"",
 					"-all_load",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.korwin.KWGdufe;
+				PRODUCT_BUNDLE_IDENTIFIER = com.korwin.cn.KWGdufe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1439,8 +1450,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = E33T36MPH2;
+				DEVELOPMENT_TEAM = 69MYRJBQQ9;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "/Users/k/iOS-KW/KWGdufe/KWGdufe/Classes/Common/Config/KWGdufe.pch";
 				INFOPLIST_FILE = KWGdufe/Info.plist;
@@ -1472,8 +1484,10 @@
 					"\"UIKit\"",
 					"-all_load",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.korwin.KWGdufe;
+				PRODUCT_BUNDLE_IDENTIFIER = com.korwin.cn.KWGdufe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -1484,7 +1498,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = E33T36MPH2;
+				DEVELOPMENT_TEAM = 69MYRJBQQ9;
 				INFOPLIST_FILE = KWGdufeTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.korwin.KWGdufeTests;
@@ -1500,7 +1514,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = E33T36MPH2;
+				DEVELOPMENT_TEAM = 69MYRJBQQ9;
 				INFOPLIST_FILE = KWGdufeTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.korwin.KWGdufeTests;
@@ -1515,7 +1529,7 @@
 			baseConfigurationReference = A2D1AABEB33B86C1515B902A /* Pods-KWGdufeUITests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = E33T36MPH2;
+				DEVELOPMENT_TEAM = 69MYRJBQQ9;
 				INFOPLIST_FILE = KWGdufeUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.korwin.KWGdufeUITests;
@@ -1530,7 +1544,7 @@
 			baseConfigurationReference = 5F4EEE1B2B538304EC4DDE62 /* Pods-KWGdufeUITests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = E33T36MPH2;
+				DEVELOPMENT_TEAM = 69MYRJBQQ9;
 				INFOPLIST_FILE = KWGdufeUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.korwin.KWGdufeUITests;

@@ -7,8 +7,6 @@
 //
 
 #import "AppDelegate.h"
-#import "KWLoginViewController.h"
-#import "KWLoginingViewController.h"
 #import "KWIntroduceViewController.h"
 #import "KWTabBarController.h"
 #import "NSData+KWAES.h"
@@ -27,8 +25,8 @@ static NSString *stuTime;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];//设置APPHUD样式
-    if (![KWRealm getRealmWith:mineDataBase]) {
-        [KWRealm setDefaultRealmForUser:mineDataBase];
+    if (![KWRealm getRealmWith:GdufeDataBase]) {
+        [KWRealm setDefaultRealmForUser:GdufeDataBase];
     }
     
     //初始化窗口

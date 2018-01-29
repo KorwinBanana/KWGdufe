@@ -73,7 +73,7 @@
     [realm commitWriteTransaction];
 }
 
-+ (void)updateWithrealm:(RLMRealm *)realm block:(void (^)())block {
++ (void)updateWithrealm:(RLMRealm *)realm block:(void (^)(void))block {
     [realm beginWriteTransaction];
     block();
     [realm commitWriteTransaction];

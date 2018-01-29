@@ -8,7 +8,6 @@
 
 #import "KWIntroduceViewController.h"
 #import "Utils.h"
-#import "KWLoginViewController.h"
 #import "KWLoginTableViewController.h"
 #import "KWNavigationViewController.h"
 #import "KWImageViewCell.h"

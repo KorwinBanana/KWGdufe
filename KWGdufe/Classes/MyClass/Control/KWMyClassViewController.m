@@ -372,6 +372,7 @@ static float progress = 0.0f;
             [collectionView reloadData];
             //取消提示框
             [SVProgressHUD dismiss];
+            NSLog(@"请求课程数据成功~");
         });
     } failure:^(NSError *error) {
         

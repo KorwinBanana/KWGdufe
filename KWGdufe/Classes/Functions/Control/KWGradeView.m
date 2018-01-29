@@ -18,6 +18,8 @@
 #import "KWAFNetworking.h"
 #import "KWRequestUrl.h"
 #import <ActionSheetPicker-3.0/ActionSheetStringPicker.h>
+#import "KWRealm.h"
+#import "KWGradeObject.h"
 
 @interface KWGradeView ()
 
@@ -34,15 +36,33 @@
     
     [self setupRefreshing];
     
-    NSArray *gradeDict = [Utils getCache:gdufeAccount andID:@"GradeModel"];
-    if (gradeDict) {
-        NSArray *gradeModel = [KWGradeModel mj_objectArrayWithKeyValuesArray:gradeDict];
-        _gradeModel = gradeModel;
-        [self.tableView reloadData];
-    } else {
-        [self.tableView.mj_header beginRefreshing];
-    }
+//    NSArray *gradeDict = [Utils getCache:gdufeAccount andID:@"GradeModel"];
+//    if (gradeDict) {
+//        NSArray *gradeModel = [KWGradeModel mj_objectArrayWithKeyValuesArray:gradeDict];
+//        _gradeModel = gradeModel;
+//        [self.tableView reloadData];
+//    } else {
+//        [self.tableView.mj_header beginRefreshing];
+//    }
     
+    RLMRealm *real = [KWRealm getRealmWith:GdufeDataBase];
+    RLMResults *results = [KWGradeObject allObjectsInRealm:real];
+    
+    if (!results) {
+        //无
+        [self.tableView.mj_header beginRefreshing];
+    } else {
+        //有
+//        [self loadGradeData:[Utils getCache:gdufeAccount andID:@"schoolYearForGrade"]];
+        NSMutableArray *array = [NSMutableArray array];
+        for (RLMObject *object in results) {
+            KWGradeModel *model = object;
+            if ([model.time isEqualToString:[Utils getCache:gdufeAccount andID:@"stuTimeForGrade"]])
+                [array addObject:object];
+        }
+        _gradeModel = array;
+//        [self.tableView reloadData];
+    }
 }
 
 #pragma mark - setupRefreshing
@@ -61,7 +81,8 @@
     // 下拉刷新
     tableView.mj_header= [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         // 结束刷新
-        [self loadDataWithStuTime:[Utils getCache:gdufeAccount andID:@"stuTimeForGrade"]];
+        [self loadDataWithStuTime:0];
+        [self setupNavBarRightName:[Utils getCache:gdufeAccount andID:@"schoolYearForGrade"]];
     }];
     
     // 设置自动切换透明度(在导航栏下面自动隐藏)
@@ -90,7 +111,8 @@
             [KWAFNetworking iSNetWorkingWithController:self isNetworking:^{
                 [SVProgressHUD showWithStatus:@"刷新中~"];
                 [Utils updateCache:gdufeAccount andID:@"stuTimeForGrade" andValue:stuTimes[selectedIndex-1]];
-                [self loadDataWithStuTime:[Utils getCache:gdufeAccount andID:@"stuTimeForGrade"]];
+//                [self loadDataWithStuTime:[Utils getCache:gdufeAccount andID:@"stuTimeForGrade"]];
+                [self loadGradeData:stuTimes[selectedIndex-1]];
                 [Utils updateCache:gdufeAccount andID:@"schoolYearForGrade" andValue:selectedValue];
                 [self setupNavBarRightName:[Utils getCache:gdufeAccount andID:@"schoolYearForGrade"]];
             } noNetworking:^{
@@ -128,33 +150,6 @@
     parements[@"pwd"] = gdufePassword;
     parements[@"stu_time"] = stuTimeForGrade;
     
-//    [KWAFNetworking postWithUrlString:GetGradeAPI parameters:parements success:^(id data) {
-//        //获取字典
-//        NSDictionary *gradeDict = data[@"data"];
-//
-//        //缓存到本地
-//        [Utils saveCache:gdufeAccount andID:@"GradeModel" andValue:gradeDict];
-//
-//        //字典转模型
-//        NSArray *gradeModel = [KWGradeModel mj_objectArrayWithKeyValuesArray:gradeDict];
-//
-////        NSMutableArray *gradeDictTimes = [[NSMutableArray alloc]init];
-////
-////        //获取大三下学期成绩
-////        for (KWGradeModel *gradeDictTime in gradeModel) {
-////            if ([gradeDictTime.time isEqualToString:@"2016-2017-2"]) {
-////                [gradeDictTimes addObject:gradeDictTime];
-////            }
-////        }
-//
-//        _gradeModel = gradeModel;
-//
-//        [self.tableView reloadData];
-//        [SVProgressHUD dismiss];
-//    } failure:^(NSError *error) {
-//
-//    }];
-    
     [KWAFNetworking postWithUrlString:GetGradeAPI vController:self parameters:parements success:^(id data) {
         //获取字典
         NSDictionary *gradeDict = data[@"data"];
@@ -174,10 +169,42 @@
 //            }
 //        }
         
-        _gradeModel = gradeModel;
+        //存入数据库
+        RLMRealm *real = [KWRealm getRealmWith:GdufeDataBase];
+        KWGradeObject *gradeObject = [[KWGradeObject alloc] init];
+        RLMResults *results = [KWGradeObject allObjectsInRealm:real];
+        if (!results) {
+            //没有数据
+            for (int i = 0; i<gradeModel.count; i++) {
+                gradeObject = [[KWGradeObject alloc] initWithValue:gradeModel[i]];
+                [KWRealm saveRLMObject:real rlmObject:gradeObject];
+            }
+        } else {
+            //有数据
+            for (int i = 0; i<gradeModel.count; i++) {
+                gradeObject = [[KWGradeObject alloc] initWithValue:gradeModel[i]];
+                [KWRealm addOrUpdateObject:real rlmObject:gradeObject];
+            }
+        }
+
+        NSMutableArray *array = [NSMutableArray array];
+        for (RLMObject *object in results) {
+            [array addObject:object];
+        }
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *docDir = [paths objectAtIndex:0];
+        NSLog(@"****************results******************* = %@",results);
+        NSLog(@"****************array******************* = %@",array);
+        NSLog(@"%ld",results.count);
+        NSLog(@"%@",docDir);
+        
+        _gradeModel = array;
+        
+        NSLog(@"%@",gradeModel);
         
         dispatch_async(dispatch_get_main_queue(), ^{ //主线程刷新界面
             [self.tableView reloadData];
+            NSLog(@"请求成绩数据成功~");
             [SVProgressHUD dismiss];
             [self.tableView.mj_header endRefreshing];
         });
@@ -186,6 +213,25 @@
     } noNetworking:^{
         [self.tableView.mj_header endRefreshing];
     }];
+}
+
+- (void)loadGradeData:(NSString *)stuTimeForGrade {
+    RLMRealm *real = [KWRealm getRealmWith:GdufeDataBase];
+    RLMResults *results = [KWGradeObject allObjectsInRealm:real];
+
+    NSMutableArray *array = [NSMutableArray array];
+    for (RLMObject *object in results) {
+        KWGradeModel *model = object;
+        if ([model.time isEqualToString:stuTimeForGrade])
+            [array addObject:object];
+    }
+
+    _gradeModel = array;
+
+    [self.tableView reloadData];
+    NSLog(@"选择学期成绩数据成功~");
+    [SVProgressHUD dismiss];
+    [self.tableView.mj_header endRefreshing];
 }
 
 #pragma mark - Table view data source

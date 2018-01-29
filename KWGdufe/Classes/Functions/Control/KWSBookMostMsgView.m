@@ -69,7 +69,7 @@
             dispatch_async(dispatch_get_main_queue(), ^{ //主线程刷新界面
                 [self.tableView reloadData];
                 [SVProgressHUD dismiss];
-//                NSLog(@"刷新成功");
+                NSLog(@"请求书本详细信息成功");
             });
         }
     } failure:^(NSError *error) {

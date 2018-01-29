@@ -33,10 +33,10 @@
     self.navigationItem.title = @"素拓信息";
     [self setupRefreshing];
 
-    RLMRealm *real = [KWRealm getRealmWith:mineDataBase];
+    RLMRealm *real = [KWRealm getRealmWith:GdufeDataBase];
     RLMResults *results = [KWSztzObject allObjectsInRealm:real];
     
-    if (!results.count) {
+    if (!results) {
         //无
         [self.tableView.mj_header beginRefreshing];
         NSLog(@"无");
@@ -93,16 +93,16 @@
 //        _sztzModel = sztzArray;
         
         //存入数据库
-        RLMRealm *real = [KWRealm getRealmWith:mineDataBase];
+        RLMRealm *real = [KWRealm getRealmWith:GdufeDataBase];
         KWSztzObject *sztzObject = [[KWSztzObject alloc] init];
         RLMResults *results = [KWSztzObject allObjectsInRealm:real];
         if (!results) {
-            for (int i = 0; i<6; i++) {
+            for (int i = 0; i<sztzArray.count; i++) {
                 sztzObject = [[KWSztzObject alloc] initWithValue:sztzArray[i]];
                 [KWRealm saveRLMObject:real rlmObject:sztzObject];
             }
         } else {
-            for (int i = 0; i<6; i++) {
+            for (int i = 0; i<sztzArray.count; i++) {
                 sztzObject = [[KWSztzObject alloc] initWithValue:sztzArray[i]];
                 [KWRealm addOrUpdateObject:real rlmObject:sztzObject];
             }
@@ -119,6 +119,7 @@
         
         dispatch_async(dispatch_get_main_queue(), ^{ //主线程刷新界面
             [self.tableView reloadData];
+            NSLog(@"请求素拓数据成功~");
             [self.tableView.mj_header endRefreshing];
         });
     } failure:^(NSError *error) {

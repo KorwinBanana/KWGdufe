@@ -91,6 +91,7 @@
         
         dispatch_async(dispatch_get_main_queue(), ^{ //主线程刷新界面
             [self.tableView reloadData];
+            NSLog(@"请求借阅数据成功~");
             [self.tableView.mj_header endRefreshing];//结束下拉刷新
 //            NSLog(@"刷新成功");
         });
