@@ -35,8 +35,8 @@
 
     RLMRealm *real = [KWRealm getRealmWith:GdufeDataBase];
     RLMResults *results = [KWSztzObject allObjectsInRealm:real];
-    
-    if (!results) {
+    NSInteger dataCount = [KWRealm getNumOfLine:results];
+    if (!dataCount) {
         //无
         [self.tableView.mj_header beginRefreshing];
         NSLog(@"无");

@@ -34,6 +34,8 @@
     [super viewDidLoad];
     
     self.tableView = [[UITableView alloc]initWithFrame:self.tableView.bounds style:UITableViewStyleGrouped];
+    CGRect frame = CGRectMake(0, 0, 0, 20);
+    self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:frame];
     [self setupNavBar];
     self.view.backgroundColor = [UIColor whiteColor];
 }
@@ -82,12 +84,14 @@
             _sno = cell.accountLogin;
             _sno.snoOrPwd = 0;
             _sno.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
+            _sno.clearButtonMode = UITextFieldViewModeWhileEditing;
             return cell;
         } else if (indexPath.row == 1) {
             cell.placeholderText = @"密码";
             _pwd = cell.accountLogin;
             _pwd.snoOrPwd = 1;
             _pwd.secureTextEntry = YES;
+            _pwd.clearButtonMode = UITextFieldViewModeWhileEditing;
             return cell;
         }
     } else if (indexPath.section == 1) {
@@ -107,8 +111,25 @@
     if (indexPath.section == 1) {
         if (indexPath.row == 0) {
             [self.view endEditing:YES];
-            [SVProgressHUD showWithStatus:@"登录中..."];
-            [self loadData];
+            //UIAlertController风格：UIAlertControllerStyleAlert
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"使用声明"
+                                                                                     message:@"当前使用的茶珂APP系广财同学个人作品，非广东财经大学官方APP，但开发者保证数据传输的安全性，对重要数据进行了加密处理，请放心使用！"
+                                                                              preferredStyle:UIAlertControllerStyleAlert ];
+            
+            //添加取消到UIAlertController中
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"不同意" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action) {
+                [_sno becomeFirstResponder];
+            }];
+            [alertController addAction:cancelAction];
+            
+            //添加确定到UIAlertController中
+            UIAlertAction *OKAction = [UIAlertAction actionWithTitle:@"同意" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action) {
+                [SVProgressHUD show];
+                [self loadData];
+            }];
+            [alertController addAction:OKAction];
+            
+            [self presentViewController:alertController animated:YES completion:nil];
         }
     }
 }
@@ -124,7 +145,7 @@
     [KWAFNetworking postWithUrlString:LoginAPI parameters:parements success:^(id data) {
         //添加警告框
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDestructive handler:nil];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleCancel handler:nil];
         [alert addAction:okAction];
         
         //获取字典
@@ -150,28 +171,38 @@
             //            NSLog(@"whenStuTime = %@",whenStuTime);
             [Utils getStuYears:whenStuTime mySno:[wrapper myObjectForKey:(id)kSecAttrAccount]];
             
+            //初始化参数
             //计算当前学期
             [Utils getNowYear];
+            
+            //获取第几周
+            NSString *schoolWeek = [NSString stringWithFormat:@"4"];
+            [Utils saveCache:gdufeAccount andID:@"schoolWeek" andValue:schoolWeek];
+            
             //保存当前大学
             [Utils getStuTimeSchool:[Utils getCache:gdufeAccount andID:@"stuTime"]];
-            //获取第几周
-            [Utils getSchoolWeek];
+            
+            [Utils saveCache:gdufeAccount andID:@"gradeSelect" andValue:@"年"];//成绩查询页面gradeSelectYear
+            [Utils saveCache:gdufeAccount andID:@"gradeSelectYear" andValue:@"全部"];
             
             KWTabBarController *tabVc = [[KWTabBarController alloc]init];
             [UIApplication sharedApplication].keyWindow.rootViewController = tabVc;
+            [self.view endEditing:YES];
             [SVProgressHUD dismiss];
         } else if ([codeStr isEqualToString:@"3000"]) {
-            NSLog(@"喵～学号或者密码为空啦～～");
+            NSLog(@"学号或者密码为空啦～～");
             //添加提示框
-            alert.message = @"喵～学号或者密码为空啦～～";
+            alert.message = @"请输入学号/密码";
+//            alert.title = @"登录失败";
             [self presentViewController:alert animated:YES completion:nil];
         } else if ([codeStr isEqualToString:@"3001"]) {
             NSLog(@"喵～学号或密码错误啦～～");
             //添加提示框
-            alert.message = @"喵～学号或密码错误啦～～";
+            alert.message = @"请输入正确的学号/密码";
+//            alert.title = @"登录失败";
             [self presentViewController:alert animated:YES completion:nil];
         } else {
-            alert.message = @"喵～系统崩溃啦～～";
+            alert.title = @"系统崩溃";
             [self presentViewController:alert animated:YES completion:nil];
         }
     } failure:^(NSError *error) {

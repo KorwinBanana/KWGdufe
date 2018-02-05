@@ -32,36 +32,36 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self setupNavBarRightName:[Utils getCache:gdufeAccount andID:@"schoolYearForGrade"]];
+//    [Utils saveCache:gdufeAccount andID:@"gradeSelect" andValue:@"全部"]
+    
+    [self setupNavBarRightName:[Utils getCache:gdufeAccount andID:@"gradeSelectYear"]];
     
     [self setupRefreshing];
     
-//    NSArray *gradeDict = [Utils getCache:gdufeAccount andID:@"GradeModel"];
-//    if (gradeDict) {
-//        NSArray *gradeModel = [KWGradeModel mj_objectArrayWithKeyValuesArray:gradeDict];
-//        _gradeModel = gradeModel;
-//        [self.tableView reloadData];
-//    } else {
-//        [self.tableView.mj_header beginRefreshing];
-//    }
-    
     RLMRealm *real = [KWRealm getRealmWith:GdufeDataBase];
     RLMResults *results = [KWGradeObject allObjectsInRealm:real];
-    
-    if (!results) {
+    NSInteger dataCount = [KWRealm getNumOfLine:results];
+    if (!dataCount) {
         //无
         [self.tableView.mj_header beginRefreshing];
     } else {
         //有
 //        [self loadGradeData:[Utils getCache:gdufeAccount andID:@"schoolYearForGrade"]];
         NSMutableArray *array = [NSMutableArray array];
-        for (RLMObject *object in results) {
-            KWGradeModel *model = object;
-            if ([model.time isEqualToString:[Utils getCache:gdufeAccount andID:@"stuTimeForGrade"]])
+        
+        //判断是否为全部
+        if ([[Utils getCache:gdufeAccount andID:@"gradeSelectYear"] isEqualToString:@"全部"]) {
+            for (RLMObject *object in results) {
                 [array addObject:object];
+            }
+        } else {
+            for (RLMObject *object in results) {
+                KWGradeModel *model = object;
+                if ([model.time isEqualToString:[Utils getCache:gdufeAccount andID:@"gradeSelect"]])
+                    [array addObject:object];
+            }
         }
         _gradeModel = array;
-//        [self.tableView reloadData];
     }
 }
 
@@ -81,8 +81,22 @@
     // 下拉刷新
     tableView.mj_header= [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         // 结束刷新
-        [self loadDataWithStuTime:0];
-        [self setupNavBarRightName:[Utils getCache:gdufeAccount andID:@"schoolYearForGrade"]];
+        RLMRealm *real = [KWRealm getRealmWith:GdufeDataBase];
+        RLMResults *results = [KWGradeObject allObjectsInRealm:real];
+        
+        if (!results) {
+            //无
+            [self loadDataWithStuTime:0];
+        } else {
+            //有
+            //判断是否为全部
+            if ([[Utils getCache:gdufeAccount andID:@"gradeSelectYear"] isEqualToString:@"全部"]) {
+                [self loadDataWithStuTime:0];//请求全部数据库
+            } else {
+                [self loadGradeData:[Utils getCache:gdufeAccount andID:@"gradeSelect"]];//数据库中重新获取当前学期
+            }
+            [self setupNavBarRightName:[Utils getCache:gdufeAccount andID:@"gradeSelectYear"]];
+        }
     }];
     
     // 设置自动切换透明度(在导航栏下面自动隐藏)
@@ -98,27 +112,26 @@
     NSMutableArray *stuTimes = [Utils getCache:gdufeAccount andID:@"stuTimes"];
     
     ActionSheetStringPicker *picker = [[ActionSheetStringPicker alloc]initWithTitle:@"学期" rows:stuTimesForGrade initialSelection:0 doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
-        if(selectedIndex == 0){
-            [KWAFNetworking iSNetWorkingWithController:self isNetworking:^{
-                [SVProgressHUD showWithStatus:@"刷新中~"];
-                [self loadDataWithStuTime:0];
-                [Utils updateCache:gdufeAccount andID:@"schoolYearForGrade" andValue:selectedValue];
-                [self setupNavBarRightName:[Utils getCache:gdufeAccount andID:@"schoolYearForGrade"]];
-            } noNetworking:^{
-                NSLog(@"Block Picker Canceled");
-            }];
-        } else {
-            [KWAFNetworking iSNetWorkingWithController:self isNetworking:^{
-                [SVProgressHUD showWithStatus:@"刷新中~"];
-                [Utils updateCache:gdufeAccount andID:@"stuTimeForGrade" andValue:stuTimes[selectedIndex-1]];
-//                [self loadDataWithStuTime:[Utils getCache:gdufeAccount andID:@"stuTimeForGrade"]];
-                [self loadGradeData:stuTimes[selectedIndex-1]];
-                [Utils updateCache:gdufeAccount andID:@"schoolYearForGrade" andValue:selectedValue];
-                [self setupNavBarRightName:[Utils getCache:gdufeAccount andID:@"schoolYearForGrade"]];
-            } noNetworking:^{
-                NSLog(@"Block Picker Canceled");
-            }];
-        }
+        dispatch_queue_t HUDQueue = dispatch_queue_create("HUDQueue", DISPATCH_QUEUE_SERIAL);
+        dispatch_async(HUDQueue, ^{
+            [SVProgressHUD show];
+            sleep(1);
+            if(selectedIndex == 0){
+                [Utils updateCache:gdufeAccount andID:@"gradeSelect" andValue:@"全部"];
+                [Utils updateCache:gdufeAccount andID:@"gradeSelectYear" andValue:selectedValue];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self loadGradeAllData];
+                    [self setupNavBarRightName:[Utils getCache:gdufeAccount andID:@"gradeSelectYear"]];
+                });
+            } else {
+                [Utils updateCache:gdufeAccount andID:@"gradeSelect" andValue:stuTimes[selectedIndex-1]];
+                [Utils updateCache:gdufeAccount andID:@"gradeSelectYear" andValue:selectedValue];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self loadGradeData:stuTimes[selectedIndex-1]];
+                    [self setupNavBarRightName:[Utils getCache:gdufeAccount andID:@"gradeSelectYear"]];
+                });
+            }
+        });
     } cancelBlock:^(ActionSheetStringPicker *picker) {
         NSLog(@"Block Picker Canceled");
     } origin:self.view];
@@ -191,16 +204,19 @@
         for (RLMObject *object in results) {
             [array addObject:object];
         }
+        
+//        //打印Document地址
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
         NSString *docDir = [paths objectAtIndex:0];
-        NSLog(@"****************results******************* = %@",results);
-        NSLog(@"****************array******************* = %@",array);
-        NSLog(@"%ld",results.count);
+        
+//        NSLog(@"****************results******************* = %@",results);
+//        NSLog(@"****************array******************* = %@",array);
+//        NSLog(@"%ld",results.count);
         NSLog(@"%@",docDir);
         
         _gradeModel = array;
         
-        NSLog(@"%@",gradeModel);
+//        NSLog(@"%@",gradeModel);
         
         dispatch_async(dispatch_get_main_queue(), ^{ //主线程刷新界面
             [self.tableView reloadData];
@@ -229,7 +245,23 @@
     _gradeModel = array;
 
     [self.tableView reloadData];
-    NSLog(@"选择学期成绩数据成功~");
+    [SVProgressHUD dismiss];
+    [self.tableView.mj_header endRefreshing];
+}
+
+//请求整个学期课程
+- (void)loadGradeAllData {
+    RLMRealm *real = [KWRealm getRealmWith:GdufeDataBase];
+    RLMResults *results = [KWGradeObject allObjectsInRealm:real];
+    
+    NSMutableArray *array = [NSMutableArray array];
+    for (RLMObject *object in results) {
+            [array addObject:object];
+    }
+    
+    _gradeModel = array;
+    
+    [self.tableView reloadData];
     [SVProgressHUD dismiss];
     [self.tableView.mj_header endRefreshing];
 }

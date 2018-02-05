@@ -23,6 +23,8 @@
 #import <SVProgressHUD/SVProgressHUD.h>
 #import <ActionSheetPicker-3.0/ActionSheetStringPicker.h>
 #import "KWRequestUrl.h"
+#import "KWRealm.h"
+#import "KWScheduleObject.h"
 
 static float progress = 0.0f;
 
@@ -53,23 +55,11 @@ static float progress = 0.0f;
     self.view.backgroundColor = [UIColor whiteColor];
     
     schoolWeek = [Utils getCache:gdufeAccount andID:@"schoolWeek"];
-//    NSLog(@"初始化的shoolYear = %@",[Utils getCache:gdufeAccount andID:@"schoolYear"]);
 
     //设置标题
     [self setupNavBarRightName:[Utils getCache:gdufeAccount andID:@"schoolYear"] setleftName:[NSString stringWithFormat:@"第%@周",schoolWeek]];
     
     colors = @[@"#37C6C0",@"#5A4446",@"#FB7C85",@"#373E40",@"#8BACA1",@"#39A9CF",@"#DEBE9B",@"#C9D2CB",@"#8C7E78",@"#8ECB78",@"#0973AF",@"#37C6C0",@"#5A4446",@"#FB7C85",@"#373E40",@"#8BACA1",@"#39A9CF",@"#DEBE9B",@"#C9D2CB",@"#8C7E78",@"#8ECB78",@"#0973AF",@"#37C6C0",@"#5A4446",@"#FB7C85",@"#373E40",@"#8BACA1",@"#39A9CF",@"#DEBE9B",@"#C9D2CB",@"#8C7E78",@"#8ECB78",@"#0973AF",@"#37C6C0",@"#5A4446",@"#FB7C85",@"#373E40",@"#8BACA1",@"#39A9CF",@"#DEBE9B",@"#C9D2CB",@"#8C7E78",@"#8ECB78",@"#0973AF"];
-    
-//    //状态栏高度
-//    CGRect rectStatus = [[UIApplication sharedApplication] statusBarFrame];
-//    CGRect rectNav = self.navigationController.navigationBar.frame;
-    
-    //提示用户当前正在加载数据 SVPro
-//    [SVProgressHUD showWithStatus:@"等一下能怎么样！？"];
-    
-    //获取缓存数据
-//    [self getDataFromCache];
-//    [self loadData];
     
     //获取课程展示的宽度
     addWidth= (KWSCreenW-20-7)/7.0;
@@ -88,26 +78,42 @@ static float progress = 0.0f;
     self.course.width = addWidth;
     _course.height = (KWSCreenH - 20)/10;
     
-    //缓存获取界面数据
-    NSArray *dicAry = [Utils getCache:gdufeAccount andID:@"ClassModel"];
-    if (dicAry) {
-        _scheduleModel = [KWScheduleModel mj_objectArrayWithKeyValuesArray:dicAry];
+//    //缓存获取界面数据
+//    NSArray *dicAry = [Utils getCache:gdufeAccount andID:@"ClassModel"];
+//    if (dicAry) {
+//        _scheduleModel = [KWScheduleModel mj_objectArrayWithKeyValuesArray:dicAry];
+//        self.course.array = [[NSArray alloc]initWithArray:_scheduleModel];
+//        [SVProgressHUD dismiss];
+//    } else {
+//        self.stuTime = [Utils getCache:gdufeAccount andID:@"stuTime"];
+//        NSLog(@"self.stuTime = %@",self.stuTime);
+//
+//        [self loadData:self.stuTime week:schoolWeek];
+//    }
+    
+    //使用数据库获取
+    RLMRealm *real = [KWRealm getRealmWith:GdufeDataBase];
+    RLMResults *results = [KWScheduleObject allObjectsInRealm:real];
+    NSInteger dataCount = [KWRealm getNumOfLine:results];
+    if (!dataCount) {
+        //无
+        self.stuTime = [Utils getCache:gdufeAccount andID:@"stuTime"];
+        NSLog(@"self.stuTime = %@",self.stuTime);
+        
+        [self loadData:self.stuTime week:schoolWeek];
+    } else {
+        //有
+        NSMutableArray *arraySchedule = [NSMutableArray array];
+        for (RLMObject *object in results) {
+            [arraySchedule addObject:object];
+        }
+        _scheduleModel = arraySchedule;
         self.course.array = [[NSArray alloc]initWithArray:_scheduleModel];
         [SVProgressHUD dismiss];
-    } else {
-        [self loadData:self.stuTime week:schoolWeek];
     }
-    
     //创建collectionVIew
     [self setupCollectionView];
 }
-
-////初始化stuTime
-//- (void)setStuTime:(NSString *)stuTime {
-//    NSString *sno = [wrapper myObjectForKey:(id)kSecAttrAccount];
-//    stuTime = [Utils getCache:sno andID:@"stuTime"];
-//    self.stuTime = stuTime;
-//}
 
 #pragma mark - 设置导航条
 - (void)setupNavBarRightName:(NSString *)rightName setleftName:(NSString *)lefrName {
@@ -122,35 +128,26 @@ static float progress = 0.0f;
     ActionSheetStringPicker *picker = [[ActionSheetStringPicker alloc]initWithTitle:@"学期" rows:stuTimeForSchool initialSelection:0 doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
         if(selectedIndex == 0){
             [KWAFNetworking iSNetWorkingWithController:self isNetworking:^{
-                [Utils getNowYear];
+//                [Utils getNowYear];
                 self.stuTime = [Utils getCache:gdufeAccount andID:@"stuTime"];//获取大几的时间
-                
+                NSLog(@"全部——当前学期%@",self.stuTime);
                 [Utils getStuTimeSchool:self.stuTime];//获取大几
-                
-                //            [SVProgressHUD showWithStatus:@"更新课表"];
-                //            [SVProgressHUD showProgress:0.05 status:@"加载课表"];
-                //            [self performSelector:@selector(increaseProgress) withObject:nil afterDelay:0.3f];
-                [SVProgressHUD show];
-                
-                [Utils updateCache:gdufeAccount andID:@"stuTime" andValue:self.stuTime];
-                
-                [self loadData:self.stuTime week:schoolWeek];//更新数据
-                
                 [Utils updateCache:gdufeAccount andID:@"schoolYear" andValue:[Utils getCache:gdufeAccount andID:@"schoolYear"]];
-                
+                [Utils updateCache:gdufeAccount andID:@"stuTimeForClass" andValue:self.stuTime];
+                [SVProgressHUD show];
+                [self loadData:self.stuTime week:schoolWeek];//更新数据
+                NSLog(@"school = %@",[Utils getCache:gdufeAccount andID:@"schoolYear"]);
                 [self setupNavBarRightName:[Utils getCache:gdufeAccount andID:@"schoolYear"] setleftName:[NSString stringWithFormat:@"第%@周",schoolWeek]];
+                
             } noNetworking:^{
                 NSLog(@"Block Picker Canceled");
             }];
         } else {
             [KWAFNetworking iSNetWorkingWithController:self isNetworking:^{
                 self.stuTime = stuTimes[selectedIndex-1];
-//              [SVProgressHUD showWithStatus:@"更新课表"];
-//              [SVProgressHUD showProgress:0.05 status:@"加载课表"];
-//              [self performSelector:@selector(increaseProgress) withObject:nil afterDelay:0.3f];
                 [SVProgressHUD show];
-                
-                [Utils updateCache:gdufeAccount andID:@"stuTime" andValue:stuTimes[selectedIndex-1]];
+#warning 设置不同stuTime保存当前学期和选择学期
+                [Utils updateCache:gdufeAccount andID:@"stuTimeForClass" andValue:stuTimes[selectedIndex-1]];
                 [self loadData:self.stuTime week:schoolWeek];
                 [self setupNavBarRightName:selectedValue setleftName:[NSString stringWithFormat:@"第%@周",schoolWeek]];
                 [Utils updateCache:gdufeAccount andID:@"schoolYear" andValue:selectedValue];
@@ -168,7 +165,7 @@ static float progress = 0.0f;
     [cancelButton.titleLabel setFont:[UIFont boldSystemFontOfSize:16]];
     [cancelButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [cancelButton setTitleColor:[Utils colorWithHexString:@"#2E47AC"] forState:UIControlStateHighlighted];
-    [cancelButton setFrame:CGRectMake(0, 0, 32, 32)];
+    [cancelButton setFrame:CGRectMake(0, 0, 50, 45)];
     [picker setCancelButton:[[UIBarButtonItem alloc] initWithCustomView:cancelButton]];
     
     UIButton *doneButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -176,7 +173,7 @@ static float progress = 0.0f;
     [doneButton.titleLabel setFont:[UIFont boldSystemFontOfSize:16]];
     [doneButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [doneButton setTitleColor:[Utils colorWithHexString:@"#2E47AC"] forState:UIControlStateHighlighted];
-    [doneButton setFrame:CGRectMake(0, 0, 32, 32)];
+    [doneButton setFrame:CGRectMake(0, 0, 50, 45)];
     [picker setDoneButton:[[UIBarButtonItem alloc] initWithCustomView:doneButton]];
     
     [picker showActionSheetPicker];
@@ -188,13 +185,11 @@ static float progress = 0.0f;
     ActionSheetStringPicker *picker = [[ActionSheetStringPicker alloc]initWithTitle:@"周" rows:stuWeek initialSelection:0 doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
         if (selectedIndex == 0) {
             [KWAFNetworking iSNetWorkingWithController:self isNetworking:^{
-                [Utils getSchoolWeek];
+//                [Utils getSchoolWeek];
                 schoolWeek = [Utils getCache:gdufeAccount andID:@"schoolWeek"];
-//              [SVProgressHUD showWithStatus:@"更新课表"];
-//              [self performSelector:@selector(increaseProgress) withObject:nil afterDelay:0.3f];
                 [SVProgressHUD show];
                 
-                [self loadData:[Utils getCache:gdufeAccount andID:@"stuTime"] week:schoolWeek];
+                [self loadData:[Utils getCache:gdufeAccount andID:@"stuTimeForClass"] week:schoolWeek];
                 [self setupNavBarRightName:[Utils getCache:gdufeAccount andID:@"schoolYear"] setleftName:[NSString stringWithFormat:@"第%@周",schoolWeek]];
 //               [weekView setDay:[NSString stringWithFormat:@"%@周",schoolWeek]];
             } noNetworking:^{
@@ -211,7 +206,7 @@ static float progress = 0.0f;
                 [Utils saveCache:gdufeAccount andID:@"schoolWeek" andValue:[NSString stringWithFormat:@"%ld",(long)selectedIndex]];
                 schoolWeek = [Utils getCache:gdufeAccount andID:@"schoolWeek"];
 //             NSLog(@"选择的schoolweek = %@",schoolWeek);
-                [self loadData:[Utils getCache:gdufeAccount andID:@"stuTime"] week:schoolWeek];
+                [self loadData:[Utils getCache:gdufeAccount andID:@"stuTimeForClass"] week:schoolWeek];
                 [self setupNavBarRightName:[Utils getCache:gdufeAccount andID:@"schoolYear"] setleftName:[NSString stringWithFormat:@"第%ld周",(long)selectedIndex]];
 //              [weekView setDay:[NSString stringWithFormat:@"%ld周",(long)selectedIndex]];
                 
@@ -228,7 +223,7 @@ static float progress = 0.0f;
     [cancelButton.titleLabel setFont:[UIFont boldSystemFontOfSize:16]];
     [cancelButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [cancelButton setTitleColor:[Utils colorWithHexString:@"#2E47AC"] forState:UIControlStateHighlighted];
-    [cancelButton setFrame:CGRectMake(0, 0, 32, 32)];
+    [cancelButton setFrame:CGRectMake(0, 0, 50, 45)];
     [picker setCancelButton:[[UIBarButtonItem alloc] initWithCustomView:cancelButton]];
     
     UIButton *doneButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -236,7 +231,7 @@ static float progress = 0.0f;
     [doneButton.titleLabel setFont:[UIFont boldSystemFontOfSize:16]];
     [doneButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [doneButton setTitleColor:[Utils colorWithHexString:@"#2E47AC"] forState:UIControlStateHighlighted];
-    [doneButton setFrame:CGRectMake(0, 0, 32, 32)];
+    [doneButton setFrame:CGRectMake(0, 0, 50, 45)];
     [picker setDoneButton:[[UIBarButtonItem alloc] initWithCustomView:doneButton]];
     
     [picker showActionSheetPicker];
@@ -361,11 +356,41 @@ static float progress = 0.0f;
     
 //    NSLog(@"加载数据的schoolweek = %@",selectWeek);
     [KWAFNetworking postWithUrlString:@"http://api.wegdufe.com:82/index.php?r=jw/get-schedule" vController:self parameters:parements success:^(id data) {
-        NSArray *dicAry = data[@"data"];;
-        [Utils saveCache:gdufeAccount andID:@"ClassModel" andValue:dicAry];//保存到本地沙盒
+        NSArray *scheduleAry = data[@"data"];;
+        
+        [Utils saveCache:gdufeAccount andID:@"ClassModel" andValue:scheduleAry];//保存到本地沙盒
         
         //字典数组转模型数组
-        _scheduleModel = [KWScheduleModel mj_objectArrayWithKeyValuesArray:dicAry];
+        _scheduleModel = [KWScheduleModel mj_objectArrayWithKeyValuesArray:scheduleAry];
+        
+        //存入数据库
+        RLMRealm *real = [KWRealm getRealmWith:GdufeDataBase];
+        KWScheduleObject __block *scheduleObject = [[KWScheduleObject alloc] init];
+        RLMResults *results = [KWScheduleObject allObjectsInRealm:real];
+        
+        if (!results) {
+            NSLog(@"1");
+            for (int i = 0; i<_scheduleModel.count; i++) {
+                scheduleObject = [[KWScheduleObject alloc] initWithValue:_scheduleModel[i]];
+//                scheduleObject.num = i;
+                [KWRealm saveRLMObject:real rlmObject:scheduleObject];
+            }
+        } else {
+            NSLog(@"2");
+            [real beginWriteTransaction];
+            RLMResults *scheduleResults = [KWScheduleObject allObjectsInRealm:real];
+            [real deleteObjects:scheduleResults];
+            [real commitWriteTransaction];
+            
+            KWScheduleModel *schModel = [[KWScheduleModel alloc] init];
+            for (int i = 0; i<_scheduleModel.count; i++) {
+                schModel = _scheduleModel[i];
+                schModel.num = i;
+                scheduleObject = [[KWScheduleObject alloc] initWithValue:schModel];
+                [KWRealm saveRLMObject:real rlmObject:scheduleObject];
+            }
+        }
+        
         self.course.array = _scheduleModel;
         
         dispatch_async(dispatch_get_main_queue(), ^{ //主线程刷新界面

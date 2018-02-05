@@ -27,6 +27,14 @@
 #define iphone7 (KWSCreenH == 667)
 #define iphonese (KWSCreenH == 568)
 
+/*****************系统版本判断*********************/
+#define IOS10_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 10.0)
+
+#define IOS9_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 9.0)
+
+#define IOS8_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
+
+#define IOS7_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
 /*****************数据存储*********************/
 #define uuid [[NSUUID UUID] UUIDString]
 

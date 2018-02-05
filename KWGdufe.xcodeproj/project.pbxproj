@@ -16,6 +16,11 @@
 		0A0D9A1E1FA75BFA009CB653 /* KWLibraryViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A0D9A1D1FA75BFA009CB653 /* KWLibraryViewCell.m */; };
 		0A10DB2A1FC483E3006B5196 /* KWSearchBookView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A10DB291FC483E3006B5196 /* KWSearchBookView.m */; };
 		0A1FD89C1FC8585B00115277 /* KWSBookShowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A1FD89B1FC8585B00115277 /* KWSBookShowCell.m */; };
+		0A2FCD572021644700D7C837 /* KWCurrentObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A2FCD562021644700D7C837 /* KWCurrentObject.m */; };
+		0A2FCD5A2021694100D7C837 /* KWHisCurrentObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A2FCD592021694100D7C837 /* KWHisCurrentObject.m */; };
+		0A2FCD5D2021699500D7C837 /* KWHisCurrentBookView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A2FCD5C2021699500D7C837 /* KWHisCurrentBookView.m */; };
+		0A317A882026CA5600CBECCA /* KWSetNowStuTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A317A862026CA5600CBECCA /* KWSetNowStuTimeViewController.m */; };
+		0A317A892026CA5600CBECCA /* KWSetNowStuTimeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A317A872026CA5600CBECCA /* KWSetNowStuTimeViewController.xib */; };
 		0A38FE811F9E2032007484BD /* model.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0A38FE801F9E2031007484BD /* model.plist */; };
 		0A3BA3C81FAF06D800EBB96E /* KWCashModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A3BA3C71FAF06D800EBB96E /* KWCashModel.m */; };
 		0A3BA3CB1FAF0EC400EBB96E /* KWTodayBuyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A3BA3CA1FAF0EC400EBB96E /* KWTodayBuyCell.m */; };
@@ -28,9 +33,13 @@
 		0A4483FC1FA9F76E00100DF8 /* KWCurrentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A4483FB1FA9F76E00100DF8 /* KWCurrentCell.m */; };
 		0A4613411FC56650000121CD /* KWSearchBookModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A4613401FC56650000121CD /* KWSearchBookModel.m */; };
 		0A4613441FC56956000121CD /* KWSearchBookEndCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A4613431FC56956000121CD /* KWSearchBookEndCell.m */; };
+		0A4AA8F72022C58B00AF68F9 /* KWScheduleObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A4AA8F62022C58B00AF68F9 /* KWScheduleObject.m */; };
 		0A5118B61FB7073400D45995 /* KWAFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5118B51FB7073400D45995 /* KWAFNetworking.m */; };
 		0A5118BD1FB7204700D45995 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5118BB1FB7204600D45995 /* ViewController.m */; };
 		0A575704201A3F820039F7CC /* KWGradeObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A575703201A3F820039F7CC /* KWGradeObject.m */; };
+		0A5832C32024114E00B798DD /* KWHomeMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5832C22024114E00B798DD /* KWHomeMessageViewController.m */; };
+		0A5832C6202412FA00B798DD /* KWTodayScheduleObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5832C5202412FA00B798DD /* KWTodayScheduleObject.m */; };
+		0A5832CC2024284500B798DD /* KWInFoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5832CB2024284500B798DD /* KWInFoModel.m */; };
 		0A5A5A0E1FA20164001B09FD /* KWEducationalViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5A5A0D1FA20164001B09FD /* KWEducationalViewCell.m */; };
 		0A5A5A121FA20542001B09FD /* KWFunctionsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5A5A101FA20542001B09FD /* KWFunctionsCell.m */; };
 		0A5A5A131FA20542001B09FD /* KWFunctionsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A5A5A111FA20542001B09FD /* KWFunctionsCell.xib */; };
@@ -138,6 +147,15 @@
 		0A10DB291FC483E3006B5196 /* KWSearchBookView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWSearchBookView.m; sourceTree = "<group>"; };
 		0A1FD89A1FC8585B00115277 /* KWSBookShowCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWSBookShowCell.h; sourceTree = "<group>"; };
 		0A1FD89B1FC8585B00115277 /* KWSBookShowCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWSBookShowCell.m; sourceTree = "<group>"; };
+		0A2FCD552021644700D7C837 /* KWCurrentObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWCurrentObject.h; sourceTree = "<group>"; };
+		0A2FCD562021644700D7C837 /* KWCurrentObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWCurrentObject.m; sourceTree = "<group>"; };
+		0A2FCD582021694100D7C837 /* KWHisCurrentObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWHisCurrentObject.h; sourceTree = "<group>"; };
+		0A2FCD592021694100D7C837 /* KWHisCurrentObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWHisCurrentObject.m; sourceTree = "<group>"; };
+		0A2FCD5B2021699400D7C837 /* KWHisCurrentBookView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWHisCurrentBookView.h; sourceTree = "<group>"; };
+		0A2FCD5C2021699500D7C837 /* KWHisCurrentBookView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWHisCurrentBookView.m; sourceTree = "<group>"; };
+		0A317A852026CA5600CBECCA /* KWSetNowStuTimeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWSetNowStuTimeViewController.h; sourceTree = "<group>"; };
+		0A317A862026CA5600CBECCA /* KWSetNowStuTimeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWSetNowStuTimeViewController.m; sourceTree = "<group>"; };
+		0A317A872026CA5600CBECCA /* KWSetNowStuTimeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KWSetNowStuTimeViewController.xib; sourceTree = "<group>"; };
 		0A38FE801F9E2031007484BD /* model.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = model.plist; sourceTree = SOURCE_ROOT; };
 		0A3BA3C61FAF06D800EBB96E /* KWCashModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWCashModel.h; sourceTree = "<group>"; };
 		0A3BA3C71FAF06D800EBB96E /* KWCashModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWCashModel.m; sourceTree = "<group>"; };
@@ -161,6 +179,8 @@
 		0A4613401FC56650000121CD /* KWSearchBookModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWSearchBookModel.m; sourceTree = "<group>"; };
 		0A4613421FC56956000121CD /* KWSearchBookEndCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWSearchBookEndCell.h; sourceTree = "<group>"; };
 		0A4613431FC56956000121CD /* KWSearchBookEndCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWSearchBookEndCell.m; sourceTree = "<group>"; };
+		0A4AA8F52022C58B00AF68F9 /* KWScheduleObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWScheduleObject.h; sourceTree = "<group>"; };
+		0A4AA8F62022C58B00AF68F9 /* KWScheduleObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWScheduleObject.m; sourceTree = "<group>"; };
 		0A5118B41FB7073400D45995 /* KWAFNetworking.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWAFNetworking.h; sourceTree = "<group>"; };
 		0A5118B51FB7073400D45995 /* KWAFNetworking.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWAFNetworking.m; sourceTree = "<group>"; };
 		0A5118BA1FB70AEF00D45995 /* KWRequestUrl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWRequestUrl.h; sourceTree = "<group>"; };
@@ -168,6 +188,12 @@
 		0A5118BC1FB7204700D45995 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		0A575702201A3F820039F7CC /* KWGradeObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWGradeObject.h; sourceTree = "<group>"; };
 		0A575703201A3F820039F7CC /* KWGradeObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWGradeObject.m; sourceTree = "<group>"; };
+		0A5832C12024114E00B798DD /* KWHomeMessageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWHomeMessageViewController.h; sourceTree = "<group>"; };
+		0A5832C22024114E00B798DD /* KWHomeMessageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWHomeMessageViewController.m; sourceTree = "<group>"; };
+		0A5832C4202412FA00B798DD /* KWTodayScheduleObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWTodayScheduleObject.h; sourceTree = "<group>"; };
+		0A5832C5202412FA00B798DD /* KWTodayScheduleObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWTodayScheduleObject.m; sourceTree = "<group>"; };
+		0A5832CA2024284500B798DD /* KWInFoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWInFoModel.h; sourceTree = "<group>"; };
+		0A5832CB2024284500B798DD /* KWInFoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWInFoModel.m; sourceTree = "<group>"; };
 		0A5A5A0C1FA20164001B09FD /* KWEducationalViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWEducationalViewCell.h; sourceTree = "<group>"; };
 		0A5A5A0D1FA20164001B09FD /* KWEducationalViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWEducationalViewCell.m; sourceTree = "<group>"; };
 		0A5A5A0F1FA20542001B09FD /* KWFunctionsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWFunctionsCell.h; sourceTree = "<group>"; };
@@ -343,6 +369,14 @@
 				0A0618351FF28B8D0063A32B /* KWSztzObject.m */,
 				0A575702201A3F820039F7CC /* KWGradeObject.h */,
 				0A575703201A3F820039F7CC /* KWGradeObject.m */,
+				0A2FCD552021644700D7C837 /* KWCurrentObject.h */,
+				0A2FCD562021644700D7C837 /* KWCurrentObject.m */,
+				0A2FCD582021694100D7C837 /* KWHisCurrentObject.h */,
+				0A2FCD592021694100D7C837 /* KWHisCurrentObject.m */,
+				0A4AA8F52022C58B00AF68F9 /* KWScheduleObject.h */,
+				0A4AA8F62022C58B00AF68F9 /* KWScheduleObject.m */,
+				0A5832C4202412FA00B798DD /* KWTodayScheduleObject.h */,
+				0A5832C5202412FA00B798DD /* KWTodayScheduleObject.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -372,6 +406,41 @@
 				0A09E86A1F7E91E600BAF64F /* KWGdufe.pch */,
 			);
 			path = Config;
+			sourceTree = "<group>";
+		};
+		0A5832BA20240C5A00B798DD /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				0A5832BD20240C5A00B798DD /* Control */,
+				0A5832BB20240C5A00B798DD /* Model */,
+				0A5832BC20240C5A00B798DD /* View */,
+			);
+			path = Message;
+			sourceTree = "<group>";
+		};
+		0A5832BB20240C5A00B798DD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0A5832CA2024284500B798DD /* KWInFoModel.h */,
+				0A5832CB2024284500B798DD /* KWInFoModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0A5832BC20240C5A00B798DD /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0A5832BD20240C5A00B798DD /* Control */ = {
+			isa = PBXGroup;
+			children = (
+				0A5832C12024114E00B798DD /* KWHomeMessageViewController.h */,
+				0A5832C22024114E00B798DD /* KWHomeMessageViewController.m */,
+			);
+			path = Control;
 			sourceTree = "<group>";
 		};
 		0A6750B81F7BD79F00E46900 = {
@@ -461,6 +530,7 @@
 				0AA60B151F7BFF9F00E0E87D /* Main */,
 				0A8815211F7BDC5700AAB5BF /* MyClass */,
 				0AA60B1F1F7C03FF00E0E87D /* Functions */,
+				0A5832BA20240C5A00B798DD /* Message */,
 				0A88151D1F7BDC5700AAB5BF /* Mine */,
 				0A8815381F7BDC5700AAB5BF /* Setting */,
 				0A8815341F7BDC5700AAB5BF /* Common */,
@@ -726,6 +796,8 @@
 				0A0D9A111FA75024009CB653 /* KWSztzTableView.m */,
 				0A0D9A1C1FA75BFA009CB653 /* KWLibraryViewCell.h */,
 				0A0D9A1D1FA75BFA009CB653 /* KWLibraryViewCell.m */,
+				0A2FCD5B2021699400D7C837 /* KWHisCurrentBookView.h */,
+				0A2FCD5C2021699500D7C837 /* KWHisCurrentBookView.m */,
 				0A4483F41FA9F38800100DF8 /* KWCurrentBookView.h */,
 				0A4483F51FA9F38800100DF8 /* KWCurrentBookView.m */,
 				0A71470B1FE829BA00DD9349 /* KWGoOnBookViewController.h */,
@@ -833,6 +905,9 @@
 				0A8337831FDBACF30098A486 /* KWIntroduceViewController.m */,
 				0A8337851FDBB98D0098A486 /* KWLoginTableViewController.h */,
 				0A8337861FDBB98D0098A486 /* KWLoginTableViewController.m */,
+				0A317A852026CA5600CBECCA /* KWSetNowStuTimeViewController.h */,
+				0A317A862026CA5600CBECCA /* KWSetNowStuTimeViewController.m */,
+				0A317A872026CA5600CBECCA /* KWSetNowStuTimeViewController.xib */,
 			);
 			path = Control;
 			sourceTree = "<group>";
@@ -983,6 +1058,7 @@
 				0A6C9EE11FEBE3ED0057D26E /* KWLoginCell.xib in Resources */,
 				0A6750D11F7BD7A000E46900 /* LaunchScreen.storyboard in Resources */,
 				0A9F5B251F7D813C006FD696 /* KWMyClassCollectionCell.xib in Resources */,
+				0A317A892026CA5600CBECCA /* KWSetNowStuTimeViewController.xib in Resources */,
 				0A71470F1FE829BA00DD9349 /* KWGoOnBookViewController.xib in Resources */,
 				0AEF81DB1FC71AA4001DED6B /* KWLogoutCell.xib in Resources */,
 				0A64D64D1F8D4C14008D33DB /* Assets.xcassets in Resources */,
@@ -1163,9 +1239,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A4AA8F72022C58B00AF68F9 /* KWScheduleObject.m in Sources */,
 				0A71470E1FE829BA00DD9349 /* KWGoOnBookViewController.m in Sources */,
 				0AA60B311F7C052600E0E87D /* KWFunctionsViewController.m in Sources */,
 				0A7147151FE839CE00DD9349 /* KWVerifyModel.m in Sources */,
+				0A2FCD5A2021694100D7C837 /* KWHisCurrentObject.m in Sources */,
 				0A10DB2A1FC483E3006B5196 /* KWSearchBookView.m in Sources */,
 				0AEA5C7B1F8E9056005C8DF2 /* KWMineMsgViewController.m in Sources */,
 				0A4483FC1FA9F76E00100DF8 /* KWCurrentCell.m in Sources */,
@@ -1180,13 +1258,16 @@
 				0AA5F20E1FDCF67E00DA9994 /* KWImageViewCell.m in Sources */,
 				0AD013501FA24B2A009D5C76 /* KWGradeView.m in Sources */,
 				0AE17BD31FC711BF007B4BC7 /* KWSBookMostMsgView.m in Sources */,
+				0A5832C6202412FA00B798DD /* KWTodayScheduleObject.m in Sources */,
 				0AEF81DA1FC71AA4001DED6B /* KWLogoutCell.m in Sources */,
 				0ACC56C71F8E0FDD007DA2BD /* KWTabBar.m in Sources */,
 				0AA763B71F8F3187004E0222 /* KWLoginModel.m in Sources */,
+				0A2FCD572021644700D7C837 /* KWCurrentObject.m in Sources */,
 				0A5118B61FB7073400D45995 /* KWAFNetworking.m in Sources */,
 				0A6C9EE81FEBEF310057D26E /* KWHUD.m in Sources */,
 				0A740FAF1FE2EDA700BCC8EE /* KWPasswordTextField.m in Sources */,
 				0A0D9A1E1FA75BFA009CB653 /* KWLibraryViewCell.m in Sources */,
+				0A5832C32024114E00B798DD /* KWHomeMessageViewController.m in Sources */,
 				0A83377B1FDBA5A00098A486 /* KWAccountPwdTextField.m in Sources */,
 				0AA60B371F7C05D000E0E87D /* KWNavigationViewController.m in Sources */,
 				0AA60B2E1F7C050E00E0E87D /* KWMyClassViewController.m in Sources */,
@@ -1195,6 +1276,7 @@
 				0AB186C01F89587C00A49F93 /* KWReusableView.m in Sources */,
 				0A83377E1FDBA5CA0098A486 /* KWFasstButton.m in Sources */,
 				0A8337841FDBACF30098A486 /* KWIntroduceViewController.m in Sources */,
+				0A317A882026CA5600CBECCA /* KWSetNowStuTimeViewController.m in Sources */,
 				0AE342C51FAB3A8A008E4257 /* KWMyClassMsgViewController.m in Sources */,
 				0AE17BD61FC7164D007B4BC7 /* KWSBookModel.m in Sources */,
 				0A1FD89C1FC8585B00115277 /* KWSBookShowCell.m in Sources */,
@@ -1213,6 +1295,7 @@
 				0AA5F20D1FDCF67E00DA9994 /* KWFlowLayout.m in Sources */,
 				0A0D9A121FA75024009CB653 /* KWSztzTableView.m in Sources */,
 				0AB186BD1F89527A00A49F93 /* KWCollectionViewLayout.m in Sources */,
+				0A5832CC2024284500B798DD /* KWInFoModel.m in Sources */,
 				0AA60B1B1F7C006800E0E87D /* KWTabBarController.m in Sources */,
 				0A4613441FC56956000121CD /* KWSearchBookEndCell.m in Sources */,
 				0A3BA3CB1FAF0EC400EBB96E /* KWTodayBuyCell.m in Sources */,
@@ -1221,6 +1304,7 @@
 				0AA60B1E1F7C029100E0E87D /* main.m in Sources */,
 				0A8077F31FA30AB4009AA299 /* NSData+KWAES.m in Sources */,
 				0A575704201A3F820039F7CC /* KWGradeObject.m in Sources */,
+				0A2FCD5D2021699500D7C837 /* KWHisCurrentBookView.m in Sources */,
 				0A65BB2C1F94A74B00DDC285 /* KWMsgCell.m in Sources */,
 				0A4483F61FA9F38800100DF8 /* KWCurrentBookView.m in Sources */,
 				0A65AFA21FA4B374003AC3A5 /* KWMyMsgCell.m in Sources */,

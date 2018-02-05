@@ -47,6 +47,7 @@
     [realm beginWriteTransaction];
     [realm deleteObject:myData];
     [realm commitWriteTransaction];
+    NSLog(@"myData删除成功");
 }
 
 + (void)deleteObjectWithArray:(RLMRealm *)realm array:(id)array {
@@ -59,6 +60,7 @@
     [realm beginWriteTransaction];
     [realm deleteAllObjects];
     [realm commitWriteTransaction];
+    NSLog(@"all删除成功");
 }
 
 + (void)addOrUpdateObject:(RLMRealm *)realm rlmObject:(nonnull RLMObject *)myData {
@@ -77,5 +79,13 @@
     [realm beginWriteTransaction];
     block();
     [realm commitWriteTransaction];
+}
+
++ (NSInteger)getNumOfLine:(RLMResults *_Nullable)results {
+    NSMutableArray *array = [[NSMutableArray alloc]init];
+    for (RLMObject *object in results) {
+        [array addObject:object];
+    }
+    return array.count;
 }
 @end

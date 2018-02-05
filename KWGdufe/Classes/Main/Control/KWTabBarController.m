@@ -7,6 +7,7 @@
 //
 
 #import "KWTabBarController.h"
+#import "KWHomeMessageViewController.h"
 #import "KWMyClassViewController.h"
 #import "KWFunctionsViewController.h"
 #import "KWMineViewController.h"
@@ -73,13 +74,13 @@
 
 - (void)setupAllChildViewController
 {
-    KWMyClassViewController *mcVc = [[KWMyClassViewController alloc]init];
-    KWNavigationViewController *nav1 = [[KWNavigationViewController alloc]initWithRootViewController:mcVc];
+    KWHomeMessageViewController *fcVc = [[KWHomeMessageViewController alloc]init];
+    KWNavigationViewController *nav1 = [[KWNavigationViewController alloc]initWithRootViewController:fcVc];
     
     [self addChildViewController:nav1];
     
-    KWFunctionsViewController *fcVc = [[KWFunctionsViewController alloc]init];
-    KWNavigationViewController *nav2 = [[KWNavigationViewController alloc]initWithRootViewController:fcVc];
+    KWMyClassViewController *mcVc = [[KWMyClassViewController alloc]init];
+    KWNavigationViewController *nav2 = [[KWNavigationViewController alloc]initWithRootViewController:mcVc];
     
     [self addChildViewController:nav2];
     

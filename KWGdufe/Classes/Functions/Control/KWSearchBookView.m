@@ -152,12 +152,6 @@
 
 #pragma mark - UISearchBarDelegate
 
-//- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
-////    NSLog(@"文字改变 = %@",searchText);
-//#warning 添加一个延迟2秒的线程
-//    [self loadSearchBookWithBookName:searchText];
-//}
-
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     NSLog(@"文字改变 = %@",searchBar.text);
     [self.view endEditing:YES];//取消键盘响应

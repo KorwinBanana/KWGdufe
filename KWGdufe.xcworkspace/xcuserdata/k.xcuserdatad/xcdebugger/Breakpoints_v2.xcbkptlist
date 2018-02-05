@@ -9,13 +9,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "KWGdufe/Classes/Functions/Control/KWGradeView.m"
-            timestampString = "538935240.232236"
+            filePath = "KWGdufe/Classes/MyClass/Control/KWMyClassViewController.m"
+            timestampString = "539550748.994308"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "173"
-            endingLineNumber = "173"
-            landmarkName = "-loadDataWithStuTime:"
+            startingLineNumber = "380"
+            endingLineNumber = "380"
+            landmarkName = "-loadData:week:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -25,13 +25,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "KWGdufe/Classes/Functions/Control/KWGradeView.m"
-            timestampString = "538935240.232613"
+            filePath = "KWGdufe/Classes/MyClass/Control/KWMyClassViewController.m"
+            timestampString = "539550748.994403"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "174"
-            endingLineNumber = "174"
-            landmarkName = "-loadDataWithStuTime:"
+            startingLineNumber = "381"
+            endingLineNumber = "381"
+            landmarkName = "-loadData:week:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -41,13 +41,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "KWGdufe/Classes/Functions/Control/KWGradeView.m"
-            timestampString = "538935240.232865"
+            filePath = "KWGdufe/Classes/MyClass/Control/KWMyClassViewController.m"
+            timestampString = "539550748.994472"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "175"
-            endingLineNumber = "175"
-            landmarkName = "-loadDataWithStuTime:"
+            startingLineNumber = "382"
+            endingLineNumber = "382"
+            landmarkName = "-loadData:week:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -57,13 +57,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "KWGdufe/Classes/Functions/Control/KWGradeView.m"
-            timestampString = "538935240.233103"
+            filePath = "KWGdufe/Classes/MyClass/Control/KWMyClassViewController.m"
+            timestampString = "539550748.994534"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "190"
-            endingLineNumber = "190"
-            landmarkName = "-loadDataWithStuTime:"
+            startingLineNumber = "383"
+            endingLineNumber = "383"
+            landmarkName = "-loadData:week:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -73,13 +73,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "KWGdufe/Classes/Functions/Control/KWGradeView.m"
-            timestampString = "538935240.233341"
+            filePath = "KWGdufe/Classes/MyClass/Control/KWMyClassViewController.m"
+            timestampString = "539550748.994612"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "191"
-            endingLineNumber = "191"
-            landmarkName = "-loadDataWithStuTime:"
+            startingLineNumber = "385"
+            endingLineNumber = "385"
+            landmarkName = "-loadData:week:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -89,29 +89,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "KWGdufe/Classes/Functions/Control/KWGradeView.m"
-            timestampString = "538935240.2335809"
+            filePath = "KWGdufe/Classes/MyClass/Control/KWMyClassViewController.m"
+            timestampString = "539550748.994688"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "177"
-            endingLineNumber = "177"
-            landmarkName = "-loadDataWithStuTime:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "KWGdufe/Classes/Functions/Control/KWGradeView.m"
-            timestampString = "538935240.233804"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "176"
-            endingLineNumber = "176"
-            landmarkName = "-loadDataWithStuTime:"
+            startingLineNumber = "386"
+            endingLineNumber = "386"
+            landmarkName = "-loadData:week:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

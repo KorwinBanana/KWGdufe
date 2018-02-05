@@ -9,6 +9,7 @@
 #import "KWLibraryViewCell.h"
 #import "KWFunctionsCell.h"
 #import "KWCurrentBookView.h"
+#import "KWHisCurrentBookView.h"
 #import <QuartzCore/QuartzCore.h>
 #import "KWRequestUrl.h"
 #import "KWSearchBookView.h"
@@ -76,7 +77,8 @@
         currentVc.boolHistory = 0;
         [_delegate pushVc:currentVc];
     } else if (indexPath.row == 1) {
-        KWCurrentBookView *borrowVc = [[KWCurrentBookView alloc]init];
+#warning 需要简化历史续借页面
+        KWHisCurrentBookView *borrowVc = [[KWHisCurrentBookView alloc]init];
         borrowVc.url = GetBorrowedBookAPI;
         borrowVc.modelSaveName = @"BorrowedBookModel";
         borrowVc.vcName = @"历史借阅";

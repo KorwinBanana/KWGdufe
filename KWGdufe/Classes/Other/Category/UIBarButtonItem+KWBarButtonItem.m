@@ -40,7 +40,12 @@
     
     //把Button先包装成UIView，在把UIView包装成UIButtonItem
     UIView *containView = [[UIView alloc]initWithFrame:btn.bounds];
+    [containView setFrame:CGRectMake(0, 0, 55, 40)];
+//    containView.backgroundColor = [UIColor redColor];
     [containView addSubview:btn];
+    [btn setCenter:CGPointMake(containView.KW_centerX, containView.KW_centerY)];
+    [btn setFrame:CGRectMake(0, 0, 55, 40)];
+//    btn.backgroundColor = [UIColor redColor];
     
     //把UIButton包装成UIButtonItem.就会导致按钮点击区域扩大，
     return [[UIBarButtonItem alloc]initWithCustomView:containView];

@@ -114,12 +114,20 @@
 + (void)removeCache:(NSString *)type andID:(NSString *)_id;
 + (void)updateCache:(NSString *)type andID:(NSString *)_id andValue:(id)str;
 
-+ (void)getStuYears:(NSString *)firstStuTime mySno:(NSString *)mySno;
-+ (void)getNowYear;
-+ (void)getStuTimeSchool:(NSString *)stuTimeNow;
-+ (void)getSchoolWeek;
++ (void)getStuYears:(NSString *)firstStuTime mySno:(NSString *)mySno;//计算大一到大四的学期数组NSArray
++ (void)getCollageOne;//获取大学一年级学期
++ (void)getNowYear;//获取当前学期
++ (void)getNowYear:(NSString *)schBeginYear;
++ (void)getStuTimeSchool:(NSString *)stuTimeNow;//保存当前大几
++ (void)getSchoolWeek;//获取第几周
++ (void)getSchoolWeek:(NSString *)schBeginYear;
 
 + (void)showDismissWithTitle:(NSString *)title  message:(NSString *)message parent:(UIViewController *)parentController time:(double)delayInSeconds;//提示框显示
 + (NSString *)replaceStringWithString :(NSMutableString *)string;//去除空格换行
+
++ (NSInteger)getNowWeekday;//计算星期几
++ (NSArray *)getAStringOfChineseCharacters:(NSString *)string;//获取中文
++ (NSArray *)getOnlyNum:(NSString *)str;//正则表达式获取数字
++ (NSArray *)matchString:(NSString *)string toRegexString:(NSString *)regexStr;
 @end
 

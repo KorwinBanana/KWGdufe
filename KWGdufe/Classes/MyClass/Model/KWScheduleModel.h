@@ -10,13 +10,14 @@
 
 @interface KWScheduleModel : NSObject
 
-@property(nonatomic,copy)NSString *name;
-@property(nonatomic,copy)NSString *teacher;
-@property(nonatomic,copy)NSString *location;
-@property(nonatomic,copy)NSString *period;
+@property (nonatomic,assign) NSInteger num;
+@property (nonatomic,copy) NSString *name;
+@property (nonatomic,copy) NSString *teacher;
+@property (nonatomic,copy) NSString *location;
+@property (nonatomic,copy) NSString *period;
 //@property(nonatomic,strong)NSString *colors;
-@property(nonatomic,assign)NSInteger dayInWeek;
-@property(nonatomic,assign)NSInteger startSec;
-@property(nonatomic,assign)NSInteger endSec;
+@property (nonatomic,assign) NSInteger dayInWeek;
+@property (nonatomic,assign) NSInteger startSec;
+@property (nonatomic,assign) NSInteger endSec;
 
 @end

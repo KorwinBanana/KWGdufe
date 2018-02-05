@@ -462,7 +462,45 @@
     NSString *nowYear = [[NSString alloc]init];
     NSDateFormatter * df = [[NSDateFormatter alloc] init];
     df.dateFormat = @"yyyy-MM-dd";
-    NSString * dateBeginTime = @"2017-09-01";//每学期开学日期（默认9月1号开学）
+    NSString *dateNowTime = [df stringFromDate:[NSDate date]];//当前日期;
+    NSString * dateBeginTime = [NSString stringWithFormat:@"%@-08-30",[dateNowTime substringToIndex:4]];//设置中间学期
+    /*
+     每年中间日期8月30日对比，区分上半年和下半年学年
+     */
+    NSDate * date1 = [df dateFromString:dateBeginTime];
+    NSDate * date2 = [df dateFromString:dateNowTime];
+    NSTimeInterval time = [date2 timeIntervalSinceDate:date1]; //date1是前一个时间(早)，date2是后一个时间(晚)
+    if (time>=0) {
+        NSInteger lastYear = [[dateNowTime substringToIndex:4] integerValue] + 1;
+        nowYear = [NSString stringWithFormat:@"%@-%ld-%d",[dateNowTime substringToIndex:4],(long)lastYear,1];
+    } else {
+        NSInteger beginYear = [[dateNowTime substringToIndex:4] integerValue] - 1;
+        nowYear = [NSString stringWithFormat:@"%ld-%@-%d",(long)beginYear,[dateNowTime substringToIndex:4],2];
+    }
+    //保存当前学期（课表）
+    [Utils saveCache:gdufeAccount andID:@"stuTime" andValue:nowYear];
+    NSLog(@"stuTime = %@",nowYear);
+    [Utils saveCache:gdufeAccount andID:@"stuTimeForClass" andValue:nowYear];
+    NSLog(@"stuTime = %@",nowYear);
+    [Utils saveCache:gdufeAccount andID:@"stuTimeForGrade" andValue:nowYear];
+}
+
++ (void)getCollageOne {
+    NSString *beginStuTime = [NSString stringWithFormat:@"20%@",[gdufeAccount substringToIndex:2]];
+    NSInteger lastStuTime = [beginStuTime integerValue] + 1;
+    NSString *nowYear = [NSString stringWithFormat:@"%@-%ld-%d",beginStuTime,lastStuTime,1];
+    NSLog(@"stuTime = %@",nowYear);
+    [Utils saveCache:gdufeAccount andID:@"stuTime" andValue:nowYear];
+    [Utils saveCache:gdufeAccount andID:@"stuTimeForGrade" andValue:nowYear];
+}
+
+//获取当前学期
+#warning 需要修改
++ (void)getNowYear:(NSString *)schBeginYear {
+    NSString *nowYear = [[NSString alloc]init];
+    NSDateFormatter * df = [[NSDateFormatter alloc] init];
+    df.dateFormat = @"yyyy-MM-dd";
+    NSString * dateBeginTime = schBeginYear;//每学期开学日期（默认9月1号开学）
     NSString *dateNowTime = [df stringFromDate:[NSDate date]];//当前日期;
     NSDate * date1 = [df dateFromString:dateBeginTime];
     NSDate * date2 = [df dateFromString:dateNowTime];
@@ -477,34 +515,51 @@
     //保存当前学期（课表）
     [Utils saveCache:gdufeAccount andID:@"stuTime" andValue:nowYear];
     [Utils saveCache:gdufeAccount andID:@"stuTimeForGrade" andValue:nowYear];
-
+    NSLog(@"当前学期:%f",time);
 }
 
 //保存当前大几
 + (void)getStuTimeSchool:(NSString *)stuTimeNow {
     NSArray *stuTimesNow = [Utils getCache:gdufeAccount andID:@"stuTimes"];
     NSInteger i = 0;
-    for (stuTimeNow in stuTimesNow) {
-        if (![stuTimeNow isEqualToString:stuTimesNow[i]]) {
-            ++i;
+    NSInteger indexForYear = 0;
+    for (i = 0; i<stuTimesNow.count; i++) {
+        if ([stuTimeNow isEqualToString:stuTimesNow[i]]) {
+            indexForYear = i;
+            break;
         }
     }
-    
-    [Utils saveCache:gdufeAccount andID:@"schoolYear" andValue:stuTimeForSchool[i]];
-    [Utils saveCache:gdufeAccount andID:@"schoolYearForGrade" andValue:stuTimeForSchool[i]];
+    NSLog(@"indexForYear = %ld",indexForYear+1);
+    [Utils saveCache:gdufeAccount andID:@"schoolYear" andValue:stuTimeForSchool[indexForYear+1]];
+    NSLog(@"stutimeforschool = %@",stuTimeForSchool[indexForYear+1]);
+    [Utils saveCache:gdufeAccount andID:@"schoolYearForGrade" andValue:stuTimeForSchool[indexForYear+1]];
 }
 
 //获取第几周
 + (void)getSchoolWeek {
     NSDateFormatter * df = [[NSDateFormatter alloc] init];
     df.dateFormat = @"yyyy-MM-dd";
-    NSString * dateBeginTime = @"2017-09-04";//开学日期（需要每学期修改）
+    NSString * dateBeginTime = @"2017-12-04";//开学日期（需要每学期修改）
     NSString *dateNowTime = [df stringFromDate:[NSDate date]];//当前日期;
     NSDate * date1 = [df dateFromString:dateBeginTime];
     NSDate * date2 = [df dateFromString:dateNowTime];
     NSTimeInterval time = [date2 timeIntervalSinceDate:date1]; //date1是前一个时间(早)，date2是后一个时间(晚)
     NSString *schoolWeek = [NSString stringWithFormat:@"%ld",(NSInteger)time/604800];
     [Utils saveCache:gdufeAccount andID:@"schoolWeek" andValue:schoolWeek];
+}
+
+//获取第几周
++ (void)getSchoolWeek:(NSString *)schBeginYear{
+    NSDateFormatter * df = [[NSDateFormatter alloc] init];
+    df.dateFormat = @"yyyy-MM-dd";
+    NSString * dateBeginTime = schBeginYear;//开学日期（需要每学期修改）
+    NSString *dateNowTime = [df stringFromDate:[NSDate date]];//当前日期;
+    NSDate * date1 = [df dateFromString:dateBeginTime];
+    NSDate * date2 = [df dateFromString:dateNowTime];
+    NSTimeInterval time = [date2 timeIntervalSinceDate:date1]; //date1是前一个时间(早)，date2是后一个时间(晚)
+    NSString *schoolWeek = [NSString stringWithFormat:@"%ld",(NSInteger)time/604800];
+    [Utils saveCache:gdufeAccount andID:@"schoolWeek" andValue:schoolWeek];
+    NSLog(@"当前周:%@",schoolWeek);
 }
 
 #pragma mark - AlertController
@@ -532,5 +587,76 @@
     return newString ;
 }
 
+//计算星期几
++ (NSInteger)getNowWeekday {
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDate *now;
+    NSDateComponents *comps = [[NSDateComponents alloc] init];
+    NSInteger unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSWeekdayCalendarUnit |
+    NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
+    now=[NSDate date];
+    comps = [calendar components:unitFlags fromDate:now];
+    NSArray *numWeekOfChina = @[@"7",@"1",@"2",@"3",@"4",@"5",@"6"];
+    NSInteger numWeek = [comps weekday];
+    NSInteger todayNumWeek = -1;
+    for (NSInteger i = 1; i < 8; i++) {
+        if (numWeek == i) {
+            todayNumWeek = [numWeekOfChina[i-1] integerValue];
+        }
+    }
+    return todayNumWeek;
+}
+
++ (NSArray *)getAStringOfChineseCharacters:(NSString *)string {
+    if (string == nil || [string isEqual:@""])
+    {
+        return nil;
+    }
+    NSMutableArray *arr = [[NSMutableArray alloc]init];
+    for (int i=0; i<[string length]; i++)
+    {
+        NSRange range = NSMakeRange(i, 1);
+        NSString *subStr = [string substringWithRange:range];
+        const char *c = [subStr UTF8String];
+        if (strlen(c)==3)
+        {
+            [arr addObject:subStr];
+        }
+    }
+    return arr;
+}
+
++ (NSArray *)getOnlyNum:(NSString *)str {
+    
+    NSString *onlyNumStr = [str stringByReplacingOccurrencesOfString:@"[^0-9,]" withString:@"" options:NSRegularExpressionSearch range:NSMakeRange(0, [str length])];
+    NSArray *numArr = [onlyNumStr componentsSeparatedByString:@","];
+    return numArr;
+}
+
+//正则表达式
++ (NSArray *)matchString:(NSString *)string toRegexString:(NSString *)regexStr {
+    
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:regexStr options:NSRegularExpressionCaseInsensitive error:nil];
+    
+    NSArray * matches = [regex matchesInString:string options:0 range:NSMakeRange(0, [string length])];
+    
+    //match: 所有匹配到的字符,根据() 包含级
+    
+    NSMutableArray *array = [NSMutableArray array];
+    
+    for (NSTextCheckingResult *match in matches) {
+        
+        for (int i = 0; i < [match numberOfRanges]; i++) {
+            //以正则中的(),划分成不同的匹配部分
+            NSString *component = [string substringWithRange:[match rangeAtIndex:i]];
+            
+            [array addObject:component];
+            
+        }
+        
+    }
+    
+    return array;
+}
 @end
 

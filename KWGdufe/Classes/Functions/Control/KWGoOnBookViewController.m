@@ -74,14 +74,14 @@
     return [self validateNumberByRegExp:string];
 }
 
-//判断是否为数字
+//判断是否为字母
 - (BOOL)validateNumberByRegExp:(NSString *)string {
     BOOL isValid = YES;
     NSUInteger len = string.length;
     if (len > 0) {
-        NSString *numberRegex = @"^[0-9]*$";
-        NSPredicate *numberPredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", numberRegex];
-        isValid = [numberPredicate evaluateWithObject:string];
+        NSString *ALPHA = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+        NSPredicate *ALPredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", ALPHA];
+        isValid = [ALPredicate evaluateWithObject:string];
     }
     return isValid;
 }

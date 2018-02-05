@@ -14,6 +14,8 @@
 @end
 
 @interface KWEducationalViewCell : UITableViewCell
+
 //@property (nonatomic,weak) UINavigationController  *superViewController;
 @property (assign, nonatomic) id<KWPushDelegate> delegate;//这个是代理属性
+
 @end

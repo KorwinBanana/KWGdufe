@@ -26,4 +26,7 @@
 + (void)addOrUpdateObjectsFromArray:(RLMRealm *_Nullable)realm array:(id _Nullable )array;//修改一组数据
 
 + (void)updateWithrealm:(RLMRealm *_Nullable)realm block:(void (^_Nonnull)(void))block;//封装beginWriteTransaction跟commitWriteTransaction
+
++ (NSInteger)getNumOfLine:(RLMResults *_Nullable)results;//返回个数
+
 @end

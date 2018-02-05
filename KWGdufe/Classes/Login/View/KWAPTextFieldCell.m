@@ -24,8 +24,9 @@
         _accountLogin.delegate = self;
         [self addSubview:_accountLogin];
         [_accountLogin mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.right.bottom.equalTo(self);
+            make.top.bottom.equalTo(self);
             make.left.equalTo(self.mas_left).with.offset(16);
+            make.right.equalTo(self.mas_right).with.offset(-16);
         }];
     }
     return self;

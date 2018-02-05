@@ -6,7 +6,7 @@
 //  Copyright © 2017年 korwin. All rights reserved.
 //
 
-#import "KWCurrentBookView.h"
+#import "KWHisCurrentBookView.h"
 #import <AFNetworking/AFNetworking.h>
 #import <MJExtension/MJExtension.h>
 #import "KWCurrentModel.h"
@@ -21,17 +21,17 @@
 #import "KWSBookMostMsgView.h"
 #import "KWBorrowCell.h"
 #import "KWGoOnBookViewController.h"
-#import "KWCurrentObject.h"
+#import "KWHisCurrentObject.h"
 #import "KWRealm.h"
 //#import "KWSztzCell.h"
 
-@interface KWCurrentBookView ()
+@interface KWHisCurrentBookView ()
 
 @property(nonatomic,strong) NSArray *currentModel;
 
 @end
 
-@implementation KWCurrentBookView
+@implementation KWHisCurrentBookView
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -49,9 +49,8 @@
 //        [self.tableView.mj_header beginRefreshing];
 //    }
     RLMRealm *real = [KWRealm getRealmWith:GdufeDataBase];
-    RLMResults *results = [KWCurrentObject allObjectsInRealm:real];
+    RLMResults *results = [KWHisCurrentObject allObjectsInRealm:real];
     NSInteger dataCount = [KWRealm getNumOfLine:results];
-
     if (!dataCount) {
         //无
         [self.tableView.mj_header beginRefreshing];
@@ -98,37 +97,37 @@
     
     [KWAFNetworking postWithUrlString:_url vController:self parameters:parements success:^(id data) {
         //获取字典
-        NSDictionary *currentBookDict = data[@"data"];
+        NSDictionary *borrowBookDict = data[@"data"];
         //获取code
         NSString *code = [data objectForKey:@"code"];
         NSString *codeStr = [NSString stringWithFormat:@"%@",code];
         
         if ([codeStr isEqualToString:@"0"]) {
             //字典转模型
-            NSArray *currentArray = [KWCurrentModel mj_objectArrayWithKeyValuesArray:currentBookDict];
+            NSArray *borrowArray = [KWCurrentModel mj_objectArrayWithKeyValuesArray:borrowBookDict];
             
             //缓存到本地
             //        [Utils saveCache:gdufeAccount andID:_modelSaveName andValue:currentBookDict];
             
             //存入数据库
             RLMRealm *real = [KWRealm getRealmWith:GdufeDataBase];
-            KWCurrentObject *currentObject = [[KWCurrentObject alloc] init];
-            RLMResults *results = [KWCurrentObject allObjectsInRealm:real];
+            KWHisCurrentObject *borrowObject = [[KWHisCurrentObject alloc] init];
+            RLMResults *results = [KWHisCurrentObject allObjectsInRealm:real];
             if (!results) {
                 //没有数据
-                for (int i = 0; i<currentArray.count; i++) {
-                    currentObject = [[KWCurrentObject alloc] initWithValue:currentArray[i]];
-                    [KWRealm saveRLMObject:real rlmObject:currentObject];
+                for (int i = 0; i<borrowArray.count; i++) {
+                    borrowObject = [[KWHisCurrentObject alloc] initWithValue:borrowArray[i]];
+                    [KWRealm saveRLMObject:real rlmObject:borrowObject];
                 }
             } else {
                 //有数据
-                for (int i = 0; i<currentArray.count; i++) {
-                    currentObject = [[KWCurrentObject alloc] initWithValue:currentArray[i]];
-                    [KWRealm addOrUpdateObject:real rlmObject:currentObject];
+                for (int i = 0; i<borrowArray.count; i++) {
+                    borrowObject = [[KWHisCurrentObject alloc] initWithValue:borrowArray[i]];
+                    [KWRealm addOrUpdateObject:real rlmObject:borrowObject];
                 }
             }
             
-            _currentModel = currentArray;
+            _currentModel = borrowArray;
             
             dispatch_async(dispatch_get_main_queue(), ^{ //主线程刷新界面
                 [self.tableView reloadData];

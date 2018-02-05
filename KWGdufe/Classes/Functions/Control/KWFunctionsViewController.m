@@ -43,7 +43,7 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 3;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -60,19 +60,20 @@
         cell.delegate = self;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;//不可选择
         return cell;
-    } else if (indexPath.section == 1) {
+    } else  {
         KWLibraryViewCell *cell = [[KWLibraryViewCell alloc]init];
 //        cell.textLabel.text = @"教务系统的功能;
         cell.delegate = self;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;//不可选择
         return cell;
-    } else {
-        KWOtherFuncViewCell *cell = [[KWOtherFuncViewCell alloc]init];
-        //        cell.textLabel.text = @"教务系统的功能;
-        cell.delegate = self;
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;//不可选择
-        return cell;
     }
+//    else {
+//        KWOtherFuncViewCell *cell = [[KWOtherFuncViewCell alloc]init];
+//        //        cell.textLabel.text = @"教务系统的功能;
+//        cell.delegate = self;
+//        cell.selectionStyle = UITableViewCellSelectionStyleNone;//不可选择
+//        return cell;
+//    }
 }
 
 //自定义Header的UIView
@@ -90,21 +91,11 @@
     } else if (section == 1) {
         headerLabel.text = @"图书馆";
     } else {
-        headerLabel.text = @"其他功能";
+//        headerLabel.text = @"其他功能";
     }
     [customView addSubview:headerLabel];
     return customView;
 }
-
-//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-//    if (section == 0) {
-//        return @"教务";
-//    } else if (section == 1) {
-//        return @"图书馆";
-//    } else {
-//        return @"其他功能";
-//    }
-//}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return KWSCreenW/15;
