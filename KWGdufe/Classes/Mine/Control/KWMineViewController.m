@@ -261,7 +261,7 @@
     } else if (section == 1) {
         return 1;
     } else if (section == 2) {
-        return 4;
+        return 3;
     } else return 1;
 }
 
@@ -288,18 +288,11 @@
         if (indexPath.row == 0) {
             UITableViewCell *cell = [[UITableViewCell alloc]init];
             cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"stuTimeCell"];
-            cell.textLabel.text = @"钱包";
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;//选中无色
-            return cell;
-        } else if (indexPath.row == 1) {
-            UITableViewCell *cell = [[UITableViewCell alloc]init];
-            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"stuTimeCell"];
             cell.textLabel.text = @"开学日期";
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             cell.selectionStyle = UITableViewCellSelectionStyleNone;//选中无色
             return cell;
-        } else if (indexPath.row == 2) {
+        } else if (indexPath.row == 1) {
             UITableViewCell *cell = [[UITableViewCell alloc]init];
             cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"stuTimeCell"];
             cell.textLabel.text = @"当前学期";
@@ -364,11 +357,11 @@
         }
     } else if (indexPath.section == 2) {
         if (indexPath.row == 0) {
-            [self toTodayBuyVc];
+            UITableViewCell *sender = [tableView cellForRowAtIndexPath:indexPath];
+            [self selectBeginY:sender];
         } else if (indexPath.row == 1) {
-            [self selectBeginY];
-        } else if (indexPath.row == 2) {
-             [self selectNowStuTimeYear];
+            UITableViewCell *sender = [tableView cellForRowAtIndexPath:indexPath];
+            [self selectNowStuTimeYear:sender];
         }
     } else if (indexPath.section == 3) {
         if (indexPath.row == 0) {
@@ -378,7 +371,7 @@
 }
 
 #pragma mark - 开学日期选择器
-- (void)selectBeginY {
+- (void)selectBeginY:(UITableViewCell*)sender {
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDateComponents *minimumDateComponents = [calendar components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:[NSDate date]];
     [minimumDateComponents setYear:2000];
@@ -398,7 +391,7 @@
                                                                        }
                                                                      cancelBlock:^(ActionSheetDatePicker *picker) {
                                                                          NSLog(@"cancel");}
-                                                                          origin:self.view];
+                                                                          origin:sender];
     
     [picker setMinimumDate:minDate];
     [picker setMaximumDate:maxDate];
@@ -425,7 +418,7 @@
 }
 
 #pragma mark - 设置当前学年
-- (void)selectNowStuTimeYear {
+- (void)selectNowStuTimeYear:(UITableViewCell*)sender {
     
     NSArray *stuTimes = [Utils getCache:gdufeAccount andID:@"stuTimes"];
     NSLog(@"%@",stuTimes);
@@ -436,7 +429,7 @@
         NSLog(@"selectedValue = %@",selectedValue);
     } cancelBlock:^(ActionSheetStringPicker *picker) {
 
-    } origin:self.view];
+    } origin:sender];
 
     UIButton *cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [cancelButton setTitle:@"取消" forState:UIControlStateNormal];
@@ -504,6 +497,7 @@
             [Utils removeCache:account andID:@"schoolYear"];
             [Utils removeCache:account andID:@"stuTimeForGrade"];
             [Utils removeCache:account andID:@"schoolYearForGrade"];
+            [Utils removeCache:account andID:@"InFoTips"];
             
             //删除账号密码
             [wrapper resetKeychainItem];

@@ -124,7 +124,7 @@ static float progress = 0.0f;
 
 - (void)selectYear {
     NSMutableArray *stuTimes = [Utils getCache:gdufeAccount andID:@"stuTimes"];
-    
+    UIBarButtonItem *sender = self.navigationItem.rightBarButtonItem;
     ActionSheetStringPicker *picker = [[ActionSheetStringPicker alloc]initWithTitle:@"学期" rows:stuTimeForSchool initialSelection:0 doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
         if(selectedIndex == 0){
             [KWAFNetworking iSNetWorkingWithController:self isNetworking:^{
@@ -158,7 +158,7 @@ static float progress = 0.0f;
         }
     } cancelBlock:^(ActionSheetStringPicker *picker) {
         NSLog(@"Block Picker Canceled");
-    } origin:self.view];
+    } origin:sender];
     
     UIButton *cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [cancelButton setTitle:@"取消" forState:UIControlStateNormal];
@@ -181,7 +181,7 @@ static float progress = 0.0f;
 
 - (void)selectWeek {
     NSArray *stuWeek = @[@"当前周", @"第1周", @"第2周", @"第3周", @"第4周", @"第5周", @"第6周", @"第7周", @"第8周", @"第9周", @"第10周", @"第11周", @"第12周", @"第13周", @"第14周", @"第15周", @"第16周", @"第17周", @"第18周"];
-    
+    UIBarButtonItem *sender = self.navigationItem.leftBarButtonItem;
     ActionSheetStringPicker *picker = [[ActionSheetStringPicker alloc]initWithTitle:@"周" rows:stuWeek initialSelection:0 doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
         if (selectedIndex == 0) {
             [KWAFNetworking iSNetWorkingWithController:self isNetworking:^{
@@ -216,7 +216,7 @@ static float progress = 0.0f;
         }
     } cancelBlock:^(ActionSheetStringPicker *picker) {
         NSLog(@"Block Picker Canceled");
-    } origin:self.view];
+    } origin:sender];
     
     UIButton *cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [cancelButton setTitle:@"取消" forState:UIControlStateNormal];
@@ -264,7 +264,7 @@ static float progress = 0.0f;
     bgView.alpha = 0.5;
     [collectionView addSubview:bgView];
     
-    [self setGeziBg];
+    [self setGeziBg];//设置格子背景
     
     //注册cell
     [collectionView registerClass:[KWMyClassCollectionCell class] forCellWithReuseIdentifier:@"course"];
@@ -294,7 +294,7 @@ static float progress = 0.0f;
             @autoreleasepool {
                 flag = [[KWWeekDay alloc] initWithFrame:CGRectMake(x, 0+j*addHeight, addWidthWeek, addHeight)];
                 x+=addWidthWeek;
-                flag.alpha=0.5;//格子颜色深浅
+                flag.alpha=0.25;//格子颜色深浅
             }
             [bgImageView addSubview:flag];
         }

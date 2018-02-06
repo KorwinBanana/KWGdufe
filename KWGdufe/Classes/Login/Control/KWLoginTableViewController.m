@@ -48,7 +48,7 @@
 #pragma mark - 设置导航条
 - (void)setupNavBar{
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithImage:[UIImage imageNamed:@"login_close_icon"] hightImage:[UIImage imageNamed:@"login_close_icon"] target:self action:@selector(pushDownView)];
-    self.navigationItem.title = @"登录";
+    self.navigationItem.title = @"输入学号密码";
 }
 
 - (void)pushDownView {

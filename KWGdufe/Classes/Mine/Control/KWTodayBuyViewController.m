@@ -31,10 +31,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"校园卡";
-    
     [self setupRefreshing];
+    NSDictionary *cashAry = [Utils getCache:gdufeAccount andID:@"CardModel"];
+    _cardModel = [KWCashModel mj_objectWithKeyValues:cashAry];
+    if ([_cardModel.cardNum isEqualToString:@""]) {
+        [self.tableView.mj_header beginRefreshing];
+    } else {
+        [self updateTodayData];
+    }
     
-    [self updateTodayData];
 }
 
 #pragma mark - setupRefreshing
@@ -53,7 +58,18 @@
     // 下拉刷新
     tableView.mj_header= [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         // 结束刷新
-        [self loadTodayData];
+        dispatch_queue_t queue = dispatch_queue_create("myCostom", DISPATCH_QUEUE_SERIAL);
+        NSLog(@"updateCashData start");
+        dispatch_async(queue, ^{
+            [self updateCashData];
+            NSLog(@"updateCashData end");
+        });
+        
+        NSLog(@"updateTodayData start");
+        dispatch_async(queue, ^{
+            [self loadTodayData];
+            NSLog(@"updateTodayData end");
+        });
         [tableView.mj_header endRefreshing];
     }];
     
@@ -142,6 +158,74 @@
         }
     }];
     [manager startMonitoring];//开始监听
+}
+
+/*
+ 缓存余额数据:有网络的时候，更新本地余额数据，无网络的时候不更新
+ */
+- (void) updateCashData {
+    //1.创建网络状态监测管理者
+    AFNetworkReachabilityManager *manager = [AFNetworkReachabilityManager  sharedManager];
+    //2.监听改变
+    [manager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus  status) {
+        switch (status) {
+            case  AFNetworkReachabilityStatusUnknown: {
+                NSLog(@"未知");
+                //缓存获取Cash余额
+                NSDictionary *cashAry = [Utils getCache:gdufeAccount andID:@"CardModel"];
+                _cardModel = [KWCashModel mj_objectWithKeyValues:cashAry];
+                break;
+            }
+            case AFNetworkReachabilityStatusNotReachable:{
+                NSLog(@"没有网络");
+                //缓存获取Cash余额
+                NSDictionary *cashAry = [Utils getCache:gdufeAccount andID:@"CardModel"];
+                _cardModel = [KWCashModel mj_objectWithKeyValues:cashAry];
+                break;
+            }
+            case AFNetworkReachabilityStatusReachableViaWWAN: {
+                NSLog(@"3G|4G");
+                [self loadCardData];
+                break;
+            }
+            case AFNetworkReachabilityStatusReachableViaWiFi: {
+                NSLog(@"WiFi");
+                [self loadCardData];
+                break;
+            }
+            default:
+                break;
+        }
+    }];
+    [manager startMonitoring];//开始监听
+}
+
+//有网络时，更新本地Cash余额
+- (void)loadCardData {
+    //拼接数据
+    NSMutableDictionary *parements = [NSMutableDictionary dictionary];
+    parements[@"sno"] = gdufeAccount;
+    parements[@"pwd"] = gdufePassword;
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{ // 1
+        [KWAFNetworking postWithUrlString:GetCashAPI parameters:parements success:^(id data) {
+            //获取字典
+            NSDictionary *cardDict = data[@"data"];
+            
+            //更新本地Cash
+            [Utils updateCache:gdufeAccount andID:@"CardModel" andValue:cardDict];
+            //        NSLog(@"更新成功");
+            
+            //字典转模型
+            _cardModel = [KWCashModel mj_objectWithKeyValues:cardDict];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{ // 2
+                [self.tableView reloadData]; // 3
+            });
+        } failure:^(NSError *error) {
+            
+        }];
+    });
 }
 
 #pragma mark - Table view data source

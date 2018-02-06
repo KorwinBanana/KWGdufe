@@ -56,13 +56,13 @@
     KWFunctionsCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ID forIndexPath:indexPath];
     if (indexPath.row == 0) {
         cell.name = @"当前借阅";
-        cell.imageName = @"currentBook";
+//        cell.imageName = @"currentBook";
     } else if (indexPath.row == 1) {
         cell.name = @"历史借阅";
-        cell.imageName = @"borrowedBook";
+//        cell.imageName = @"borrowedBook";
     } else if (indexPath.row == 2) {
         cell.name = @"馆藏查询";
-        cell.imageName = @"searchBook";
+//        cell.imageName = @"searchBook";
     }
     cell.backgroundColor = [UIColor clearColor];
     return cell;

@@ -18,19 +18,32 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lqh-0T-VaM">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="登录" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Upq-hG-tJA">
-                        <rect key="frame" x="143" y="12" width="33" height="19.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                        <nil key="textColor"/>
+                        <rect key="frame" x="139" y="10" width="41" height="24"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="bottom" secondItem="lqh-0T-VaM" secondAttribute="bottom" id="4dl-X2-KzS"/>
                     <constraint firstItem="Upq-hG-tJA" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="IeN-wW-5Pj"/>
+                    <constraint firstItem="lqh-0T-VaM" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="PLb-ir-eYQ"/>
+                    <constraint firstItem="lqh-0T-VaM" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="YqG-Ph-22M"/>
+                    <constraint firstItem="lqh-0T-VaM" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="eM1-ys-rSq"/>
+                    <constraint firstItem="lqh-0T-VaM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="nxS-O6-ePm"/>
                     <constraint firstItem="Upq-hG-tJA" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="oUp-NL-nbV"/>
+                    <constraint firstAttribute="trailing" secondItem="lqh-0T-VaM" secondAttribute="trailing" id="vHd-0s-1JG"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="buttonView" destination="lqh-0T-VaM" id="6Vb-DT-OEI"/>
+            </connections>
         </tableViewCell>
     </objects>
 </document>

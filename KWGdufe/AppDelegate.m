@@ -43,6 +43,7 @@ static NSInteger badgeInt = 1;
     application.scheduledLocalNotifications = scheduledNotifications;
     [application setApplicationIconBadgeNumber:0];
     badgeInt = 1;
+    
     // 注册通知
     [self replyPushNotificationAuthorization:application];
     
@@ -90,11 +91,6 @@ static NSInteger badgeInt = 1;
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-    //清楚角标和通知列表 && app换到后台时需要执行的操作
-    NSArray* scheduledNotifications = [NSArray arrayWithArray:application.scheduledLocalNotifications];
-    application.scheduledLocalNotifications = scheduledNotifications;
-    [application setApplicationIconBadgeNumber:0];
-    badgeInt = 1;
 }
 
 
@@ -105,6 +101,12 @@ static NSInteger badgeInt = 1;
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    //清楚角标和通知列表 && app换到后台时需要执行的操作
+    NSInteger num = badgeInt;
+    if(num!=0){
+        [application setApplicationIconBadgeNumber:0];
+        badgeInt = 1;
+    }
 }
 
 
@@ -257,8 +259,8 @@ static NSInteger badgeInt = 1;
     //在每周一的14点3分提醒
     NSDateComponents *components = [[NSDateComponents alloc] init];
     components.weekday = 0;
-    components.hour = 22;
-    components.minute = 30;
+    components.hour = 21;
+    components.minute = 45;
     // components 日期
     UNCalendarNotificationTrigger *calendarTrigger = [UNCalendarNotificationTrigger triggerWithDateMatchingComponents:components repeats:YES];
     
@@ -291,7 +293,7 @@ static NSInteger badgeInt = 1;
 - (void)createLocalizedUserNotificationOfMoney {
     
     // 设置触发条件 UNNotificationTrigger
-    UNTimeIntervalNotificationTrigger *timeTrigger = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:3.0f repeats:NO];
+    UNTimeIntervalNotificationTrigger *timeTrigger = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:7.0f repeats:NO];
     
     //在每天21：30提醒
     NSDateComponents *components = [[NSDateComponents alloc] init];
@@ -325,7 +327,6 @@ static NSInteger badgeInt = 1;
 }
 
 - (void)createLocalizedUserNotificationOfClass {
-    
     //读取数据库
     //使用数据库获取
     RLMRealm *real = [KWRealm getRealmWith:GdufeDataBase];

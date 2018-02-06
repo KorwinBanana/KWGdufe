@@ -68,15 +68,15 @@
             make.bottom.equalTo(nameANumView.mas_bottom);
         }];
         
-        UIImageView *image = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"mine3"]];
-        [imageView addSubview:image];
-        [image mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(imageView.mas_top);
-            make.bottom.equalTo(imageView.mas_bottom);
-            make.right.equalTo(imageView.mas_right);
-//            make.left.equalTo(imageView.mas_left);
-            make.width.mas_equalTo(68);
-        }];
+//        UIImageView *image = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"mine3"]];
+//        [imageView addSubview:image];
+//        [image mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.top.equalTo(imageView.mas_top);
+//            make.bottom.equalTo(imageView.mas_bottom);
+//            make.right.equalTo(imageView.mas_right);
+////            make.left.equalTo(imageView.mas_left);
+//            make.width.mas_equalTo(68);
+//        }];
     }
     return self;
 }
@@ -87,13 +87,13 @@
         _name.text = _model.name;
         
     } else {
-        _name.text = @"你的名字是~";
+        _name.text = @"你的名字";
     }
     NSString *number = [wrapper myObjectForKey:(id)kSecAttrAccount];
     if (number != nil) {
         _num.text = [NSString stringWithFormat:@"学号:%@",number];
     } else {
-        _num.text = @"你的学号是~";
+        _num.text = @"学号";
     }
 }
 @end

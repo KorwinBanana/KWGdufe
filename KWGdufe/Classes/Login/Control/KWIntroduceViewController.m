@@ -47,7 +47,8 @@ static NSString * const ID = @"cell";
 
 #pragma mark - 初始化背景
 - (void)loadBackground {
-    self.view.backgroundColor = [Utils colorWithHexString:@"2E47AC"];
+    //蓝色2E47AC
+    self.view.backgroundColor = [Utils colorWithHexString:@"1DB0B8"];
 }
 
 - (void)loadIntroduceView {

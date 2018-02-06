@@ -16,10 +16,13 @@
 #import "KWHisCurrentBookView.h"
 #import "KWRequestUrl.h"
 #import "KWSearchBookView.h"
+#import "KWTodayBuyViewController.h"
 
 #define ID @"cell"
 
 @interface KWEducationalViewCell()<UICollectionViewDataSource,UICollectionViewDelegate>
+
+@property (nonatomic,strong) NSArray  *homeBackGColors;
 
 @end
 
@@ -27,9 +30,12 @@
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        _homeBackGColors = @[@"#011935",@"#00343F",@"#1DB0B8",@"#37C6C0",@"#96B8FF",@"B3ADE9"];
+        
         //创建布局
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
         layout.itemSize = CGSizeMake(KWSCreenW/5, KWSCreenW/5);
+        NSLog(@"%lf",KWSCreenW/5);
         layout.minimumLineSpacing = 0.1;
         layout.minimumInteritemSpacing = 0.1;
         
@@ -50,28 +56,26 @@
 
 #pragma mark - UICollectViewDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 5;
+    return 6;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     UINib *nib = [UINib nibWithNibName:@"KWFunctionsCell"bundle: [NSBundle mainBundle]];
     [collectionView registerNib:nib forCellWithReuseIdentifier:ID];
     KWFunctionsCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ID forIndexPath:indexPath];
+    cell.backGColor = _homeBackGColors[indexPath.row];
     if (indexPath.row == 0) {
         cell.name = @"成绩查询";
-        cell.imageName = @"grade";
     } else if (indexPath.row == 1) {
         cell.name = @"素拓信息";
-        cell.imageName = @"sztz2";
     } else if (indexPath.row == 2) {
         cell.name = @"当前借阅";
-        cell.imageName = @"currentBook";
     } else if (indexPath.row == 3) {
         cell.name = @"历史借阅";
-        cell.imageName = @"borrowedBook";
     } else if (indexPath.row == 4) {
         cell.name = @"馆藏查询";
-        cell.imageName = @"searchBook";
+    } else if (indexPath.row == 5) {
+        cell.name = @"校园校卡";
     }
     cell.backgroundColor = [UIColor clearColor];
     return cell;
@@ -106,6 +110,9 @@
         //        borrowVc.modelSaveName = @"BorrowedBookModel";
         //        borrowVc.vcName = @"历史借阅";
         [_delegate pushVc:searchBookVc];
+    } else if (indexPath.row == 5) {
+        KWTodayBuyViewController *todayBuyVc = [[KWTodayBuyViewController alloc]init];
+        [_delegate pushVc:todayBuyVc];
     }
 }
 
