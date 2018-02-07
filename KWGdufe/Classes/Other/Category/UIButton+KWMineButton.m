@@ -18,6 +18,7 @@
     //    hightImage = [image stretchableImageWithLeftCapWidth:hightImage.size.width * 0.5 topCapHeight:hightImage.size.width * 0.5];
     
     UIButton *toLoginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [toLoginBtn.titleLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:16]];
     [toLoginBtn setTitle:title forState:UIControlStateNormal];
     [toLoginBtn setTitleColor:colorN forState:UIControlStateNormal];
     [toLoginBtn setTitleColor:colorH forState:UIControlStateHighlighted];

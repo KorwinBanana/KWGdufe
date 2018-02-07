@@ -90,6 +90,8 @@
 		0AB186BD1F89527A00A49F93 /* KWCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AB186BC1F89527A00A49F93 /* KWCollectionViewLayout.m */; };
 		0AB186C01F89587C00A49F93 /* KWReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AB186BF1F89587C00A49F93 /* KWReusableView.m */; };
 		0AB186C91F895AA200A49F93 /* KWWeekDay.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AB186C81F895AA200A49F93 /* KWWeekDay.m */; };
+		0ABC93AB202B7DF300C1848A /* KWAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ABC93A9202B7DF300C1848A /* KWAboutViewController.m */; };
+		0ABC93AC202B7DF300C1848A /* KWAboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0ABC93AA202B7DF300C1848A /* KWAboutViewController.xib */; };
 		0ACC56C11F8E0C6F007DA2BD /* UIImage+KWImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ACC56C01F8E0C6E007DA2BD /* UIImage+KWImage.m */; };
 		0ACC56C71F8E0FDD007DA2BD /* KWTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ACC56C61F8E0FDD007DA2BD /* KWTabBar.m */; };
 		0ACC56CA1F8E10D9007DA2BD /* UIView+KWFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ACC56C91F8E10D9007DA2BD /* UIView+KWFrame.m */; };
@@ -291,6 +293,9 @@
 		0AB186BF1F89587C00A49F93 /* KWReusableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWReusableView.m; sourceTree = "<group>"; };
 		0AB186C71F895AA200A49F93 /* KWWeekDay.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWWeekDay.h; sourceTree = "<group>"; };
 		0AB186C81F895AA200A49F93 /* KWWeekDay.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWWeekDay.m; sourceTree = "<group>"; };
+		0ABC93A8202B7DF300C1848A /* KWAboutViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWAboutViewController.h; sourceTree = "<group>"; };
+		0ABC93A9202B7DF300C1848A /* KWAboutViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWAboutViewController.m; sourceTree = "<group>"; };
+		0ABC93AA202B7DF300C1848A /* KWAboutViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KWAboutViewController.xib; sourceTree = "<group>"; };
 		0ACC56BF1F8E0C6E007DA2BD /* UIImage+KWImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+KWImage.h"; sourceTree = "<group>"; };
 		0ACC56C01F8E0C6E007DA2BD /* UIImage+KWImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+KWImage.m"; sourceTree = "<group>"; };
 		0ACC56C51F8E0FDD007DA2BD /* KWTabBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWTabBar.h; sourceTree = "<group>"; };
@@ -574,6 +579,9 @@
 				0AEA5C7A1F8E9056005C8DF2 /* KWMineMsgViewController.m */,
 				0A3BA3CC1FAF0EEB00EBB96E /* KWTodayBuyViewController.h */,
 				0A3BA3CD1FAF0EEB00EBB96E /* KWTodayBuyViewController.m */,
+				0ABC93A8202B7DF300C1848A /* KWAboutViewController.h */,
+				0ABC93A9202B7DF300C1848A /* KWAboutViewController.m */,
+				0ABC93AA202B7DF300C1848A /* KWAboutViewController.xib */,
 			);
 			path = Control;
 			sourceTree = "<group>";
@@ -1080,6 +1088,7 @@
 				0A71470F1FE829BA00DD9349 /* KWGoOnBookViewController.xib in Resources */,
 				0AEF81DB1FC71AA4001DED6B /* KWLogoutCell.xib in Resources */,
 				0A64D64D1F8D4C14008D33DB /* Assets.xcassets in Resources */,
+				0ABC93AC202B7DF300C1848A /* KWAboutViewController.xib in Resources */,
 				0A38FE811F9E2032007484BD /* model.plist in Resources */,
 				0A6750CC1F7BD7A000E46900 /* Main.storyboard in Resources */,
 			);
@@ -1315,6 +1324,7 @@
 				0A0D9A121FA75024009CB653 /* KWSztzTableView.m in Sources */,
 				0AB186BD1F89527A00A49F93 /* KWCollectionViewLayout.m in Sources */,
 				0A5832CC2024284500B798DD /* KWInFoModel.m in Sources */,
+				0ABC93AB202B7DF300C1848A /* KWAboutViewController.m in Sources */,
 				0AA60B1B1F7C006800E0E87D /* KWTabBarController.m in Sources */,
 				0A4613441FC56956000121CD /* KWSearchBookEndCell.m in Sources */,
 				0A3BA3CB1FAF0EC400EBB96E /* KWTodayBuyCell.m in Sources */,

@@ -52,6 +52,7 @@
 #define KWLog NSLog(@"%s",__func__)
 #define stuTimeForSchool @[@"当前学期", @"大一上", @"大一下", @"大二上", @"大二下", @"大三上", @"大三下", @"大四上", @"大四下"]
 #define stuTimesForGrade @[@"全部", @"大一上", @"大一下", @"大二上", @"大二下", @"大三上", @"大三下", @"大四上", @"大四下"]
+#define stuTimeForSchool2 @[@"大一上", @"大一下", @"大二上", @"大二下", @"大三上", @"大三下", @"大四上", @"大四下"]
 #define GdufeDataBase @"GdufeDataBase"
 
 

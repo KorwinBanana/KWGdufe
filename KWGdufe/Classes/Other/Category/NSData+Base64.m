@@ -18,6 +18,7 @@
 
 - (NSString *) stringPaddedForBase64 {
     NSUInteger paddedLength = self.length + (self.length % 3);
+    NSLog(@"base64 == %@",[self stringByPaddingToLength:paddedLength withString:@"=" startingAtIndex:0]);
     return [self stringByPaddingToLength:paddedLength withString:@"=" startingAtIndex:0];
 }
 
@@ -26,7 +27,8 @@
 @implementation NSData (Base64)
 
 - (instancetype) initWithBase64EncodedString:(NSString *)base64String {
-    return [self initWithBase64EncodedString:[base64String stringPaddedForBase64] options:NSDataBase64DecodingIgnoreUnknownCharacters];
+    NSData *base64ToData = [[NSData alloc]initWithBase64EncodedString:base64String options:NSDataBase64DecodingIgnoreUnknownCharacters];
+    return base64ToData;
     
 }
 

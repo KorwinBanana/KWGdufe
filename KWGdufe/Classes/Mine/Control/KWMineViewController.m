@@ -31,6 +31,7 @@
 #import "KWEducationalViewCell.h"
 #import "KWLibraryViewCell.h"
 #import "KWOtherFuncViewCell.h"
+#import "KWAboutViewController.h"
 
 @interface KWMineViewController ()<KWPushDelegate,KWLibraryPushDelegate,KWOtherPushDelegate>
 
@@ -288,14 +289,14 @@
         if (indexPath.row == 0) {
             UITableViewCell *cell = [[UITableViewCell alloc]init];
             cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"stuTimeCell"];
-            cell.textLabel.text = @"开学日期";
+            cell.textLabel.text = [NSString stringWithFormat:@"开学日期:第%@周",[Utils getCache:gdufeAccount andID:@"schoolWeek"]];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             cell.selectionStyle = UITableViewCellSelectionStyleNone;//选中无色
             return cell;
         } else if (indexPath.row == 1) {
             UITableViewCell *cell = [[UITableViewCell alloc]init];
             cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"stuTimeCell"];
-            cell.textLabel.text = @"当前学期";
+            cell.textLabel.text = [NSString stringWithFormat:@"当前学期:%@",[Utils getCache:gdufeAccount andID:@"stuTime"]];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             cell.selectionStyle = UITableViewCellSelectionStyleNone;//选中无色
             return cell;
@@ -362,6 +363,8 @@
         } else if (indexPath.row == 1) {
             UITableViewCell *sender = [tableView cellForRowAtIndexPath:indexPath];
             [self selectNowStuTimeYear:sender];
+        } else if (indexPath.row == 2) {
+            [self toAboutVc];
         }
     } else if (indexPath.section == 3) {
         if (indexPath.row == 0) {
@@ -377,8 +380,10 @@
     [minimumDateComponents setYear:2000];
     NSDate *minDate = [calendar dateFromComponents:minimumDateComponents];
     NSDate *maxDate = [NSDate date];
+    NSLog(@"%@",[NSDate date]);
     NSDateFormatter * df = [[NSDateFormatter alloc] init];
     df.dateFormat = @"yyyy-MM-dd";
+    NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@"zh_CN"];//设置为中文显示
     
     ActionSheetDatePicker *picker = [[ActionSheetDatePicker alloc] initWithTitle:@"设置开学时间"
                                                                   datePickerMode:UIDatePickerModeDate
@@ -387,6 +392,7 @@
                                                                            NSString *beginYear = [df stringFromDate:selectedDate];//当前日期;
                                                                            [Utils getSchoolWeek:beginYear];
 //                                                                           [Utils getNowYear:beginYear];
+                                                                           [self.tableView reloadData];
                                                                            NSLog(@"%@",beginYear);
                                                                        }
                                                                      cancelBlock:^(ActionSheetDatePicker *picker) {
@@ -395,6 +401,7 @@
     
     [picker setMinimumDate:minDate];
     [picker setMaximumDate:maxDate];
+    [picker setLocale:locale];
     
     UIButton *cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [cancelButton setTitle:@"取消" forState:UIControlStateNormal];
@@ -421,12 +428,15 @@
 - (void)selectNowStuTimeYear:(UITableViewCell*)sender {
     
     NSArray *stuTimes = [Utils getCache:gdufeAccount andID:@"stuTimes"];
+    
     NSLog(@"%@",stuTimes);
-    ActionSheetStringPicker *picker = [[ActionSheetStringPicker alloc]initWithTitle:@"设置当前学期" rows:stuTimes initialSelection:0 doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
-        [Utils saveCache:gdufeAccount andID:@"stuTime" andValue:selectedValue];
+    ActionSheetStringPicker *picker = [[ActionSheetStringPicker alloc]initWithTitle:@"设置当前学期" rows:stuTimeForSchool2 initialSelection:0 doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+        
+        [Utils saveCache:gdufeAccount andID:@"stuTime" andValue:stuTimes[selectedIndex]];
         [self loadData:[Utils getCache:gdufeAccount andID:@"stuTime"] week:[Utils getCache:gdufeAccount andID:@"schoolWeek"]];
         NSLog(@"%@",[Utils getCache:gdufeAccount andID:@"stuTime"]);
-        NSLog(@"selectedValue = %@",selectedValue);
+        NSLog(@"selectedValue = %@",stuTimes[selectedIndex]);
+        [self.tableView reloadData];
     } cancelBlock:^(ActionSheetStringPicker *picker) {
 
     } origin:sender];
@@ -522,10 +532,15 @@
     [self.navigationController pushViewController:self.todayBuyVc animated:YES];
 }
 
+//点击跳转到今日交易界面
+- (void)toAboutVc {
+    KWAboutViewController *aboutVc = [[KWAboutViewController alloc]init];
+    [self.navigationController pushViewController:aboutVc animated:YES];
+}
+
 #pragma mark - KWPushDelegate
 - (void)pushVc:(id)gradeVc {
     [self.navigationController pushViewController:gradeVc animated:YES];
 }
-
 
 @end

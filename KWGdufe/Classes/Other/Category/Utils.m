@@ -627,7 +627,6 @@
 }
 
 + (NSArray *)getOnlyNum:(NSString *)str {
-    
     NSString *onlyNumStr = [str stringByReplacingOccurrencesOfString:@"[^0-9,]" withString:@"" options:NSRegularExpressionSearch range:NSMakeRange(0, [str length])];
     NSArray *numArr = [onlyNumStr componentsSeparatedByString:@","];
     return numArr;
@@ -657,6 +656,25 @@
     }
     
     return array;
+}
+
+//判断设备是ipad，要用如下方法
+
++ (BOOL)getIsIpad {
+    NSString *deviceType = [UIDevice currentDevice].model;
+    if([deviceType isEqualToString:@"iPhone"]) {
+        //iPhone
+        return NO;
+    }
+    else if([deviceType isEqualToString:@"iPod touch"]) {
+        //iPod Touch
+        return NO;
+    }
+    else if([deviceType isEqualToString:@"iPad"]) {
+        //iPad
+        return YES;
+    }
+    return NO;
 }
 @end
 

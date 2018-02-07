@@ -7,6 +7,7 @@
 //
 
 #import "KWTabBar.h"
+#import "Utils.h"
 
 @implementation KWTabBar
 
@@ -33,17 +34,24 @@
     int i = 0;
     CGFloat btnW = self.KW_width / count;
     CGFloat btnH = self.KW_height;
+    NSLog(@"btnH = %lf",btnH);
     if (btnH == 83.00) {
         btnH = btnH - 17;
     }
     CGFloat x = 0;
+    CGFloat tabBarButtonCenterY = btnH/8;
+    if ([Utils getIsIpad]) {
+        tabBarButtonCenterY = btnH/30;
+    }
     //跳转tabBar按钮位置
     //遍历子控件 调整布局
     for (UIView *tabBarButton in self.subviews) {
         if([tabBarButton isKindOfClass:NSClassFromString(@"UITabBarButton")])
         {
             x = i * btnW;
-            tabBarButton.frame = CGRectMake(x, btnH/8, btnW, btnH);//设置tabBarButton的位置
+            tabBarButton.frame = CGRectMake(x, tabBarButtonCenterY, btnW, btnH);//设置tabBarButton的位置
+//            tabBarButton.center = CGPointMake(self.KW_centerX, self.KW_centerY);
+//            tabBarButton.center = CGPointMake(tabBarButton.KW_centerX, self.KW_centerY);
             i++;
         }
     }

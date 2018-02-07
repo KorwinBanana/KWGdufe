@@ -47,13 +47,27 @@
 
 #pragma mark - 设置导航条
 - (void)setupNavBar{
-    self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithImage:[UIImage imageNamed:@"login_close_icon"] hightImage:[UIImage imageNamed:@"login_close_icon"] target:self action:@selector(pushDownView)];
+    self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithImage:[UIImage imageNamed:@"login_close_icon"] hightImage:[UIImage imageNamed:@"login_close_click_icon"] target:self action:@selector(pushDownView)];
     self.navigationItem.title = @"输入学号密码";
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithImage:[UIImage imageNamed:@"login_more_icon"] hightImage:[UIImage imageNamed:@"login_more_icon"] target:self action:@selector(showMassage)];
 }
 
 - (void)pushDownView {
     [self.view endEditing:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)showMassage {
+    //UIAlertController风格：UIAlertControllerStyleAlert
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"关于账号密码"
+                                                                             message:@"茶珂，面向广东财经大学在校学生，账号系学生学号And密码系信息门户登录密码。"
+                                                                      preferredStyle:UIAlertControllerStyleAlert ];
+    
+    //添加确定到UIAlertController中
+    UIAlertAction *OKAction = [UIAlertAction actionWithTitle:@"了解" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action) {
+    }];
+    [alertController addAction:OKAction];
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {

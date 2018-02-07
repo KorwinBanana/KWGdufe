@@ -8,7 +8,7 @@
 
 #import "KWGoOnBookViewController.h"
 #import "KWCurrentModel.h"
-//#import "NSData+Base64.h"
+#import "NSData+Base64.h"
 #import <MJExtension/MJExtension.h>
 #import "KWAFNetworking.h"
 #import "KeychainWrapper.h"
@@ -31,10 +31,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//        [SVProgressHUD show];
         [self loadData];//请求验证码
     });
     _verifyTextField.delegate = self;
     _verifyTextField.accessibilityLabel = @"请输入验证码";
+    [_verifyTextField addTarget:self action:@selector(textValueChange:) forControlEvents:UIControlEventEditingChanged];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -67,11 +69,14 @@
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-    if (string.length > 3) {
-        //截取
-        string = [string substringToIndex:3];
-    }
     return [self validateNumberByRegExp:string];
+}
+
+- (void) textValueChange:(UITextField *) textField {
+    NSInteger length = textField.text.length;
+    if (length > 4) {
+        textField.text = [textField.text substringToIndex:4];
+    }
 }
 
 //判断是否为字母
@@ -79,7 +84,7 @@
     BOOL isValid = YES;
     NSUInteger len = string.length;
     if (len > 0) {
-        NSString *ALPHA = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+        NSString *ALPHA = @"^[A-Za-z0-9]+$";
         NSPredicate *ALPredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", ALPHA];
         isValid = [ALPredicate evaluateWithObject:string];
     }
@@ -94,18 +99,39 @@
     parements[@"pwd"] = gdufePassword;
     
     [KWAFNetworking postWithUrlString:@"http://api.wegdufe.com:82/index.php?r=opac/get-renew-book-verify" vController:self parameters:parements success:^(id data) {
-        NSLog(@"%@",data);
+//        NSLog(@"%@",data);
         //获取字典
         NSDictionary *sztzDict = data[@"data"];
-
-        //字典转模型
-        KWVerifyModel *verifyModel = [KWVerifyModel mj_objectWithKeyValues:sztzDict];
-
-        dispatch_async(dispatch_get_main_queue(), ^{ //主线程刷新界面
+        //获取code
+        NSString *code = [data objectForKey:@"code"];
+        NSString *codeStr = [NSString stringWithFormat:@"%@",code];
+        
+        if ([codeStr isEqualToString:@"0"]) {
+            //字典转模型
+            KWVerifyModel *verifyModel = [KWVerifyModel mj_objectWithKeyValues:sztzDict];
             NSString *base64 = verifyModel.data;
-            NSData *base64ToData = [[NSData alloc]initWithBase64EncodedString:base64 options:NSDataBase64DecodingIgnoreUnknownCharacters];
-            _verifyImage.image = [UIImage imageWithData:base64ToData];
-        });
+//            NSData *base64ToData = [[NSData alloc]initWithBase64EncodedString:base64 options:NSDataBase64DecodingIgnoreUnknownCharacters];
+            NSData *base64ToData = [[NSData alloc]initWithBase64EncodedString:base64];
+            dispatch_async(dispatch_get_main_queue(), ^{ //主线程刷新界面
+                _verifyImage.image = [UIImage imageWithData:base64ToData];
+//                NSLog(@"%@",data);
+            });
+        } else if ([codeStr isEqualToString:@"3303"]) {
+            [SVProgressHUD dismiss];
+            [SVProgressHUD showErrorWithStatus:@"图书馆账号已被注销"];
+            sleep(1.5);
+            [SVProgressHUD dismiss];
+        } else if ([codeStr isEqualToString:@"3001"]) {
+            [SVProgressHUD dismiss];
+            [SVProgressHUD showErrorWithStatus:@"学号或密码错误"];
+            sleep(1.5);
+            [SVProgressHUD dismiss];
+        } else if ([codeStr isEqualToString:@"3000"]) {
+            [SVProgressHUD dismiss];
+            [SVProgressHUD showErrorWithStatus:@"学号或者密码为空"];
+            sleep(1.5);
+            [SVProgressHUD dismiss];
+        }
     } failure:^(NSError *error) {
         
     } noNetworking:^{

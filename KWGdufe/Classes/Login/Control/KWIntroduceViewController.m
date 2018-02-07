@@ -172,17 +172,18 @@ static NSString * const ID = @"cell";
     [_buttonView addSubview:_loginBtn];
     [_loginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(_buttonView.mas_centerY);
+        make.centerX.mas_equalTo(_buttonView.mas_centerX);
 //        make.top.equalTo(_buttonView.mas_top);
-        make.right.equalTo(_buttonView.mas_right).with.offset(-KWSCreenW/8);
+//        make.right.equalTo(_buttonView.mas_right).with.offset(-KWSCreenW/8);
     }];
     
-    _tryBtn = [UIButton buttonWithTitle:@"体验" titleColorN:[UIColor whiteColor] titleColorH:[UIColor whiteColor] image:[UIImage imageNamed:@"friendsTrend_login"] hightImage:[UIImage imageNamed:@"friendsTrend_login_click"] target:self action:@selector(pushLoginView)];
-    [_buttonView addSubview:_tryBtn];
-    [_tryBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(_buttonView.mas_centerY);
-//        make.top.equalTo(_buttonView.mas_top);
-        make.left.equalTo(_buttonView.mas_left).with.offset(KWSCreenW/8);
-    }];
+//    _tryBtn = [UIButton buttonWithTitle:@"体验" titleColorN:[UIColor whiteColor] titleColorH:[UIColor whiteColor] image:[UIImage imageNamed:@"friendsTrend_login"] hightImage:[UIImage imageNamed:@"friendsTrend_login_click"] target:self action:@selector(pushLoginView)];
+//    [_buttonView addSubview:_tryBtn];
+//    [_tryBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.centerY.mas_equalTo(_buttonView.mas_centerY);
+////        make.top.equalTo(_buttonView.mas_top);
+//        make.left.equalTo(_buttonView.mas_left).with.offset(KWSCreenW/8);
+//    }];
 }
 
 - (void)pushLoginView {

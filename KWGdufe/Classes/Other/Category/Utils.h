@@ -129,5 +129,7 @@
 + (NSArray *)getAStringOfChineseCharacters:(NSString *)string;//获取中文
 + (NSArray *)getOnlyNum:(NSString *)str;//正则表达式获取数字
 + (NSArray *)matchString:(NSString *)string toRegexString:(NSString *)regexStr;
+
++ (BOOL)getIsIpad;//判断ipad
 @end
 
