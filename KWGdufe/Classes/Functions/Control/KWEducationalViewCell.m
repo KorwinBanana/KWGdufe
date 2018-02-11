@@ -30,7 +30,7 @@
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        _homeBackGColors = @[@"#011935",@"#00343F",@"#1DB0B8",@"#37C6C0",@"#96B8FF",@"B3ADE9"];
+        _homeBackGColors = @[@"#1DB0B8",@"#37C6C0",@"#96B8FF",@"#0691CD",@"39A9CF",@"#F26A7A"];
         
         //创建布局
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];

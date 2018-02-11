@@ -113,7 +113,7 @@ static NSString * const ID = @"cell";
 
 - (void)setupScrollView {
     // 1.初始化数组
-    self.contentList = @[@"Introduce1", @"Introduce1", @"Introduce1"];
+    self.contentList = @[@"Introduce1"];
     
     // 2.将scrollView和pageControl添加到view
     [self.view addSubview:self.scrollView];

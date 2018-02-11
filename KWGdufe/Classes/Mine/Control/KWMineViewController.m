@@ -32,6 +32,7 @@
 #import "KWLibraryViewCell.h"
 #import "KWOtherFuncViewCell.h"
 #import "KWAboutViewController.h"
+#import "KWSettingTableViewController.h"
 
 @interface KWMineViewController ()<KWPushDelegate,KWLibraryPushDelegate,KWOtherPushDelegate>
 
@@ -248,22 +249,19 @@
 {
     //设置按钮
     self.navigationItem.title = @"我";
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithImage:[UIImage imageNamed:@"mine_setting"] hightImage:[UIImage imageNamed:@"mine_setting"] target:self action:@selector(settingVc)];
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 4;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
         return 1;
-    } else if (section == 1) {
-        return 1;
-    } else if (section == 2) {
-        return 3;
-    } else return 1;
+    } return 1;
 }
 
 
@@ -279,37 +277,10 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;//选中无色
         cell.model = _stuModel;
         return cell;
-    } else if (indexPath.section == 1){
+    } else {
         KWEducationalViewCell *cell = [[KWEducationalViewCell alloc]init];
-        //        cell.textLabel.text = @"教务系统的功能";
         cell.delegate = self;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;//不可选择
-        return cell;
-    } else if (indexPath.section == 2) {
-        if (indexPath.row == 0) {
-            UITableViewCell *cell = [[UITableViewCell alloc]init];
-            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"stuTimeCell"];
-            cell.textLabel.text = [NSString stringWithFormat:@"开学日期:第%@周",[Utils getCache:gdufeAccount andID:@"schoolWeek"]];
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;//选中无色
-            return cell;
-        } else if (indexPath.row == 1) {
-            UITableViewCell *cell = [[UITableViewCell alloc]init];
-            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"stuTimeCell"];
-            cell.textLabel.text = [NSString stringWithFormat:@"当前学期:%@",[Utils getCache:gdufeAccount andID:@"stuTime"]];
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;//选中无色
-            return cell;
-        } else {
-            UITableViewCell *cell = [[UITableViewCell alloc]init];
-            cell.textLabel.text = @"关于我们";
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            return cell;
-        }
-    }  else {
-        KWLogoutCell *cell = [[KWLogoutCell alloc]init];
-        cell = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([KWLogoutCell class]) owner:nil options:nil][0];
         return cell;
     }
 }
@@ -326,15 +297,8 @@
 //自定义Header的UIView
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    // create the parent view that will hold header Label
     UIView *customView = [[UIView alloc] initWithFrame:CGRectMake(15, 0, 320, 5)];
     UIView *customView2 = [[UIView alloc] initWithFrame:CGRectMake(15, 0, 320, 0.1)];
-//    UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-//    headerLabel.backgroundColor = [UIColor clearColor];
-    //    headerLabel.font = [UIFont italicSystemFontOfSize:14];
-//    [headerLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:15]];
-//    headerLabel.frame = customView.frame;
-//    [customView addSubview:headerLabel];
     if (section == 0) {
         return customView2;
     } else {
@@ -356,170 +320,7 @@
         if (indexPath.row == 0) {
             [self tomsgVc];
         }
-    } else if (indexPath.section == 2) {
-        if (indexPath.row == 0) {
-            UITableViewCell *sender = [tableView cellForRowAtIndexPath:indexPath];
-            [self selectBeginY:sender];
-        } else if (indexPath.row == 1) {
-            UITableViewCell *sender = [tableView cellForRowAtIndexPath:indexPath];
-            [self selectNowStuTimeYear:sender];
-        } else if (indexPath.row == 2) {
-            [self toAboutVc];
-        }
-    } else if (indexPath.section == 3) {
-        if (indexPath.row == 0) {
-            [self logout];
-        }
     }
-}
-
-#pragma mark - 开学日期选择器
-- (void)selectBeginY:(UITableViewCell*)sender {
-    NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSDateComponents *minimumDateComponents = [calendar components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:[NSDate date]];
-    [minimumDateComponents setYear:2000];
-    NSDate *minDate = [calendar dateFromComponents:minimumDateComponents];
-    NSDate *maxDate = [NSDate date];
-    NSLog(@"%@",[NSDate date]);
-    NSDateFormatter * df = [[NSDateFormatter alloc] init];
-    df.dateFormat = @"yyyy-MM-dd";
-    NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@"zh_CN"];//设置为中文显示
-    
-    ActionSheetDatePicker *picker = [[ActionSheetDatePicker alloc] initWithTitle:@"设置开学时间"
-                                                                  datePickerMode:UIDatePickerModeDate
-                                                                    selectedDate:[NSDate date]
-                                                                       doneBlock:^(ActionSheetDatePicker *picker, id selectedDate, id origin) {
-                                                                           NSString *beginYear = [df stringFromDate:selectedDate];//当前日期;
-                                                                           [Utils getSchoolWeek:beginYear];
-//                                                                           [Utils getNowYear:beginYear];
-                                                                           [self.tableView reloadData];
-                                                                           NSLog(@"%@",beginYear);
-                                                                       }
-                                                                     cancelBlock:^(ActionSheetDatePicker *picker) {
-                                                                         NSLog(@"cancel");}
-                                                                          origin:sender];
-    
-    [picker setMinimumDate:minDate];
-    [picker setMaximumDate:maxDate];
-    [picker setLocale:locale];
-    
-    UIButton *cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [cancelButton setTitle:@"取消" forState:UIControlStateNormal];
-    [cancelButton.titleLabel setFont:[UIFont boldSystemFontOfSize:17]];
-    [cancelButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [cancelButton setTitleColor:[Utils colorWithHexString:@"#2E47AC"] forState:UIControlStateHighlighted];
-    [cancelButton setFrame:CGRectMake(0, 0, 50, 45)];
-//    cancelButton.backgroundColor = [UIColor redColor];
-    [picker setCancelButton:[[UIBarButtonItem alloc] initWithCustomView:cancelButton]];
-    
-    UIButton *doneButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [doneButton setTitle:@"完成" forState:UIControlStateNormal];
-    [doneButton.titleLabel setFont:[UIFont boldSystemFontOfSize:17]];
-    [doneButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [doneButton setTitleColor:[Utils colorWithHexString:@"#2E47AC"] forState:UIControlStateHighlighted];
-    [doneButton setFrame:CGRectMake(0, 0, 50, 45)];
-//    doneButton.backgroundColor = [UIColor redColor];
-    [picker setDoneButton:[[UIBarButtonItem alloc] initWithCustomView:doneButton]];
-    
-    [picker showActionSheetPicker];
-}
-
-#pragma mark - 设置当前学年
-- (void)selectNowStuTimeYear:(UITableViewCell*)sender {
-    
-    NSArray *stuTimes = [Utils getCache:gdufeAccount andID:@"stuTimes"];
-    
-    NSLog(@"%@",stuTimes);
-    ActionSheetStringPicker *picker = [[ActionSheetStringPicker alloc]initWithTitle:@"设置当前学期" rows:stuTimeForSchool2 initialSelection:0 doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
-        
-        [Utils saveCache:gdufeAccount andID:@"stuTime" andValue:stuTimes[selectedIndex]];
-        [self loadData:[Utils getCache:gdufeAccount andID:@"stuTime"] week:[Utils getCache:gdufeAccount andID:@"schoolWeek"]];
-        NSLog(@"%@",[Utils getCache:gdufeAccount andID:@"stuTime"]);
-        NSLog(@"selectedValue = %@",stuTimes[selectedIndex]);
-        [self.tableView reloadData];
-    } cancelBlock:^(ActionSheetStringPicker *picker) {
-
-    } origin:sender];
-
-    UIButton *cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [cancelButton setTitle:@"取消" forState:UIControlStateNormal];
-    [cancelButton.titleLabel setFont:[UIFont boldSystemFontOfSize:17]];
-    [cancelButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [cancelButton setTitleColor:[Utils colorWithHexString:@"#2E47AC"] forState:UIControlStateHighlighted];
-    [cancelButton setFrame:CGRectMake(0, 0, 50, 45)];
-    [picker setCancelButton:[[UIBarButtonItem alloc] initWithCustomView:cancelButton]];
-
-    UIButton *doneButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [doneButton setTitle:@"完成" forState:UIControlStateNormal];
-    [doneButton.titleLabel setFont:[UIFont boldSystemFontOfSize:17]];
-    [doneButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [doneButton setTitleColor:[Utils colorWithHexString:@"#2E47AC"] forState:UIControlStateHighlighted];
-    [doneButton setFrame:CGRectMake(0, 0, 50, 45)];
-    [picker setDoneButton:[[UIBarButtonItem alloc] initWithCustomView:doneButton]];
-
-    [picker showActionSheetPicker];
-}
-
-#pragma mark - 退出注销服务器缓存
-- (void)logout {
-    //UIAlertController风格：UIAlertControllerStyleAlert
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"是否退出"
-                                                                             message:nil
-                                                                      preferredStyle:UIAlertControllerStyleAlert ];
-    
-    //添加取消到UIAlertController中
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
-    [alertController addAction:cancelAction];
-    
-    //添加确定到UIAlertController中
-    UIAlertAction *OKAction = [UIAlertAction actionWithTitle:@"退出" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action) {
-        
-        dispatch_queue_t HUDQueue = dispatch_queue_create("HUDQueue", DISPATCH_QUEUE_SERIAL);
-        dispatch_async(HUDQueue, ^{
-            
-            KWIntroduceViewController *loginVc = [[KWIntroduceViewController alloc]init];
-            
-            [SVProgressHUD show];
-            sleep(1);
-            [SVProgressHUD dismiss];
-
-            [SVProgressHUD showSuccessWithStatus:[NSString stringWithFormat:@"已登出"]];
-            sleep(1);
-            [SVProgressHUD dismiss];
-            
-            dispatch_async(dispatch_get_main_queue(), ^{
-                //跳转页面
-                [self presentViewController:loginVc animated:YES completion:nil];
-            });
-            
-            NSString *account = [wrapper myObjectForKey:(id)kSecAttrAccount];
-            
-            //删除课程表缓存
-            [Utils removeCache:account andID:@"ClassModel"];
-            [Utils removeCache:account andID:@"GradeModel"];
-            [Utils removeCache:account andID:@"CurrentBookModel"];
-            [Utils removeCache:account andID:@"BorrowedBookModel"];
-            [Utils removeCache:account andID:@"stuTimes"];
-            [Utils removeCache:account andID:@"stuTime"];
-            [Utils removeCache:account andID:@"TodayBuyModel"];
-            [Utils removeCache:account andID:@"CardModel"];
-            [Utils removeCache:account andID:@"schoolWeek"];
-            [Utils removeCache:account andID:@"schoolYear"];
-            [Utils removeCache:account andID:@"stuTimeForGrade"];
-            [Utils removeCache:account andID:@"schoolYearForGrade"];
-            [Utils removeCache:account andID:@"InFoTips"];
-            
-            //删除账号密码
-            [wrapper resetKeychainItem];
-            
-            //删除数据库
-            RLMRealm *real = [KWRealm getRealmWith:GdufeDataBase];
-            [KWRealm deleteAllObjects:real];
-        });
-    }];
-    [alertController addAction:OKAction];
-    
-    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 //点击跳转到设置页面
@@ -537,6 +338,13 @@
     KWAboutViewController *aboutVc = [[KWAboutViewController alloc]init];
     [self.navigationController pushViewController:aboutVc animated:YES];
 }
+
+//点击跳转到设置界面
+- (void)settingVc {
+    KWSettingTableViewController *settingVc = [[KWSettingTableViewController alloc]init];
+    [self.navigationController pushViewController:settingVc animated:YES];
+}
+
 
 #pragma mark - KWPushDelegate
 - (void)pushVc:(id)gradeVc {

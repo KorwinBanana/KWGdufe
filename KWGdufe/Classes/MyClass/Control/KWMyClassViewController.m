@@ -59,7 +59,7 @@ static float progress = 0.0f;
     //设置标题
     [self setupNavBarRightName:[Utils getCache:gdufeAccount andID:@"schoolYear"] setleftName:[NSString stringWithFormat:@"第%@周",schoolWeek]];
     
-    colors = @[@"#37C6C0",@"#5A4446",@"#FB7C85",@"#373E40",@"#8BACA1",@"#39A9CF",@"#DEBE9B",@"#C9D2CB",@"#8C7E78",@"#8ECB78",@"#0973AF",@"#37C6C0",@"#5A4446",@"#FB7C85",@"#373E40",@"#8BACA1",@"#39A9CF",@"#DEBE9B",@"#C9D2CB",@"#8C7E78",@"#8ECB78",@"#0973AF",@"#37C6C0",@"#5A4446",@"#FB7C85",@"#373E40",@"#8BACA1",@"#39A9CF",@"#DEBE9B",@"#C9D2CB",@"#8C7E78",@"#8ECB78",@"#0973AF",@"#37C6C0",@"#5A4446",@"#FB7C85",@"#373E40",@"#8BACA1",@"#39A9CF",@"#DEBE9B",@"#C9D2CB",@"#8C7E78",@"#8ECB78",@"#0973AF"];
+    colors = @[@"#1DB0B8",@"#37C6C0",@"#96B8FF",@"#0691CD",@"39A9CF",@"#F26A7A",@"#011935",@"#00343F",@"#1DB0B8",@"#37C6C0",@"#96B8FF",@"B3ADE9",@"#DEBE9B",@"#0973AF",@"#37C6C0",@"#FB7C85",@"#373E40",@"#39A9CF",@"#80B3FF",@"#F2727D",@"#1DB0B8",@"#37C6C0",@"#96B8FF",@"#0691CD",@"39A9CF",@"#F26A7A",@"#011935",@"#00343F",@"#1DB0B8",@"#37C6C0",@"#96B8FF",@"B3ADE9",@"#DEBE9B",@"#0973AF",@"#37C6C0",@"#FB7C85",@"#373E40",@"#39A9CF",@"#80B3FF",@"#F2727D"];
     
     //获取课程展示的宽度
     addWidth= (KWSCreenW-20-7)/7.0;
@@ -164,7 +164,7 @@ static float progress = 0.0f;
     [cancelButton setTitle:@"取消" forState:UIControlStateNormal];
     [cancelButton.titleLabel setFont:[UIFont boldSystemFontOfSize:16]];
     [cancelButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [cancelButton setTitleColor:[Utils colorWithHexString:@"#2E47AC"] forState:UIControlStateHighlighted];
+    [cancelButton setTitleColor:[Utils colorWithHexString:@"#1DB0B8"] forState:UIControlStateHighlighted];
     [cancelButton setFrame:CGRectMake(0, 0, 50, 45)];
     [picker setCancelButton:[[UIBarButtonItem alloc] initWithCustomView:cancelButton]];
     
@@ -172,7 +172,7 @@ static float progress = 0.0f;
     [doneButton setTitle:@"完成" forState:UIControlStateNormal];
     [doneButton.titleLabel setFont:[UIFont boldSystemFontOfSize:16]];
     [doneButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [doneButton setTitleColor:[Utils colorWithHexString:@"#2E47AC"] forState:UIControlStateHighlighted];
+    [doneButton setTitleColor:[Utils colorWithHexString:@"#1DB0B8"] forState:UIControlStateHighlighted];
     [doneButton setFrame:CGRectMake(0, 0, 50, 45)];
     [picker setDoneButton:[[UIBarButtonItem alloc] initWithCustomView:doneButton]];
     
@@ -222,7 +222,7 @@ static float progress = 0.0f;
     [cancelButton setTitle:@"取消" forState:UIControlStateNormal];
     [cancelButton.titleLabel setFont:[UIFont boldSystemFontOfSize:16]];
     [cancelButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [cancelButton setTitleColor:[Utils colorWithHexString:@"#2E47AC"] forState:UIControlStateHighlighted];
+    [cancelButton setTitleColor:[Utils colorWithHexString:@"#1DB0B8"] forState:UIControlStateHighlighted];
     [cancelButton setFrame:CGRectMake(0, 0, 50, 45)];
     [picker setCancelButton:[[UIBarButtonItem alloc] initWithCustomView:cancelButton]];
     
@@ -230,7 +230,7 @@ static float progress = 0.0f;
     [doneButton setTitle:@"完成" forState:UIControlStateNormal];
     [doneButton.titleLabel setFont:[UIFont boldSystemFontOfSize:16]];
     [doneButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [doneButton setTitleColor:[Utils colorWithHexString:@"#2E47AC"] forState:UIControlStateHighlighted];
+    [doneButton setTitleColor:[Utils colorWithHexString:@"#1DB0B8"] forState:UIControlStateHighlighted];
     [doneButton setFrame:CGRectMake(0, 0, 50, 45)];
     [picker setDoneButton:[[UIBarButtonItem alloc] initWithCustomView:doneButton]];
     

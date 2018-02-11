@@ -18,7 +18,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [Utils colorWithHexString:@"00343F"];
+    self.view.backgroundColor = [Utils colorWithHexString:@"0691CD"];
     self.navigationItem.title = @"关于茶珂";
     [_aboutBody setFont:[UIFont fontWithName:@"Helvetica-Bold" size:16]];
     _aboutBody.text = [NSString stringWithFormat:@"茶珂\n\n面向广东财经大学在校学生(iOS用户)\n连接学校信息门户\n提供校园信息服务"];

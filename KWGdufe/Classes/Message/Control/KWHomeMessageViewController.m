@@ -35,11 +35,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 //    _homeBackGColors = @[@"#436A3E",@"#4E8858",@"#73C09C",@"#ACBA85",@"#CDB97A"];
-    _homeBackGColors = @[@"#011935",@"#00343F",@"#1DB0B8",@"#37C6C0",@"#96B8FF",@"B3ADE9"];
+    _homeBackGColors = @[@"#1DB0B8",@"#37C6C0",@"#96B8FF",@"#0691CD",@"39A9CF",@"#F26A7A"];
     [self setupNavBar];
     self.tableView = [[UITableView alloc]initWithFrame:self.tableView.frame style:UITableViewStyleGrouped];
     CGRect frame = CGRectMake(0, 0, 0, 0.1);
     self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:frame];
+    [self.tableView setSeparatorColor:[UIColor clearColor]];
     [self setupHeadView];//设置下拉刷新
     
     NSArray *inFoTipsDict = [Utils getCache:gdufeAccount andID:@"InFoTips"];

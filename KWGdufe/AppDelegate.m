@@ -268,7 +268,7 @@ static NSInteger badgeInt = 1;
     UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc] init];
     content.title = @"图书馆";
     content.body =  [NSString stringWithFormat:@"截止今日，您共借阅图书%@本。",[Utils getCache:gdufeAccount andID:@"MyBBooks"]];
-    content.badge = [NSNumber numberWithInteger:badgeInt++];
+    content.badge = [NSNumber numberWithInteger:1];
     content.sound = [UNNotificationSound defaultSound];
     content.userInfo = @{@"key1":@"value1",@"key2":@"value2"};
     
@@ -306,7 +306,7 @@ static NSInteger badgeInt = 1;
     UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc] init];
     content.title = @"一卡通";
     content.body = [NSString stringWithFormat:@"截止今日，您的校园卡余额是%@元",[Utils getCache:gdufeAccount andID:@"Money"]];
-    content.badge = [NSNumber numberWithInteger:badgeInt++];
+    content.badge = [NSNumber numberWithInteger:1];
     content.sound = [UNNotificationSound defaultSound];
     content.userInfo = @{@"key1":@"value1",@"key2":@"value2"};
     
@@ -367,7 +367,7 @@ static NSInteger badgeInt = 1;
     }
     
     content.body = classArrayName;
-    content.badge = [NSNumber numberWithInteger:badgeInt++];
+    content.badge = [NSNumber numberWithInteger:1];
     content.sound = [UNNotificationSound defaultSound];
     content.userInfo = @{@"key1":@"value1",@"key2":@"value2"};
     

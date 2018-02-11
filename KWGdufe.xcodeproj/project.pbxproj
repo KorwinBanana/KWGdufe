@@ -19,8 +19,7 @@
 		0A2FCD572021644700D7C837 /* KWCurrentObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A2FCD562021644700D7C837 /* KWCurrentObject.m */; };
 		0A2FCD5A2021694100D7C837 /* KWHisCurrentObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A2FCD592021694100D7C837 /* KWHisCurrentObject.m */; };
 		0A2FCD5D2021699500D7C837 /* KWHisCurrentBookView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A2FCD5C2021699500D7C837 /* KWHisCurrentBookView.m */; };
-		0A317A882026CA5600CBECCA /* KWSetNowStuTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A317A862026CA5600CBECCA /* KWSetNowStuTimeViewController.m */; };
-		0A317A892026CA5600CBECCA /* KWSetNowStuTimeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A317A872026CA5600CBECCA /* KWSetNowStuTimeViewController.xib */; };
+		0A32CCA3202CC7320076273D /* KWSettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A32CCA2202CC7320076273D /* KWSettingTableViewController.m */; };
 		0A38FE811F9E2032007484BD /* model.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0A38FE801F9E2031007484BD /* model.plist */; };
 		0A3BA3C81FAF06D800EBB96E /* KWCashModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A3BA3C71FAF06D800EBB96E /* KWCashModel.m */; };
 		0A3BA3CB1FAF0EC400EBB96E /* KWTodayBuyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A3BA3CA1FAF0EC400EBB96E /* KWTodayBuyCell.m */; };
@@ -159,9 +158,8 @@
 		0A2FCD592021694100D7C837 /* KWHisCurrentObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWHisCurrentObject.m; sourceTree = "<group>"; };
 		0A2FCD5B2021699400D7C837 /* KWHisCurrentBookView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWHisCurrentBookView.h; sourceTree = "<group>"; };
 		0A2FCD5C2021699500D7C837 /* KWHisCurrentBookView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWHisCurrentBookView.m; sourceTree = "<group>"; };
-		0A317A852026CA5600CBECCA /* KWSetNowStuTimeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWSetNowStuTimeViewController.h; sourceTree = "<group>"; };
-		0A317A862026CA5600CBECCA /* KWSetNowStuTimeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWSetNowStuTimeViewController.m; sourceTree = "<group>"; };
-		0A317A872026CA5600CBECCA /* KWSetNowStuTimeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KWSetNowStuTimeViewController.xib; sourceTree = "<group>"; };
+		0A32CCA1202CC7320076273D /* KWSettingTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWSettingTableViewController.h; sourceTree = "<group>"; };
+		0A32CCA2202CC7320076273D /* KWSettingTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWSettingTableViewController.m; sourceTree = "<group>"; };
 		0A38FE801F9E2031007484BD /* model.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = model.plist; sourceTree = SOURCE_ROOT; };
 		0A3BA3C61FAF06D800EBB96E /* KWCashModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWCashModel.h; sourceTree = "<group>"; };
 		0A3BA3C71FAF06D800EBB96E /* KWCashModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWCashModel.m; sourceTree = "<group>"; };
@@ -579,6 +577,8 @@
 				0AEA5C7A1F8E9056005C8DF2 /* KWMineMsgViewController.m */,
 				0A3BA3CC1FAF0EEB00EBB96E /* KWTodayBuyViewController.h */,
 				0A3BA3CD1FAF0EEB00EBB96E /* KWTodayBuyViewController.m */,
+				0A32CCA1202CC7320076273D /* KWSettingTableViewController.h */,
+				0A32CCA2202CC7320076273D /* KWSettingTableViewController.m */,
 				0ABC93A8202B7DF300C1848A /* KWAboutViewController.h */,
 				0ABC93A9202B7DF300C1848A /* KWAboutViewController.m */,
 				0ABC93AA202B7DF300C1848A /* KWAboutViewController.xib */,
@@ -929,9 +929,6 @@
 				0A8337831FDBACF30098A486 /* KWIntroduceViewController.m */,
 				0A8337851FDBB98D0098A486 /* KWLoginTableViewController.h */,
 				0A8337861FDBB98D0098A486 /* KWLoginTableViewController.m */,
-				0A317A852026CA5600CBECCA /* KWSetNowStuTimeViewController.h */,
-				0A317A862026CA5600CBECCA /* KWSetNowStuTimeViewController.m */,
-				0A317A872026CA5600CBECCA /* KWSetNowStuTimeViewController.xib */,
 			);
 			path = Control;
 			sourceTree = "<group>";
@@ -1084,7 +1081,6 @@
 				0AEBB74D202A51160013C321 /* KWWebViewController.xib in Resources */,
 				0A6750D11F7BD7A000E46900 /* LaunchScreen.storyboard in Resources */,
 				0A9F5B251F7D813C006FD696 /* KWMyClassCollectionCell.xib in Resources */,
-				0A317A892026CA5600CBECCA /* KWSetNowStuTimeViewController.xib in Resources */,
 				0A71470F1FE829BA00DD9349 /* KWGoOnBookViewController.xib in Resources */,
 				0AEF81DB1FC71AA4001DED6B /* KWLogoutCell.xib in Resources */,
 				0A64D64D1F8D4C14008D33DB /* Assets.xcassets in Resources */,
@@ -1304,7 +1300,6 @@
 				0AB186C01F89587C00A49F93 /* KWReusableView.m in Sources */,
 				0A83377E1FDBA5CA0098A486 /* KWFasstButton.m in Sources */,
 				0A8337841FDBACF30098A486 /* KWIntroduceViewController.m in Sources */,
-				0A317A882026CA5600CBECCA /* KWSetNowStuTimeViewController.m in Sources */,
 				0AE342C51FAB3A8A008E4257 /* KWMyClassMsgViewController.m in Sources */,
 				0AE17BD61FC7164D007B4BC7 /* KWSBookModel.m in Sources */,
 				0A1FD89C1FC8585B00115277 /* KWSBookShowCell.m in Sources */,
@@ -1319,6 +1314,7 @@
 				0A65AF9F1FA4778C003AC3A5 /* KeychainWrapper.m in Sources */,
 				0A7147121FE82E3B00DD9349 /* NSData+Base64.m in Sources */,
 				0AF983371FE64E790004AB33 /* KWLoginButton.m in Sources */,
+				0A32CCA3202CC7320076273D /* KWSettingTableViewController.m in Sources */,
 				0A5A5A0E1FA20164001B09FD /* KWEducationalViewCell.m in Sources */,
 				0AA5F20D1FDCF67E00DA9994 /* KWFlowLayout.m in Sources */,
 				0A0D9A121FA75024009CB653 /* KWSztzTableView.m in Sources */,
@@ -1453,6 +1449,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INSTALL_PATH = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1503,6 +1500,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INSTALL_PATH = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
@@ -1522,6 +1520,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "/Users/k/iOS-KW/KWGdufe/KWGdufe/Classes/Common/Config/KWGdufe.pch";
 				INFOPLIST_FILE = KWGdufe/Info.plist;
+				INSTALL_PATH = "$(LOCAL_APPS_DIR)";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -1554,6 +1553,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1570,6 +1570,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "/Users/k/iOS-KW/KWGdufe/KWGdufe/Classes/Common/Config/KWGdufe.pch";
 				INFOPLIST_FILE = KWGdufe/Info.plist;
+				INSTALL_PATH = "$(LOCAL_APPS_DIR)";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -1602,6 +1603,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

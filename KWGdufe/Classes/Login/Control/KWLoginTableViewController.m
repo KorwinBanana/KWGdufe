@@ -21,7 +21,7 @@
 #import "KWPasswordTextField.h"
 #import "KWLoginCell.h"
 
-@interface KWLoginTableViewController ()
+@interface KWLoginTableViewController ()<UITextFieldDelegate>
 
 @property (nonatomic,strong) KWAccountPwdTextField  *sno;
 @property (nonatomic,strong) KWAccountPwdTextField  *pwd;
@@ -49,7 +49,7 @@
 - (void)setupNavBar{
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithImage:[UIImage imageNamed:@"login_close_icon"] hightImage:[UIImage imageNamed:@"login_close_click_icon"] target:self action:@selector(pushDownView)];
     self.navigationItem.title = @"输入学号密码";
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithImage:[UIImage imageNamed:@"login_more_icon"] hightImage:[UIImage imageNamed:@"login_more_icon"] target:self action:@selector(showMassage)];
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithImage:[UIImage imageNamed:@"login_more_icon"] hightImage:[UIImage imageNamed:@"login_more_click_icon"] target:self action:@selector(showMassage)];
 }
 
 - (void)pushDownView {
@@ -99,12 +99,17 @@
             _sno.snoOrPwd = 0;
             _sno.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
             _sno.clearButtonMode = UITextFieldViewModeWhileEditing;
+            _sno.returnKeyType = UIReturnKeyNext;//Next按钮
+            _sno.delegate = self;
+            _sno.tag = 0;
             return cell;
         } else if (indexPath.row == 1) {
             cell.placeholderText = @"密码";
             _pwd = cell.accountLogin;
             _pwd.snoOrPwd = 1;
             _pwd.secureTextEntry = YES;
+            _pwd.delegate = self;
+            _pwd.tag = 1;
             _pwd.clearButtonMode = UITextFieldViewModeWhileEditing;
             return cell;
         }
@@ -125,26 +130,45 @@
     if (indexPath.section == 1) {
         if (indexPath.row == 0) {
             [self.view endEditing:YES];
-            //UIAlertController风格：UIAlertControllerStyleAlert
-            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"使用声明"
-                                                                                     message:@"当前使用的茶珂APP系广财同学个人作品，非广东财经大学官方APP，但开发者保证数据传输的安全性，对重要数据进行了加密处理，请放心使用！"
-                                                                              preferredStyle:UIAlertControllerStyleAlert ];
-            
-            //添加取消到UIAlertController中
-            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"不同意" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action) {
-                [_sno becomeFirstResponder];
-            }];
-            [alertController addAction:cancelAction];
-            
-            //添加确定到UIAlertController中
-            UIAlertAction *OKAction = [UIAlertAction actionWithTitle:@"同意" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action) {
-                [SVProgressHUD show];
-                [self loadData];
-            }];
-            [alertController addAction:OKAction];
-            
-            [self presentViewController:alertController animated:YES completion:nil];
+            [self showLoginMassage];
         }
+    }
+}
+
+- (void)showLoginMassage {
+    //UIAlertController风格：UIAlertControllerStyleAlert
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"使用声明"
+                                                                             message:@"当前使用的茶珂APP系广财同学个人作品，非广东财经大学官方APP，但开发者保证数据传输的安全性，对重要数据进行了加密处理，请放心使用！\n(请务必设置当前学期)"
+                                                                      preferredStyle:UIAlertControllerStyleAlert ];
+    
+    //添加取消到UIAlertController中
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"不同意" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action) {
+        [_sno becomeFirstResponder];
+    }];
+    [alertController addAction:cancelAction];
+    
+    //添加确定到UIAlertController中
+    UIAlertAction *OKAction = [UIAlertAction actionWithTitle:@"同意" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action) {
+        [SVProgressHUD show];
+        [self loadData];
+    }];
+    [alertController addAction:OKAction];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
+}
+
+#pragma mark - UITextFieldDelegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    if (textField.tag == 0) {
+        [_pwd becomeFirstResponder];
+        return YES;
+    } else if (textField.tag == 1) {
+        [self.view endEditing:YES];
+        [self showLoginMassage];
+        return YES;
+    } else {
+        return YES;
     }
 }
 

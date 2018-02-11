@@ -85,13 +85,14 @@
     _model = model;
     if (_model.name != nil) {
         _name.text = _model.name;
-        
+//        _name.text = @"迪丽热巴";
     } else {
         _name.text = @"你的名字";
     }
     NSString *number = [wrapper myObjectForKey:(id)kSecAttrAccount];
     if (number != nil) {
         _num.text = [NSString stringWithFormat:@"学号:%@",number];
+//        _num.text = @"学号:15116272976";
     } else {
         _num.text = @"学号";
     }
