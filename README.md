@@ -27,10 +27,7 @@
 
 ![image](https://github.com/KorwinBanana/KWGdufe/blob/master/READMEImage/2.png)
 
-![image](https://github.com/KorwinBanana/KWGdufe/blob/master/READMEImage/3.png)
-
-![image](https://github.com/KorwinBanana/KWGdufe/blob/master/READMEImage/4.png)
-
 ![image](https://github.com/KorwinBanana/KWGdufe/blob/master/READMEImage/6.png)
 
+![image](https://github.com/KorwinBanana/KWGdufe/blob/master/READMEImage/4.png)
 
