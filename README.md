@@ -1,5 +1,9 @@
 # KWGdufe
 
+**-----App Store（已经上架）-----**
+🔗[茶珂](https://itunes.apple.com/cn/app/%E8%8C%B6%E7%8F%82/id1346521270?mt=8)
+
+***
 
 **-----茶珂-----**
 
@@ -19,6 +23,7 @@
 * 完成图书续借
 * 获取个人在校信息
 
+***
 
 **-----介绍图----**
 ![image](https://github.com/KorwinBanana/KWGdufe/blob/master/READMEImage/5.png)
