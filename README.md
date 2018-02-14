@@ -1,8 +1,15 @@
 # KWGdufe
 
 **-----App Store（已经上架）-----**
+
+
 🔗[茶珂](https://itunes.apple.com/cn/app/%E8%8C%B6%E7%8F%82/id1346521270?mt=8)
 
+![image](https://github.com/KorwinBanana/KWGdufe/blob/master/READMEImage/21.png)
+****
+![image](https://github.com/KorwinBanana/KWGdufe/blob/master/READMEImage/22.png)
+***
+![image](https://github.com/KorwinBanana/KWGdufe/blob/master/READMEImage/23.png)
 ***
 
 **-----茶珂-----**
