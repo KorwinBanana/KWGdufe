@@ -34,7 +34,6 @@
 
 - (void)setPlaceholderText:(NSString *)placeholderText {
     _placeholderText = placeholderText;
-    //定义占位文默认颜色
     _attrs = [NSMutableDictionary dictionary];
     _attrs[NSForegroundColorAttributeName] = [UIColor lightGrayColor];
     

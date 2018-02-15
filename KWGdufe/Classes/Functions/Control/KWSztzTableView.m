@@ -55,7 +55,6 @@
 - (void)setupRefreshing {
     __unsafe_unretained UITableView *tableView = self.tableView;
     
-    //设置头部
     if (@available(iOS 11.0, *)) {
         self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     } else {
@@ -64,33 +63,23 @@
     //    self.tableView.contentInset = UIEdgeInsetsMake(rectStatus.size.height + rectNav.size.height, 0, 0, 0);
     self.tableView.scrollIndicatorInsets = self.tableView.contentInset;
     
-    // 下拉刷新
     tableView.mj_header= [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        // 结束刷新
         [self loadData];
     }];
     
-    // 设置自动切换透明度(在导航栏下面自动隐藏)
     tableView.mj_header.automaticallyChangeAlpha = YES;
 }
 
 #pragma mark - 加载数据
 - (void)loadData {
-    //拼接数据
     NSMutableDictionary *parements = [NSMutableDictionary dictionary];
     parements[@"sno"] = gdufeAccount;
     parements[@"pwd"] = gdufePassword;
     
     [KWAFNetworking postWithUrlString:GetSztzAPI vController:self parameters:parements success:^(id data) {
-        //获取字典
         NSDictionary *sztzDict = data[@"data"];
         
-        //缓存到本地
-//        [Utils saveCache:gdufeAccount andID:@"SztzModel" andValue:sztzDict];
-        
-        //字典转模型
         NSArray *sztzArray = [KWSztzModel mj_objectArrayWithKeyValuesArray:sztzDict];
-//        _sztzModel = sztzArray;
         
         //存入数据库
         RLMRealm *real = [KWRealm getRealmWith:GdufeDataBase];
@@ -117,7 +106,7 @@
         NSLog(@"%ld",(long)array.count);
         _sztzModel = array;
         
-        dispatch_async(dispatch_get_main_queue(), ^{ //主线程刷新界面
+        dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
             NSLog(@"请求素拓数据成功~");
             [self.tableView.mj_header endRefreshing];

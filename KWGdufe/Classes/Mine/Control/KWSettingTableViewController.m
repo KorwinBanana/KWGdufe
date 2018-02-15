@@ -186,21 +186,16 @@
 
 #pragma mark - 退出注销服务器缓存
 - (void)logout {
-    //UIAlertController风格：UIAlertControllerStyleAlert
     UIAlertController *alertController = [[UIAlertController alloc]init];
     if ([Utils getIsIpad]) {
-        //UIAlertController风格：UIAlertControllerStyleAlert
         alertController = [UIAlertController alertControllerWithTitle:@"退出后将删除所有数据" message:nil preferredStyle:UIAlertControllerStyleAlert];
     } else {
-        //UIAlertController风格：UIAlertControllerStyleAlert
         alertController = [UIAlertController alertControllerWithTitle:@"退出后将删除所有数据" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     }
     
-    //添加取消到UIAlertController中
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
     [alertController addAction:cancelAction];
     
-    //添加确定到UIAlertController中
     UIAlertAction *OKAction = [UIAlertAction actionWithTitle:@"退出" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action) {
         
         dispatch_queue_t HUDQueue = dispatch_queue_create("HUDQueue", DISPATCH_QUEUE_SERIAL);
@@ -217,13 +212,11 @@
             [SVProgressHUD dismiss];
             
             dispatch_async(dispatch_get_main_queue(), ^{
-                //跳转页面
                 [self presentViewController:loginVc animated:YES completion:nil];
             });
             
             NSString *account = [wrapper myObjectForKey:(id)kSecAttrAccount];
             
-            //删除课程表缓存
             [Utils removeCache:account andID:@"stuTimes"];
             [Utils removeCache:account andID:@"stuTime"];
             [Utils removeCache:account andID:@"TodayBuyModel"];
@@ -238,10 +231,8 @@
             [Utils removeCache:account andID:@"Money"];
             [Utils removeCache:account andID:@"MyBBooks"];
             
-            //删除账号密码
             [wrapper resetKeychainItem];
             
-            //删除数据库
             RLMRealm *real = [KWRealm getRealmWith:GdufeDataBase];
             [KWRealm deleteAllObjects:real];
         });
@@ -259,7 +250,6 @@
 
 #pragma mark - 加载数据
 - (void)loadData:(NSString *)selectStuTime week:(NSString *)selectWeek {
-    //拼接数据
     NSMutableDictionary *parements = [NSMutableDictionary dictionary];
     parements[@"sno"] = gdufeAccount;
     parements[@"pwd"] = gdufePassword;
@@ -270,10 +260,8 @@
         [KWAFNetworking postWithUrlString:@"http://api.wegdufe.com:82/index.php?r=jw/get-schedule" parameters:parements success:^(id data) {
             NSArray *scheduleAry = data[@"data"];;
             
-            //字典数组转模型数组
             NSArray *todayScheduleModel = [KWScheduleModel mj_objectArrayWithKeyValuesArray:scheduleAry];
             
-            //存入数据库
             RLMRealm *real = [KWRealm getRealmWith:GdufeDataBase];
             KWTodayScheduleObject __block *scheduleObject = [[KWTodayScheduleObject alloc] init];
             RLMResults *results = [KWTodayScheduleObject allObjectsInRealm:real];

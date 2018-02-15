@@ -34,14 +34,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    _homeBackGColors = @[@"#436A3E",@"#4E8858",@"#73C09C",@"#ACBA85",@"#CDB97A"];
     _homeBackGColors = @[@"#1DB0B8",@"#37C6C0",@"#96B8FF",@"#0691CD",@"39A9CF",@"#F26A7A"];
     [self setupNavBar];
     self.tableView = [[UITableView alloc]initWithFrame:self.tableView.frame style:UITableViewStyleGrouped];
     CGRect frame = CGRectMake(0, 0, 0, 0.1);
     self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:frame];
     [self.tableView setSeparatorColor:[UIColor clearColor]];
-    [self setupHeadView];//设置下拉刷新
+    [self setupHeadView];
     
     NSArray *inFoTipsDict = [Utils getCache:gdufeAccount andID:@"InFoTips"];
     if (inFoTipsDict) {
@@ -51,13 +50,12 @@
     } else {
         [self.tableView.mj_header beginRefreshing];
     }
-    
+    NSLog(@"1 = %lf \n 2 = %lf \n 3= %lf \n4 = ",[[UIApplication sharedApplication] statusBarFrame].size.height, self.navigationController.navigationBar.frame.size.height);
 }
 
 - (void)setupHeadView {
     __unsafe_unretained UITableView *tableView = self.tableView;
     
-    //设置头部
     if (@available(iOS 11.0, *)) {
         self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     } else {
@@ -65,15 +63,12 @@
     }
     self.tableView.scrollIndicatorInsets = self.tableView.contentInset;
     
-    // 下拉刷新
     tableView.mj_header= [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        // 结束刷新
         NSLog(@"结束刷新");
         [self loadData:[Utils getCache:gdufeAccount andID:@"stuTime"] week:[Utils getCache:gdufeAccount andID:@"schoolWeek"]];
         [self loadInFoTips];
     }];
     
-    // 设置自动切换透明度(在导航栏下面自动隐藏)
     tableView.mj_header.automaticallyChangeAlpha = YES;
 }
 
@@ -99,7 +94,6 @@
         NSArray *arraySchedule = [self getTodayClass];
         cell.masgTitle = [NSString stringWithFormat:@"【今天有%ld节课】",arraySchedule.count];
         
-        //获取课程具体
         NSString *classArrayName = [[NSString alloc]init];
         for (int i = 0; i<arraySchedule.count; i++) {
             KWScheduleModel *oneClassModel = arraySchedule[i];
@@ -113,7 +107,6 @@
         NSArray *arraySchedule = [self getTomorrowClass];
         cell.masgTitle = [NSString stringWithFormat:@"【明天有%ld节课】",arraySchedule.count];
         
-        //获取课程具体
         NSString *classArrayName = [[NSString alloc]init];
         for (int i = 0; i<arraySchedule.count; i++) {
             KWScheduleModel *oneClassModel = arraySchedule[i];
@@ -130,7 +123,7 @@
             cell.masgBody = model.descrip;
         } else if (indexPath.row == 3) {
             cell.masgBody = [NSString stringWithFormat:@"您截止到昨天的余额是%@元。",[self charactersString:model.descrip]];
-            [Utils saveCache:gdufeAccount andID:@"Money" andValue:[self charactersString:model.descrip]];//保存到本地沙盒
+            [Utils saveCache:gdufeAccount andID:@"Money" andValue:[self charactersString:model.descrip]];
             NSLog(@"yue = %@",[self charactersString:model.descrip]);
         } else if (indexPath.row == 4) {
             cell.masgBody = model.descrip;
@@ -168,23 +161,19 @@
     NSMutableArray *characters = [NSMutableArray array];
     NSMutableString *mutStr = [NSMutableString string];
     
-    // 分离出字符串中的所有字符，并存储到数组characters中
     for (int i = 0; i < s.length; i ++) {
         NSString *subString = [s substringToIndex:i + 1];
         subString = [subString substringFromIndex:i];
         [characters addObject:subString];
     }
     
-    // 利用正则表达式，匹配数组中的每个元素，判断是否是数字，将数字拼接在可变字符串mutStr中
     for (NSString *b in characters) {
         NSString *regex = @"^[0-9]*$";
-        NSPredicate *pre = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];// 谓词
-        BOOL isShu = [pre evaluateWithObject:b];// 对b进行谓词运算
-        //判断是否为数字
+        NSPredicate *pre = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
+        BOOL isShu = [pre evaluateWithObject:b];
         if (isShu) {
             [mutStr appendString:b];
         }
-        //判断是否为小数
         if ([b isEqualToString:@"."]) {
             [mutStr appendString:b];
         }
@@ -195,7 +184,6 @@
 #pragma mark - 加载数据
 - (void)loadInFoTips {
     
-    //拼接数据
     NSMutableDictionary *parements = [NSMutableDictionary dictionary];
     parements[@"sno"] = gdufeAccount;
     parements[@"pwd"] = gdufePassword;
@@ -204,14 +192,13 @@
         [KWAFNetworking postWithUrlString:@"http://api.wegdufe.com:82/index.php?r=info/info-tips" parameters:parements success:^(id data) {
             NSArray *inFoAry = data[@"data"];;
             
-            [Utils saveCache:gdufeAccount andID:@"InFoTips" andValue:inFoAry];//保存到本地沙盒
+            [Utils saveCache:gdufeAccount andID:@"InFoTips" andValue:inFoAry];
             
-            //字典数组转模型数组
             NSArray *inFoModel = [KWInFoModel mj_objectArrayWithKeyValuesArray:inFoAry];
             _inFoModel = inFoModel;
             NSLog(@"%@",inFoModel);
             
-            dispatch_async(dispatch_get_main_queue(), ^{ //主线程刷新界面
+            dispatch_async(dispatch_get_main_queue(), ^{
                 [self.tableView reloadData];
                 [self.tableView.mj_header endRefreshing];
                 NSLog(@"请求今日信息数据成功~");
@@ -224,7 +211,6 @@
 
 #pragma mark - 加载数据
 - (void)loadData:(NSString *)selectStuTime week:(NSString *)selectWeek {
-    //拼接数据
     NSMutableDictionary *parements = [NSMutableDictionary dictionary];
     parements[@"sno"] = gdufeAccount;
     parements[@"pwd"] = gdufePassword;
@@ -235,10 +221,8 @@
         [KWAFNetworking postWithUrlString:@"http://api.wegdufe.com:82/index.php?r=jw/get-schedule" parameters:parements success:^(id data) {
             NSArray *scheduleAry = data[@"data"];;
             
-            //字典数组转模型数组
             _todayScheduleModel = [KWScheduleModel mj_objectArrayWithKeyValuesArray:scheduleAry];
             
-            //存入数据库
             RLMRealm *real = [KWRealm getRealmWith:GdufeDataBase];
             KWTodayScheduleObject __block *scheduleObject = [[KWTodayScheduleObject alloc] init];
             RLMResults *results = [KWTodayScheduleObject allObjectsInRealm:real];
@@ -265,10 +249,7 @@
                 }
             }
             NSLog(@"请求今日课程数据成功~");
-//            dispatch_async(dispatch_get_main_queue(), ^{ //主线程刷新界面
-//                [self.tableView reloadData];
-//                NSLog(@"请求今日信息数据成功~");
-//            });
+
         } failure:^(NSError *error) {
             
         }];
@@ -276,7 +257,6 @@
 }
 
 - (NSArray *) getTodayClass {
-    //获取图书信息
     RLMRealm *real = [KWRealm getRealmWith:GdufeDataBase];
     RLMResults *results = [KWTodayScheduleObject allObjectsInRealm:real];
     //    NSInteger dataCount = [KWRealm getNumOfLine:results];
@@ -291,7 +271,6 @@
 }
 
 - (NSArray *) getTomorrowClass {
-    //获取图书信息
     RLMRealm *real = [KWRealm getRealmWith:GdufeDataBase];
     RLMResults *results = [KWTodayScheduleObject allObjectsInRealm:real];
     //    NSInteger dataCount = [KWRealm getNumOfLine:results];

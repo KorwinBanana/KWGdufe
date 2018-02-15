@@ -51,58 +51,35 @@ static float progress = 0.0f;
     [super viewDidLoad];
     
     [self preferredStatusBarStyle];
-    //设置背景颜色
     self.view.backgroundColor = [UIColor whiteColor];
     
     schoolWeek = [Utils getCache:gdufeAccount andID:@"schoolWeek"];
 
-    //设置标题
     [self setupNavBarRightName:[Utils getCache:gdufeAccount andID:@"schoolYear"] setleftName:[NSString stringWithFormat:@"第%@周",schoolWeek]];
     
     colors = @[@"#1DB0B8",@"#37C6C0",@"#96B8FF",@"#0691CD",@"39A9CF",@"#F26A7A",@"#011935",@"#00343F",@"#1DB0B8",@"#37C6C0",@"#96B8FF",@"B3ADE9",@"#DEBE9B",@"#0973AF",@"#37C6C0",@"#FB7C85",@"#373E40",@"#39A9CF",@"#80B3FF",@"#F2727D",@"#1DB0B8",@"#37C6C0",@"#96B8FF",@"#0691CD",@"39A9CF",@"#F26A7A",@"#011935",@"#00343F",@"#1DB0B8",@"#37C6C0",@"#96B8FF",@"B3ADE9",@"#DEBE9B",@"#0973AF",@"#37C6C0",@"#FB7C85",@"#373E40",@"#39A9CF",@"#80B3FF",@"#F2727D"];
     
-    //获取课程展示的宽度
     addWidth= (KWSCreenW-20-7)/7.0;
     
-    //获取星期的宽度
     addWidthWeek= (KWSCreenW-20)/7.0;
     
-    //获取高度
     addHeight = (KWSCreenH - 20)/10;
     
-    //设置星期一到星期日和第几周
     [self setWeekAndDays];
     
-    //自定义流水布局——用于展示课表位置和大小
     self.course = [[KWCollectionViewLayout alloc] init];;
     self.course.width = addWidth;
     _course.height = (KWSCreenH - 20)/10;
     
-//    //缓存获取界面数据
-//    NSArray *dicAry = [Utils getCache:gdufeAccount andID:@"ClassModel"];
-//    if (dicAry) {
-//        _scheduleModel = [KWScheduleModel mj_objectArrayWithKeyValuesArray:dicAry];
-//        self.course.array = [[NSArray alloc]initWithArray:_scheduleModel];
-//        [SVProgressHUD dismiss];
-//    } else {
-//        self.stuTime = [Utils getCache:gdufeAccount andID:@"stuTime"];
-//        NSLog(@"self.stuTime = %@",self.stuTime);
-//
-//        [self loadData:self.stuTime week:schoolWeek];
-//    }
-    
-    //使用数据库获取
     RLMRealm *real = [KWRealm getRealmWith:GdufeDataBase];
     RLMResults *results = [KWScheduleObject allObjectsInRealm:real];
     NSInteger dataCount = [KWRealm getNumOfLine:results];
     if (!dataCount) {
-        //无
         self.stuTime = [Utils getCache:gdufeAccount andID:@"stuTime"];
         NSLog(@"self.stuTime = %@",self.stuTime);
         
         [self loadData:self.stuTime week:schoolWeek];
     } else {
-        //有
         NSMutableArray *arraySchedule = [NSMutableArray array];
         for (RLMObject *object in results) {
             [arraySchedule addObject:object];
@@ -111,7 +88,6 @@ static float progress = 0.0f;
         self.course.array = [[NSArray alloc]initWithArray:_scheduleModel];
         [SVProgressHUD dismiss];
     }
-    //创建collectionVIew
     [self setupCollectionView];
 }
 
@@ -129,13 +105,13 @@ static float progress = 0.0f;
         if(selectedIndex == 0){
             [KWAFNetworking iSNetWorkingWithController:self isNetworking:^{
 //                [Utils getNowYear];
-                self.stuTime = [Utils getCache:gdufeAccount andID:@"stuTime"];//获取大几的时间
+                self.stuTime = [Utils getCache:gdufeAccount andID:@"stuTime"];
                 NSLog(@"全部——当前学期%@",self.stuTime);
-                [Utils getStuTimeSchool:self.stuTime];//获取大几
+                [Utils getStuTimeSchool:self.stuTime];
                 [Utils updateCache:gdufeAccount andID:@"schoolYear" andValue:[Utils getCache:gdufeAccount andID:@"schoolYear"]];
                 [Utils updateCache:gdufeAccount andID:@"stuTimeForClass" andValue:self.stuTime];
                 [SVProgressHUD show];
-                [self loadData:self.stuTime week:schoolWeek];//更新数据
+                [self loadData:self.stuTime week:schoolWeek];
                 NSLog(@"school = %@",[Utils getCache:gdufeAccount andID:@"schoolYear"]);
                 [self setupNavBarRightName:[Utils getCache:gdufeAccount andID:@"schoolYear"] setleftName:[NSString stringWithFormat:@"第%@周",schoolWeek]];
                 
@@ -151,7 +127,6 @@ static float progress = 0.0f;
                 [self loadData:self.stuTime week:schoolWeek];
                 [self setupNavBarRightName:selectedValue setleftName:[NSString stringWithFormat:@"第%@周",schoolWeek]];
                 [Utils updateCache:gdufeAccount andID:@"schoolYear" andValue:selectedValue];
-//               NSLog(@"%@",[Utils getCache:gdufeAccount andID:@"schoolYear"]);
             } noNetworking:^{
                 NSLog(@"Block Picker Canceled");
             }];
@@ -185,13 +160,11 @@ static float progress = 0.0f;
     ActionSheetStringPicker *picker = [[ActionSheetStringPicker alloc]initWithTitle:@"周" rows:stuWeek initialSelection:0 doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
         if (selectedIndex == 0) {
             [KWAFNetworking iSNetWorkingWithController:self isNetworking:^{
-//                [Utils getSchoolWeek];
                 schoolWeek = [Utils getCache:gdufeAccount andID:@"schoolWeek"];
                 [SVProgressHUD show];
                 
                 [self loadData:[Utils getCache:gdufeAccount andID:@"stuTimeForClass"] week:schoolWeek];
                 [self setupNavBarRightName:[Utils getCache:gdufeAccount andID:@"schoolYear"] setleftName:[NSString stringWithFormat:@"第%@周",schoolWeek]];
-//               [weekView setDay:[NSString stringWithFormat:@"%@周",schoolWeek]];
             } noNetworking:^{
                 NSLog(@"Block Picker Canceled");
             }];
@@ -199,16 +172,12 @@ static float progress = 0.0f;
         } else {
             [KWAFNetworking iSNetWorkingWithController:self isNetworking:^{
                 schoolWeek = [NSString stringWithFormat:@"%ld", (long)selectedIndex];
-//              [SVProgressHUD showWithStatus:@"更新课表"];
-//                [self performSelector:@selector(increaseProgress) withObject:nil afterDelay:0.3f];
                 [SVProgressHUD show];
                 
                 [Utils saveCache:gdufeAccount andID:@"schoolWeek" andValue:[NSString stringWithFormat:@"%ld",(long)selectedIndex]];
                 schoolWeek = [Utils getCache:gdufeAccount andID:@"schoolWeek"];
-//             NSLog(@"选择的schoolweek = %@",schoolWeek);
                 [self loadData:[Utils getCache:gdufeAccount andID:@"stuTimeForClass"] week:schoolWeek];
                 [self setupNavBarRightName:[Utils getCache:gdufeAccount andID:@"schoolYear"] setleftName:[NSString stringWithFormat:@"第%ld周",(long)selectedIndex]];
-//              [weekView setDay:[NSString stringWithFormat:@"%ld周",(long)selectedIndex]];
                 
             } noNetworking:^{
                 NSLog(@"Block Picker Canceled");
@@ -239,9 +208,6 @@ static float progress = 0.0f;
 
 - (void)setupCollectionView
 {
-    //创建collectionView视图，应用自定义的collectionViewLayout：_course
-    
-    //适配iPhone X
     CGFloat myHeight;
     if (KWSCreenH == 812.0000) {
         myHeight = KWSCreenH - 22;
@@ -249,37 +215,25 @@ static float progress = 0.0f;
         myHeight = KWSCreenH;
     }
     collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 30, KWSCreenW,myHeight) collectionViewLayout:_course];
-//    bgHeight = CGRectGetHeight([UIScreen mainScreen].bounds)/12;//设置背景格子的高度
     collectionView.dataSource = self;
     collectionView.delegate = self;
     collectionView.backgroundColor = [UIColor clearColor];
     collectionView.bounces = NO;//取消弹回
     collectionView.showsVerticalScrollIndicator = NO;//隐藏滚动条
-//    collectionView.backgroundColor = [UIColor blueColor];
     
-    //设置格子背景
     UIImageView *bg = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, KWSCreenW,12*addHeight)];
     bgView = bg;
     bgView.backgroundColor = [UIColor clearColor];
     bgView.alpha = 0.5;
     [collectionView addSubview:bgView];
     
-    [self setGeziBg];//设置格子背景
+    [self setGeziBg];
     
-    //注册cell
     [collectionView registerClass:[KWMyClassCollectionCell class] forCellWithReuseIdentifier:@"course"];
     [collectionView registerClass:[KWReusableView class] forSupplementaryViewOfKind:@"number" withReuseIdentifier:@"num"];
     [self.view addSubview:collectionView];
 }
 
-/*
- 设置格子背景
- 问题：直接生成格子，会产生大量格子UIView对象，会造成整个APP卡顿
- 解决：
- 先定义一个UIView容器：bgImageView，在UIView容器：bgImageView中生成格子，
- 最后把bgImageView生成image保存到背景UIImageView里的Image中,并保持清晰度，
- 最后把UIView容器：bgImageView中的所有UIView格子对象移除掉
- */
 - (void)setGeziBg
 {
     KWWeekDay *flag;
@@ -294,13 +248,12 @@ static float progress = 0.0f;
             @autoreleasepool {
                 flag = [[KWWeekDay alloc] initWithFrame:CGRectMake(x, 0+j*addHeight, addWidthWeek, addHeight)];
                 x+=addWidthWeek;
-                flag.alpha=0.25;//格子颜色深浅
+                flag.alpha=0.25;
             }
             [bgImageView addSubview:flag];
         }
     }
     bgView.image = [self makeImageWithView:bgImageView];
-//    bgView.backgroundColor = [UIColor redColor];
     [bgImageView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
 }
 
@@ -308,12 +261,6 @@ static float progress = 0.0f;
 - (UIImage *)makeImageWithView:(UIView *)view
 {
     CGSize size = bgView.bounds.size;
-    /*
-     下面方法，
-     第一个参数表示区域大小。
-     第二个参数表示是否是非透明的。如果需要显示半透明效果，需要传NO，否则传YES。
-     第三个参数就是屏幕密度了，关键就是第三个参数。
-     */
     UIGraphicsBeginImageContextWithOptions(size, NO, 0);
     [view.layer renderInContext:UIGraphicsGetCurrentContext()];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
@@ -329,14 +276,12 @@ static float progress = 0.0f;
     CGFloat x=27.25;
     weekView = [[KWWeekDay alloc] initWithFrame:CGRectMake(0, 0 , x  , height)];
     weekView.alpha=0.8;
-//    [weekView setDay:[NSString stringWithFormat:@"%@周",schoolWeek]];
     [self.view addSubview:weekView];
     
     for(int i=1;i<=7;i++)
     {
         x--;
         flag = [[KWWeekDay alloc] initWithFrame:CGRectMake(x, 0 , addWidthWeek, height)];
-//        NSLog(@"%f",addWidthWeek);
         x+=addWidthWeek;
         flag.alpha=0.8;
         [flag setDay:weekStr[i-1]];
@@ -347,23 +292,19 @@ static float progress = 0.0f;
 #pragma mark - 加载数据
 - (void)loadData:(NSString *)selectStuTime week:(NSString *)selectWeek
 {
-    //拼接数据
     NSMutableDictionary *parements = [NSMutableDictionary dictionary];
     parements[@"sno"] = gdufeAccount;
     parements[@"pwd"] = gdufePassword;
     parements[@"stu_time"] = selectStuTime;
     parements[@"week"] = selectWeek;
     
-//    NSLog(@"加载数据的schoolweek = %@",selectWeek);
     [KWAFNetworking postWithUrlString:@"http://api.wegdufe.com:82/index.php?r=jw/get-schedule" vController:self parameters:parements success:^(id data) {
         NSArray *scheduleAry = data[@"data"];;
         
-        [Utils saveCache:gdufeAccount andID:@"ClassModel" andValue:scheduleAry];//保存到本地沙盒
+        [Utils saveCache:gdufeAccount andID:@"ClassModel" andValue:scheduleAry];
         
-        //字典数组转模型数组
         _scheduleModel = [KWScheduleModel mj_objectArrayWithKeyValuesArray:scheduleAry];
         
-        //存入数据库
         RLMRealm *real = [KWRealm getRealmWith:GdufeDataBase];
         KWScheduleObject __block *scheduleObject = [[KWScheduleObject alloc] init];
         RLMResults *results = [KWScheduleObject allObjectsInRealm:real];
@@ -393,9 +334,8 @@ static float progress = 0.0f;
         
         self.course.array = _scheduleModel;
         
-        dispatch_async(dispatch_get_main_queue(), ^{ //主线程刷新界面
+        dispatch_async(dispatch_get_main_queue(), ^{
             [collectionView reloadData];
-            //取消提示框
             [SVProgressHUD dismiss];
             NSLog(@"请求课程数据成功~");
         });
@@ -407,17 +347,15 @@ static float progress = 0.0f;
 }
 
 #pragma mark - UICollectionViewDataSource
-//cell的个数是：课程个数 + 最左边第几节课的个数
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     return _scheduleModel.count + 12;
 }
 
 - (UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    [collectionView sendSubviewToBack:bgView];//把格子背景放在最底层
+    [collectionView sendSubviewToBack:bgView];
     KWMyClassCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"course" forIndexPath:indexPath];
     cell.model = _scheduleModel[indexPath.row-12];
     cell.view.backgroundColor = [Utils colorWithHexString:colors[indexPath.row - 12 + 3]];
-//    NSLog(@"cell%ld = %@",indexPath.row - 12,NSStringFromCGRect(cell.frame));
     return cell;
 }
 
@@ -425,8 +363,6 @@ static float progress = 0.0f;
 - (UICollectionReusableView*)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
     [collectionView sendSubviewToBack:bgView];
     KWReusableView *Tag = [collectionView dequeueReusableSupplementaryViewOfKind:@"number" withReuseIdentifier:@"num" forIndexPath:indexPath];
-//    NSLog(@"%@",NSStringFromCGRect(Tag.frame));
-    //防止循环利用cell多增加了一行cell
     if (indexPath.row == 12) {
         Tag.self.layer.borderWidth = 0;
         Tag.num.text = NULL;
@@ -434,7 +370,7 @@ static float progress = 0.0f;
     }else {
         Tag.self.layer.borderWidth = 0.25;
         Tag.num.text = [NSString stringWithFormat:@"%ld",indexPath.row+1];
-        Tag.num.textColor = [UIColor blackColor];//节数颜色
+        Tag.num.textColor = [UIColor blackColor];
         return Tag;
     }
 }

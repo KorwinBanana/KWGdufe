@@ -20,7 +20,6 @@
     _label1.textAlignment = NSTextAlignmentCenter;
     _label1.textColor = [UIColor blackColor];
     _label = _label1;
-    // Initialization code
 }
 
 @end

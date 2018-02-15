@@ -70,7 +70,6 @@
 - (void)setupHeadView {
     __unsafe_unretained UITableView *tableView = self.tableView;
     
-    //设置头部
     if (@available(iOS 11.0, *)) {
         self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     } else {
@@ -79,49 +78,37 @@
     //    self.tableView.contentInset = UIEdgeInsetsMake(-rectStatus.size.height - rectNav.size.height, 0, 0, 0);
     self.tableView.scrollIndicatorInsets = self.tableView.contentInset;
     
-    // 下拉刷新
     tableView.mj_header= [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        // 结束刷新
         [self loadData];
     }];
     
-    // 设置自动切换透明度(在导航栏下面自动隐藏)
     tableView.mj_header.automaticallyChangeAlpha = YES;
 }
 
 #pragma mark - 加载数据
 - (void)loadData {
-    //拼接数据
     NSMutableDictionary *parements = [NSMutableDictionary dictionary];
     parements[@"sno"] = gdufeAccount;
     parements[@"pwd"] = gdufePassword;
     
     [KWAFNetworking postWithUrlString:_url vController:self parameters:parements success:^(id data) {
-        //获取字典
         NSDictionary *currentBookDict = data[@"data"];
-        //获取code
         NSString *code = [data objectForKey:@"code"];
         NSString *codeStr = [NSString stringWithFormat:@"%@",code];
         
         if ([codeStr isEqualToString:@"0"]) {
-            //字典转模型
             NSArray *currentArray = [KWCurrentModel mj_objectArrayWithKeyValuesArray:currentBookDict];
             
-            //缓存到本地
-            //        [Utils saveCache:gdufeAccount andID:_modelSaveName andValue:currentBookDict];
             
-            //存入数据库
             RLMRealm *real = [KWRealm getRealmWith:GdufeDataBase];
             KWCurrentObject *currentObject = [[KWCurrentObject alloc] init];
             RLMResults *results = [KWCurrentObject allObjectsInRealm:real];
             if (!results) {
-                //没有数据
                 for (int i = 0; i<currentArray.count; i++) {
                     currentObject = [[KWCurrentObject alloc] initWithValue:currentArray[i]];
                     [KWRealm saveRLMObject:real rlmObject:currentObject];
                 }
             } else {
-                //有数据
                 for (int i = 0; i<currentArray.count; i++) {
                     currentObject = [[KWCurrentObject alloc] initWithValue:currentArray[i]];
                     [KWRealm addOrUpdateObject:real rlmObject:currentObject];
@@ -130,19 +117,19 @@
             
             _currentModel = currentArray;
             
-            dispatch_async(dispatch_get_main_queue(), ^{ //主线程刷新界面
+            dispatch_async(dispatch_get_main_queue(), ^{
                 [self.tableView reloadData];
-                [self.tableView.mj_header endRefreshing];//结束下拉刷新
+                [self.tableView.mj_header endRefreshing];
             });
         } else if ([codeStr isEqualToString:@"3001"]) {
-            dispatch_async(dispatch_get_main_queue(), ^{ //主线程刷新界面
+            dispatch_async(dispatch_get_main_queue(), ^{
                 [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"密码错误"]];
-                [self.tableView.mj_header endRefreshing];//结束下拉刷新
+                [self.tableView.mj_header endRefreshing];
             });
         } else if ([codeStr isEqualToString:@"2003"]) {
-            dispatch_async(dispatch_get_main_queue(), ^{ //主线程刷新界面2003
+            dispatch_async(dispatch_get_main_queue(), ^{
                 [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"图书馆系统崩溃了"]];
-                [self.tableView.mj_header endRefreshing];//结束下拉刷新
+                [self.tableView.mj_header endRefreshing];
             });
         }
     } failure:^(NSError *error) {
@@ -188,16 +175,13 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (_boolHistory == 0) {
         KWCurrentModel *model = _currentModel[indexPath.row];
-        //UIAlertController风格：UIAlertControllerStyleAlert
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:[NSString stringWithFormat:@"续借《%@》",model.name]
                                                                                  message:nil
                                                                           preferredStyle:UIAlertControllerStyleAlert ];
         
-        //添加取消到UIAlertController中
         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
         [alertController addAction:cancelAction];
         
-        //添加确定到UIAlertController中
         UIAlertAction *OKAction = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
             KWGoOnBookViewController *goOnView = [[KWGoOnBookViewController alloc]init];
             goOnView.title = [NSString stringWithFormat:@"续借:%@",model.name];

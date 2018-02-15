@@ -21,22 +21,19 @@
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        //创建布局
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
         layout.itemSize = CGSizeMake(KWSCreenW/5, KWSCreenW/5);
         layout.minimumLineSpacing = 0.1;
         layout.minimumInteritemSpacing = 0.1;
         
-        //创建UICollectView
         UICollectionView *collectView = [[UICollectionView alloc]initWithFrame:CGRectMake(20, 0, KWSCreenW-40, KWSCreenW/5) collectionViewLayout:layout];
         
         collectView.dataSource = self;
         collectView.delegate = self;
-        collectView.scrollEnabled = NO;//collectionView不能滚动
+        collectView.scrollEnabled = NO;
         collectView.backgroundColor = [UIColor clearColor];
         [self addSubview:collectView];
         
-        //注册cell
         [collectView registerNib:[UINib nibWithNibName:@"KWFunctionsCell" bundle:nil] forCellWithReuseIdentifier:ID];
     }
     return self;

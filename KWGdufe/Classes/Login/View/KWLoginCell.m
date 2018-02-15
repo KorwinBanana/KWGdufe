@@ -18,19 +18,13 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     
-    //设置阴影和圆角
     self.buttonView.layer.cornerRadius = 5;
-//    self.buttonView.layer.shadowColor = [UIColor blackColor].CGColor;
-//    self.buttonView.layer.shadowOffset = CGSizeMake(2, 5);
-//    self.buttonView.layer.shadowOpacity = 0.5;
-//    self.buttonView.layer.shadowRadius = 5;
     self.buttonView.backgroundColor = [Utils colorWithHexString:@"37C6C0"];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 
-    // Configure the view for the selected state
 }
 
 @end

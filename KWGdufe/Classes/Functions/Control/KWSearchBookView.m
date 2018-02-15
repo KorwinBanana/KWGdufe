@@ -28,10 +28,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    self.tableView = [[UITableView alloc]initWithFrame:self.tableView.frame style:UITableViewStyleGrouped];
     
     UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KWSCreenW, 50)];
-    // 设置header
     self.tableView.tableHeaderView = header;
     
     UISearchBar *searchBar = [[UISearchBar alloc]init];
@@ -55,9 +53,7 @@
         make.right.equalTo(header.mas_right);
         make.top.equalTo(header.mas_top);
     }];
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//        [searchBar becomeFirstResponder];//延迟2秒弹出键盘
-//    });
+
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -78,34 +74,28 @@
 
 #pragma mark - loadData
 - (void)loadSearchBookWithBookName: (NSString *)bookName {
-    //拼接数据
     NSMutableDictionary *parements = [NSMutableDictionary dictionary];
     parements[@"bookName"] = bookName;
     
     [KWAFNetworking postWithUrlString:@"http://api.wegdufe.com:82/index.php?r=opac/search-book" vController:self parameters:parements success:^(id data) {
         NSLog(@"data = %@",data);
-        //获取字典
         NSDictionary *searchBookDict = data[@"data"];
         NSString *code = [data objectForKey:@"code"];
         NSString *codeStr = [NSString stringWithFormat:@"%@",code];
         
-        //缓存到本地
-        //        [Utils saveCache:gdufeAccount andID:_modelSaveName andValue:currentBookDict];
         
         if ([codeStr isEqualToString:@"0"]) {
-            //字典转模型
             NSArray *searchBookModel = [KWSearchBookModel mj_objectArrayWithKeyValuesArray:searchBookDict];
             _searchBookModel = searchBookModel;
-            dispatch_async(dispatch_get_main_queue(), ^{ //主线程刷新界面
+            dispatch_async(dispatch_get_main_queue(), ^{
                 [self.tableView reloadData];
                 NSLog(@"查询书本信息成功~");
                 [SVProgressHUD dismiss];
             });
         } else if ([codeStr isEqualToString:@"2003"]) {
             NSLog(@"喵～馆藏查询系统崩啦～～");
-            dispatch_async(dispatch_get_main_queue(), ^{ //主线程刷新界面
+            dispatch_async(dispatch_get_main_queue(), ^{
                 [SVProgressHUD dismiss];
-                //添加提示框
                 [self showDismissWithTitle:@"喵～馆藏查询系统崩啦～～" message:nil parent:self];
             });
         }

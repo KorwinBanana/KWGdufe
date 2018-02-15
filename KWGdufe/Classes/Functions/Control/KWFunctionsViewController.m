@@ -21,7 +21,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     self.tableView = [[UITableView alloc]initWithFrame:self.tableView.frame style:UITableViewStyleGrouped];
-    self.tableView.sectionFooterHeight = 0.1;//footView的高度
+    self.tableView.sectionFooterHeight = 0.1;
     [self setupNavBar];
 }
 
@@ -56,24 +56,15 @@
      */
     if(indexPath.section == 0) {
         KWEducationalViewCell *cell = [[KWEducationalViewCell alloc]init];
-//        cell.textLabel.text = @"教务系统的功能";
         cell.delegate = self;
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;//不可选择
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     } else  {
         KWLibraryViewCell *cell = [[KWLibraryViewCell alloc]init];
-//        cell.textLabel.text = @"教务系统的功能;
         cell.delegate = self;
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;//不可选择
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
-//    else {
-//        KWOtherFuncViewCell *cell = [[KWOtherFuncViewCell alloc]init];
-//        //        cell.textLabel.text = @"教务系统的功能;
-//        cell.delegate = self;
-//        cell.selectionStyle = UITableViewCellSelectionStyleNone;//不可选择
-//        return cell;
-//    }
 }
 
 //自定义Header的UIView

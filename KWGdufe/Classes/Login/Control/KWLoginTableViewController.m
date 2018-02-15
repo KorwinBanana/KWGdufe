@@ -58,12 +58,10 @@
 }
 
 - (void)showMassage {
-    //UIAlertController风格：UIAlertControllerStyleAlert
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"关于账号密码"
                                                                              message:@"茶珂，面向广东财经大学在校学生，账号系学生学号And密码系信息门户登录密码。"
                                                                       preferredStyle:UIAlertControllerStyleAlert ];
     
-    //添加确定到UIAlertController中
     UIAlertAction *OKAction = [UIAlertAction actionWithTitle:@"了解" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action) {
     }];
     [alertController addAction:OKAction];
@@ -175,52 +173,34 @@
 #pragma mark - 验证登陆
 - (void)loadData
 {
-    //拼接数据
     NSMutableDictionary *parements = [NSMutableDictionary dictionary];
     parements[@"sno"] = _sno.text;
     parements[@"pwd"] = _pwd.text;
     
     [KWAFNetworking postWithUrlString:LoginAPI parameters:parements success:^(id data) {
-        //添加警告框
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleCancel handler:nil];
         [alert addAction:okAction];
         
-        //获取字典
         NSString *code = [data objectForKey:@"code"];
         NSString *codeStr = [NSString stringWithFormat:@"%@",code];
         //NSLog(@"self.loginBoolModel.code = %@",codeStr);
         
         [SVProgressHUD dismiss];
         
-        //判断是否登陆
         if ([codeStr isEqualToString:@"0"]) {
-            /** 初始化一个保存用户帐号的KeychainWrapper */
-            //            NSLog(@"%@",uuid);
-            //            NSData *data = [_pwd.text dataUsingEncoding:NSUTF8StringEncoding];
-            //            NSData *encryptedData = [data EncryptAES:uuid];
-            
-            //保存密码
             [wrapper mySetObject:_pwd.text forKey:(id)kSecValueData];
             [wrapper mySetObject:_sno.text forKey:(id)kSecAttrAccount];
-            
-            //把学期保存到NSUserDefaults
             NSString *whenStuTime = [_sno.text substringToIndex:2];
-            //            NSLog(@"whenStuTime = %@",whenStuTime);
             [Utils getStuYears:whenStuTime mySno:[wrapper myObjectForKey:(id)kSecAttrAccount]];
-            
-            //初始化参数
-            //计算当前学期
             [Utils getNowYear];
-            
-            //获取第几周
+
             NSString *schoolWeek = [NSString stringWithFormat:@"4"];
             [Utils saveCache:gdufeAccount andID:@"schoolWeek" andValue:schoolWeek];
             
-            //保存当前大学
             [Utils getStuTimeSchool:[Utils getCache:gdufeAccount andID:@"stuTime"]];
             
-            [Utils saveCache:gdufeAccount andID:@"gradeSelect" andValue:@"年"];//成绩查询页面gradeSelectYear
+            [Utils saveCache:gdufeAccount andID:@"gradeSelect" andValue:@"年"];
             [Utils saveCache:gdufeAccount andID:@"gradeSelectYear" andValue:@"全部"];
             
             KWTabBarController *tabVc = [[KWTabBarController alloc]init];
@@ -229,15 +209,11 @@
             [SVProgressHUD dismiss];
         } else if ([codeStr isEqualToString:@"3000"]) {
             NSLog(@"学号或者密码为空啦～～");
-            //添加提示框
             alert.message = @"请输入学号/密码";
-//            alert.title = @"登录失败";
             [self presentViewController:alert animated:YES completion:nil];
         } else if ([codeStr isEqualToString:@"3001"]) {
             NSLog(@"喵～学号或密码错误啦～～");
-            //添加提示框
             alert.message = @"请输入正确的学号/密码";
-//            alert.title = @"登录失败";
             [self presentViewController:alert animated:YES completion:nil];
         } else {
             alert.title = @"系统崩溃";

@@ -12,16 +12,14 @@
 
  - (void)layoutSubviews
  {
- [super layoutSubviews];
- self.imageView.KW_centerY = self.imageView.KW_height * 0.5 + 5;
- self.imageView.KW_centerX = self.KW_width * 0.5;
+     [super layoutSubviews];
+     self.imageView.KW_centerY = self.imageView.KW_height * 0.5 + 5;
+     self.imageView.KW_centerX = self.KW_width * 0.5;
  
- //设置标题位置
- self.titleLabel.KW_centerY = self.KW_height - self.titleLabel.KW_height + 5;
- self.titleLabel.KW_centerX = self.KW_width * 0.5;
+     self.titleLabel.KW_centerY = self.KW_height - self.titleLabel.KW_height + 5;
+     self.titleLabel.KW_centerX = self.KW_width * 0.5;
  
- //计算文字宽度，设置label宽度
- [self.titleLabel sizeToFit];
+     [self.titleLabel sizeToFit];
  }
 
 @end

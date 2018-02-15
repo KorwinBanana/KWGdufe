@@ -46,18 +46,14 @@
 - (void)setupRefreshing {
     __unsafe_unretained UITableView *tableView = self.tableView;
     
-    //设置头部
     if (@available(iOS 11.0, *)) {
         self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     } else {
         self.automaticallyAdjustsScrollViewInsets = NO;
     }
-    //    self.tableView.contentInset = UIEdgeInsetsMake(rectStatus.size.height + rectNav.size.height, 0, 0, 0);
     self.tableView.scrollIndicatorInsets = self.tableView.contentInset;
     
-    // 下拉刷新
     tableView.mj_header= [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        // 结束刷新
         dispatch_queue_t queue = dispatch_queue_create("myCostom", DISPATCH_QUEUE_SERIAL);
         NSLog(@"updateCashData start");
         dispatch_async(queue, ^{
@@ -73,13 +69,11 @@
         [tableView.mj_header endRefreshing];
     }];
     
-    // 设置自动切换透明度(在导航栏下面自动隐藏)
     tableView.mj_header.automaticallyChangeAlpha = YES;
 }
 
 #pragma mark - 请求json
 - (void)loadTodayData {
-    //拼接数据
     NSMutableDictionary *parements = [NSMutableDictionary dictionary];
     parements[@"sno"] = gdufeAccount;
     parements[@"pwd"] = gdufePassword;
@@ -87,19 +81,15 @@
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{ // 1
         [KWAFNetworking postWithUrlString:GetTodayCashAPI parameters:parements success:^(id data) {
-            //获取字典
             NSDictionary *todayDict = data[@"data"];
             
-            //更新本地Cash
             [Utils updateCache:gdufeAccount andID:@"TodayBuyModel" andValue:todayDict];
             NSLog(@"更新成功");
             
-            //字典数组转模型
             _todayBuyModel = [KWTodayBuyModel mj_objectArrayWithKeyValuesArray:todayDict];
             
             dispatch_async(dispatch_get_main_queue(), ^{ // 2
                 if(_todayBuyModel.count == 0) {
-                    //添加警告框
                     UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleAlert];
                     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:nil];
                     [alert addAction:okAction];
@@ -115,18 +105,12 @@
     });
 }
 
-/*
- 缓存余额数据:有网络的时候，更新本地余额数据，无网络的时候显示昨天的信息
- */
 - (void) updateTodayData {
-    //1.创建网络状态监测管理者
     AFNetworkReachabilityManager *manager = [AFNetworkReachabilityManager  sharedManager];
-    //2.监听改变
     [manager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus  status) {
         switch (status) {
             case  AFNetworkReachabilityStatusUnknown: {
                 NSLog(@"未知");
-                //缓存获取Cash余额
                 NSString *account = [wrapper myObjectForKey:(id)kSecAttrAccount];
                 NSDictionary *todayAry = [Utils getCache:account andID:@"TodayBuyModel"];
                 _todayBuyModel = [KWTodayBuyModel mj_objectArrayWithKeyValuesArray:todayAry];
@@ -136,7 +120,6 @@
             }
             case AFNetworkReachabilityStatusNotReachable:{
                 NSLog(@"没有网络");
-                //缓存获取Cash余额
                 NSString *account = [wrapper myObjectForKey:(id)kSecAttrAccount];
                 NSDictionary *todayAry = [Utils getCache:account andID:@"TodayBuyModel"];
                 _todayBuyModel = [KWTodayBuyModel mj_objectArrayWithKeyValuesArray:todayAry];
@@ -160,18 +143,12 @@
     [manager startMonitoring];//开始监听
 }
 
-/*
- 缓存余额数据:有网络的时候，更新本地余额数据，无网络的时候不更新
- */
 - (void) updateCashData {
-    //1.创建网络状态监测管理者
     AFNetworkReachabilityManager *manager = [AFNetworkReachabilityManager  sharedManager];
-    //2.监听改变
     [manager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus  status) {
         switch (status) {
             case  AFNetworkReachabilityStatusUnknown: {
                 NSLog(@"未知");
-                //缓存获取Cash余额
                 NSDictionary *cashAry = [Utils getCache:gdufeAccount andID:@"CardModel"];
                 _cardModel = [KWCashModel mj_objectWithKeyValues:cashAry];
                 break;
@@ -200,23 +177,17 @@
     [manager startMonitoring];//开始监听
 }
 
-//有网络时，更新本地Cash余额
 - (void)loadCardData {
-    //拼接数据
     NSMutableDictionary *parements = [NSMutableDictionary dictionary];
     parements[@"sno"] = gdufeAccount;
     parements[@"pwd"] = gdufePassword;
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{ // 1
         [KWAFNetworking postWithUrlString:GetCashAPI parameters:parements success:^(id data) {
-            //获取字典
             NSDictionary *cardDict = data[@"data"];
             
-            //更新本地Cash
             [Utils updateCache:gdufeAccount andID:@"CardModel" andValue:cardDict];
-            //        NSLog(@"更新成功");
             
-            //字典转模型
             _cardModel = [KWCashModel mj_objectWithKeyValues:cardDict];
             
             dispatch_async(dispatch_get_main_queue(), ^{ // 2

@@ -22,7 +22,6 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     self.backgroundColor = [UIColor clearColor];
-    //设置阴影和圆角
     self.backView.layer.cornerRadius = 10;
     self.backView.layer.shadowColor = [UIColor blackColor].CGColor;
     self.backView.layer.shadowOffset = CGSizeMake(2, 5);

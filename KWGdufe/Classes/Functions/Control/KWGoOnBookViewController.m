@@ -31,8 +31,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-//        [SVProgressHUD show];
-        [self loadData];//请求验证码
+        [self loadData];
     });
     _verifyTextField.delegate = self;
     _verifyTextField.accessibilityLabel = @"请输入验证码";
@@ -47,20 +46,16 @@
 #pragma mark - UITextFieldDelegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [self.view endEditing:YES];
-    //UIAlertController风格：UIAlertControllerStyleAlert
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:[NSString stringWithFormat:@"是否续借\n《%@》",_name]
                                                                              message:nil
                                                                       preferredStyle:UIAlertControllerStyleAlert ];
     
-    //添加取消到UIAlertController中
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action) {
         [_verifyTextField becomeFirstResponder];//呼出键盘
     }];
     [alertController addAction:cancelAction];
     
-    //添加确定到UIAlertController中
     UIAlertAction *OKAction = [UIAlertAction actionWithTitle:@"续借" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
-        //post请求续借
         [self renewBookWithVerify:textField.text];
     }];
     [alertController addAction:OKAction];
@@ -79,7 +74,6 @@
     }
 }
 
-//判断是否为字母
 - (BOOL)validateNumberByRegExp:(NSString *)string {
     BOOL isValid = YES;
     NSUInteger len = string.length;
@@ -93,28 +87,21 @@
 
 #pragma mark - 加载验证码
 - (void)loadData {
-    //拼接数据
     NSMutableDictionary *parements = [NSMutableDictionary dictionary];
     parements[@"sno"] = gdufeAccount;
     parements[@"pwd"] = gdufePassword;
     
     [KWAFNetworking postWithUrlString:@"http://api.wegdufe.com:82/index.php?r=opac/get-renew-book-verify" vController:self parameters:parements success:^(id data) {
-//        NSLog(@"%@",data);
-        //获取字典
         NSDictionary *sztzDict = data[@"data"];
-        //获取code
         NSString *code = [data objectForKey:@"code"];
         NSString *codeStr = [NSString stringWithFormat:@"%@",code];
         
         if ([codeStr isEqualToString:@"0"]) {
-            //字典转模型
             KWVerifyModel *verifyModel = [KWVerifyModel mj_objectWithKeyValues:sztzDict];
             NSString *base64 = verifyModel.data;
-//            NSData *base64ToData = [[NSData alloc]initWithBase64EncodedString:base64 options:NSDataBase64DecodingIgnoreUnknownCharacters];
             NSData *base64ToData = [[NSData alloc]initWithBase64EncodedString:base64];
-            dispatch_async(dispatch_get_main_queue(), ^{ //主线程刷新界面
+            dispatch_async(dispatch_get_main_queue(), ^{
                 _verifyImage.image = [UIImage imageWithData:base64ToData];
-//                NSLog(@"%@",data);
             });
         } else if ([codeStr isEqualToString:@"3303"]) {
             [SVProgressHUD dismiss];
@@ -141,7 +128,6 @@
 
 #pragma mark - 续借图书
 - (void)renewBookWithVerify:(NSString *)verify {
-    //拼接数据
     NSMutableDictionary *parements = [NSMutableDictionary dictionary];
     parements[@"sno"] = gdufeAccount;
     parements[@"pwd"] = gdufePassword;
@@ -149,19 +135,12 @@
     parements[@"checkId"] = _checkId;
     parements[@"verify"] = verify;
     
-//    NSLog(@"%@",_barId);
-//    NSLog(@"%@",_checkId);
-//    NSLog(@"%@",verify);
-    
     [KWAFNetworking postWithUrlString:@"http://api.wegdufe.com:82/index.php?r=opac/renew-book" vController:self parameters:parements success:^(id data) {
 //        NSLog(@"%@",data);
-        //获取字典
         NSDictionary *renewDict = data[@"data"];
         [data writeToFile:@"/Users/k/iOS-KW/KWGdufe/square.txt" atomically:nil];
-        //字典转模型
         KWVerifyModel *renewModel = [KWVerifyModel mj_objectWithKeyValues:renewDict];
         
-        //获取code
         NSString *code = [data objectForKey:@"code"];
         NSString *codeStr = [NSString stringWithFormat:@"%@",code];
         NSMutableString *newString = [Utils replaceStringWithString:renewModel.data];

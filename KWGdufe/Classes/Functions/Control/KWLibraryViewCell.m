@@ -24,22 +24,19 @@
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        //创建布局
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
         layout.itemSize = CGSizeMake(KWSCreenW/5, KWSCreenW/5);
         layout.minimumLineSpacing = 0.1;
         layout.minimumInteritemSpacing = 0.1;
         
-        //创建UICollectView
         UICollectionView *collectView = [[UICollectionView alloc]initWithFrame:CGRectMake(20, 0, KWSCreenW-40, KWSCreenW/5) collectionViewLayout:layout];
         
         collectView.dataSource = self;
         collectView.delegate = self;
-        collectView.scrollEnabled = NO;//collectionView不能滚动
+        collectView.scrollEnabled = NO;
         collectView.backgroundColor = [UIColor clearColor];
         [self addSubview:collectView];
         
-        //注册cell
         [collectView registerNib:[UINib nibWithNibName:@"KWFunctionsCell" bundle:nil] forCellWithReuseIdentifier:ID];
     }
     return self;
@@ -56,10 +53,8 @@
     KWFunctionsCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ID forIndexPath:indexPath];
     if (indexPath.row == 0) {
         cell.name = @"当前借阅";
-//        cell.imageName = @"currentBook";
     } else if (indexPath.row == 1) {
         cell.name = @"历史借阅";
-//        cell.imageName = @"borrowedBook";
     } else if (indexPath.row == 2) {
         cell.name = @"馆藏查询";
 //        cell.imageName = @"searchBook";
@@ -77,7 +72,6 @@
         currentVc.boolHistory = 0;
         [_delegate pushVc:currentVc];
     } else if (indexPath.row == 1) {
-#warning 需要简化历史续借页面
         KWHisCurrentBookView *borrowVc = [[KWHisCurrentBookView alloc]init];
         borrowVc.url = GetBorrowedBookAPI;
         borrowVc.modelSaveName = @"BorrowedBookModel";
@@ -86,9 +80,6 @@
         [_delegate pushVc:borrowVc];
     } else if (indexPath.row == 2) {
         KWSearchBookView *searchBookVc = [[KWSearchBookView alloc]init];
-//        borrowVc.url = GetBorrowedBookAPI;
-//        borrowVc.modelSaveName = @"BorrowedBookModel";
-//        borrowVc.vcName = @"历史借阅";
         [_delegate pushVc:searchBookVc];
     }
 }

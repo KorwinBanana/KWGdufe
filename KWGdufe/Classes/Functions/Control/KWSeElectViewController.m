@@ -105,20 +105,8 @@
     parements[@"room"] = self.room.text;
     
     [KWAFNetworking postWithUrlString:@"http://api.wegdufe.com:82/index.php?r=card/get-electric" parameters:parements success:^(id data) {
-        //获取字典
-//        NSDictionary *gradeDict = data[@"data"];
         NSLog(@"data = %@",data);
-        
-        //缓存到本地
-//        [Utils saveCache:gdufeAccount andID:@"GradeModel" andValue:gradeDict];
-        
-        //字典转模型
-//        NSArray *gradeModel = [KWGradeModel mj_objectArrayWithKeyValuesArray:gradeDict];
-//
-//        _gradeModel = gradeModel;
-//
-//        [self.tableView reloadData];
-//        [SVProgressHUD dismiss];
+
     } failure:^(NSError *error) {
         
     }];

@@ -79,47 +79,30 @@ static NSString * const ID = @"cell";
 - (void)setupIntroduceView {
     _labelArray = [[NSArray alloc]initWithObjects:@"!",@"Hello",@"World",@"!",@"Hello",nil];
     
-    // Do any additional setup after loading the view, typically from a nib.
-    
-    //注意：
-    //1.创建collectionView必须有布局参数
-    //2.cell必须注册
-    //3.cell必须自定义，系统cell没有任何子控件
-//    _introduceView.backgroundColor = [UIColor whiteColor];
-    
-    //创建流水布局
     KWFlowLayout *layout = [[KWFlowLayout alloc] init];
     layout.itemSize = CGSizeMake(160, 160);
-    layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;//方向水平
+    layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     CGFloat marin = ([UIScreen mainScreen].bounds.size.width - 160) * 0.5;
-    layout.sectionInset = UIEdgeInsetsMake(0, marin, 0, marin);//设置内边距
+    layout.sectionInset = UIEdgeInsetsMake(0, marin, 0, marin);
     layout.minimumLineSpacing = 50;
     
-    
-    //创建UICollectionView
     UICollectionView *collection = [[UICollectionView alloc]initWithFrame:CGRectMake(0, KWSCreenH/3, KWSCreenW, KWSCreenH / 3) collectionViewLayout:layout];
     collection.backgroundColor = [UIColor redColor];
-    collection.showsVerticalScrollIndicator = NO;//滚动条不可见
+    collection.showsVerticalScrollIndicator = NO;
     
-    //设置数据源
     collection.dataSource = self;
     
-    //注册cell
     [collection registerNib:[UINib nibWithNibName:NSStringFromClass([KWImageViewCell class]) bundle:nil] forCellWithReuseIdentifier:ID];
-    //    [collection registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:ID];
     
     [_introduceView addSubview:collection];
 }
 
 - (void)setupScrollView {
-    // 1.初始化数组
     self.contentList = @[@"Introduce1"];
     
-    // 2.将scrollView和pageControl添加到view
     [self.view addSubview:self.scrollView];
     [self.view addSubview:self.pageControl];
     
-    // 3.为scrollView每一页添加图片
     for (NSUInteger i=0; i<self.contentList.count; ++i) {
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.scrollView.frame) * i, 0, CGRectGetWidth(self.scrollView.frame), CGRectGetHeight(self.scrollView.frame))];
         imageView.contentMode = UIViewContentModeScaleAspectFit;
@@ -163,27 +146,13 @@ static NSString * const ID = @"cell";
 
 #pragma mark - 体验登录/登录
 - (void)loadLoginButton {
-//    _loginBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-//    [_loginBtn setTitle:@"登录" forState:UIControlStateNormal];
-//    [_loginBtn addTarget:nil action:@selector(pushLoginView) forControlEvents:UIControlEventTouchUpInside];
-    
     _loginBtn = [UIButton buttonWithTitle:@"登录" titleColorN:[UIColor whiteColor] titleColorH:[UIColor whiteColor] image:[UIImage imageNamed:@"friendsTrend_login"] hightImage:[UIImage imageNamed:@"friendsTrend_login_click"] target:self action:@selector(pushLoginView)];
     
     [_buttonView addSubview:_loginBtn];
     [_loginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(_buttonView.mas_centerY);
         make.centerX.mas_equalTo(_buttonView.mas_centerX);
-//        make.top.equalTo(_buttonView.mas_top);
-//        make.right.equalTo(_buttonView.mas_right).with.offset(-KWSCreenW/8);
     }];
-    
-//    _tryBtn = [UIButton buttonWithTitle:@"体验" titleColorN:[UIColor whiteColor] titleColorH:[UIColor whiteColor] image:[UIImage imageNamed:@"friendsTrend_login"] hightImage:[UIImage imageNamed:@"friendsTrend_login_click"] target:self action:@selector(pushLoginView)];
-//    [_buttonView addSubview:_tryBtn];
-//    [_tryBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.centerY.mas_equalTo(_buttonView.mas_centerY);
-////        make.top.equalTo(_buttonView.mas_top);
-//        make.left.equalTo(_buttonView.mas_left).with.offset(KWSCreenW/8);
-//    }];
 }
 
 - (void)pushLoginView {

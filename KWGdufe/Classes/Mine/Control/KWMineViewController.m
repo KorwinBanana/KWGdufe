@@ -48,39 +48,32 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    //初始化当前学期
     NSString *sno = [wrapper myObjectForKey:(id)kSecAttrAccount];
     _stuTime = [Utils getCache:sno andID:@"stuTime"];
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.msgVc = [[KWMineMsgViewController alloc]init];//初始化二级页面
+    self.msgVc = [[KWMineMsgViewController alloc]init];
     self.todayBuyVc = [[KWTodayBuyViewController alloc]init];//初始化二级页面
 
     [self setupNavBar];
     
     self.tableView = [[UITableView alloc]initWithFrame:self.tableView.bounds style:UITableViewStyleGrouped];
     
-//    CGRect frame = CGRectMake(0, 0, 0, 0.1);
-//    self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:frame];
-    
-//    [SVProgressHUD show];
-    
     NSString *account = [wrapper myObjectForKey:(id)kSecAttrAccount];
     NSDictionary *cashAry = [Utils getCache:account andID:@"CardModel"];
     _cardModel = [KWCashModel mj_objectWithKeyValues:cashAry];
     self.todayBuyVc.cardModel = _cardModel;
     
-    [self getDataFromCache];//加载数据
+    [self getDataFromCache];
     
-    [self updateCashData];//加载校园卡余额
+    [self updateCashData];
 }
 
 - (void)getDataFromCache {
     NSString *account = [wrapper myObjectForKey:(id)kSecAttrAccount];
     NSDictionary *stuDict = [Utils getCache:account andID:@"StuModel"];
     if (stuDict) {
-        //字典转模型
         _stuModel = [KWStuModel mj_objectWithKeyValues:stuDict];
         self.msgVc.stuModel = _stuModel;
         [SVProgressHUD dismiss];
@@ -93,20 +86,16 @@
 #pragma mark - 加载数据
 - (void)loadData {
     
-    //拼接数据
     NSMutableDictionary *parements = [NSMutableDictionary dictionary];
     parements[@"sno"] = gdufeAccount;
     parements[@"pwd"] = gdufePassword;
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{ // 1
         [KWAFNetworking postWithUrlString:GetBasicAPI parameters:parements success:^(id data) {
-            //获取字典
             NSDictionary *stuDict = data[@"data"];
             
-            //缓存到本地
             [Utils saveCache:gdufeAccount andID:@"StuModel" andValue:stuDict];
             
-            //字典转模型
             _stuModel = [KWStuModel mj_objectWithKeyValues:stuDict];
             self.msgVc.stuModel = _stuModel;
             
@@ -122,7 +111,6 @@
 
 #pragma mark - 加载数据
 - (void)loadData:(NSString *)selectStuTime week:(NSString *)selectWeek {
-    //拼接数据
     NSMutableDictionary *parements = [NSMutableDictionary dictionary];
     parements[@"sno"] = gdufeAccount;
     parements[@"pwd"] = gdufePassword;
@@ -133,10 +121,8 @@
         [KWAFNetworking postWithUrlString:@"http://api.wegdufe.com:82/index.php?r=jw/get-schedule" parameters:parements success:^(id data) {
             NSArray *scheduleAry = data[@"data"];;
             
-            //字典数组转模型数组
             NSArray *todayScheduleModel = [KWScheduleModel mj_objectArrayWithKeyValuesArray:scheduleAry];
             
-            //存入数据库
             RLMRealm *real = [KWRealm getRealmWith:GdufeDataBase];
             KWTodayScheduleObject __block *scheduleObject = [[KWTodayScheduleObject alloc] init];
             RLMResults *results = [KWTodayScheduleObject allObjectsInRealm:real];
@@ -169,23 +155,16 @@
     });
 }
 
-//有网络时，更新本地Cash余额
 - (void)loadCardData {
-    //拼接数据
     NSMutableDictionary *parements = [NSMutableDictionary dictionary];
     parements[@"sno"] = gdufeAccount;
     parements[@"pwd"] = gdufePassword;
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{ // 1
         [KWAFNetworking postWithUrlString:GetCashAPI parameters:parements success:^(id data) {
-            //获取字典
             NSDictionary *cardDict = data[@"data"];
-            
-            //更新本地Cash
             [Utils updateCache:gdufeAccount andID:@"CardModel" andValue:cardDict];
-            //        NSLog(@"更新成功");
-            
-            //字典转模型
+
             _cardModel = [KWCashModel mj_objectWithKeyValues:cardDict];
             //        self.msgVc.stuModel = _stuModel;
             self.todayBuyVc.cardModel = _cardModel;
@@ -200,18 +179,13 @@
     });
 }
 
-/*
- 缓存余额数据:有网络的时候，更新本地余额数据，无网络的时候不更新
- */
+
 - (void) updateCashData {
-    //1.创建网络状态监测管理者
     AFNetworkReachabilityManager *manager = [AFNetworkReachabilityManager  sharedManager];
-    //2.监听改变
     [manager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus  status) {
         switch (status) {
             case  AFNetworkReachabilityStatusUnknown: {
                 NSLog(@"未知");
-                //缓存获取Cash余额
                 NSDictionary *cashAry = [Utils getCache:gdufeAccount andID:@"CardModel"];
                 _cardModel = [KWCashModel mj_objectWithKeyValues:cashAry];
                 self.todayBuyVc.cardModel = _cardModel;
@@ -220,7 +194,6 @@
             }
             case AFNetworkReachabilityStatusNotReachable:{
                 NSLog(@"没有网络");
-                //缓存获取Cash余额
                 NSDictionary *cashAry = [Utils getCache:gdufeAccount andID:@"CardModel"];
                 _cardModel = [KWCashModel mj_objectWithKeyValues:cashAry];
                 self.todayBuyVc.cardModel = _cardModel;
@@ -247,7 +220,6 @@
 #pragma mark - 设置导航条
 -(void)setupNavBar
 {
-    //设置按钮
     self.navigationItem.title = @"我";
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithImage:[UIImage imageNamed:@"mine_setting"] hightImage:[UIImage imageNamed:@"mine_setting"] target:self action:@selector(settingVc)];
 }
@@ -267,20 +239,16 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
-        //nil加载cell
-//        KWMineCell *cell = [[KWMineCell alloc]init];
-//        cell = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([KWMineCell class]) owner:nil options:nil][0];
-//        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-//        cell.model = _stuModel;
+
         KWMyMsgCell *cell = [[KWMyMsgCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;//选中无色
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.model = _stuModel;
         return cell;
     } else {
         KWEducationalViewCell *cell = [[KWEducationalViewCell alloc]init];
         cell.delegate = self;
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;//不可选择
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
 }
@@ -294,7 +262,6 @@
     } else return 44;
 }
 
-//自定义Header的UIView
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     UIView *customView = [[UIView alloc] initWithFrame:CGRectMake(15, 0, 320, 5)];

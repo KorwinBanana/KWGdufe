@@ -30,7 +30,7 @@
     CGFloat width = CGRectGetWidth(self.frame);
     CGFloat height = CGRectGetHeight(self.frame);
     day=[[UILabel alloc] initWithFrame:CGRectMake(0, height/3, width, height/3)];
-    day.textColor = [UIColor blackColor];//日期字体
+    day.textColor = [UIColor blackColor];
     day.font = [UIFont systemFontOfSize:11];
     day.textAlignment = NSTextAlignmentCenter;
     self.layer.borderWidth = 0.25;

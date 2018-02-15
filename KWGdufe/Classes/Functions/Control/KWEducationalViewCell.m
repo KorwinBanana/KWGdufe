@@ -32,14 +32,12 @@
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         _homeBackGColors = @[@"#1DB0B8",@"#37C6C0",@"#96B8FF",@"#0691CD",@"39A9CF",@"#F26A7A"];
         
-        //创建布局
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
         layout.itemSize = CGSizeMake(KWSCreenW/5, KWSCreenW/5);
         NSLog(@"%lf",KWSCreenW/5);
         layout.minimumLineSpacing = 0.1;
         layout.minimumInteritemSpacing = 0.1;
         
-        //创建UICollectView
         UICollectionView *collectView = [[UICollectionView alloc]initWithFrame:CGRectMake(20, 0, KWSCreenW-40, 2 * KWSCreenW/5) collectionViewLayout:layout];
         
         collectView.dataSource = self;
@@ -48,7 +46,6 @@
         collectView.backgroundColor = [UIColor clearColor];
         [self addSubview:collectView];
         
-        //注册cell
         [collectView registerNib:[UINib nibWithNibName:@"KWFunctionsCell" bundle:nil] forCellWithReuseIdentifier:ID];
     }
     return self;

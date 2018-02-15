@@ -14,10 +14,8 @@
 - (instancetype)initWithFrame:(CGRect)frame
 {
     if(self=[super initWithFrame:frame]){
-//        self.view = [[UIView alloc] initWithFrame:CGRectMake(0.5, 0.5, CGRectGetWidth(frame)-1.5, CGRectGetHeight(frame)-1.5)];
         self.view = [[UIView alloc] init];
         _view.layer.cornerRadius = 4;
-//        _view.layer.masksToBounds = YES;
         [self addSubview:_view];
         [_view mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.mas_top).with.offset(0.5);
@@ -26,7 +24,6 @@
             make.right.equalTo(self.mas_right).with.offset(-0.5);
         }];
         
-        //课程名
         self.name = [[UILabel alloc] init];
         _name.textAlignment = NSTextAlignmentCenter;
         _name.font = [UIFont systemFontOfSize:12];
@@ -42,7 +39,6 @@
             make.bottom.equalTo(_view.mas_bottom).with.offset(-(self.bounds.size.height * 0.5));
         }];
         
-        //上课地点
         self.className = [[UILabel alloc]init];
         _className.textAlignment = NSTextAlignmentCenter;
         _className.font = [UIFont systemFontOfSize:12];
